@@ -19,7 +19,7 @@ export const styles = {
   },
 
   formWrapper: {
-    flex: 4,
+    flex: 2,
   },
 
   text: {
