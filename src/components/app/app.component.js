@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import { StyleProvider, getTheme } from 'native-base';
+import variables from '../../Themes/variables';
+
 import { styles } from './app.style';
 
 import { StartScreen } from '../start-screen';
@@ -10,7 +13,9 @@ import { MainScreen } from '../main-screen';
 export class AppComponent extends Component {
     render() {
         return (
-            <MainScreen />
+            <StyleProvider style={getTheme(variables)}>
+                <MainScreen />
+            </StyleProvider>
         );
     }
 }

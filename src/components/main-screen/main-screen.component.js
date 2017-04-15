@@ -14,7 +14,7 @@ import {
   Text,
   Input,
   Tab,
-  Tabs,
+  Tabs
 } from 'native-base';
 
 import { styles } from './main-screen.style';
@@ -50,18 +50,18 @@ export class MainScreenComponent extends Component {
         <Footer>
           <FooterTab>
             <Button>
-              <Icon name="home" />
-              <Text>Home</Text>
+              <Icon name="home" style={styles.footerText} />
+              <Text style={styles.footerText}>Home</Text>
             </Button>
 
             <Button>
-              <Icon name="ios-search" />
-              <Text>Buscar</Text>
+              <Icon name="ios-search" style={styles.footerText} />
+              <Text style={styles.footerText}>Buscar</Text>
             </Button>
 
             <Button>
-              <Icon name="person" />
-              <Text>Perfil</Text>
+              <Icon name="person" style={styles.footerText} />
+              <Text style={styles.footerText}>Perfil</Text>
             </Button>
           </FooterTab>
         </Footer>
