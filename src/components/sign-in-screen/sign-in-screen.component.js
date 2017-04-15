@@ -13,6 +13,8 @@ import {
   Label
 } from "native-base";
 
+import { Actions, ActionConst } from 'react-native-router-flux';
+
 import { StyleSheet } from 'react-native';
 
 import { styles } from './sign-in-screen.style';
@@ -45,8 +47,10 @@ export class SignInScreenComponent extends Component {
 
             </Form>
 
-            <Button warning full rounded style={styles.button}>
-              <Text>CRIAR CONTA</Text>
+            <Button warning full rounded style={styles.button}
+              onPress={() => { Actions.MainScreen({type: ActionConst.REPLACE}) }}
+            >
+              <Text>ENTRAR</Text>
             </Button>
           </Content>
         </View>

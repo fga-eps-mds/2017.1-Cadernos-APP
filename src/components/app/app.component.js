@@ -5,17 +5,14 @@ import variables from '../../Themes/variables';
 
 import { styles } from './app.style';
 
-import { StartScreen } from '../start-screen';
-import { SignUpScreen } from '../sign-up-screen';
-import { SignInScreen } from '../sign-in-screen';
-import { MainScreen } from '../main-screen';
+import { RouterWrapper } from '../router-wrapper';
 
 export class AppComponent extends Component {
-    render() {
-        return (
-            <StyleProvider style={getTheme(variables)}>
-                <MainScreen />
-            </StyleProvider>
-        );
-    }
+  render() {
+    return (
+      <StyleProvider style={getTheme(variables)}>
+        <RouterWrapper />
+      </StyleProvider>
+    );
+  }
 }
