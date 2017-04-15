@@ -1,5 +1,5 @@
-import { SignInComponent as SignIn } from './sign-in.component';
+import { SignInScreenComponent as SignInScreen } from './sign-in-screen.component';
 
 export {
-  SignIn
+  SignInScreen
 }

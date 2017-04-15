@@ -15,23 +15,27 @@ import {
 
 import { StyleSheet } from 'react-native';
 
-import { styles } from './sign-in.style';
+import { styles } from './sign-up-screen.style';
 
-export class SignInComponent extends Component {
+export class SignUpScreenComponent extends Component {
   render() {
     return (
       <Container style={styles.mainWrapper}>
 
         <View style={styles.tittleWrapper}>
-          <H1 style={StyleSheet.flatten([styles.text, styles.titleText])}>ENTRAR</H1>
+          <H1 style={StyleSheet.flatten([styles.text, styles.titleText])}>CADASTRE-SE</H1>
           <Text style={StyleSheet.flatten([styles.text, styles.subTitleText])}>
-            Feliz por te ver mais uma vez aqui
+            Prazer em te conhecer. Seja bem-vindo
           </Text>
         </View>
 
         <View style={styles.formWrapper}>
           <Content>
             <Form>
+              <Item floatingLabel>
+                <Label style={styles.label}>Seu Nome</Label>
+                <Input />
+              </Item>
 
               <Item floatingLabel>
                 <Label style={styles.label}>Seu Email</Label>
@@ -46,7 +50,7 @@ export class SignInComponent extends Component {
             </Form>
 
             <Button warning full rounded style={styles.button}>
-              <Text>CRIAR CONTA</Text>
+                <Text>CRIAR CONTA</Text>
             </Button>
           </Content>
         </View>
