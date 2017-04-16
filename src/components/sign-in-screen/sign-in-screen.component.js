@@ -19,10 +19,14 @@ import { StyleSheet } from 'react-native';
 
 import { styles } from './sign-in-screen.style';
 
+import { GoBack } from '../go-back';
+
 export class SignInScreenComponent extends Component {
   render() {
     return (
       <Container style={styles.mainWrapper}>
+
+        <GoBack />
 
         <View style={styles.tittleWrapper}>
           <H1 style={StyleSheet.flatten([styles.text, styles.titleText])}>ENTRAR</H1>

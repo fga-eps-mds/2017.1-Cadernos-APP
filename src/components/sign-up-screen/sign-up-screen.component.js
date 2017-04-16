@@ -17,10 +17,14 @@ import { StyleSheet } from 'react-native';
 
 import { styles } from './sign-up-screen.style';
 
+import { GoBack } from '../go-back';
+
 export class SignUpScreenComponent extends Component {
   render() {
     return (
       <Container style={styles.mainWrapper}>
+
+        <GoBack />
 
         <View style={styles.tittleWrapper}>
           <H1 style={StyleSheet.flatten([styles.text, styles.titleText])}>CADASTRE-SE</H1>
