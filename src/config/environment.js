@@ -1,11 +1,11 @@
 const DEVELOPMENT = {
   baseURL: 'http://127.0.0.1:3000',
-  timeout: 2000
+  timeout: 5000 // 5s
 }
 
 const HOMOLOGATION = {
   baseURL: 'https://cadernos-api.herokuapp.com',
-  timeout: 2000
+  timeout: 5000 // 5s
 }
 
 
