@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
+    "jsx-control-statements": "^3.1.5",
     "native-base": "^2.1.1",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.3",
