@@ -9,12 +9,17 @@ import {
   AppRegistry,
 } from 'react-native';
 
+import { Provider } from 'react-redux';
+
+import store from './src/config/store';
 import { App } from './src/components/app';
 
 export default class Cadernos extends Component {
   render() {
     return (
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     );
   }
 }
