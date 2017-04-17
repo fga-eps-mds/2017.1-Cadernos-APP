@@ -37,8 +37,16 @@ export class SignUpScreenComponent extends Component {
       name: '',
       email: '',
       password: '',
-      fieldsErrors: {},
-      sendingData: false
+      fieldsErrors: props.fieldsErrors,
+      sendingData: props.sendingData
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.fieldsErrors) {
+      this.setState({
+        fieldsErrors: nextProps.fieldsErrors
+      });
     }
   }
 
@@ -75,7 +83,7 @@ export class SignUpScreenComponent extends Component {
     return true;
   }
 
-  makeUserCreateJSON() {
+  makeUserDataJSON() {
     const json = {
       user: {
         name: this.state.name,
@@ -91,23 +99,12 @@ export class SignUpScreenComponent extends Component {
   createUser() {
     if (this.isFormValid()) {
       this.setState({sendingData: true, fieldsErrors: {}});
-
-      axios.post("/users", this.makeUserCreateJSON())
-      .then(feedBack => {
-        console.log(feedBack.data);
-        console.log(feedBack.headers.auth_token);
-
-        setAuthorizationToken(feedBack.headers.auth_token);
-        Actions.MainScreen({type: ActionConst.REPLACE})
-      })
-      .catch(err => {
-        if (err.response.status === 422) {
-          this.setState({fieldsErrors: err.response.data});
-        } else {
-          // Display some genrec error message
-        }
-
+      this.props.createUser(this.makeUserDataJSON(), (success=false) => {
         this.setState({sendingData: false});
+
+        if (success) {
+          Actions.MainScreen({type: ActionConst.REPLACE});
+        }
       });
     }
   }
