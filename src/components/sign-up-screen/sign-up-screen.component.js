@@ -8,13 +8,8 @@ import {
   View,
   H1,
   Form,
-  Item,
-  Input,
-  InputGroup,
-  Label,
   Toast,
   Spinner,
-  Icon
 } from "native-base";
 
 import { If, Choose, When } from 'jsx-control-statements';
@@ -26,6 +21,8 @@ import { Actions, ActionConst } from 'react-native-router-flux';
 import { styles } from './sign-up-screen.style';
 
 import { GoBack } from '../go-back';
+
+import { FloatingInput } from '../floating-input';
 
 import axios, { setAuthorizationToken } from '../../config/axios';
 
@@ -117,53 +114,33 @@ export class SignUpScreenComponent extends Component {
         <View style={styles.formWrapper}>
           <Content>
             <Form>
-              <Item floatingLabel error={this.props.errors.name != undefined}>
-                <Label style={styles.label}>Seu Nome</Label>
+              <FloatingInput
+                labelText={"Seu Nome"}
+                value={this.state.name}
+                inputChangeText={(value) => this.inputValueChanged('name', value)}
+                labelStyle={styles.label}
+                errors={this.props.errors.name}
+                style={{marginTop: 10}}
+              />
 
-                <Input
-                  value={this.state.name}
-                  onChangeText={(value) => this.inputValueChanged('name', value)}
-                />
+              <FloatingInput
+                labelText={"Seu Email"}
+                value={this.state.email}
+                inputChangeText={(value) => this.inputValueChanged('email', value)}
+                labelStyle={styles.label}
+                errors={this.props.errors.email}
+                style={{marginTop: 10}}
+              />
 
-                <If condition={this.props.errors.name != undefined}>
-                  <Icon name='ios-close-circle' />
-                </If>
-              </Item>
-              <If condition={this.props.errors.name != undefined}>
-                <Text>{this.props.errors.name}</Text>
-              </If>
-
-              <Item floatingLabel error={this.props.errors.email != undefined}>
-                <Label style={styles.label}>Seu Email</Label>
-
-                <Input
-                  value={this.state.email}
-                  onChangeText={(value) => this.inputValueChanged('email', value)}
-                />
-
-                <If condition={this.props.errors.email != undefined}>
-                  <Icon name='ios-close-circle' />
-                </If>
-              </Item>
-              <If condition={this.props.errors.email != undefined}>
-                <Text>{this.props.errors.email}</Text>
-              </If>
-
-              <Item floatingLabel last error={this.props.errors.password != undefined}>
-                <Label style={styles.label}>Senha</Label>
-                <Input secureTextEntry
-                  value={this.state.password}
-                  onChangeText={(value) => this.inputValueChanged('password', value)}
-                />
-
-                <If condition={this.props.errors.password != undefined}>
-                  <Icon name='ios-close-circle' />
-                </If>
-              </Item>
-              <If condition={this.props.errors.password != undefined}>
-                <Text>{this.props.errors.password}</Text>
-              </If>
-
+              <FloatingInput
+                labelText={"Senha"}
+                value={this.state.password}
+                inputChangeText={(value) => this.inputValueChanged('password', value)}
+                labelStyle={styles.label}
+                errors={this.props.errors.password}
+                secureText={true}
+                style={{marginTop: 10}}
+              />
             </Form>
 
             <Choose>
