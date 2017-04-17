@@ -37,16 +37,7 @@ export class SignUpScreenComponent extends Component {
       name: '',
       email: '',
       password: '',
-      fieldsErrors: props.fieldsErrors,
-      sendingData: props.sendingData
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.fieldsErrors) {
-      this.setState({
-        fieldsErrors: nextProps.fieldsErrors
-      });
+      sendingData: false,
     }
   }
 
@@ -98,7 +89,9 @@ export class SignUpScreenComponent extends Component {
 
   createUser() {
     if (this.isFormValid()) {
-      this.setState({sendingData: true, fieldsErrors: {}});
+      this.setState({sendingData: true});
+      this.props.clearErrors();
+
       this.props.createUser(this.makeUserDataJSON(), (success=false) => {
         this.setState({sendingData: false});
 
@@ -124,7 +117,7 @@ export class SignUpScreenComponent extends Component {
         <View style={styles.formWrapper}>
           <Content>
             <Form>
-              <Item floatingLabel error={this.state.fieldsErrors.name != undefined}>
+              <Item floatingLabel error={this.props.errors.name != undefined}>
                 <Label style={styles.label}>Seu Nome</Label>
 
                 <Input
@@ -132,15 +125,15 @@ export class SignUpScreenComponent extends Component {
                   onChangeText={(value) => this.inputValueChanged('name', value)}
                 />
 
-                <If condition={this.state.fieldsErrors.name != undefined}>
+                <If condition={this.props.errors.name != undefined}>
                   <Icon name='ios-close-circle' />
                 </If>
               </Item>
-              <If condition={this.state.fieldsErrors.name != undefined}>
-                <Text>{this.state.fieldsErrors.name}</Text>
+              <If condition={this.props.errors.name != undefined}>
+                <Text>{this.props.errors.name}</Text>
               </If>
 
-              <Item floatingLabel error={this.state.fieldsErrors.email != undefined}>
+              <Item floatingLabel error={this.props.errors.email != undefined}>
                 <Label style={styles.label}>Seu Email</Label>
 
                 <Input
@@ -148,27 +141,27 @@ export class SignUpScreenComponent extends Component {
                   onChangeText={(value) => this.inputValueChanged('email', value)}
                 />
 
-                <If condition={this.state.fieldsErrors.email != undefined}>
+                <If condition={this.props.errors.email != undefined}>
                   <Icon name='ios-close-circle' />
                 </If>
               </Item>
-              <If condition={this.state.fieldsErrors.email != undefined}>
-                <Text>{this.state.fieldsErrors.email}</Text>
+              <If condition={this.props.errors.email != undefined}>
+                <Text>{this.props.errors.email}</Text>
               </If>
 
-              <Item floatingLabel last error={this.state.fieldsErrors.password != undefined}>
+              <Item floatingLabel last error={this.props.errors.password != undefined}>
                 <Label style={styles.label}>Senha</Label>
                 <Input secureTextEntry
                   value={this.state.password}
                   onChangeText={(value) => this.inputValueChanged('password', value)}
                 />
 
-                <If condition={this.state.fieldsErrors.password != undefined}>
+                <If condition={this.props.errors.password != undefined}>
                   <Icon name='ios-close-circle' />
                 </If>
               </Item>
-              <If condition={this.state.fieldsErrors.password != undefined}>
-                <Text>{this.state.fieldsErrors.password}</Text>
+              <If condition={this.props.errors.password != undefined}>
+                <Text>{this.props.errors.password}</Text>
               </If>
 
             </Form>

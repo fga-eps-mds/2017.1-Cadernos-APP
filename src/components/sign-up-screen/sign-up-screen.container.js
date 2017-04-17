@@ -7,21 +7,25 @@ import { SET_USER, SET_USER_ERRORS } from '../../config/actions';
 
 const mapStateToProps = (state) => {
   return {
-    fieldsErrors: state.user.errors,
-    sendingData: false,
+    errors: state.user.errors,
   }
 }
 
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    clearErrors() {
+      dispatch({
+        type: SET_USER_ERRORS,
+        errors: {}
+      });
+    },
+
+
     createUser(userData, callback) {
       axios.post("/users", userData)
       .then(feedBack => {
-        console.log('OK !');
         setAuthorizationToken(feedBack.headers.auth_token);
-
-        console.log(feedBack.data);
 
         dispatch({
           type: SET_USER,
@@ -35,11 +39,7 @@ const mapDispatchToProps = (dispatch) => {
         callback(true);
       })
       .catch(err => {
-        console.log('ERR !');
-        console.log(err);
-
         if (err.response && err.response.status === 422) {
-          console.log('ERR !!!!');
           dispatch({
             type: SET_USER_ERRORS,
             errors: err.response.data
