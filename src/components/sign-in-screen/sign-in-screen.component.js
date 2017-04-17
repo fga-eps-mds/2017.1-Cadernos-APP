@@ -10,7 +10,9 @@ import {
   Form,
   Item,
   Input,
-  Label
+  Label,
+  ListItem,
+  CheckBox
 } from "native-base";
 
 import { Actions, ActionConst } from 'react-native-router-flux';
@@ -22,6 +24,7 @@ import { styles } from './sign-in-screen.style';
 import { GoBack } from '../go-back';
 
 export class SignInScreenComponent extends Component {
+
   render() {
     return (
       <Container style={styles.mainWrapper}>
@@ -44,10 +47,15 @@ export class SignInScreenComponent extends Component {
                 <Input />
               </Item>
 
-              <Item floatingLabel last>
+              <Item floatingLabel>
                 <Label style={styles.label}>Senha</Label>
                 <Input secureTextEntry/>
               </Item>
+
+              <ListItem onPress={() => this.props.toggleRememberLogin()}>
+                <CheckBox checked={this.props.rememberLogin} />
+                <Text style={{marginLeft: 10}}>Lembrar email e senha</Text>
+              </ListItem>
 
             </Form>
 

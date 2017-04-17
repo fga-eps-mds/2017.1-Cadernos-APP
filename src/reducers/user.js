@@ -1,9 +1,10 @@
 import initialState from '../config/initial-state';
-import { SET_USER, SET_USER_ERRORS } from '../config/actions';
+import Actions from '../config/actions';
+
 
 const userReducer = (state=initialState.user, action) => {
   switch(action.type) {
-    case SET_USER:
+    case Actions.User.SET_USER:
       return {
         id: action.id,
         name: action.name,
@@ -12,10 +13,18 @@ const userReducer = (state=initialState.user, action) => {
         errors: action.errors
       };
 
-    case SET_USER_ERRORS:
+
+    case Actions.User.SET_USER_ERRORS:
       return Object.assign({}, state, {
         errors: action.errors
       });
+
+
+    case Actions.User.TOGGLE_USER_REMEMBER_LOGIN:
+      return Object.assign({}, state, {
+        rememberLogin: !state.rememberLogin
+      });
+
 
     default:
       return state;

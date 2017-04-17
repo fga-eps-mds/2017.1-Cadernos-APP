@@ -1,4 +1,4 @@
-import { SignInScreenComponent as SignInScreen } from './sign-in-screen.component';
+import { SignInScreenContainer as SignInScreen } from './sign-in-screen.container';
 
 export {
   SignInScreen

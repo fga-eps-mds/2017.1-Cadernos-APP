@@ -4,6 +4,7 @@ export default {
     name: '',
     email: '',
     auth_token: '',
-    errors: {}
+    errors: {},
+    rememberLogin: true,
   }
 }
