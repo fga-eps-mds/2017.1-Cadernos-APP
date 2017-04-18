@@ -5,10 +5,16 @@ import axios, { setAuthorizationToken } from '../../config/axios';
 
 
 const mapStateToProps = (state) => {
+  let userData = {
+    email: state.login.rememberLogin ? state.login.email : "",
+    password: state.login.rememberLogin ? state.login.password : ""
+  }
+
   return {
     rememberLogin: state.login.rememberLogin,
     error: state.login.error,
-    sendingData: state.login.sendingData
+    email: userData.email,
+    password: userData.password
   }
 }
 
@@ -22,46 +28,31 @@ const mapDispatchToProps = (dispatch) => {
     },
 
 
-    toggleSendingData () {
-      dispatch({
-        type: Actions.login.TOGGLE_SENDING_DATA_LOGIN
-      });
-    },
-
-
     logUserIn(userData, callback) {
       axios.post("/authenticate", {
         email: userData.email,
         password: userData.password
       })
       .then(feddback => {
-        if (feddback.status === 200) {
-          setAuthorizationToken(feddback.data.auth_token);
+        setAuthorizationToken(feddback.data.auth_token);
 
-          /*
-          dispatch({
-            type: Actions.login.SET_IS_LOGGED,
-            logged: true
-          });
-          */
+        dispatch({
+          type: Actions.login.SET_LOGIN_DATA,
+          isUserLogged: true,
+          email: userData.email,
+          password: userData.password,
+        });
 
-          callback(true);
-        } else {
-          console.error(new Error('Error on login status'));
-          callback(false);
-        }
+        callback(true);
       })
       .catch(err => {
         if (err.response && err.response.status === 401) {
-          dispatch({
-            type: Actions.login.SET_LOGIN_ERROR,
-            error: err.response.data.error.user_authentication
-          });
+          // Autentication error
+          callback(false, err.response.data.error.user_authentication[0]);
         } else {
           // Display a generic error message
+          callback(false, "");
         }
-
-        callback(false);
       });
     }
   }

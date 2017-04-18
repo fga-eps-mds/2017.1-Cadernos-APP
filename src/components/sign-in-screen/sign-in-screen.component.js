@@ -35,14 +35,9 @@ export class SignInScreenComponent extends Component {
     super(props);
 
     this.state = {
-      email: '',
-      password: ''
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.error && nextProps.error.length > 0) {
-      this.displayErrorMessage(nextProps.error);
+      email: props.email,
+      password: props.password,
+      sendingData: false,
     }
   }
 
@@ -76,13 +71,15 @@ export class SignInScreenComponent extends Component {
       password: this.state.password
     }
 
-    this.props.toggleSendingData();
+    this.setState({sendingData: true});
 
-    this.props.logUserIn(userJSON, (success=false) => {
+    this.props.logUserIn(userJSON, (success=false, data="") => {
+      this.setState({sendingData: false});
+
       if (success) {
         Actions.MainScreen({type: ActionConst.REPLACE});
       } else {
-        this.props.toggleSendingData();
+        data.trim().length > 0 && this.displayErrorMessage(data);
       }
     });
   }
@@ -137,11 +134,11 @@ export class SignInScreenComponent extends Component {
             </Form>
 
             <Choose>
-              <When condition={this.props.sendingData === true}>
+              <When condition={this.state.sendingData === true}>
                 <Spinner />
               </When>
 
-              <When condition={this.props.sendingData === false}>
+              <When condition={this.state.sendingData === false}>
                 <Button warning full rounded style={styles.button}
                   onPress={() => this.logUserIn()}
                 >

@@ -8,8 +8,9 @@ export default {
   },
 
   login: {
-    error: '',
     rememberLogin: true,
-    sendingData: false,
+    isUserLogged: false,
+    email: '',
+    password: ''
   }
 }

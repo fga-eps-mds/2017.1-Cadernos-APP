@@ -1,7 +1,21 @@
 import update from 'immutability-helper';
+import { AsyncStorage } from 'react-native';
 
 import initialState from '../config/initial-state';
 import Actions from '../config/actions';
+
+async function verifyRememberUserLogin(loginState, email="", password="") {
+  let data = {
+    email: loginState.rememberLogin ? email : "",
+    password: loginState.rememberLogin ? password : ""
+  }
+
+  try {
+    await AsyncStorage.setItem('CadernosApp:userLogin', JSON.stringify(data));
+  } catch(err) {
+    console.error("Could not store user email and password", err);
+  }
+}
 
 
 const loginReducer = (state=initialState.login, action) => {
@@ -15,19 +29,13 @@ const loginReducer = (state=initialState.login, action) => {
       });
 
 
-    case Actions.login.SET_LOGIN_ERROR:
-      return update(state, {
-        error: {
-          $set: action.error
-        }
-      });
+    case Actions.login.SET_LOGIN_DATA:
+      verifyRememberUserLogin(state, action.email, action.password);
 
-
-    case Actions.login.TOGGLE_SENDING_DATA_LOGIN:
       return update(state, {
-        sendingData: {
-          $set: !state.sendingData
-        }
+        isUserLogged: {$set: state.isUserLogged},
+        email: {$set: action.email},
+        password: {$set: action.password}
       });
 
 
