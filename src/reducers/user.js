@@ -6,7 +6,7 @@ import Actions from '../config/actions';
 
 const userReducer = (state=initialState.user, action) => {
   switch(action.type) {
-    case Actions.User.SET_USER:
+    case Actions.user.SET_USER:
       return update(state, {
         $set: {
           id: action.id,
@@ -18,21 +18,12 @@ const userReducer = (state=initialState.user, action) => {
       });
 
 
-    case Actions.User.SET_USER_ERRORS:
+    case Actions.user.SET_USER_ERRORS:
       return update(state, {
         errors: {
           $set: action.errors
         }
       });
-
-
-    case Actions.User.TOGGLE_USER_REMEMBER_LOGIN:
-      return update(state, {
-        rememberLogin: {
-          $set: !state.rememberLogin
-        }
-      });
-
 
     default:
       return state;

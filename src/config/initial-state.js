@@ -5,6 +5,11 @@ export default {
     email: '',
     auth_token: '',
     errors: {},
+  },
+
+  login: {
+    error: '',
     rememberLogin: true,
+    sendingData: false,
   }
 }

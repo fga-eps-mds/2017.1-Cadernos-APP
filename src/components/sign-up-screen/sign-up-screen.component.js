@@ -12,7 +12,7 @@ import {
   Spinner,
 } from "native-base";
 
-import { If, Choose, When } from 'jsx-control-statements';
+import { Choose, When } from 'jsx-control-statements';
 
 import { StyleSheet } from 'react-native';
 
