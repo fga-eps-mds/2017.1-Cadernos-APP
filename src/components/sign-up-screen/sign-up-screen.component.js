@@ -93,7 +93,7 @@ export class SignUpScreenComponent extends Component {
         this.setState({sendingData: false});
 
         if (success) {
-          Actions.MainScreen({type: ActionConst.REPLACE});
+          Actions.SignInScreen({type: ActionConst.REPLACE});
         }
       });
     }

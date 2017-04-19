@@ -1,4 +1,4 @@
-import { AppComponent as App } from './app.component';
+import { AppConteiner as App } from './app.container';
 
 export {
   App

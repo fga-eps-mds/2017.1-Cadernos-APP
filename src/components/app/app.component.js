@@ -8,6 +8,11 @@ import { styles } from './app.style';
 import { RouterWrapper } from '../router-wrapper';
 
 export class AppComponent extends Component {
+
+  componentDidMount() {
+    this.props.getStoredUserLogin();
+  }
+
   render() {
     return (
       <StyleProvider style={getTheme(variables)}>

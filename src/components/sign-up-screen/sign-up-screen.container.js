@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { SignUpScreenComponent } from './sign-up-screen.component';
 
 import axios, { setAuthorizationToken } from '../../config/axios';
-import { SET_USER, SET_USER_ERRORS } from '../../config/actions';
+import { SET_USER, SET_USER_ERRORS, SET_LOGIN_DATA } from '../../config/actions';
 
 
 const mapStateToProps = (state) => {
@@ -34,7 +34,14 @@ const mapDispatchToProps = (dispatch) => {
           email: feedBack.data.email,
           auth_token: feedBack.headers.auth_token,
           errors: {}
-        })
+        });
+
+        dispatch({
+          type: SET_LOGIN_DATA,
+          isUserLogged: false,
+          email: userData.user.email,
+          password: userData.user.password
+        });
 
         callback(true);
       })
