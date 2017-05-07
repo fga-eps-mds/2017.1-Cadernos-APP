@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import CreateUser from '../../screens/create-user/create-user.component'
-export default class ColaborArt extends Component {
+
+import AppRouters from '../app-routers/app-routers.component';
+
+export default class App extends Component {
     render(){ 
         return(
-           <CreateUser />
+           <AppRouters />
         );
     }
 }
