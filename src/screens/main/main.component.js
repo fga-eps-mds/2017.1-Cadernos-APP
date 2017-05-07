@@ -1,15 +1,38 @@
 import React from 'react';
-import{
+
+import {
+    Button,
+    Text,
     View,
-    Text
-} from 'react-native';
+    Container
+} from 'native-base';
 
 export default class Main extends React.Component{
     render(){
+        const { navigate } = this.props.navigation;
+
         return(
-            <View>
-                <Text>DanielOda</Text>
-            </View>
+            <Container>
+                <View>
+                    <Button block
+                        onPress={() =>
+                            navigate('UserLogin')
+                        }
+                    >
+                        <Text>Login</Text>
+                    </Button>
+                </View>
+
+                <View>
+                    <Button block
+                        onPress={() =>
+                            navigate('CreateUser')
+                        }
+                    >
+                        <Text>Cadastro</Text>
+                    </Button>
+                </View>
+            </Container>
         );
     }
 }

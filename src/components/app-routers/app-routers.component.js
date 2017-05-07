@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 
-import {Scene, Router} from 'react-native-router-flux';
+import {
+  StackNavigator,
+} from 'react-navigation';
 
-import Main from '../../screens/main/main.component';
-import CreateUser from '../../screens/create-user/create-user.component';
+import MainScreen from '../../screens/main/main.component';
+import CreateUserScreen from '../../screens/create-user/create-user.component';
+import UserLoginScreen from '../../screens/user-login/user-login.component';
 
+const AppRouters = StackNavigator({
+  Main: {screen: MainScreen},
+  CreateUser: {screen: CreateUserScreen},
+  UserLogin: {screen: UserLoginScreen}
+});
 
-export default class AppRouters extends Component {
-  render() {
-    return (
-        <Router>
-            <Scene key="Main" component={Main} title="Main" initial />
-            <Scene key="CreateUser" component={CreateUser} title="CreateUser"/>
-        </Router>
-    );
-  }
-}
+export default AppRouters;
