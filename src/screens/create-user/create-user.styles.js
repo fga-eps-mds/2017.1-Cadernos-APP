@@ -16,7 +16,7 @@ const styles = {
   },
 
   wrapperForm: {
-    flex: 2,
+    flex: 4,
     paddingVertical: 5,
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
