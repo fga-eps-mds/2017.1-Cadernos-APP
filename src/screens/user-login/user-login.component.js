@@ -10,53 +10,35 @@ import {
   Button
 } from 'native-base';
 
+import styles from './user-login.styles';
+
 export default class UserLogin extends Component {
-    render(){ 
-        return(
-            <Container style = {{padding: 5}}>
-                <View style={styles.wrapperTitle}>
-                    <H1 style={styles.title}>CADASTRE-SE</H1>
-                    <Text>Prazer em te conhecer. Seja bem-vindo!</Text>
-                </View>
-                <View style = {styles.wrapperForm}>
-                    <Item regular style={styles.formItem}>
-                        <Input placeholder='Seu nome'/>
-                    </Item>
-                    <Item regular style={styles.formItem}>
-                        <Input placeholder='Seu e-mail'/>
-                    </Item>
-                    <Item regular style={styles.formItem}>
-                        <Input placeholder='Sua senha'/>
-                    </Item>
+  render() {
+    return (
+      <Container style={styles.container}>
+        <View style={styles.wrapperTitle}>
+          <H1 style={styles.title}>CADASTRE-SE</H1>
+          <Text>Prazer em te conhecer. Seja bem-vindo!</Text>
+        </View>
 
-                    <Button warning block>
-                        <Text>CRIAR CONTA</Text>
-                    </Button>
-                </View>
-            </Container>
-        );
-    }
-}
+        <View style={styles.wrapperForm}>
+          <Item regular style={styles.formItem}>
+            <Input placeholder='Seu nome' />
+          </Item>
 
-const styles = {
-    title:{
-        fontSize: 30,
-        fontWeight: 'bold'
-    },
-    wrapperTitle:{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-     //   backgroundColor: '#3498db'
-    },
-        wrapperForm:{
-        flex: 2,
-        paddingVertical: 5,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-     //   backgroundColor: '#8e44ad'
-    },
-    formItem:{
-        marginBottom: 10
-    }
+          <Item regular style={styles.formItem}>
+            <Input placeholder='Seu e-mail' />
+          </Item>
+
+          <Item regular style={styles.formItem}>
+            <Input placeholder='Sua senha' />
+          </Item>
+
+          <Button warning block>
+            <Text>CRIAR CONTA</Text>
+          </Button>
+        </View>
+      </Container>
+    );
+  }
 }

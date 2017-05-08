@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-import App from './src/components/app/app.component';
+import { App } from './src/components';
 
 export default class ColaborArt extends Component {
   render() {
