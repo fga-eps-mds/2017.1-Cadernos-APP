@@ -3,7 +3,9 @@ const initialState = {
     id: 0,
     name: '',
     email: '',
-    password: ''
+    password: '',
+    sendingData: false,
+    errors: []
   },
 };
 

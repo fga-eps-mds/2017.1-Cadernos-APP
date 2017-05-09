@@ -5,7 +5,7 @@ import { asyncCreateUser } from '../../actions/user';
 
 const mapStateToProps = (state) => {
   return {
-    sendingData: false
+    sendingData: state.user.sendingData
   }
 }
 
