@@ -74,6 +74,11 @@ export default class CreateUser extends Component {
                 <Text>CRIAR CONTA</Text>
               </Button>
             }
+            {this.props.errors && this.props.errors.name ? // Need to do others errors
+              <Text>{this.props.errors.name}</Text>        // create another component to call this logic function
+              :
+              <Text>{''}</Text>
+            }
           </View>
       </Container>
     );

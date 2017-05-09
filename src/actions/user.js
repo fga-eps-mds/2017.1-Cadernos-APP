@@ -27,11 +27,13 @@ export const asyncCreateUser = (userData) => {
       dispatch(userSendingData(false));
     })
     .catch(err => {
-      if (err.response)
+      if (err.response && err.response.data){
         console.log(err.response.data);
-      else
+        dispatch(userErrors(err.response.data));
+      }else{
         console.log(err);
 
+      }
       dispatch(userSendingData(false));
     });
   }
@@ -40,4 +42,11 @@ export const asyncCreateUser = (userData) => {
 
 export const userSendingData = (sendingData) =>{
   return {type: USER_SET_SENDING_DATA, sendingData}
+}
+
+export const userErrors = (errors) =>{
+  return {
+    type: USER_SET_ERRORS,
+    errors
+  }
 }
