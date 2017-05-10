@@ -9,4 +9,7 @@ export const setAuthorizationToken = (token) => {
   axiosInstance.defaults.headers.common['Authorization'] = token;
 }
 
+// TODO: delete is later
+setAuthorizationToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyOCwiZXhwIjoxNDk0NTIzOTE2fQ.7EyDzqwDO4oS-TzwwqM0nd0UT0CjOr85Hwbg2EUzWnw");
+
 export default axiosInstance;
