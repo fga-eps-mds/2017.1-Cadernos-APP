@@ -42,7 +42,7 @@ export default class CreateUser extends Component {
         </View>
 
         <View style={styles.wrapperForm}>
-          <Item regular style={styles.formItem}>
+         <Item regular style={styles.formItem}>
             <Input
               placeholder='Seu nome'
               onChangeText={(text) => this.handleFieldOnChange('name', text)}
@@ -86,8 +86,6 @@ export default class CreateUser extends Component {
                 <Text>CRIAR CONTA</Text>
               </Button>
             }
-
-          <UserErrors errors = {this.props.errors} />
 
           </View>
       </Container>

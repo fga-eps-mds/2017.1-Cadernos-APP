@@ -1,6 +1,6 @@
 const styles = {
   errorText: {
-    backgroundColor:'red',
+    backgroundColor:'#d9534f',
     color: 'white',
     margin: 0,
     padding: 5,
