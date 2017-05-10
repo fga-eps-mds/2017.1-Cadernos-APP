@@ -14,6 +14,8 @@ import {
 import styles from './create-user.styles';
 import UserErrors from '../../components/input-handler/input-handler.user-errors';
 
+import { InputErrorDisplay } from '../../components';
+
 export default class CreateUser extends Component {
   constructor(props) {
     super(props);
@@ -47,6 +49,9 @@ export default class CreateUser extends Component {
               value={this.state.name}
             />
           </Item>
+          {this.props.errors.name ?
+            <InputErrorDisplay errors={this.props.errors.name} />
+          : null}
 
           <Item regular style={styles.formItem}>
             <Input
@@ -55,6 +60,9 @@ export default class CreateUser extends Component {
               value={this.state.email}
             />
           </Item>
+          {this.props.errors.email ?
+            <InputErrorDisplay errors={this.props.errors.email} />
+          : null}
 
           <Item regular style={styles.formItem}>
             <Input
@@ -63,6 +71,9 @@ export default class CreateUser extends Component {
               value={this.state.password}
             />
           </Item>
+          {this.props.errors.password ?
+            <InputErrorDisplay errors={this.props.errors.password} />
+          : null}
         </View>
 
         <View style={{flex: 1}}>
