@@ -6,3 +6,4 @@ CI [![CircleCI](https://circleci.com/gh/fga-gpp-mds/2017.1-Cadernos-APP.svg?styl
 
 [![Code Climate](https://codeclimate.com/github/fga-gpp-mds/2017.1-Cadernos-APP/badges/gpa.svg)](https://codeclimate.com/github/fga-gpp-mds/2017.1-Cadernos-APP)
 
+[![Test Coverage](https://codeclimate.com/github/fga-gpp-mds/2017.1-Cadernos-APP/badges/coverage.svg)](https://codeclimate.com/github/fga-gpp-mds/2017.1-Cadernos-APP/coverage)
