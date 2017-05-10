@@ -10,11 +10,32 @@ import {
   Button,
   Spinner
 } from 'native-base';
+
 import styles from './edit-user.styles'
-//TODO CLEAN THIS SHIT
-import initialState from '../../config/initial-state';
 
 export default class EditUser extends Component {
+constructor (props) {
+  super(props);
+  this.state = {
+    name: "",
+    email: "",
+    password: ""
+   }
+}
+
+componentDidMount() {
+  this.setState({
+    name: this.props.name,
+    email: this.props.email
+  });
+}
+
+handleFieldOnChange(field, value) {
+  this.setState({
+    [field]: value
+  });
+}
+
   render() {
     return (
       <Container style={styles.container}>
@@ -28,7 +49,7 @@ export default class EditUser extends Component {
             <Input
               placeholder='Seu nome'
               onChangeText={(text) => this.handleFieldOnChange('name', text)}
-              value={initialState.name}
+              value={this.state.name}
             />
           </Item>
 
@@ -36,7 +57,7 @@ export default class EditUser extends Component {
             <Input
               placeholder='Seu e-mail'
               onChangeText={(text) => this.handleFieldOnChange('email', text)}
-              value={initialState.email}
+              value={this.state.email}
             />
           </Item>
 
@@ -44,7 +65,7 @@ export default class EditUser extends Component {
             <Input
               placeholder='Confirme sua senha'
               onChangeText={(text) => this.handleFieldOnChange('password', text)}
-              //value={this.state.password}
+              value={this.state.password}
             />
           </Item>
         </View>
