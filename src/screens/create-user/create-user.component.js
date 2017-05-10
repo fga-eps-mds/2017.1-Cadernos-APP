@@ -12,6 +12,7 @@ import {
 } from 'native-base';
 
 import styles from './create-user.styles';
+import UserErrors from '../../components/input-handler/input-handler.user-errors';
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -74,11 +75,9 @@ export default class CreateUser extends Component {
                 <Text>CRIAR CONTA</Text>
               </Button>
             }
-            {this.props.errors && this.props.errors.name ? // Need to do others errors
-              <Text>{this.props.errors.name}</Text>        // create another component to call this logic function
-              :
-              <Text>{''}</Text>
-            }
+
+          <UserErrors errors = {this.props.errors} />
+
           </View>
       </Container>
     );
