@@ -42,15 +42,32 @@ export const asyncCreateUser = (userData) => {
 export const asyncEditUser = (userData) => {
   return (dispatch) => {
     dispatch(userSendingData(true));
-    axios.get('/users/' + userData.id + '/edit', {
-    user: {...userData, email_confirmation:userData.email}
-  })
-    setAuthorizationToken(feedBack.headers.auth_token);
-    dispatch(userSet({...feedBack.data, password: userData.password}));
-    dispatch(userSendingData(false));
-  }
 
+    console.log(userData)/
+
+    axios.patch(`/users/${userData.id}`, {
+      user: {...userData, email_confirmation:userData.email}
+    })
+    .then(response => {
+      setAuthorizationToken(response.headers.auth_token);
+      dispatch(userSet({...response.data, password: userData.password}));
+    })
+    .catch(err => {
+      console.log("ERROR");
+      console.log(err);
+
+      if (err.response && err.response.data) {
+        // dispatch dos errors, pegar da brach createUser
+        // dispatch(algumActionDeError(err.response.data))
+      } else {
+        // Um erro que não é da API, pode ser falta de internet e etc
+      }
+    })
+    .finally(() => {
+      dispatch(userSendingData(false));
+    });
   }
+}
 
 
 

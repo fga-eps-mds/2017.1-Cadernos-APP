@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   View,
@@ -14,27 +14,36 @@ import {
 import styles from './edit-user.styles';
 
 export default class EditUser extends Component {
-constructor (props) {
-  super(props);
-  this.state = {
-    name: "",
-    email: "",
-    password: ""
-   }
-}
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      password: ""
+    }
+  }
 
-componentDidMount() {
-  this.setState({
-    name: this.props.name,
-    email: this.props.email
-  });
-}
+  componentDidMount() {
+    this.setState({
+      name: this.props.name,
+      email: this.props.email
+    });
+  }
 
-handleFieldOnChange(field, value) {
-  this.setState({
-    [field]: value
-  });
-}
+  handleFieldOnChange(field, value) {
+    this.setState({
+      [field]: value
+    });
+  }
+
+  getUserData() {
+    const userData = {
+      ...this.state,
+      id: this.props.id
+    };
+
+    return userData;
+  }
 
   render() {
     return (
@@ -70,20 +79,20 @@ handleFieldOnChange(field, value) {
           </Item>
         </View>
 
-        <View style={{flex: 1}}>
-            {this.props.sendingData ?
-              <Spinner />
+        <View style={{ flex: 1 }}>
+          {this.props.sendingData ?
+            <Spinner />
             :
-              <Button warning block
-  //              onPress={() => this.props.editUser(this.state)}
-              >
-                <Text>Salvar Dados</Text>
-              </Button>
-            }
+            <Button warning block
+              onPress={() => this.props.editUser(this.getUserData())}
+            >
+              <Text>Salvar Dados</Text>
+            </Button>
+          }
 
 
 
-          </View>
+        </View>
       </Container>
     );
   }
