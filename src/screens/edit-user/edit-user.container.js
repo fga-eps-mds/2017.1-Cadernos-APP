@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import editUserComponent from './edit-user.component.js';
-
+import { asyncEditUser } from '../../actions/user';
 
 const mapStateToProps = (state) =>{
 
@@ -12,8 +12,16 @@ const mapStateToProps = (state) =>{
   }
 }
 
+const mapDispatchToProps = (dispatch) =>{
+  return{
+    edituser(userData){
+      dispatch(asyncEditUser(userData));
+    }
+  }
+}
 const editUserContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(editUserComponent)
 
 export default editUserContainer;

@@ -39,6 +39,20 @@ export const asyncCreateUser = (userData) => {
   }
 
 }
+export const asyncEditUser = (userData) => {
+  return (dispatch) => {
+    dispatch(userSendingData(true));
+    axios.get('/users/' + userData.id + '/edit', {
+    user: {...userData, email_confirmation:userData.email}
+  })
+    setAuthorizationToken(feedBack.headers.auth_token);
+    dispatch(userSet({...feedBack.data, password: userData.password}));
+    dispatch(userSendingData(false));
+  }
+
+  }
+
+
 
 export const userSendingData = (sendingData) =>{
   return {type: USER_SET_SENDING_DATA, sendingData}

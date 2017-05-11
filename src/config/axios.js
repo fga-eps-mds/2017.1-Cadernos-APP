@@ -10,6 +10,6 @@ export const setAuthorizationToken = (token) => {
 }
 
 // TODO: delete is later
-setAuthorizationToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyOCwiZXhwIjoxNDk0NTIzOTE2fQ.7EyDzqwDO4oS-TzwwqM0nd0UT0CjOr85Hwbg2EUzWnw");
+setAuthorizationToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyOCwiZXhwIjoxNDk0NjExNDYxfQ.Y4X7g2w74iPEMUHQqweNyQwMn8WZbAkbNPl8WegMm4E");
 
 export default axiosInstance;

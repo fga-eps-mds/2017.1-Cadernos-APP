@@ -11,7 +11,7 @@ import {
   Spinner
 } from 'native-base';
 
-import styles from './edit-user.styles'
+import styles from './edit-user.styles';
 
 export default class EditUser extends Component {
 constructor (props) {
@@ -75,7 +75,7 @@ handleFieldOnChange(field, value) {
               <Spinner />
             :
               <Button warning block
-                onPress={() => this.props.editUser(this.state)}
+  //              onPress={() => this.props.editUser(this.state)}
               >
                 <Text>Salvar Dados</Text>
               </Button>
