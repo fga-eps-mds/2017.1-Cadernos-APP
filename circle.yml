@@ -1,8 +1,6 @@
 machine:
   environment:
     PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
-    COVERALLS_REPO_TOKEN: ZrkuqOp4oS84p2yBJGV31ezoV9OXvdZcp
-    COVERALLS_PARALLEL: true
 
 dependencies:
   override:
@@ -18,6 +16,3 @@ test:
   override:
     - yarn test-with-coverage
 
-notify:
-  webhooks:
-    - url: https://coveralls.io/webhook?repo_token=ZrkuqOp4oS84p2yBJGV31ezoV9OXvdZcp
