@@ -8,7 +8,11 @@ dependencies:
   cache_directories:
     - ~/.cache/yarn
 
+general:
+  artifacts:
+    - "coverage" # Coverage data folder
+
 test:
   override:
-    - yarn test
+    - yarn test-with-coverage
 
