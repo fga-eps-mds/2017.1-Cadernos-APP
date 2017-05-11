@@ -1,4 +1,4 @@
-import { USER_SET, USER_SET_SENDING_DATA, USER_SET_ERRORS} from '../config/actions-types';
+import { USER_SET, USER_SENDING_DATA, USER_ERRORS, USER_LOGIN, USER_AUTHENTICATED} from '../config/actions-types';
 import initialState from '../config/initial-state';
 
 const userReducer = (state = initialState.user, action) => {
@@ -8,18 +8,27 @@ const userReducer = (state = initialState.user, action) => {
         ...state, ...action.user
       }
 
-    case USER_SET_SENDING_DATA:
+    case USER_SENDING_DATA:
       return {
         ...state,
         sendingData: action.sendingData
       }
 
-    case USER_SET_ERRORS:
+    case USER_ERRORS:
       return{
         ...state,
         errors: action.errors
       }
 
+    case USER_LOGIN:
+      return{
+        ...state, ...action.user
+      }
+
+    case USER_AUTHENTICATED:
+      return{
+        ...state, ...action.user
+      }
 
     default:
       return state;

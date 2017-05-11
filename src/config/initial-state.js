@@ -5,6 +5,7 @@ const initialState = {
     email: '',
     password: '',
     sendingData: false,
+    authenticated: false,
     errors: []
   },
 };
