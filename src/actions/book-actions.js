@@ -1,5 +1,10 @@
-import { BOOK_SET, BOOK_SET_ERRORS, BOOK_SET_SENDING_DATA } from '../config/actions-types';
-import axios, { setAuthorizationToken } from '../config/axios';
+import {
+  BOOK_SET,
+  BOOK_SET_ERRORS,
+  BOOK_SET_SENDING_DATA,
+  BOOK_SET_CREATED
+} from '../config/actions-types';
+import axios from '../config/axios';
 
 import initialState from '../config/initial-state';
 
@@ -11,7 +16,8 @@ export const bookSet = (bookData) => {
       title: bookData.title,
       userId: bookData.userId,
       sendingData: initialState.book.sendingData,
-      errors: initialState.book.sendingData
+      errors: initialState.book.sendingData,
+      created: bookData.created
     }
   }
 }
@@ -30,9 +36,18 @@ export const bookSetSendingData = (sendingData) => {
   }
 }
 
+export const bookSetCreated = (created) => {
+  return {
+    type: BOOK_SET_CREATED,
+    created
+  }
+}
+
 export const asyncBookSet = (bookData) => {
   return (dispatch) => {
     dispatch(bookSetSendingData(true));
+
+    console.log('Vai criar');
 
     axios.post('/books', {
       title: bookData.title,
@@ -43,16 +58,21 @@ export const asyncBookSet = (bookData) => {
         dispatch(bookSet({
           id: response.data.id,
           title: response.data.title,
-          userId: response.data.user_id
+          userId: response.data.user_id,
+          created: true
         }));
 
         dispatch(bookSetErrors({}));
+
+        console.log('FUNFOU !');
       }
     })
     .catch(err => {
       if (err.response && err.response.status === 422) {
         dispatch(bookSetErrors(err.response.data));
       }
+
+      console.log('DEU RUIM !');
     })
     .finally(() => {
       // to when the user try to create another book,

@@ -9,12 +9,6 @@ const styles = {
     fontWeight: 'bold'
   },
 
-  wrapperTitle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
   wrapperForm: {
     flex: 4,
     paddingVertical: 5,

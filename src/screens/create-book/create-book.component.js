@@ -8,7 +8,8 @@ import {
   Item,
   Input,
   Button,
-  Spinner
+  Spinner,
+  Alert
 } from 'native-base';
 
 import styles from './create-book.styles';
@@ -24,8 +25,30 @@ export default class CreateBookComponent extends Component {
     }
   }
 
+  static navigationOptions = {
+    title: 'Criar Caderno'
+  };
+
   componentWillUnmount() {
     this.props.clearErrors();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('VAI ATUALIZAR !');
+    console.log(nextProps);
+    const { goBack } = this.props.navigation;
+
+    if (this.props.created === true || nextProps.created === true) {
+      console.log('Alerta !');
+      Alert.alert(
+        'Criado com sucesso',
+        '',
+        {text: 'OK', onPress: () => goBack()},
+        { cancelable: false }
+      );
+    } else {
+      console.log('Não alerta não !', this.props.created, nextProps.created);
+    }
   }
 
   handleFieldOnChange(field, value) {
@@ -44,10 +67,6 @@ export default class CreateBookComponent extends Component {
   render() {
     return (
       <Container style={styles.container}>
-        <View style={styles.wrapperTitle}>
-          <H1 style={styles.title}>Criar Caderno</H1>
-        </View>
-
         <KeyboardAvoidingView behavior="padding" style={styles.wrapperForm}>
           <Item regular style={styles.formItem}>
             <Input

@@ -1,5 +1,6 @@
 const initialState = {
-  user: { // current logged user
+   // current logged user
+  user: {
     id: 1,
     name: 'Fábio Teixeira',
     email: 'fabio1079@gmail.com',
@@ -9,12 +10,20 @@ const initialState = {
     errors: []
   },
 
-  book: { // selected book
+  // selected or created book
+  book: {
     id: 0,
     title: '',
     userId: 0,
     sendingData: false,
-    errors: {}
+    errors: {},
+    created: false
+  },
+
+  // Book list from screen after loggin or logged user books
+  bookList: {
+    sendingData: false,
+    books: []
   }
 };
 
