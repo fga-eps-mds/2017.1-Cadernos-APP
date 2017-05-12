@@ -12,6 +12,9 @@ import {
 } from 'native-base';
 
 import styles from './user-login.styles';
+import UserErrors from '../../components/input-handler/input-handler.user-errors';
+
+import { InputErrorDisplay } from '../../components';
 
 
 export default class UserLogin extends Component {
@@ -33,6 +36,7 @@ export default class UserLogin extends Component {
   render() {
 
     if(this.props.authenticated){
+      this.props.errors.error = null;
       return (
         <Container style={styles.container}>
           <View style={{flex: 1}}>
@@ -77,6 +81,9 @@ export default class UserLogin extends Component {
             value={this.state.password}
           />
         </Item>
+        {this.props.errors.error ?
+            <InputErrorDisplay errors={this.props.errors.error.user_authentication} />
+          : null}
       </View>
 
         <View style={{flex: 1}}>
