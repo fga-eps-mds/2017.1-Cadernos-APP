@@ -1,3 +1,4 @@
+// User actions
 export const USER_SET = 'USER_SET';
 export const USER_SENDING_DATA = 'USER_SENDING_DATA';
 export const USER_ERRORS = 'USER_ERRORS';
@@ -5,3 +6,8 @@ export const USER_LOGIN = 'USER_LOGIN';
 export const USER_AUTHENTICATED = 'USER_AUTHENTICATED';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const CLEAN_USER_AUTHENTICATION_ERRORS = 'CLEAN_USER_AUTHENTICATION_ERRORS';
+
+// Book actions
+export const BOOK_SET = 'BOOK_SET';
+export const BOOK_SET_SENDING_DATA = 'SENDING_DATA';
+export const BOOK_SET_ERRORS = 'BOOK_SET_ERRORS';

@@ -1,5 +1,5 @@
 const initialState = {
-  user: {
+  user: { // current logged user
     id: 0,
     name: '',
     email: '',
@@ -8,6 +8,14 @@ const initialState = {
     authenticated: false,
     errors: []
   },
+
+  book: { // selected book
+    id: 0,
+    title: '',
+    userId: 0,
+    sendingData: false,
+    errors: {}
+  }
 };
 
 export default initialState;
