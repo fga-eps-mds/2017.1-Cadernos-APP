@@ -17,8 +17,10 @@ export const userSet = (user) => {
 export const userLogin = (user) => {
   return {
     type: USER_LOGIN,
-    email: user.email,
-    password: user.password
+    user: {
+      email: user.email,
+      password: user.password
+    }
   }
 };
 
@@ -67,12 +69,11 @@ export const asyncCreateUser = (userData) => {
 export const asyncUserLogin = (userData) => {
   return (dispatch) => {
     dispatch(userSendingData(true));
-
     axios.post(`/authenticate`, {
-      user: {...userData}
+      email: userData.email, password: userData.password
     })
     .then(feedBack => {
-      setAuthorizationToken(feedBack.auth_token);
+      setAuthorizationToken(feedBack.data.auth_token);
       dispatch(userLogin(userData));
       dispatch(userAuthenticated(true));
       dispatch(userSendingData(false));
