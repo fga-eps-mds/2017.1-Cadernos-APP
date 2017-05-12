@@ -1,4 +1,4 @@
-import { USER_SET, USER_SET_ERRORS, USER_SET_SENDING_DATA } from '../config/actions-types';
+import { USER_SET, USER_SET_ERRORS, USER_SET_SENDING_DATA, CLEAN_USER_ERRORS} from '../config/actions-types';
 
 import axios, { setAuthorizationToken } from '../config/axios';
 
@@ -49,4 +49,11 @@ export const userErrors = (errors) =>{
     type: USER_SET_ERRORS,
     errors
   }
+}
+
+export const cleanUserErrors = () => {
+  return{
+    type: CLEAN_USER_ERRORS
+  }
+
 }

@@ -26,11 +26,8 @@ export default class CreateUser extends Component {
     }
   }
 
-  componentWillMount(){
-    this.props.errors.name = null
-    this.props.errors.password = null
-    this.props.errors.email = null
-    this.props.errors = [{}]
+  componentWillUnmount(){
+    this.props.cleanUserErrors();
   }
 
   handleFieldOnChange (field, value) {
