@@ -27,7 +27,8 @@ const userReducer = (state = initialState.user, action) => {
 
     case USER_AUTHENTICATED:
       return{
-        ...state, ...action.user
+        ...state,
+        authenticated: action.authenticated
       }
 
     default:
