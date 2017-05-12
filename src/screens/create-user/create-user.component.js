@@ -12,8 +12,9 @@ import {
 } from 'native-base';
 
 import styles from './create-user.styles';
-import {KeyboardAvoidingView, ScrollView} from 'react-native'
+import {KeyboardAvoidingView, ScrollView, ToastAndroid} from 'react-native'
 import { InputErrorDisplay } from '../../components';
+import BackgroundTimer from 'react-native-background-timer';
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -30,11 +31,16 @@ export default class CreateUser extends Component {
     this.props.cleanUserErrors();
   }
 
+  CleanupErrors(){
+    this.props.cleanUserErrors();
+  }
+
   handleFieldOnChange (field, value) {
     this.setState({
       [field]: value
     });
   }
+
 
   render() {
     return (
@@ -91,11 +97,28 @@ export default class CreateUser extends Component {
               <Spinner />
             :
               <Button warning block style = {{borderRadius: 30}}
-                onPress={() => this.props.createUser(this.state)}
+                onPress={
+                  () => {
+                    this.props.createUser(this.state)
+                      setTimeout(() => {
+                      console.log(this.props.isRegistered)
+                      if (this.props.isRegistered == true){
+                        ToastAndroid.show('Conta criada com sucesso!', ToastAndroid.LONG)
+                        this.props.cleanUserErrors();
+                      }else
+                        ToastAndroid.show('Ops... algo deu errado!', ToastAndroid.LONG)
+                  }, 1500)
+                  }
+                }
+
               >
                 <Text>CRIAR CONTA</Text>
+
               </Button>
             }
+
+
+
 
           </View>
       </Container>

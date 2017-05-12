@@ -1,4 +1,4 @@
-import { USER_SET, USER_SET_SENDING_DATA, USER_SET_ERRORS, CLEAN_USER_ERRORS, ACCOUNT_REGISTERED} from '../config/actions-types';
+import { USER_SET, USER_SET_SENDING_DATA, USER_SET_ERRORS, CLEAN_USER_ERRORS, ACCOUNT_REGISTERED, USER_REGISTER} from '../config/actions-types';
 import initialState from '../config/initial-state';
 
 const userReducer = (state = initialState.user, action) => {
@@ -24,6 +24,11 @@ const userReducer = (state = initialState.user, action) => {
       return{
         ...state,
         errors: [{}]
+      }
+    case USER_REGISTER:
+      return{
+        ...state,
+        isRegistered: action.isRegistered
       }
 
     default:

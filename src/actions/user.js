@@ -1,4 +1,4 @@
-import { USER_SET, USER_SET_ERRORS, USER_SET_SENDING_DATA, CLEAN_USER_ERRORS} from '../config/actions-types';
+import { USER_SET, USER_SET_ERRORS, USER_SET_SENDING_DATA, CLEAN_USER_ERRORS, USER_REGISTER} from '../config/actions-types';
 
 import axios, { setAuthorizationToken } from '../config/axios';
 
@@ -25,14 +25,16 @@ export const asyncCreateUser = (userData) => {
       setAuthorizationToken(feedBack.headers.auth_token);
       dispatch(userSet({...feedBack.data, password: userData.password}));
       dispatch(userSendingData(false));
+      dispatch(userRegister(true));
     })
     .catch(err => {
       if (err.response && err.response.data){
         console.log(err.response.data);
+        dispatch(userRegister(false));
         dispatch(userErrors(err.response.data));
       }else{
         console.log(err);
-
+        dispatch(userRegister(false));
       }
       dispatch(userSendingData(false));
     });
@@ -55,5 +57,11 @@ export const cleanUserErrors = () => {
   return{
     type: CLEAN_USER_ERRORS
   }
+}
 
+export const userRegister = (isRegistered) => {
+  return{
+    type: USER_REGISTER,
+    isRegistered
+  }
 }

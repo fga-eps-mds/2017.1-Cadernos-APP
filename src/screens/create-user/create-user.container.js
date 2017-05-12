@@ -6,7 +6,8 @@ import { asyncCreateUser, cleanUserErrors } from '../../actions/user';
 const mapStateToProps = (state) => {
   return {
     sendingData: state.user.sendingData,
-    errors: state.user.errors
+    errors: state.user.errors,
+    isRegistered: state.user.isRegistered
   }
 }
 
