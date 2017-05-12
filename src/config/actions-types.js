@@ -1,5 +1,5 @@
 export const USER_SET = 'USER_SET';
-export const USER_SENDING_DATA = 'USER_SET_SENDING_DATA';
-export const USER_ERRORS = 'USER_SET_ERRORS';
+export const USER_SENDING_DATA = 'USER_SENDING_DATA';
+export const USER_ERRORS = 'USER_ERRORS';
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_AUTHENTICATED = 'USER_AUTHENTICATED';
