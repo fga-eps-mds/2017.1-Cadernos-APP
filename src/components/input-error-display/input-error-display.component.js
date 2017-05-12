@@ -23,6 +23,11 @@ class InputErrorDisplayComponent extends React.Component {
           E-mail inválido!
         </Text>
         :
+        this.props.emailErrors && this.props.emailErrors[0] == 'has already been taken' ?
+        <Text style={styles.errorText}>
+          E-mail já cadastrado!
+        </Text>
+        :
         null
         }
 
