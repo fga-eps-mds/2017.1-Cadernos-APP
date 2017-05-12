@@ -1,8 +1,8 @@
 const initialState = {
   user: { // current logged user
-    id: 0,
-    name: '',
-    email: '',
+    id: 1,
+    name: 'Fábio Teixeira',
+    email: 'fabio1079@gmail.com',
     password: '',
     sendingData: false,
     authenticated: false,

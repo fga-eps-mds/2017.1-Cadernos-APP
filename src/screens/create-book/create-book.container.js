@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import CreateBookComponent from './create-book.component';
 
+import { asyncBookSet, bookSetErrors } from '../../actions/book-actions';
+
 const mapStateToProps = (state) => {
   return {
     id: state.book.id,
@@ -14,7 +16,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createBook(bookData) {
-      // send ajax
+      dispatch(asyncBookSet(bookData));
+    },
+
+    clearErrors() {
+      dispatch(bookSetErrors({}));
     }
   }
 }

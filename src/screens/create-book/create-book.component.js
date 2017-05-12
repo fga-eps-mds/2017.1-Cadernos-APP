@@ -24,6 +24,10 @@ export default class CreateBookComponent extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
   handleFieldOnChange(field, value) {
     this.setState({
       [field]: value
@@ -54,7 +58,7 @@ export default class CreateBookComponent extends Component {
             />
           </Item>
 
-          <InputErrorDisplay nameErrors={this.props.errors.title} />
+          <InputErrorDisplay errors={this.props.errors.title} />
         </KeyboardAvoidingView>
 
         <View style={{ flex: 1 }}>
