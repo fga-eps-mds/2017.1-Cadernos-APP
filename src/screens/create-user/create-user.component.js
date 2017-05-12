@@ -12,7 +12,7 @@ import {
 } from 'native-base';
 
 import styles from './create-user.styles';
-
+import {KeyboardAvoidingView, ScrollView} from 'react-native'
 import { InputErrorDisplay } from '../../components';
 
 export default class CreateUser extends Component {
@@ -27,9 +27,10 @@ export default class CreateUser extends Component {
   }
 
   componentWillMount(){
-    this.props.errors.name = null;
-    this.props.errors.password = null;
-    this.props.errors.email = null;
+    this.props.errors.name = null
+    this.props.errors.password = null
+    this.props.errors.email = null
+    this.props.errors = [{}]
   }
 
   handleFieldOnChange (field, value) {
@@ -46,10 +47,11 @@ export default class CreateUser extends Component {
           <Text>Prazer em te conhecer. Seja bem-vindo!</Text>
         </View>
 
-        <View style={styles.wrapperForm}>
+        <KeyboardAvoidingView behavior = "padding" style={styles.wrapperForm}>
          <Item regular style={styles.formItem}>
             <Input
               placeholder='Seu nome'
+              returnKeyType = 'next'
               onChangeText={(text) => this.handleFieldOnChange('name', text)}
               value={this.state.name}
             />
@@ -60,6 +62,10 @@ export default class CreateUser extends Component {
           <Item regular style={styles.formItem}>
             <Input
               placeholder='Seu e-mail'
+              returnKeyType = 'next'
+              keyboardType = 'email-address'
+              autoCapitalize = "none"
+              autoCorrect = {false}
               onChangeText={(text) => this.handleFieldOnChange('email', text)}
               value={this.state.email}
             />
@@ -70,7 +76,10 @@ export default class CreateUser extends Component {
 
           <Item regular style={styles.formItem}>
             <Input
+              secureTextEntry
               placeholder='Sua senha'
+              returnKeyType = 'go'
+              autoCorrect = {false}
               onChangeText={(text) => this.handleFieldOnChange('password', text)}
               value={this.state.password}
             />
@@ -78,13 +87,13 @@ export default class CreateUser extends Component {
 
         <InputErrorDisplay passwordErrors = {this.props.errors.password} />
 
-        </View>
+        </KeyboardAvoidingView>
 
         <View style={{flex: 1}}>
             {this.props.sendingData ?
               <Spinner />
             :
-              <Button warning block
+              <Button warning block style = {{borderRadius: 30}}
                 onPress={() => this.props.createUser(this.state)}
               >
                 <Text>CRIAR CONTA</Text>
