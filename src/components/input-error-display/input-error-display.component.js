@@ -2,8 +2,11 @@ import React from 'react';
 
 import {
   View,
-  Text
+  Text,
+  List,
+  ListItem
 } from 'native-base';
+
 
 import styles from './input-error-display.styles';
 
@@ -11,11 +14,21 @@ class InputErrorDisplayComponent extends React.Component {
   render() {
     if (this.props.errors === undefined) return null;
 
+    const errorsItems = this.props.errors.map((error, index) => {
+      return (
+        <ListItem key={error}>
+          <Text style={styles.errorText}>
+            {error}
+          </Text>
+        </ListItem>
+      );
+    });
+
     return (
       <View>
-        <Text style={styles.errorText}>
-          {this.props.errors}
-        </Text>
+        <List>
+          {errorsItems}
+        </List>
       </View>
     );
   }

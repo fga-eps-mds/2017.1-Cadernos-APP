@@ -4,6 +4,10 @@ import CreateBookComponent from './create-book.component';
 import { asyncBookSet, bookSetErrors } from '../../actions/book-actions';
 
 const mapStateToProps = (state) => {
+
+  console.log('CONTAINER PROPS');
+  console.log(state.book);
+
   return {
     id: state.book.id,
     title: state.book.title,

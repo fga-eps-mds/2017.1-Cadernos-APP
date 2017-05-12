@@ -1,13 +1,17 @@
 import { BOOK_SET, BOOK_SET_ERRORS, BOOK_SET_SENDING_DATA } from '../config/actions-types';
 import axios, { setAuthorizationToken } from '../config/axios';
 
+import initialState from '../config/initial-state';
+
 export const bookSet = (bookData) => {
   return {
     type: BOOK_SET,
     book: {
       id: bookData.id,
       title: bookData.title,
-      userId: bookData.userId
+      userId: bookData.userId,
+      sendingData: initialState.book.sendingData,
+      errors: initialState.book.sendingData
     }
   }
 }
@@ -41,6 +45,8 @@ export const asyncBookSet = (bookData) => {
           title: response.data.title,
           userId: response.data.user_id
         }));
+
+        dispatch(bookSetErrors({}));
       }
     })
     .catch(err => {
