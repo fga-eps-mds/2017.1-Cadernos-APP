@@ -1,4 +1,4 @@
-import { USER_SET, USER_ERRORS, USER_SENDING_DATA, USER_LOGIN, USER_AUTHENTICATED } from '../config/actions-types';
+import { USER_SET, USER_ERRORS, USER_SENDING_DATA, USER_LOGIN, USER_AUTHENTICATED, USER_LOGOUT } from '../config/actions-types';
 
 import axios, { setAuthorizationToken } from '../config/axios';
 
@@ -20,6 +20,16 @@ export const userLogin = (user) => {
     user: {
       email: user.email,
       password: user.password
+    }
+  }
+};
+
+export const userLogout = () => {
+  return {
+    type: USER_LOGOUT,
+    user: {
+      email: '',
+      password: ''
     }
   }
 };
@@ -90,5 +100,13 @@ export const asyncUserLogin = (userData) => {
     });
   }
 
+}
+
+export const asyncUserLogout = () => {
+  return (dispatch) => {
+    dispatch(userAuthenticated(false));
+    dispatch(userLogout());
+    setAuthorizationToken("");
+  }
 }
 

@@ -33,20 +33,20 @@ export default class UserLogin extends Component {
   render() {
 
     if(this.props.authenticated){
-                 return (
-      <Container style={styles.container}>
-        <View style={{flex: 1}}>
-           {this.props.sendingData ?
-             <Spinner />
-           :
-             <Button warning block style = {{borderRadius: 30}}
-               onPress={() => this.props.userLogin(this.state)}
-             >
-               <Text>SAIR</Text>
-             </Button>
-           }
-         </View>
-      </Container>
+      return (
+        <Container style={styles.container}>
+          <View style={{flex: 1}}>
+            {this.props.sendingData ?
+              <Spinner />
+            :
+              <Button warning block style = {{borderRadius: 30}}
+                onPress={() => {this.props.userLogout(); this.handleFieldOnChange('email', ''); this.handleFieldOnChange('password', '')}}
+              >
+                <Text>SAIR</Text>
+              </Button>
+            }
+          </View>
+        </Container>
     );
 
   }
@@ -54,30 +54,30 @@ export default class UserLogin extends Component {
 
     return (
 
-      <Container style={styles.container}>
-        <View style={styles.wrapperTitle}>
-          <H1 style={styles.title}>ENTRE</H1>
-          <Text>Prazer em te receber novamente. Seja bem-vindo!</Text>
-        </View>
+    <Container style={styles.container}>
+      <View style={styles.wrapperTitle}>
+        <H1 style={styles.title}>ENTRE</H1>
+        <Text>Prazer em te receber novamente. Seja bem-vindo!</Text>
+      </View>
 
-        <View style={styles.wrapperForm}>
-          <Item regular style={styles.formItem}>
-            <Input
-              placeholder='Seu e-mail'
-              onChangeText={(text) => this.handleFieldOnChange('email', text)}
-              value={this.state.email}
-              />
-          </Item>
+      <View style={styles.wrapperForm}>
+        <Item regular style={styles.formItem}>
+          <Input
+            placeholder='Seu e-mail'
+            onChangeText={(text) => this.handleFieldOnChange('email', text)}
+            value={this.state.email}
+          />
+        </Item>
 
-          <Item regular style={styles.formItem}>
-            <Input
-              secureTextEntry
-              placeholder='Sua senha'
-              onChangeText={(text) => this.handleFieldOnChange('password', text)}
-              value={this.state.password}
-              />
-          </Item>
-        </View>
+        <Item regular style={styles.formItem}>
+          <Input
+            secureTextEntry
+            placeholder='Sua senha'
+            onChangeText={(text) => this.handleFieldOnChange('password', text)}
+            value={this.state.password}
+          />
+        </Item>
+      </View>
 
         <View style={{flex: 1}}>
            {this.props.sendingData ?
@@ -89,8 +89,8 @@ export default class UserLogin extends Component {
                <Text>ENTRAR</Text>
              </Button>
            }
-         </View>
-      </Container>
+      </View>
+    </Container>
     );
   }
 

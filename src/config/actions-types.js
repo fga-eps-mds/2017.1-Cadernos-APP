@@ -3,3 +3,4 @@ export const USER_SENDING_DATA = 'USER_SENDING_DATA';
 export const USER_ERRORS = 'USER_ERRORS';
 export const USER_LOGIN = 'USER_LOGIN';
 export const USER_AUTHENTICATED = 'USER_AUTHENTICATED';
+export const USER_LOGOUT = 'USER_LOGOUT';
