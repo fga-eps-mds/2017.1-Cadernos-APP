@@ -9,11 +9,11 @@ import {
   Input,
   Button,
   Spinner,
-  Alert
 } from 'native-base';
 
+import { KeyboardAvoidingView, Alert } from 'react-native';
+
 import styles from './create-book.styles';
-import { KeyboardAvoidingView, ScrollView } from 'react-native'
 import { InputErrorDisplay } from '../../components';
 
 export default class CreateBookComponent extends Component {
@@ -29,26 +29,18 @@ export default class CreateBookComponent extends Component {
     title: 'Criar Caderno'
   };
 
-  componentWillUnmount() {
-    this.props.clearErrors();
+  componentWillReceiveProps(nextProps) {
+    const { navigate } = this.props.navigation;
+
+    // The book was just created
+    if (this.props.created === false && nextProps.created === true) {
+      this.props.clearErrors();
+      navigate('ViewBook');
+    }
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('VAI ATUALIZAR !');
-    console.log(nextProps);
-    const { goBack } = this.props.navigation;
-
-    if (this.props.created === true || nextProps.created === true) {
-      console.log('Alerta !');
-      Alert.alert(
-        'Criado com sucesso',
-        '',
-        {text: 'OK', onPress: () => goBack()},
-        { cancelable: false }
-      );
-    } else {
-      console.log('Não alerta não !', this.props.created, nextProps.created);
-    }
+  componentWillUnmount() {
+    this.props.clearErrors();
   }
 
   handleFieldOnChange(field, value) {

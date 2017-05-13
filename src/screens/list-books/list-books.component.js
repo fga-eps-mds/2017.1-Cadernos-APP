@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import {
   Container,
+  Content,
   View,
   List,
   ListItem,
@@ -22,8 +23,13 @@ export default class ListBooksComponent extends Component {
   }
 
   renderBookListItem(book) {
+    const { navigate } = this.props.navigation;
+
     return (
-      <ListItem key={book.id}>
+      <ListItem
+        key={book.id}
+        onPress={() => navigate('ViewBook', { book })}
+      >
         <Text>
           {book.title}
         </Text>
@@ -41,9 +47,11 @@ export default class ListBooksComponent extends Component {
           {this.props.sendingData ?
             <Spinner />
           :
-            <List>
-              {bookListItems}
-            </List>
+            <Content>
+              <List>
+                {bookListItems}
+              </List>
+            </Content>
           }
         </View>
 

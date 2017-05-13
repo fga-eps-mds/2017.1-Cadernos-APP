@@ -9,7 +9,8 @@ import {
   UserLoginScreen,
   MainScreen,
   CreateBookScreen,
-  ListBooksScreen
+  ListBooksScreen,
+  ViewBookScreen
 } from '../../screens';
 
 const AppRouter = StackNavigator({
@@ -17,7 +18,8 @@ const AppRouter = StackNavigator({
   CreateBook: { screen: CreateBookScreen },
   Main: { screen: MainScreen },
   CreateUser: { screen: CreateUserScreen },
-  UserLogin: { screen: UserLoginScreen }
+  UserLogin: { screen: UserLoginScreen },
+  ViewBook: { screen: ViewBookScreen }
 });
 
 export default AppRouter;

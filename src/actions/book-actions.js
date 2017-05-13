@@ -4,20 +4,32 @@ import {
   BOOK_SET_SENDING_DATA,
   BOOK_SET_CREATED
 } from '../config/actions-types';
+
 import axios from '../config/axios';
 
 import initialState from '../config/initial-state';
 
-export const bookSet = (bookData) => {
+
+import {
+  navigate
+} from 'react-navigation';
+
+
+export const bookSet = ({
+  id, title, userId,
+  sendingData = initialState.book.sendingData,
+  errors = initialState.book.errors,
+  created = initialState.book.created
+}) => {
   return {
     type: BOOK_SET,
     book: {
-      id: bookData.id,
-      title: bookData.title,
-      userId: bookData.userId,
-      sendingData: initialState.book.sendingData,
-      errors: initialState.book.sendingData,
-      created: bookData.created
+      id,
+      title,
+      userId,
+      sendingData,
+      errors,
+      created
     }
   }
 }
@@ -47,8 +59,6 @@ export const asyncBookSet = (bookData) => {
   return (dispatch) => {
     dispatch(bookSetSendingData(true));
 
-    console.log('Vai criar');
-
     axios.post('/books', {
       title: bookData.title,
       user_id: bookData.loggedUserId
@@ -59,12 +69,10 @@ export const asyncBookSet = (bookData) => {
           id: response.data.id,
           title: response.data.title,
           userId: response.data.user_id,
-          created: true
+          created: true,
+          errors: {},
+          sendingData: false
         }));
-
-        dispatch(bookSetErrors({}));
-
-        console.log('FUNFOU !');
       }
     })
     .catch(err => {
@@ -72,9 +80,9 @@ export const asyncBookSet = (bookData) => {
         dispatch(bookSetErrors(err.response.data));
       }
 
-      console.log('DEU RUIM !');
-    })
-    .finally(() => {
+      console.log('ERROR while creating book');
+      console.log(err);
+
       // to when the user try to create another book,
       // the screen won't open with a loading on the send button
       dispatch(bookSetSendingData(false));

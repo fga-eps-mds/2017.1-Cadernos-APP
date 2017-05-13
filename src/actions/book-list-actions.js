@@ -35,7 +35,6 @@ export const asyncBookListSet = () => {
     axios.get('/books')
     .then(response => {
       if (response.data) {
-        console.log(response.data);
         dispatch(bookListSet(response.data));
       }
     })
