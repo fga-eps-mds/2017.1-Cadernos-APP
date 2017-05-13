@@ -1,9 +1,9 @@
 const initialState = {
   // TODO: clean this shit later
   user: {
-    id: 28,
-    name: 'test user',
-    email: 'test@user.com',
+    id: 0,
+    name: '',
+    email: '',
     password: '',
     sendingData: false,
     authenticated: false,
