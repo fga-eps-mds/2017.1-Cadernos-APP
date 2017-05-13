@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import userLoginComponent from './user-login.component';
 
-import { asyncUserLogin, asyncUserLogout } from '../../actions/user';
+import { asyncUserLogin, asyncUserLogout, cleanUserErrors } from '../../actions/user';
 
 const mapStateToProps = (state) => {
   return {
@@ -20,6 +20,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     userLogout() {
       dispatch(asyncUserLogout());
+    },
+    cleanUserErrors(){
+      dispatch(cleanUserErrors());
     }
   }
 }

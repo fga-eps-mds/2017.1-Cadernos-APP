@@ -32,11 +32,13 @@ export default class UserLogin extends Component {
       [field]: value
     });
   }
-
+  componentWillMount(){
+      this.props.cleanUserErrors();
+  }
   render() {
 
     if(this.props.authenticated){
-      this.props.errors.error = null;
+
       return (
         <Container style={styles.container}>
           <View style={{flex: 1}}>

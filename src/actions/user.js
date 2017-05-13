@@ -1,4 +1,4 @@
-import { USER_SET, USER_ERRORS, USER_SENDING_DATA, USER_LOGIN, USER_AUTHENTICATED, USER_LOGOUT } from '../config/actions-types';
+import { USER_SET, USER_ERRORS, USER_SENDING_DATA, USER_LOGIN, USER_AUTHENTICATED, USER_LOGOUT, CLEAN_USER_AUTHENTICATION_ERRORS } from '../config/actions-types';
 
 import axios, { setAuthorizationToken } from '../config/axios';
 
@@ -107,6 +107,13 @@ export const asyncUserLogout = () => {
     dispatch(userAuthenticated(false));
     dispatch(userLogout());
     setAuthorizationToken("");
+  }
+}
+
+export const cleanUserErrors = () => {
+  return{
+    type: CLEAN_USER_AUTHENTICATION_ERRORS,
+    error: null
   }
 }
 
