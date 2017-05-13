@@ -113,7 +113,7 @@ export const asyncUserLogout = () => {
 export const cleanUserErrors = () => {
   return{
     type: CLEAN_USER_AUTHENTICATION_ERRORS,
-    error: null
+    error: {}
   }
 }
 
