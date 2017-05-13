@@ -12,10 +12,11 @@ import {
 } from '../../screens';
 
 const AppRouter = StackNavigator({
-  EditUser: { screen: EditUserScreen },
+  
   Main: { screen: MainScreen },
   CreateUser: { screen: CreateUserScreen },
-  UserLogin: { screen: UserLoginScreen }
+  UserLogin: { screen: UserLoginScreen },
+  EditUser: { screen: EditUserScreen },
 });
 
 export default AppRouter;
