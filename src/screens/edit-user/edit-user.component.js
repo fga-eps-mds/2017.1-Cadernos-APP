@@ -1,4 +1,6 @@
+
 import React, { Component } from 'react';
+
 import {
   Text,
   View,
@@ -10,6 +12,7 @@ import {
   Button,
   Spinner
 } from 'native-base';
+
 
 import styles from './edit-user.styles';
 
@@ -78,6 +81,7 @@ export default class EditUser extends Component {
             />
           </Item>
         </View>
+
 
         <View style={{ flex: 1 }}>
           {this.props.sendingData ?
