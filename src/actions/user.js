@@ -87,8 +87,10 @@ export const asyncEditUser = (userData) => {
     .then(response => {
       setAuthorizationToken(response.headers.auth_token);
       dispatch(userSet({...response.data, password: userData.password}));
+      dispatch(userUpdate(true));
     })
     .catch(err => {
+      dispatch(userUpdate(false));
       if (err.response && err.response.data) {
         console.log(err.response.data);
         dispatch(userErrors(err.response.data));
@@ -120,7 +122,6 @@ export const asyncUserLogin = (userData) => {
         dispatch(userErrors(err.response.data));
       }else{
         console.log(err);
-
       }
       dispatch(userSendingData(false));
     });
@@ -140,5 +141,12 @@ export const cleanUserErrors = () => {
   return{
     type: CLEAN_USER_AUTHENTICATION_ERRORS,
     error: null
+  }
+}
+
+export const userUpdate = (isUpdated) => {
+  return{
+    type: USER_UPDATE,
+    isUpdated
   }
 }

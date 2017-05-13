@@ -15,6 +15,8 @@ import {
 
 
 import styles from './edit-user.styles';
+import {ToastAndroid} from 'react-native'
+import {InputErrorDisplay} from '../../components';
 
 export default class EditUser extends Component {
   constructor(props) {
@@ -24,6 +26,10 @@ export default class EditUser extends Component {
       email: "",
       password: ""
     }
+  }
+
+  CleanupErrors(){
+    this.props.cleanUserErrors();
   }
 
   componentDidMount() {
@@ -56,6 +62,7 @@ export default class EditUser extends Component {
           <Text>Espaço para mudança de dados</Text>
         </View>
 
+        <InputErrorDisplay nameErrors = {this.props.errors.name} />
         <View style={styles.wrapperForm}>
           <Item regular style={styles.formItem}>
             <Input
@@ -65,6 +72,7 @@ export default class EditUser extends Component {
             />
           </Item>
 
+          <InputErrorDisplay emailErrors = {this.props.errors.email} />
           <Item regular style={styles.formItem}>
             <Input
               placeholder='Seu e-mail'
@@ -73,6 +81,7 @@ export default class EditUser extends Component {
             />
           </Item>
 
+          <InputErrorDisplay passwordErrors = {this.props.errors.password} />
           <Item regular style={styles.formItem}>
             <Input
               secureTextEntry
@@ -83,13 +92,26 @@ export default class EditUser extends Component {
           </Item>
         </View>
 
-
         <View style={{ flex: 1 }}>
           {this.props.sendingData ?
             <Spinner />
             :
             <Button warning block
-              onPress={() => this.props.editUser(this.getUserData())}
+              onPress={
+                () => {
+                  this.props.editUser(this.getUserData())
+                  setTimeout(() => {
+                      console.log(this.props.isUpdated)
+
+                      if (this.props.isUpdated == true) {
+                        ToastAndroid.show('Usuário atualizado com sucesso!', ToastAndroid.LONG)
+                        this.props.cleanUserErrors();
+                      } else {
+                        ToastAndroid.show('Ops... algo deu errado!', ToastAndroid.LONG)
+                      }
+                  }, 1500)
+                }
+              }
             >
               <Text>Salvar Dados</Text>
             </Button>

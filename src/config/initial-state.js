@@ -7,6 +7,7 @@ const initialState = {
     password: '',
     sendingData: false,
     authenticated: false,
+    isUpdated: false,
     errors: []
   },
 
