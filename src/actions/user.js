@@ -79,13 +79,10 @@ export const asyncEditUser = (userData) => {
   return (dispatch) => {
     dispatch(userSendingData(true));
 
-    console.log(userData);
-
     axios.patch(`/users/${userData.id}`, {
       user: {...userData, email_confirmation:userData.email}
     })
     .then(response => {
-      setAuthorizationToken(response.headers.auth_token);
       dispatch(userSet({...response.data, password: userData.password}));
       dispatch(userUpdate(true));
     })
