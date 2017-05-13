@@ -72,6 +72,7 @@ export default class EditUser extends Component {
 
           <Item regular style={styles.formItem}>
             <Input
+              secureTextEntry
               placeholder='Confirme sua senha'
               onChangeText={(text) => this.handleFieldOnChange('password', text)}
               value={this.state.password}
@@ -90,12 +91,8 @@ export default class EditUser extends Component {
             </Button>
           }
 
-
-
         </View>
       </Container>
     );
   }
 }
-
-
