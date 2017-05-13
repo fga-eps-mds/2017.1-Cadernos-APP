@@ -17,7 +17,7 @@ export default class UserLogin extends Component {
     return (
       <Container style={styles.container}>
         <View style={styles.wrapperTitle}>
-          <H1 style={styles.title}>CADASTRE-SE</H1>
+          <H1 style={styles.title}>LOGUE-SE</H1>
           <Text>Prazer em te conhecer. Seja bem-vindo!</Text>
         </View>
 

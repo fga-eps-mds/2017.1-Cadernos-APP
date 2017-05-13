@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import createUserComponent from './create-user.component';
 
-import { asyncCreateUser, cleanUserErrors } from '../../actions/user';
+import { asyncCreateUser, cleanUserErrors, userRegister } from '../../actions/user';
 
 const mapStateToProps = (state) => {
   return {
@@ -15,6 +15,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     cleanUserErrors(){
       dispatch(cleanUserErrors());
+      dispatch(userRegister(false));
     },
     createUser(userData) {
       dispatch(asyncCreateUser(userData));
