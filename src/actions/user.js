@@ -30,9 +30,8 @@ export const asyncCreateUser = (userData) => {
       if (err.response && err.response.data){
         console.log(err.response.data);
         dispatch(userErrors(err.response.data));
-      }else{
+      } else {
         console.log(err);
-
       }
       dispatch(userSendingData(false));
     });
@@ -43,7 +42,7 @@ export const asyncEditUser = (userData) => {
   return (dispatch) => {
     dispatch(userSendingData(true));
 
-    console.log(userData)/
+    console.log(userData);
 
     axios.patch(`/users/${userData.id}`, {
       user: {...userData, email_confirmation:userData.email}
@@ -53,14 +52,11 @@ export const asyncEditUser = (userData) => {
       dispatch(userSet({...response.data, password: userData.password}));
     })
     .catch(err => {
-      console.log("ERROR");
-      console.log(err);
-
       if (err.response && err.response.data) {
-        // dispatch dos errors, pegar da brach createUser
-        // dispatch(algumActionDeError(err.response.data))
+        console.log(err.response.data);
+        dispatch(userErrors(err.response.data));
       } else {
-        // Um erro que não é da API, pode ser falta de internet e etc
+        console.error(err);
       }
     })
     .finally(() => {
@@ -69,9 +65,7 @@ export const asyncEditUser = (userData) => {
   }
 }
 
-
-
-export const userSendingData = (sendingData) =>{
+export const userSendingData = (sendingData) => {
   return {type: USER_SET_SENDING_DATA, sendingData}
 }
 
