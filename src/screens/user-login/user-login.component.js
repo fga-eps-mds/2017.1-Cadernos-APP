@@ -12,7 +12,6 @@ import {
 } from 'native-base';
 
 import styles from './user-login.styles';
-import UserErrors from '../../components/input-handler/input-handler.user-errors';
 
 import { InputErrorDisplay } from '../../components';
 

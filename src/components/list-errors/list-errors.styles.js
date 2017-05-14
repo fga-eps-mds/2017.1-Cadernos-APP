@@ -4,9 +4,10 @@ const styles = {
     color: 'white',
     margin: 0,
     padding: 5,
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 12,
     fontFamily: "Arial",
+    borderRadius: 0,
+    marginBottom: 0
   }
 }
 

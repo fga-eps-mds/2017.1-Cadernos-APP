@@ -14,11 +14,11 @@ import {
 } from '../../screens';
 
 const AppRouter = StackNavigator({
-  ListBooks: { screen: ListBooksScreen },
-  CreateBook: { screen: CreateBookScreen },
   Main: { screen: MainScreen },
   CreateUser: { screen: CreateUserScreen },
   UserLogin: { screen: UserLoginScreen },
+  ListBooks: { screen: ListBooksScreen },
+  CreateBook: { screen: CreateBookScreen },
   ViewBook: { screen: ViewBookScreen }
 });
 

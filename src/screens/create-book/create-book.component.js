@@ -14,7 +14,7 @@ import {
 import { KeyboardAvoidingView, Alert } from 'react-native';
 
 import styles from './create-book.styles';
-import { InputErrorDisplay } from '../../components';
+import { ListErrors } from '../../components';
 
 export default class CreateBookComponent extends Component {
   constructor(props) {
@@ -69,7 +69,7 @@ export default class CreateBookComponent extends Component {
             />
           </Item>
 
-          <InputErrorDisplay errors={this.props.errors.title} />
+          <ListErrors errors={this.props.errors.title} />
         </KeyboardAvoidingView>
 
         <View style={{ flex: 1 }}>
