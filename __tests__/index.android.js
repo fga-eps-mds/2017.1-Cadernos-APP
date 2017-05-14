@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import Index from '../index.ios.js';
+import Index from '../index.android';
 
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
