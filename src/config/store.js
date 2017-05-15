@@ -3,10 +3,16 @@ import thunk from 'redux-thunk';
 
 import initialState from './initial-state';
 
-import userReducer from '../reducers/user';
+import {
+  bookListReducer,
+  bookReducer,
+  userReducer
+} from '../reducers';
 
 const reducers = combineReducers({
   user: userReducer,
+  book: bookReducer,
+  bookList: bookListReducer
 });
 
 const store = createStore(reducers, initialState, applyMiddleware(thunk));

@@ -51,8 +51,13 @@ export default class UserLogin extends Component {
               </Button>
             }
           </View>
+
           <Button block onPress={() => navigate('EditUser')}>
             <Text>Editar Usuário</Text>
+          </Button>
+
+           <Button block warning onPress={() => navigate('ListBooks')}>
+            <Text>Ver cadernos</Text>
           </Button>
         </Container>
       );

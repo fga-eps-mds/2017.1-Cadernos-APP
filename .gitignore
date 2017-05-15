@@ -52,5 +52,6 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 
-#VIM
+# My ignored
+coverage/
 *.swp

@@ -12,7 +12,9 @@ import {
 } from 'native-base';
 
 import styles from './create-user.styles';
-import { KeyboardAvoidingView, ScrollView, ToastAndroid } from 'react-native'
+
+import { KeyboardAvoidingView } from 'react-native';
+
 import { InputErrorDisplay } from '../../components';
 
 export default class CreateUser extends Component {
@@ -103,15 +105,11 @@ export default class CreateUser extends Component {
             <Spinner />
             :
             <Button warning block style={{ borderRadius: 30 }}
-              onPress={() => { this.props.createUser(this.state) }}
+              onPress={() => this.props.createUser(this.state)}
             >
               <Text>CRIAR CONTA</Text>
-
             </Button>
           }
-
-
-
 
         </View>
       </Container>
