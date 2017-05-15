@@ -54,3 +54,4 @@ fastlane/screenshots
 
 # My ignored
 coverage/
+*.swp

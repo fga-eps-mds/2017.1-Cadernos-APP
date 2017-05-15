@@ -40,6 +40,8 @@ export const asyncBookListSet = () => {
     })
     .catch(err => {
       // Meybe an user internet error
+      console.log('Error while getting books, see asyncBookListSet');
+      console.log(err);
     })
     .finally(() => {
       dispatch(bookListSetSendingData(false));

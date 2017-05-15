@@ -6,7 +6,9 @@ const initialState = {
     email: '',
     password: '',
     sendingData: false,
+    isRegistered: false,
     authenticated: false,
+    isUpdated: false,
     errors: []
   },
 
