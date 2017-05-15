@@ -23,9 +23,6 @@ engines:
       import/no-named-as-default-member:
         enabled: false
 
-  stylelint:
-    enabled: true
-
 ratings:
   paths:
   - "**.js"
