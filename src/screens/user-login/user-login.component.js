@@ -12,7 +12,6 @@ import {
 } from 'native-base';
 
 import styles from './user-login.styles';
-import UserErrors from '../../components/input-handler/input-handler.user-errors';
 
 import { InputErrorDisplay } from '../../components';
 
@@ -36,7 +35,7 @@ export default class UserLogin extends Component {
       this.props.cleanUserErrors();
   }
   render() {
-
+    const { navigate } = this.props.navigation;
     if(this.props.authenticated){
 
       return (
@@ -52,6 +51,9 @@ export default class UserLogin extends Component {
               </Button>
             }
           </View>
+          <Button block onPress={() => navigate('EditUser')}>
+            <Text>Editar Usuário</Text>
+          </Button>
         </Container>
     );
 

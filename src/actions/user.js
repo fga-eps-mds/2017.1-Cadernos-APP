@@ -66,14 +66,39 @@ export const asyncCreateUser = (userData) => {
       if (err.response && err.response.data){
         console.log(err.response.data);
         dispatch(userErrors(err.response.data));
-      }else{
+      } else {
         console.log(err);
-
       }
       dispatch(userSendingData(false));
     });
   }
 
+}
+
+export const asyncEditUser = (userData) => {
+  return (dispatch) => {
+    dispatch(userSendingData(true));
+
+    axios.patch(`/users/${userData.id}`, {
+      user: {...userData, email_confirmation:userData.email}
+    })
+    .then(response => {
+      dispatch(userSet({...response.data, password: userData.password}));
+      dispatch(userUpdate(true));
+    })
+    .catch(err => {
+      dispatch(userUpdate(false));
+      if (err.response && err.response.data) {
+        console.log(err.response.data);
+        dispatch(userErrors(err.response.data));
+      } else {
+        console.error(err);
+      }
+    })
+    .finally(() => {
+      dispatch(userSendingData(false));
+    });
+  }
 }
 
 export const asyncUserLogin = (userData) => {
@@ -94,7 +119,6 @@ export const asyncUserLogin = (userData) => {
         dispatch(userErrors(err.response.data));
       }else{
         console.log(err);
-
       }
       dispatch(userSendingData(false));
     });
@@ -117,3 +141,9 @@ export const cleanUserErrors = () => {
   }
 }
 
+export const userUpdate = (isUpdated) => {
+  return{
+    type: USER_UPDATE,
+    isUpdated
+  }
+}

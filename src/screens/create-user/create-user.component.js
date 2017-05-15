@@ -12,7 +12,6 @@ import {
 } from 'native-base';
 
 import styles from './create-user.styles';
-import UserErrors from '../../components/input-handler/input-handler.user-errors';
 
 import { InputErrorDisplay } from '../../components';
 
@@ -25,6 +24,12 @@ export default class CreateUser extends Component {
       email: '',
       password: ''
     }
+  }
+
+  componentWillMount(){
+    this.props.errors.name = null;
+    this.props.errors.password = null;
+    this.props.errors.email = null;
   }
 
   handleFieldOnChange (field, value) {
@@ -49,9 +54,8 @@ export default class CreateUser extends Component {
               value={this.state.name}
             />
           </Item>
-          {this.props.errors.name ?
-            <InputErrorDisplay errors={this.props.errors.name} />
-          : null}
+
+          <InputErrorDisplay nameErrors = {this.props.errors.name} />
 
           <Item regular style={styles.formItem}>
             <Input
@@ -60,9 +64,9 @@ export default class CreateUser extends Component {
               value={this.state.email}
             />
           </Item>
-          {this.props.errors.email ?
-            <InputErrorDisplay errors={this.props.errors.email} />
-          : null}
+
+            <InputErrorDisplay emailErrors = {this.props.errors.email} />
+
 
           <Item regular style={styles.formItem}>
             <Input
@@ -71,9 +75,9 @@ export default class CreateUser extends Component {
               value={this.state.password}
             />
           </Item>
-          {this.props.errors.password ?
-            <InputErrorDisplay errors={this.props.errors.password} />
-          : null}
+
+        <InputErrorDisplay passwordErrors = {this.props.errors.password} />
+
         </View>
 
         <View style={{flex: 1}}>

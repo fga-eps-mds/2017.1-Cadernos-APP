@@ -11,10 +11,33 @@ class InputErrorDisplayComponent extends React.Component {
   render() {
     return (
       <View>
+        {this.props.emailErrors ?
         <Text style={styles.errorText}>
-          {this.props.errors}
+          {this.props.emailErrors[0]}
         </Text>
+        :
+        null
+        }
+
+        {this.props.nameErrors ?
+        <Text style={styles.errorText}>
+          {this.props.nameErrors[0]}
+        </Text>
+        :
+        null
+        }
+
+        {this.props.passwordErrors ?
+        <Text style={styles.errorText}>
+          {this.props.passwordErrors[0]}
+        </Text>
+        :
+        null
+        }
+
       </View>
+
+
     );
   }
 }
