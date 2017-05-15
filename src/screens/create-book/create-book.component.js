@@ -14,7 +14,7 @@ import {
 import { KeyboardAvoidingView, Alert } from 'react-native';
 
 import styles from './create-book.styles';
-import { ListErrors } from '../../components';
+import ListErrors from '../../components/list-errors/list-errors.component';
 
 export default class CreateBookComponent extends Component {
   constructor(props) {
