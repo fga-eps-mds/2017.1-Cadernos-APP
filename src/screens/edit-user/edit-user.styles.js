@@ -16,13 +16,15 @@ const styles = {
   },
 
   wrapperForm: {
-    flex: 5,
+    flex: 4,
+    paddingVertical: 5,
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   },
 
   formItem: {
-    marginBottom: 10,
-    marginTop: 10,
-  },
+    marginBottom: 10
+  }
 }
 
 export default styles;

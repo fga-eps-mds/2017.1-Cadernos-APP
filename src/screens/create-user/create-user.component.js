@@ -56,45 +56,46 @@ export default class CreateUser extends Component {
         </View>
 
         <KeyboardAvoidingView behavior="padding" style={styles.wrapperForm}>
-          <Item regular style={styles.formItem}>
-            <Input
-              placeholder='Seu nome'
-              returnKeyType='next'
-              onChangeText={(text) => this.handleFieldOnChange('name', text)}
-              value={this.state.name}
-            />
-          </Item>
+          <Content>
+            <Item regular style={styles.formItem}>
+              <Input
+                placeholder='Seu nome'
+                returnKeyType='next'
+                onChangeText={(text) => this.handleFieldOnChange('name', text)}
+                value={this.state.name}
+              />
+            </Item>
 
-          <InputErrorDisplay nameErrors={this.props.errors.name} />
+            <InputErrorDisplay nameErrors={this.props.errors.name} />
 
-          <Item regular style={styles.formItem}>
-            <Input
-              placeholder='Seu e-mail'
-              returnKeyType='next'
-              keyboardType='email-address'
-              autoCapitalize="none"
-              autoCorrect={false}
-              onChangeText={(text) => this.handleFieldOnChange('email', text)}
-              value={this.state.email}
-            />
-          </Item>
+            <Item regular style={styles.formItem}>
+              <Input
+                placeholder='Seu e-mail'
+                returnKeyType='next'
+                keyboardType='email-address'
+                autoCapitalize="none"
+                autoCorrect={false}
+                onChangeText={(text) => this.handleFieldOnChange('email', text)}
+                value={this.state.email}
+              />
+            </Item>
 
-          <InputErrorDisplay emailErrors={this.props.errors.email} />
+            <InputErrorDisplay emailErrors={this.props.errors.email} />
 
 
-          <Item regular style={styles.formItem}>
-            <Input
-              secureTextEntry
-              placeholder='Sua senha'
-              returnKeyType='go'
-              autoCorrect={false}
-              onChangeText={(text) => this.handleFieldOnChange('password', text)}
-              value={this.state.password}
-            />
-          </Item>
+            <Item regular style={styles.formItem}>
+              <Input
+                secureTextEntry
+                placeholder='Sua senha'
+                returnKeyType='go'
+                autoCorrect={false}
+                onChangeText={(text) => this.handleFieldOnChange('password', text)}
+                value={this.state.password}
+              />
+            </Item>
 
-          <InputErrorDisplay passwordErrors={this.props.errors.password} />
-
+            <InputErrorDisplay passwordErrors={this.props.errors.password} />
+          </Content>
         </KeyboardAvoidingView>
 
         <View style={{ flex: 1 }}>
