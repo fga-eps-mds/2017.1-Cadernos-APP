@@ -7,6 +7,7 @@ const styles = {
     fontSize: 16,
     fontWeight: 'bold',
     fontFamily: "Arial",
+    borderRadius: 12
   }
 }
 
