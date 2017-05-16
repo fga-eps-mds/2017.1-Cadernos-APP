@@ -4,15 +4,25 @@ import {
   Container,
   Content,
   Text,
-  Button
+  Button,
+  Input,
+  Item
 } from 'native-base';
 
-import styles from './view-book.styles';
+import styles from './edit-book.styles';
 
-export default class ViewBook extends React.Component {
+export default class EditBook extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      title: this.props.title,
+    }
+  }
 
   static navigationOptions = {
-    title: 'Caderno'
+    title: 'Editar Caderno'
   };
 
   /**
@@ -23,7 +33,7 @@ export default class ViewBook extends React.Component {
    * will be passed by params. In this case, set the given book as the selected book
    * in the store.
    */
-  componentDidMount() {
+  componentWillMount() {
     const { params } = this.props.navigation.state;
 
     // Verify if the params has the book, otherwise just ignored it
@@ -32,19 +42,30 @@ export default class ViewBook extends React.Component {
     }
   }
 
+  handleFieldOnChange(field, value) {
+    this.setState({
+      [field]: value
+    });
+  }
+
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <Container style={styles.container}>
+
+        <Item regular style={styles.formItem}>
+          <Input
+            placeholder='Nome do caderno'
+            returnKeyType='next'
+            onChangeText={(text) => this.handleFieldOnChange('title', text)}
+            value={this.state.title}
+          />
+        </Item>
         <Content>
-          <Text style = {styles.title}>
-            {this.props.title}
-          </Text>
+          <Button block bordered warning >
+            <Text>Confirmar</Text>
+          </Button>
         </Content>
 
-        <Button block bordered warning onPress={() => navigate('EditBook')}>
-          <Text>Editar caderno</Text>
-        </Button>
       </Container>
     );
   }

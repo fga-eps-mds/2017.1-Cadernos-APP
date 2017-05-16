@@ -5,9 +5,13 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center'
   },
-  title:{
+  title: {
     fontSize: 30,
     fontWeight: 'bold'
+  },
+  formItem: {
+    marginBottom: 10,
+    marginTop: 10,
   },
 
 };
