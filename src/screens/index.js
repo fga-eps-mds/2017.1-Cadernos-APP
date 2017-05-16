@@ -5,6 +5,7 @@ import UserLoginScreen from './user-login/user-login.container';
 import CreateBookScreen from './create-book/create-book.container';
 import ListBooksScreen from './list-books/list-books.container';
 import ViewBookScreen from './view-book/view-book.container';
+import EditBookScreen from './edit-book/edit-book.container';
 
 export {
   CreateUserScreen,
@@ -13,5 +14,6 @@ export {
   EditUserScreen,
   CreateBookScreen,
   ListBooksScreen,
-  ViewBookScreen
+  ViewBookScreen,
+  EditBookScreen
 }
