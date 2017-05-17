@@ -80,6 +80,41 @@ export const asyncBookSet = (bookData) => {
         dispatch(bookSetErrors(err.response.data));
       }
 
+      console.log('ERROR while editing book');
+      console.log(err);
+
+      // to when the user try to create another book,
+      // the screen won't open with a loading on the send button
+      dispatch(bookSetSendingData(false));
+    });
+  }
+}
+
+export const asyncEditBookSet = (bookData) => {
+  return (dispatch) => {
+    dispatch(bookSetSendingData(true));
+
+    axios.patch(`/books/${bookData.bookId}`, {
+      title: bookData.title,
+      user_id: bookData.loggedUserId
+    })
+    .then(response => {
+      if (response.data && response.data.id) {
+        dispatch(bookSet({
+          id: response.data.id,
+          title: response.data.title,
+          userId: response.data.user_id,
+          created: true,
+          errors: {},
+          sendingData: false
+        }));
+      }
+    })
+    .catch(err => {
+      if (err.response && err.response.status === 422) {
+        dispatch(bookSetErrors(err.response.data));
+      }
+
       console.log('ERROR while creating book');
       console.log(err);
 

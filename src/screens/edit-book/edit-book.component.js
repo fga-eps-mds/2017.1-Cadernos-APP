@@ -42,6 +42,15 @@ export default class EditBook extends React.Component {
     }
   }
 
+  getBookData() {
+    return {
+      title: this.state.title,
+      userId: this.props.userId,
+      bookId: this.props.id
+    }
+  }
+
+
   handleFieldOnChange(field, value) {
     this.setState({
       [field]: value
@@ -61,7 +70,10 @@ export default class EditBook extends React.Component {
           />
         </Item>
         <Content>
-          <Button block bordered warning >
+          <Text>{this.props.userId}</Text>
+          <Text>{this.props.id}</Text>
+          <Button block bordered warning
+          onPress={() => this.props.EditBook(this.getBookData())}>
             <Text>Confirmar</Text>
           </Button>
         </Content>

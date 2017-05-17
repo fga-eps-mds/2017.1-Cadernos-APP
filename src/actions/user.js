@@ -110,6 +110,8 @@ export const asyncUserLogin = (userData) => {
       email: userData.email, password: userData.password
     })
     .then(feedBack => {
+      //console.log(feedBack.data.user)
+      //console.log(feedBack.data.auth_token)
       setAuthorizationToken(feedBack.data.auth_token);
       dispatch(userLogin(userData));
       dispatch(userAuthenticated(true));
