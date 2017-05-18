@@ -1,5 +1,5 @@
 import { BOOK_LIST_SET, BOOK_LIST_SET_SENDING_DATA } from '../config/actions-types';
-import axios from '../config/axios';
+import axios, { getBaseUrl } from '../config/axios';
 
 import initialState from '../config/initial-state';
 
@@ -9,6 +9,7 @@ export const bookListSet = (booksArray) => {
       id: book.id,
       title: book.title,
       userId: book.user_id,
+      cover: `${getBaseUrl()}${book.cover}`,
     } ;
   });
 

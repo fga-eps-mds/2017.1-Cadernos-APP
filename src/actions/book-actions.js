@@ -5,7 +5,7 @@ import {
   BOOK_SET_CREATED
 } from '../config/actions-types';
 
-import axios from '../config/axios';
+import axios, { getBaseUrl } from '../config/axios';
 
 import initialState from '../config/initial-state';
 
@@ -16,7 +16,7 @@ import {
 
 
 export const bookSet = ({
-  id, title, userId,
+  id, title, userId, cover,
   sendingData = initialState.book.sendingData,
   errors = initialState.book.errors,
   created = initialState.book.created
@@ -29,7 +29,8 @@ export const bookSet = ({
       userId,
       sendingData,
       errors,
-      created
+      created,
+      cover
     }
   }
 }
@@ -69,6 +70,7 @@ export const asyncBookSet = (bookData) => {
           id: response.data.id,
           title: response.data.title,
           userId: response.data.user_id,
+          cover: `${getBaseUrl()}${response.data.cover}`,
           created: true,
           errors: {},
           sendingData: false

@@ -9,4 +9,6 @@ export const setAuthorizationToken = (token) => {
   axiosInstance.defaults.headers.common['Authorization'] = token;
 }
 
+export const getBaseUrl = () => data.baseURL;
+
 export default axiosInstance;

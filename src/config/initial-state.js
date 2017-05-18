@@ -19,7 +19,8 @@ const initialState = {
     userId: 0,
     sendingData: false,
     errors: {},
-    created: false
+    created: false,
+    cover: ""
   },
 
   // Book list from screen after loggin or logged user books
