@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import createUserComponent from './create-user.component';
 
-import { asyncCreateUser, cleanUserErrors, userRegister } from '../../actions/user';
+import { asyncCreateUser, cleanUserErrors, userRegister } from '../../actions/user-actions';
 
 const mapStateToProps = (state) => {
   return {

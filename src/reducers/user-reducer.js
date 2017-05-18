@@ -6,7 +6,7 @@ const userReducer = (state = initialState.user, action) => {
   switch (action.type) {
     case USER_SET:
       return {
-        ...state, ...action.user
+        ...action.user
       }
 
     case USER_SENDING_DATA:
