@@ -2,7 +2,8 @@ import {
   BOOK_SET,
   BOOK_SET_ERRORS,
   BOOK_SET_SENDING_DATA,
-  BOOK_SET_CREATED
+  BOOK_SET_CREATED,
+  BOOK_SET_EDITED
 } from '../config/actions-types';
 
 import axios from '../config/axios';
@@ -19,7 +20,8 @@ export const bookSet = ({
   id, title, userId,
   sendingData = initialState.book.sendingData,
   errors = initialState.book.errors,
-  created = initialState.book.created
+  created = initialState.book.created,
+  edited = initialState.book.edited
 }) => {
   return {
     type: BOOK_SET,
@@ -29,7 +31,8 @@ export const bookSet = ({
       userId,
       sendingData,
       errors,
-      created
+      created,
+      edited
     }
   }
 }
@@ -52,6 +55,13 @@ export const bookSetCreated = (created) => {
   return {
     type: BOOK_SET_CREATED,
     created
+  }
+}
+
+export const bookSetEdited = (edited) => {
+  return {
+    type: BOOK_SET_EDITED,
+    edited
   }
 }
 
@@ -99,16 +109,9 @@ export const asyncEditBookSet = (bookData) => {
       user_id: bookData.loggedUserId
     })
     .then(response => {
-      if (response.data && response.data.id) {
-        dispatch(bookSet({
-          id: response.data.id,
-          title: response.data.title,
-          userId: response.data.user_id,
-          created: true,
-          errors: {},
-          sendingData: false
-        }));
-      }
+        dispatch(bookSetEdited(true));
+        dispatch(bookSet({...response}));
+
     })
     .catch(err => {
       if (err.response && err.response.status === 422) {

@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
     userId: state.book.userId,
     sendingData: state.book.sendingData,
     errors: state.book.errors,
+    edited: state.book.edited
   }
 }
 
@@ -21,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
 
     clearErrors() {
       dispatch(bookSetErrors({}));
-      dispatch(bookSetCreated(false));
+      dispatch(bookSetEdited(false));
     }
   }
 }

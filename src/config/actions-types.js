@@ -13,6 +13,7 @@ export const BOOK_SET = 'BOOK_SET';
 export const BOOK_SET_SENDING_DATA = 'SENDING_DATA';
 export const BOOK_SET_ERRORS = 'BOOK_SET_ERRORS';
 export const BOOK_SET_CREATED = 'BOOK_SET_CREATED';
+export const BOOK_SET_EDITED = 'BOOK_SET_EDITED';
 
 // Book List actions
 export const BOOK_LIST_SET = 'BOOK_LIST_SET';

@@ -33,6 +33,17 @@ export default class EditBook extends React.Component {
    * will be passed by params. In this case, set the given book as the selected book
    * in the store.
    */
+ componentWillReceiveProps(nextProps) {
+    const { navigate } = this.props.navigation;
+    const {goBack} = this.props.navigation;
+    console.log(this.props.edited);
+    console.log(nextProps.edited);
+    // The book was just created
+    if (this.props.edited === false && nextProps.edited === true) {
+      //this.props.clearErrors();
+      goBack();
+    }
+  }
   componentWillMount() {
     const { params } = this.props.navigation.state;
 
@@ -70,8 +81,9 @@ export default class EditBook extends React.Component {
           />
         </Item>
         <Content>
-          <Text>{this.props.userId}</Text>
-          <Text>{this.props.id}</Text>
+          <Text>{"id do usuário: " + this.props.userId}</Text>
+          <Text>{"id do livro:" + this.props.id}</Text>
+          <Text>{"editado:" + this.props.edited}</Text>
           <Button block bordered warning
           onPress={() => this.props.EditBook(this.getBookData())}>
             <Text>Confirmar</Text>
