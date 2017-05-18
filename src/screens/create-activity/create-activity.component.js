@@ -22,11 +22,12 @@ export default class CreateActivityComponent extends Component {
 
     this.state = {
       title: '',
+      description: ''
     }
   }
 
   static navigationOptions = {
-    title: 'Criar Caderno'
+    title: 'Adicionar Atividade'
   };
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +36,7 @@ export default class CreateActivityComponent extends Component {
     // The book was just created
     if (this.props.created === false && nextProps.created === true) {
       this.props.clearErrors();
-      navigate('ViewBook');
+      navigate('ViewActivitys');
     }
   }
 
@@ -52,6 +53,7 @@ export default class CreateActivityComponent extends Component {
   getBookData() {
     return {
       title: this.state.title,
+      description: this.state.description,
       loggedUserId: this.props.loggedUserId
     }
   }
@@ -62,11 +64,15 @@ export default class CreateActivityComponent extends Component {
         <KeyboardAvoidingView behavior="padding" style={styles.wrapperForm}>
           <Item regular style={styles.formItem}>
             <Input
-              placeholder='Titulo'
+              placeholder='Titulo Da Atividade'
               returnKeyType='next'
+              placeholder='Descrição'
               onChangeText={(text) => this.handleFieldOnChange('title', text)}
               value={this.state.title}
+              onChangeText={(text) => this.handleFieldOnChange('description', text)}
+              value={this.state.description}
             />
+
           </Item>
 
           <ListErrors errors={this.props.errors.title} />
@@ -77,9 +83,9 @@ export default class CreateActivityComponent extends Component {
             <Spinner />
             :
             <Button warning block style={{ borderRadius: 30 }}
-              onPress={() => this.props.createBook(this.getBookData())}
+              onPress={() => this.props.createActivity(this.getBookData())}
             >
-              <Text>CRIAR</Text>
+              <Text>Adicionar Atividade</Text>
             </Button>
           }
         </View>

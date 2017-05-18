@@ -8,6 +8,10 @@ const styles = {
     fontSize: 30,
     fontWeight: 'bold'
   },
+  description: {
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
 
   wrapperForm: {
     flex: 4,
