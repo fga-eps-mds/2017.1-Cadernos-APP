@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import userLoginComponent from './user-login.component';
 
-import { asyncUserLogin, asyncUserLogout, cleanUserErrors } from '../../actions/user';
+import { asyncUserLogin, asyncUserLogout, cleanUserErrors } from '../../actions/user-actions';
 
 const mapStateToProps = (state) => {
   return {
