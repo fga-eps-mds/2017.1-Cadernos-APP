@@ -26,7 +26,25 @@ const initialState = {
   bookList: {
     sendingData: false,
     books: []
+  },
+
+  // selected or created task
+  task: {
+    id: 0,
+    title: '',
+    content: '',
+    userId: 0,
+    sendingData: false,
+    errors: {},
+    created: false
+  },
+
+  // task list from screen after loggin or logged user activities
+  taskList: {
+    sendingData: false,
+    activities: []
   }
+
 };
 
 export default initialState;

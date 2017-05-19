@@ -1,5 +1,5 @@
 import initialState from '../config/initial-state';
-import { TASK_LIST_SET, task_LIST_SET_SENDING_DATA } from '../config/actions-types';
+import { TASK_LIST_SET, TASK_LIST_SET_SENDING_DATA } from '../config/actions-types';
 
 const taskListReducer = (state = initialState.taskList, action) => {
   switch (action.type) {

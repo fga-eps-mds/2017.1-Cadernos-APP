@@ -6,7 +6,7 @@ import CreateBookScreen from './create-book/create-book.container';
 import ListBooksScreen from './list-books/list-books.container';
 import ViewBookScreen from './view-book/view-book.container';
 import EditBookScreen from './edit-book/edit-book.container';
-import CreateActivityScreen from './create-activity/create-activity.container'
+import CreateTaskScreen from './create-task/create-task.container'
 
 export {
   CreateUserScreen,
@@ -17,5 +17,5 @@ export {
   ListBooksScreen,
   ViewBookScreen,
   EditBookScreen,
-  CreateActivityScreen
+  CreateTaskScreen
 }

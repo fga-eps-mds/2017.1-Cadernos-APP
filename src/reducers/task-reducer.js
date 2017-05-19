@@ -1,26 +1,26 @@
 import initialState from '../config/initial-state';
-import { ACTIVITY_SET, ACTIVITY_SET_ERRORS, ACTIVITY_SET_SENDING_DATA, ACTIVITY_SET_CREATED } from '../config/actions-types';
+import { TASK_SET, TASK_SET_ERRORS, TASK_SET_SENDING_DATA, TASK_SET_CREATED } from '../config/actions-types';
 
-const activityReducer = (state = initialState.activity, action) => {
+const taskReducer = (state = initialState.task, action) => {
   switch (action.type) {
-    case ACTIVITY_SET:
+    case TASK_SET:
       return {
-        ...action.activity
+        ...action.task
       };
 
-    case ACTIVITY_SET_ERRORS:
+    case TASK_SET_ERRORS:
       return {
         ...state,
         errors: action.errors,
       };
 
-    case ACTIVITY_SET_SENDING_DATA:
+    case TASK_SET_SENDING_DATA:
       return {
         ...state,
         sendingData: action.sendingData
       };
 
-    case ACTIVITY_SET_CREATED:
+    case TASK_SET_CREATED:
       return {
         ...state,
         created: action.created
@@ -31,4 +31,4 @@ const activityReducer = (state = initialState.activity, action) => {
   }
 }
 
-export default activityReducer;
+export default taskReducer;

@@ -13,10 +13,10 @@ import {
 
 import { KeyboardAvoidingView, Alert } from 'react-native';
 
-import styles from './create-activity.styles';
+import styles from './create-task.styles';
 import ListErrors from '../../components/list-errors/list-errors.component';
 
-export default class CreateActivityComponent extends Component {
+export default class CreateTaskComponent extends Component {
   constructor(props) {
     super(props);
 
@@ -36,7 +36,7 @@ export default class CreateActivityComponent extends Component {
 
     if (this.props.created === false && nextProps.created === true) {
       this.props.clearErrors();
-      navigate('ViewActivitys');
+      navigate('Viewtasks');
     }
   }
 
@@ -50,7 +50,7 @@ export default class CreateActivityComponent extends Component {
     });
   }
 
-  getActivityData() {
+  gettaskData() {
     return {
       title: this.state.title,
       description: this.state.description,
@@ -91,7 +91,7 @@ export default class CreateActivityComponent extends Component {
             <Spinner />
             :
             <Button warning block style={{ borderRadius: 30 }}
-              onPress={() => this.props.createActivity(this.getActivityData())}
+              onPress={() => this.props.createTask(this.getTaskData())}
             >
               <Text>Adicionar Atividade</Text>
             </Button>

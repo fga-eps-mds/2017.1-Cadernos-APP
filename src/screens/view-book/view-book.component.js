@@ -43,7 +43,7 @@ export default class ViewBook extends React.Component {
           </Text>
         </Content>
 
-        <Button  style={styles.btn} block bordered warning onPress={() => navigate('CreateActivity')}>
+        <Button  style={styles.btn} block bordered warning onPress={() => navigate('CreateTask')}>
           <Text>Adicionar Atividade</Text>
         </Button>
 

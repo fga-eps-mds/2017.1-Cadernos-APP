@@ -8,7 +8,7 @@ const styles = {
     fontSize: 30,
     fontWeight: 'bold'
   },
-  description: {
+  content: {
     fontSize: 30,
     fontWeight: 'bold'
   },

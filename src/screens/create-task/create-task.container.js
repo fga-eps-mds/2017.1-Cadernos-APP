@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CreateActivityComponent from './create-activity.component';
+import CreateTaskComponent from './create-task.component';
 
 import { asyncBookSet, bookSetErrors, bookSetCreated } from '../../actions/book-actions';
 
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createActivity(bookData) {
+    createTask(bookData) {
       dispatch(asyncBookSet(bookData));
     },
 
@@ -27,9 +27,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const CreateActivityContainer = connect(
+const CreateTaskContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-) (CreateActivityComponent);
+) (CreateTaskComponent);
 
-export default CreateActivityContainer;
+export default CreateTaskContainer;
