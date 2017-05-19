@@ -31,14 +31,20 @@ export default class UserLogin extends Component {
       [field]: value
     });
   }
+  componentWillReceiveProps(nextProps) {
+    const { navigate } = this.props.navigation;
+
+    if (this.props.isVisitor === false && nextProps.isVisitor === true) {
+      navigate('ListBooks');
+    }
+  }
   componentWillMount() {
     this.props.cleanUserErrors();
   }
   render() {
     const { navigate } = this.props.navigation;
     if (this.props.authenticated) {
-      console.log('PROPS NOW ==============>');
-      console.log(this.props);
+
       return (
         <Container style={styles.container}>
           <View style={{ flex: 1 }}>
@@ -114,7 +120,7 @@ export default class UserLogin extends Component {
               <Container></Container>
               :
               <Button warning block style={{ borderRadius: 30 }}
-                onPress={() => this.props.setVisitor({email: 'visitor@cadernos.com',password: 'visitorpassword'})}
+                onPress={() => this.props.setVisitor()}
               >
                 <Text>ENTRAR COMO VISITANTE</Text>
               </Button>
