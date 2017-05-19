@@ -34,19 +34,16 @@ export default class ListBooksComponent extends Component {
         onPress={() => navigate('ViewBook', { book })}
       >
 
-        <Card>
-          <CardItem cardBody>
+        <Card style={styles.bookCard}>
+          <CardItem cardBody style={styles.bookCardItem}>
             <Image
               source={{uri: book.cover}}
-              style={{width: 240, height: 120}}
+              style={styles.bookCardImage}
             />
           </CardItem>
 
-          <CardItem>
-            <Button transparent>
-              <Icon active name="thumbs-up" />
-              <Text>{book.title}</Text>
-            </Button>
+          <CardItem style={styles.bookCardItem}>
+            <Text>{book.title}</Text>
           </CardItem>
         </Card>
       </ListItem>
