@@ -6,7 +6,8 @@ import { asyncBookListSet } from '../../actions/book-list-actions';
 const mapStateToProps = (state) => {
   return {
     books: state.bookList.books,
-    sendingData: state.bookList.sendingData
+    sendingData: state.bookList.sendingData,
+    isVisitor: state.user.isVisitor
   }
 }
 
