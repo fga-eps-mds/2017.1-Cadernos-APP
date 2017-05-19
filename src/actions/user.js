@@ -1,4 +1,4 @@
-import { USER_SET, USER_ERRORS, USER_SENDING_DATA, USER_LOGIN, USER_AUTHENTICATED, USER_LOGOUT, CLEAN_USER_AUTHENTICATION_ERRORS, USER_REGISTER } from '../config/actions-types';
+import { USER_SET, USER_ERRORS, USER_SENDING_DATA, USER_LOGIN, VISITOR_LOGIN, USER_AUTHENTICATED, USER_LOGOUT, CLEAN_USER_AUTHENTICATION_ERRORS, USER_REGISTER } from '../config/actions-types';
 
 import axios, { setAuthorizationToken } from '../config/axios';
 
@@ -25,15 +25,8 @@ export const userLogin = (user) => {
   }
 };
 
-export const visitorLogin = (user) => {
-  return {
-    type: USER_LOGIN,
-    user: {
-      email: user.email,
-      password: user.password,
-      isVisitor: true
-    }
-  }
+export const visitorLogin = (isVisitor) => {
+  return {type: VISITOR_LOGIN, isVisitor}
 };
 
 export const userLogout = () => {
@@ -125,31 +118,6 @@ export const asyncUserLogin = (userData) => {
     .then(feedBack => {
       setAuthorizationToken(feedBack.data.auth_token);
       dispatch(userLogin(userData));
-      dispatch(userAuthenticated(true));
-      dispatch(userSendingData(false));
-    })
-    .catch(err => {
-      if (err.response && err.response.data){
-        console.log(err.response.data);
-        dispatch(userErrors(err.response.data));
-      }else{
-        console.log(err);
-      }
-      dispatch(userSendingData(false));
-    });
-  }
-
-}
-
-export const asyncVisitorLogin = (userData) => {
-  return (dispatch) => {
-    dispatch(userSendingData(true));
-    axios.post(`/authenticate`, {
-      email: userData.email, password: userData.password
-    })
-    .then(feedBack => {
-      setAuthorizationToken(feedBack.data.auth_token);
-      dispatch(visitorLogin(userData));
       dispatch(userAuthenticated(true));
       dispatch(userSendingData(false));
     })
