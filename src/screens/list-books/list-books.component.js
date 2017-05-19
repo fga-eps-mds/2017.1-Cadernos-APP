@@ -56,11 +56,15 @@ export default class ListBooksComponent extends Component {
         </View>
 
         <View style={styles.buttonView}>
-          <Button block bordered warning
+          {this.props.isVisitor ?
+            <Container></Container>
+            :
+            <Button block bordered warning
             onPress={() => navigate('CreateBook')}
-          >
-            <Text>Criar caderno</Text>
-          </Button>
+            >
+              <Text>Criar caderno</Text>
+            </Button>
+          }
         </View>
       </Container>
     );
