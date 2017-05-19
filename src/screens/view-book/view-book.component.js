@@ -4,11 +4,15 @@ import {
   Container,
   Content,
   Text,
-  Button
+  Button,
+  List,
+  ListItem
 
 } from 'native-base';
 
 import styles from './view-book.styles';
+
+
 
 export default class ViewBook extends React.Component {
 
@@ -32,6 +36,20 @@ export default class ViewBook extends React.Component {
       this.props.setSelectedBook(params.book);
     }
   }
+  renderTaskListItem(task) {
+    const { navigate } = this.props.navigation;
+
+    return (
+      <ListItem
+        key={task.id}
+        onPress={() => navigate('ViewBook', { task })}
+      >
+        <Text>
+          {task.title}
+        </Text>
+      </ListItem>
+    );
+  }
 
   render() {
     const { navigate } = this.props.navigation;
@@ -43,7 +61,15 @@ export default class ViewBook extends React.Component {
           </Text>
         </Content>
 
-        <Button  style={styles.btn} block bordered warning onPress={() => navigate('CreateTask')}>
+        <Content>
+          <Text style={styles.title}>
+            {this.props.content}
+          </Text>
+        </Content>
+
+
+
+        <Button style={styles.btn} block bordered warning onPress={() => navigate('CreateTask')}>
           <Text>Adicionar Atividade</Text>
         </Button>
 

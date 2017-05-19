@@ -1,28 +1,29 @@
 import { connect } from 'react-redux';
 import CreateTaskComponent from './create-task.component';
 
-import { asyncBookSet, bookSetErrors, bookSetCreated } from '../../actions/book-actions';
+import { asyncTaskSet, taskSetErrors, taskSetCreated } from '../../actions/task-actions';
 
 const mapStateToProps = (state) => {
   return {
-    id: state.book.id,
-    title: state.book.title,
+    id: state.task.id,
+    title: state.task.title,
+    content: state.task.content,
     loggedUserId: state.user.id,
-    sendingData: state.book.sendingData,
-    errors: state.book.errors,
-    created: state.book.created
+    sendingData: state.task.sendingData,
+    errors: state.task.errors,
+    created: state.task.created
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createTask(bookData) {
-      dispatch(asyncBookSet(bookData));
+    createTask(taskData) {
+      dispatch(asyncTaskSet(taskData));
     },
 
     clearErrors() {
-      dispatch(bookSetErrors({}));
-      dispatch(bookSetCreated(false));
+      dispatch(taskSetErrors({}));
+      dispatch(taskSetCreated(false));
     }
   }
 }

@@ -22,7 +22,7 @@ export default class CreateTaskComponent extends Component {
 
     this.state = {
       title: '',
-      description: ''
+      content: ''
     }
   }
 
@@ -50,10 +50,10 @@ export default class CreateTaskComponent extends Component {
     });
   }
 
-  gettaskData() {
+  getTaskData() {
     return {
       title: this.state.title,
-      description: this.state.description,
+      content: this.state.content,
       loggedUserId: this.props.loggedUserId
     }
   }
@@ -77,8 +77,8 @@ export default class CreateTaskComponent extends Component {
             <Input
               placeholder='Descrição'
               returnKeyType='next'
-              onChangeText={(text) => this.handleFieldOnChange('description', text)}
-              value={this.state.description}
+              onChangeText={(text) => this.handleFieldOnChange('content', text)}
+              value={this.state.content}
             />
 
           </Item>
