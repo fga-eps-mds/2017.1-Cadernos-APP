@@ -21,7 +21,7 @@ export default class CreateBookComponent extends Component {
     super(props);
 
     this.state = {
-      title: '',
+      title: ''
     }
   }
 

@@ -5,6 +5,7 @@ import {
   Content,
   Text,
   Button
+
 } from 'native-base';
 
 import styles from './view-book.styles';
@@ -41,10 +42,12 @@ export default class ViewBook extends React.Component {
             {this.props.title}
           </Text>
         </Content>
-        <Button block bordered warning onPress={() => navigate('CreateActivity')}>
+
+        <Button  style={styles.btn} block bordered warning onPress={() => navigate('CreateActivity')}>
           <Text>Adicionar Atividade</Text>
         </Button>
-        <Button block bordered warning onPress={() => navigate('EditBook')}>
+
+        <Button style={styles.btn} block bordered warning onPress={() => navigate('EditBook')}>
           <Text>Editar caderno</Text>
         </Button>
       </Container>

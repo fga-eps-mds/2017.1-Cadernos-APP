@@ -33,7 +33,7 @@ export default class CreateActivityComponent extends Component {
   componentWillReceiveProps(nextProps) {
     const { navigate } = this.props.navigation;
 
-    // The book was just created
+
     if (this.props.created === false && nextProps.created === true) {
       this.props.clearErrors();
       navigate('ViewActivitys');
@@ -50,7 +50,7 @@ export default class CreateActivityComponent extends Component {
     });
   }
 
-  getBookData() {
+  getActivityData() {
     return {
       title: this.state.title,
       description: this.state.description,
@@ -66,12 +66,19 @@ export default class CreateActivityComponent extends Component {
             <Input
               placeholder='Titulo Da Atividade'
               returnKeyType='next'
-             // placeholder='Descrição'
-             // returnKeyType='next'
               onChangeText={(text) => this.handleFieldOnChange('title', text)}
               value={this.state.title}
-            //  onChangeText={(text) => this.handleFieldOnChange('description', text)}
-             // value={this.state.description}
+
+            />
+
+          </Item>
+
+          <Item regular style={styles.formItem}>
+            <Input
+              placeholder='Descrição'
+              returnKeyType='next'
+              onChangeText={(text) => this.handleFieldOnChange('description', text)}
+              value={this.state.description}
             />
 
           </Item>
@@ -84,7 +91,7 @@ export default class CreateActivityComponent extends Component {
             <Spinner />
             :
             <Button warning block style={{ borderRadius: 30 }}
-              onPress={() => this.props.createActivity(this.getBookData())}
+              onPress={() => this.props.createActivity(this.getActivityData())}
             >
               <Text>Adicionar Atividade</Text>
             </Button>

@@ -10,6 +10,11 @@ const styles = {
     fontSize: 30,
     fontWeight: 'bold'
   },
+  btn: {
+    margin: 10,
+   borderRadius: 30,
+   backgroundColor: '#fff'
+  }
 
 };
 
