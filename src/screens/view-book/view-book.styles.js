@@ -3,9 +3,10 @@ const styles = {
     padding: 5,
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    margin: 2
   },
-  title:{
+  title: {
     fontSize: 30,
     fontWeight: 'bold'
   },

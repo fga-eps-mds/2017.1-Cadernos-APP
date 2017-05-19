@@ -37,7 +37,7 @@ export default class ViewBook extends React.Component {
     return (
       <Container style={styles.container}>
         <Content>
-          <Text style = {styles.title}>
+          <Text style={styles.title}>
             {this.props.title}
           </Text>
         </Content>

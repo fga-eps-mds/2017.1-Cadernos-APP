@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    createBook(bookData) {
+    createActivity(bookData) {
       dispatch(asyncBookSet(bookData));
     },
 

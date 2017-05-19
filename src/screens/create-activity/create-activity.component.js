@@ -66,11 +66,12 @@ export default class CreateActivityComponent extends Component {
             <Input
               placeholder='Titulo Da Atividade'
               returnKeyType='next'
-              placeholder='Descrição'
+             // placeholder='Descrição'
+             // returnKeyType='next'
               onChangeText={(text) => this.handleFieldOnChange('title', text)}
               value={this.state.title}
-              onChangeText={(text) => this.handleFieldOnChange('description', text)}
-              value={this.state.description}
+            //  onChangeText={(text) => this.handleFieldOnChange('description', text)}
+             // value={this.state.description}
             />
 
           </Item>
