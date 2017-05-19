@@ -19,7 +19,19 @@ export const userLogin = (user) => {
     type: USER_LOGIN,
     user: {
       email: user.email,
-      password: user.password
+      password: user.password,
+      isVisitor: false
+    }
+  }
+};
+
+export const visitorLogin = (user) => {
+  return {
+    type: USER_LOGIN,
+    user: {
+      email: user.email,
+      password: user.password,
+      isVisitor: true
     }
   }
 };
@@ -29,7 +41,8 @@ export const userLogout = () => {
     type: USER_LOGOUT,
     user: {
       email: '',
-      password: ''
+      password: '',
+      isVisitor: false
     }
   }
 };
@@ -112,6 +125,31 @@ export const asyncUserLogin = (userData) => {
     .then(feedBack => {
       setAuthorizationToken(feedBack.data.auth_token);
       dispatch(userLogin(userData));
+      dispatch(userAuthenticated(true));
+      dispatch(userSendingData(false));
+    })
+    .catch(err => {
+      if (err.response && err.response.data){
+        console.log(err.response.data);
+        dispatch(userErrors(err.response.data));
+      }else{
+        console.log(err);
+      }
+      dispatch(userSendingData(false));
+    });
+  }
+
+}
+
+export const asyncVisitorLogin = (userData) => {
+  return (dispatch) => {
+    dispatch(userSendingData(true));
+    axios.post(`/authenticate`, {
+      email: userData.email, password: userData.password
+    })
+    .then(feedBack => {
+      setAuthorizationToken(feedBack.data.auth_token);
+      dispatch(visitorLogin(userData));
       dispatch(userAuthenticated(true));
       dispatch(userSendingData(false));
     })
