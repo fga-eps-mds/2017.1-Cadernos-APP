@@ -37,7 +37,8 @@ export default class UserLogin extends Component {
   render() {
     const { navigate } = this.props.navigation;
     if (this.props.authenticated) {
-
+      console.log('PROPS NOW ==============>');
+      console.log(this.props);
       return (
         <Container style={styles.container}>
           <View style={{ flex: 1 }}>
@@ -52,9 +53,13 @@ export default class UserLogin extends Component {
             }
           </View>
 
-          <Button block onPress={() => navigate('EditUser')}>
-            <Text>Editar Usuário</Text>
-          </Button>
+          {this.props.isVisitor ?
+            <Container></Container>
+            :
+            <Button block onPress={() => navigate('EditUser')}>
+              <Text>Editar Usuário</Text>
+            </Button>
+          }
 
            <Button block warning onPress={() => navigate('ListBooks')}>
             <Text>Ver cadernos</Text>
@@ -101,6 +106,17 @@ export default class UserLogin extends Component {
                 onPress={() => this.props.userLogin(this.state)}
               >
                 <Text>ENTRAR</Text>
+              </Button>
+            }
+          </View>
+          <View style={{ flex: 1 }}>
+            {this.props.sendingData ?
+              <Container></Container>
+              :
+              <Button warning block style={{ borderRadius: 30 }}
+                onPress={() => this.props.setVisitor({email: 'visitor@cadernos.com',password: 'visitorpassword'})}
+              >
+                <Text>ENTRAR COMO VISITANTE</Text>
               </Button>
             }
           </View>
