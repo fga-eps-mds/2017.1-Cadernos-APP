@@ -17,3 +17,4 @@ export const BOOK_SET_CREATED = 'BOOK_SET_CREATED';
 // Book List actions
 export const BOOK_LIST_SET = 'BOOK_LIST_SET';
 export const BOOK_LIST_SET_SENDING_DATA = 'BOOK_LIST_SET_SENDING_DATA';
+export const BOOK_LIST_ADD_BOOK = 'BOOK_LIST_ADD_BOOK';
