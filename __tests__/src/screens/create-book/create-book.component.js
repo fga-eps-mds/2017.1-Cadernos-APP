@@ -20,10 +20,14 @@ import {
 
 describe("CreateBook Component", () => {
   it("Displays a Spinner when sending data but not a button", () => {
+    const book = {
+      sendingData: true,
+      errors: {}
+    }
+
     const wrapper = shallow(
       <CrateBookComponent
-        sendingData={true}
-        errors={{}}
+        book={book}
       />
     );
 
@@ -32,10 +36,14 @@ describe("CreateBook Component", () => {
   });
 
   it("Displays a Button instead of Spinner when not sending data", () => {
+    const book = {
+      sendingData: false,
+      errors: {}
+    }
+
     const wrapper = shallow(
       <CrateBookComponent
-        sendingData={false}
-        errors={{}}
+        book={book}
       />
     );
 
@@ -44,43 +52,29 @@ describe("CreateBook Component", () => {
   });
 
   it("The Button when pressed will pass the title and logged user to a props function", () => {
+    const book = {
+      sendingData: false,
+      errors: {}
+    }
+
+    const user = {
+      id: 5
+    }
+
     const createBookProps = (data) => {
       expect(data.title).to.equal('test book title');
-      expect(data.loggedUserId).to.equal(5);
+      expect(data.loggedUserId).to.equal(user.id);
     }
 
     const wrapper = shallow(
       <CrateBookComponent
-        sendingData={false}
-        errors={{}}
-        loggedUserId={5}
+        book={book}
+        user={user}
         createBook={createBookProps}
       />
     );
 
     wrapper.setState({ title: 'test book title' });
     wrapper.find(Button).simulate('press');
-  });
-
-  it("Will navigate to ViewBook once created change from false to true", () => {
-    const clearErrors = () => {}
-
-    const navigation = {
-      navigate(screen) {
-        expect(screen).to.equal('ViewBook');
-      }
-    }
-
-    const wrapper = shallow(
-      <CrateBookComponent
-        sendingData={false}
-        errors={{}}
-        navigation={navigation}
-        created={false}
-        clearErrors={clearErrors}
-      />
-    );
-
-    wrapper.setProps({ created: true });
   });
 });

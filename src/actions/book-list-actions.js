@@ -1,16 +1,23 @@
-import { BOOK_LIST_SET, BOOK_LIST_SET_SENDING_DATA } from '../config/actions-types';
+import {
+  BOOK_LIST_SET,
+  BOOK_LIST_SET_SENDING_DATA,
+  BOOK_LIST_ADD_BOOK,
+  BOOK_LIST_UPDATE_BOOK
+} from '../config/actions-types';
 import axios from '../config/axios';
 
 import initialState from '../config/initial-state';
 
+const getBookData = (book) => {
+  return {
+    id: book.id,
+    title: book.title,
+    userId: book.user_id,
+  }
+}
+
 export const bookListSet = (booksArray) => {
-  const books = booksArray.map(book => {
-    return {
-      id: book.id,
-      title: book.title,
-      userId: book.user_id,
-    } ;
-  });
+  const books = booksArray.map(book => getBookData(book));
 
   return {
     type: BOOK_LIST_SET,
@@ -21,10 +28,24 @@ export const bookListSet = (booksArray) => {
   }
 }
 
+export const bookListAddBook = (book) => {
+  return {
+    type: BOOK_LIST_ADD_BOOK,
+    book
+  }
+}
+
 export const bookListSetSendingData = (sendingData) => {
   return {
     type: BOOK_LIST_SET_SENDING_DATA,
     sendingData
+  }
+}
+
+export const bookListUpdateBook = (book) => {
+  return {
+    type: BOOK_LIST_UPDATE_BOOK,
+    book: getBookData(book)
   }
 }
 

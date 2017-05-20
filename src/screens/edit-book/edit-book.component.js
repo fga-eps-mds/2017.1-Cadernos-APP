@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+import { Actions } from 'react-native-router-flux';
+
 
 import {
   Container,
@@ -11,56 +14,21 @@ import {
 
 import styles from './edit-book.styles';
 
-export default class EditBook extends React.Component {
+import GoBack from '../../components/go-back/go-back.component';
+
+export default class EditBook extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      title: this.props.title,
+      title: '',
     }
   }
 
-  static navigationOptions = {
-    title: 'Editar Caderno'
-  };
-
-  /**
-   * If the book was just created, params will be undefined, but the selected book will
-   * already be stored in the store.
-   *
-   * If the book was selected in a list or similar book selection, the selected book
-   * will be passed by params. In this case, set the given book as the selected book
-   * in the store.
-   */
- componentWillReceiveProps(nextProps) {
-    const { navigate } = this.props.navigation;
-    const {goBack} = this.props.navigation;
-    console.log(this.props.edited);
-    console.log(nextProps.edited);
-    // The book was just created
-    if (this.props.edited === false && nextProps.edited === true) {
-      //this.props.clearErrors();
-      goBack();
-    }
+  componentDidMount() {
+    this.setState({ title: this.props.book.title });
   }
-  componentWillMount() {
-    const { params } = this.props.navigation.state;
-
-    // Verify if the params has the book, otherwise just ignored it
-    if (params && params.book && params.book.id > 0) {
-      this.props.setSelectedBook(params.book);
-    }
-  }
-
-  getBookData() {
-    return {
-      title: this.state.title,
-      userId: this.props.userId,
-      bookId: this.props.id
-    }
-  }
-
 
   handleFieldOnChange(field, value) {
     this.setState({
@@ -68,9 +36,20 @@ export default class EditBook extends React.Component {
     });
   }
 
+
+  getBookData() {
+    const book = {
+      ...this.props.book,
+      title: this.state.title
+    }
+
+    return book;
+  }
+
   render() {
     return (
       <Container style={styles.container}>
+        <GoBack />
 
         <Item regular style={styles.formItem}>
           <Input
@@ -80,16 +59,20 @@ export default class EditBook extends React.Component {
             value={this.state.title}
           />
         </Item>
+
         <Content>
-          <Text>{"id do usuário: " + this.props.userId}</Text>
-          <Text>{"id do livro:" + this.props.id}</Text>
-          <Text>{"editado:" + this.props.edited}</Text>
+          <Text>id do usuário: {this.props.book.userId}</Text>
+          <Text>id do livro: {this.props.book.id}</Text>
+          <Text>editado: {this.props.book.edited}</Text>
+        </Content>
+
+        <Content>
           <Button block bordered warning
-          onPress={() => this.props.EditBook(this.getBookData())}>
+            onPress={() => this.props.editBook(this.getBookData())}
+          >
             <Text>Confirmar</Text>
           </Button>
         </Content>
-
       </Container>
     );
   }
