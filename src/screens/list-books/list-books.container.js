@@ -2,11 +2,13 @@ import { connect } from 'react-redux';
 import ListBooksComponent from './list-books.component';
 
 import { asyncBookListSet } from '../../actions/book-list-actions';
+import { bookSet } from '../../actions/book-actions';
+
+import { Actions } from 'react-native-router-flux';
 
 const mapStateToProps = (state) => {
   return {
-    books: state.bookList.books,
-    sendingData: state.bookList.sendingData
+    bookList: state.bookList
   }
 }
 
@@ -14,6 +16,15 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchBooks() {
       dispatch(asyncBookListSet());
+    },
+
+    viewBook(book) {
+      dispatch(bookSet(book));
+      Actions.ViewBook();
+    },
+
+    goToCreateBook() {
+      Actions.CreateBook();
     }
   }
 }

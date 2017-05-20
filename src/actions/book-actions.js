@@ -11,11 +11,6 @@ import axios, { getBaseUrl } from '../config/axios';
 import initialState from '../config/initial-state';
 
 
-import {
-  navigate
-} from 'react-navigation';
-
-
 export const bookSet = ({
   id, title, userId, cover,
   sendingData = initialState.book.sendingData,
@@ -59,6 +54,7 @@ export const bookSetCreated = (created) => {
   }
 }
 
+
 export const bookSetEdited = (edited) => {
   return {
     type: BOOK_SET_EDITED,
@@ -66,7 +62,8 @@ export const bookSetEdited = (edited) => {
   }
 }
 
-export const asyncBookSet = (bookData) => {
+
+export const asyncBookSet = (bookData, callback) => {
   return (dispatch) => {
     dispatch(bookSetSendingData(true));
 
@@ -76,7 +73,7 @@ export const asyncBookSet = (bookData) => {
     })
     .then(response => {
       if (response.data && response.data.id) {
-        dispatch(bookSet({
+        const book = {
           id: response.data.id,
           title: response.data.title,
           userId: response.data.user_id,
@@ -84,7 +81,11 @@ export const asyncBookSet = (bookData) => {
           created: true,
           errors: {},
           sendingData: false
-        }));
+        }
+
+        dispatch(bookSet(book));
+
+        callback(book);
       }
     })
     .catch(err => {
@@ -102,29 +103,30 @@ export const asyncBookSet = (bookData) => {
   }
 }
 
-export const asyncEditBookSet = (bookData) => {
+export const asyncEditBookSet = (bookData, callback) => {
   return (dispatch) => {
     dispatch(bookSetSendingData(true));
 
-    axios.patch(`/books/${bookData.bookId}`, {
-      title: bookData.title,
-      user_id: bookData.loggedUserId
+    console.log('UPDATE !');
+    console.log(bookData);
+
+    axios.patch(`/books/${bookData.id}`, {
+      title: bookData.title
     })
     .then(response => {
-        dispatch(bookSetEdited(true));
-        dispatch(bookSet({...response}));
+      dispatch(bookSetEdited(true));
+      dispatch(bookSet({...response.data}));
 
+      callback(response.data);
     })
     .catch(err => {
       if (err.response && err.response.status === 422) {
         dispatch(bookSetErrors(err.response.data));
       }
 
-      console.log('ERROR while creating book');
+      console.log('ERROR while editing book');
       console.log(err);
 
-      // to when the user try to create another book,
-      // the screen won't open with a loading on the send button
       dispatch(bookSetSendingData(false));
     });
   }

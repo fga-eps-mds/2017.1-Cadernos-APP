@@ -5,7 +5,7 @@ import { bookSet } from '../../actions/book-actions';
 
 const mapStateToProps = (state) => {
   return {
-    title: state.book.title
+    book: state.book
   }
 }
 
