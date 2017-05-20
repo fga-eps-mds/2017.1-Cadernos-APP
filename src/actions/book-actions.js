@@ -32,11 +32,8 @@ export const bookSet = ({
       sendingData,
       errors,
       created,
-<<<<<<< HEAD
-      cover
-=======
+      cover,
       edited
->>>>>>> editBook
     }
   }
 }
