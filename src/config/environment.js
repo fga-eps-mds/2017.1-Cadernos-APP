@@ -1,5 +1,6 @@
 const DEVELOPMENT = {
-  baseURL: 'http://127.0.0.1:3000',
+  //change on codenvy
+  baseURL: 'http://node18.codenvy.io:40413/',
   timeout: 5000 // 5s
 }
 

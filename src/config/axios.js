@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import environment, { Types } from './environment';
 
-const data = environment.data(Types.homologation);
+const data = environment.data(Types.development);
 const axiosInstance = axios.create(data);
 
 export const setAuthorizationToken = (token) => {
