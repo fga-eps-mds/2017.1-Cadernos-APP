@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
     userId: state.book.userId,
     sendingData: state.book.sendingData,
     errors: state.book.errors,
-    edited: state.book.edited
+    edited: state.book.edited,
+    cover: state.book.cover
   }
 }
 
