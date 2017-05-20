@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { Actions } from 'react-native-router-flux';
+
 import {
   Container,
   Content,
@@ -13,22 +15,18 @@ import {
 
 import styles from './list-books.styles';
 
-export default class ListBooksComponent extends Component {
-  static navigationOptions = {
-    title: 'Cadernos'
-  };
+import GoBack from '../../components/go-back/go-back.component';
 
+export default class ListBooksComponent extends Component {
   componentDidMount() {
     this.props.fetchBooks();
   }
 
   renderBookListItem(book) {
-    const { navigate } = this.props.navigation;
-
     return (
       <ListItem
         key={book.id}
-        onPress={() => navigate('ViewBook', { book })}
+        onPress={() => this.props.viewBook(book)}
       >
         <Text>
           {book.title}
@@ -38,15 +36,16 @@ export default class ListBooksComponent extends Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
-    const bookListItems = this.props.books.map(book => this.renderBookListItem(book));
+    const bookListItems = this.props.bookList.books.map(book => this.renderBookListItem(book));
 
     return (
       <Container style={styles.container}>
+        <GoBack />
+
         <View style={styles.listView}>
-          {this.props.sendingData ?
+          {this.props.bookList.sendingData ?
             <Spinner />
-          :
+            :
             <Content>
               <List>
                 {bookListItems}
@@ -56,11 +55,12 @@ export default class ListBooksComponent extends Component {
         </View>
 
         <View style={styles.buttonView}>
+
           {this.props.isVisitor ?
             <Container></Container>
-            :
+          :
             <Button block bordered warning
-            onPress={() => navigate('CreateBook')}
+              onPress={() => this.props.goToCreateBook()}
             >
               <Text>Criar caderno</Text>
             </Button>

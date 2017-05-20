@@ -10,11 +10,6 @@ import axios from '../config/axios';
 import initialState from '../config/initial-state';
 
 
-import {
-  navigate
-} from 'react-navigation';
-
-
 export const bookSet = ({
   id, title, userId,
   sendingData = initialState.book.sendingData,
@@ -55,7 +50,7 @@ export const bookSetCreated = (created) => {
   }
 }
 
-export const asyncBookSet = (bookData) => {
+export const asyncBookSet = (bookData, callback) => {
   return (dispatch) => {
     dispatch(bookSetSendingData(true));
 
@@ -65,14 +60,18 @@ export const asyncBookSet = (bookData) => {
     })
     .then(response => {
       if (response.data && response.data.id) {
-        dispatch(bookSet({
+        const book = {
           id: response.data.id,
           title: response.data.title,
           userId: response.data.user_id,
           created: true,
           errors: {},
           sendingData: false
-        }));
+        }
+
+        dispatch(bookSet(book));
+
+        callback(book);
       }
     })
     .catch(err => {

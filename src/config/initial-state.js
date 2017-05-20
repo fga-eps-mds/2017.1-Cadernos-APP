@@ -10,7 +10,7 @@ const initialState = {
     authenticated: false,
     isUpdated: false,
     isVisitor: false,
-    errors: []
+    errors: {}
   },
 
   // selected or created book

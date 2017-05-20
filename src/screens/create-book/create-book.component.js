@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import { Actions } from 'react-native-router-flux';
+
 import {
   Text,
   View,
@@ -15,6 +18,7 @@ import { KeyboardAvoidingView, Alert } from 'react-native';
 
 import styles from './create-book.styles';
 import ListErrors from '../../components/list-errors/list-errors.component';
+import GoBack from '../../components/go-back/go-back.component';
 
 export default class CreateBookComponent extends Component {
   constructor(props) {
@@ -25,18 +29,8 @@ export default class CreateBookComponent extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: 'Criar Caderno'
-  };
-
-  componentWillReceiveProps(nextProps) {
-    const { navigate } = this.props.navigation;
-
-    // The book was just created
-    if (this.props.created === false && nextProps.created === true) {
-      this.props.clearErrors();
-      navigate('ViewBook');
-    }
+  componentDidMount() {
+    this.props.clearSelectedBook();
   }
 
   componentWillUnmount() {
@@ -52,13 +46,15 @@ export default class CreateBookComponent extends Component {
   getBookData() {
     return {
       title: this.state.title,
-      loggedUserId: this.props.loggedUserId
+      loggedUserId: this.props.user.id
     }
   }
 
   render() {
     return (
       <Container style={styles.container}>
+        <GoBack />
+
         <KeyboardAvoidingView behavior="padding" style={styles.wrapperForm}>
           <Item regular style={styles.formItem}>
             <Input
@@ -69,11 +65,11 @@ export default class CreateBookComponent extends Component {
             />
           </Item>
 
-          <ListErrors errors={this.props.errors.title} />
+          <ListErrors errors={this.props.book.errors.title} />
         </KeyboardAvoidingView>
 
         <View style={{ flex: 1 }}>
-          {this.props.sendingData ?
+          {this.props.book.sendingData ?
             <Spinner />
             :
             <Button warning block style={{ borderRadius: 30 }}

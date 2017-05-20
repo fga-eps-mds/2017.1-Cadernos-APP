@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 
+import { Actions } from 'react-native-router-flux';
+
 import {
   Text,
   View,
@@ -15,8 +17,8 @@ import {
 
 
 import styles from './edit-user.styles';
-import {ToastAndroid} from 'react-native'
-import {InputErrorDisplay} from '../../components';
+import { ToastAndroid } from 'react-native'
+import { InputErrorDisplay, GoBack } from '../../components';
 
 export default class EditUser extends Component {
   constructor(props) {
@@ -28,7 +30,7 @@ export default class EditUser extends Component {
     }
   }
 
-  CleanupErrors(){
+  CleanupErrors() {
     this.props.cleanUserErrors();
   }
 
@@ -57,12 +59,14 @@ export default class EditUser extends Component {
   render() {
     return (
       <Container style={styles.container}>
+        <GoBack />
+
         <View style={styles.wrapperTitle}>
           <H1 style={styles.title}>Editar Usuário</H1>
           <Text>Espaço para mudança de dados</Text>
         </View>
 
-        <InputErrorDisplay nameErrors = {this.props.errors.name} />
+        <InputErrorDisplay nameErrors={this.props.errors.name} />
         <View style={styles.wrapperForm}>
           <Item regular style={styles.formItem}>
             <Input
@@ -72,7 +76,7 @@ export default class EditUser extends Component {
             />
           </Item>
 
-          <InputErrorDisplay emailErrors = {this.props.errors.email} />
+          <InputErrorDisplay emailErrors={this.props.errors.email} />
           <Item regular style={styles.formItem}>
             <Input
               placeholder='Seu e-mail'
@@ -81,7 +85,7 @@ export default class EditUser extends Component {
             />
           </Item>
 
-          <InputErrorDisplay passwordErrors = {this.props.errors.password} />
+          <InputErrorDisplay passwordErrors={this.props.errors.password} />
           <Item regular style={styles.formItem}>
             <Input
               secureTextEntry
@@ -101,14 +105,14 @@ export default class EditUser extends Component {
                 () => {
                   this.props.editUser(this.getUserData())
                   setTimeout(() => {
-                      console.log(this.props.isUpdated)
+                    console.log(this.props.isUpdated)
 
-                      if (this.props.isUpdated == true) {
-                        ToastAndroid.show('Usuário atualizado com sucesso!', ToastAndroid.LONG)
-                        this.props.cleanUserErrors();
-                      } else {
-                        ToastAndroid.show('Ops... algo deu errado!', ToastAndroid.LONG)
-                      }
+                    if (this.props.isUpdated == true) {
+                      ToastAndroid.show('Usuário atualizado com sucesso!', ToastAndroid.LONG)
+                      this.props.cleanUserErrors();
+                    } else {
+                      ToastAndroid.show('Ops... algo deu errado!', ToastAndroid.LONG)
+                    }
                   }, 1500)
                 }
               }

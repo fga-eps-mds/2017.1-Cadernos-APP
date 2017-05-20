@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import userLoginComponent from './user-login.component';
 
-import { asyncUserLogin, asyncUserLogout, cleanUserErrors, visitorLogin } from '../../actions/user';
+import { asyncUserLogin, asyncUserLogout, cleanUserErrors, visitorLogin } from '../../actions/user-actions';
+import { Actions } from 'react-native-router-flux';
 
 const mapStateToProps = (state) => {
   return {
@@ -20,15 +21,19 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(asyncUserLogin(userData));
       dispatch(visitorLogin(false));
     },
+
     userLogout() {
       dispatch(asyncUserLogout());
       dispatch(visitorLogin(false));
     },
+
     cleanUserErrors(){
       dispatch(cleanUserErrors());
     },
-    setVisitor(){
+
+    enterAsVisitor(){
       dispatch(visitorLogin(true));
+      Actions.ListBooks();
     }
   }
 }

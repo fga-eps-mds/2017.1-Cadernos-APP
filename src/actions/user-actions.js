@@ -2,14 +2,29 @@ import { USER_SET, USER_ERRORS, USER_SENDING_DATA, USER_LOGIN, VISITOR_LOGIN, US
 
 import axios, { setAuthorizationToken } from '../config/axios';
 
-export const userSet = (user) => {
+import initialState from '../config/initial-state';
+
+export const userSet = ({
+  id, name, email,
+  password = initialState.user.password,
+  sendingData = initialState.user.sendingData,
+  isRegistered = initialState.user.isRegistered,
+  authenticated = initialState.user.authenticated,
+  isUpdated = initialState.user.isUpdated,
+  errors = initialState.user.errors
+}) => {
   return {
     type: USER_SET,
     user: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      password: user.password
+      id,
+      name,
+      email,
+      password,
+      sendingData,
+      isRegistered,
+      authenticated,
+      isUpdated,
+      errors
     }
   }
 };
@@ -116,10 +131,16 @@ export const asyncUserLogin = (userData) => {
       email: userData.email, password: userData.password
     })
     .then(feedBack => {
+      let user = {
+        ...userData,
+        id: feedBack.data.user.id,
+        name: feedBack.data.user.name,
+        authenticated: true,
+        sendingData: false
+      };
+
       setAuthorizationToken(feedBack.data.auth_token);
-      dispatch(userLogin(userData));
-      dispatch(userAuthenticated(true));
-      dispatch(userSendingData(false));
+      dispatch(userSet(user));
     })
     .catch(err => {
       if (err.response && err.response.data){

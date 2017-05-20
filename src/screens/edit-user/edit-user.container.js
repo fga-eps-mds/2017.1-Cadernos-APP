@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import editUserComponent from './edit-user.component.js';
-import { asyncEditUser } from '../../actions/user';
+import { asyncEditUser } from '../../actions/user-actions';
 
 const mapStateToProps = (state) => {
 

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Actions } from 'react-native-router-flux';
+
 import {
   Button,
   Text,
@@ -8,23 +10,18 @@ import {
 } from 'native-base';
 
 export default class Main extends React.Component {
-  static navigationOptions = {
-    header: null
-  }
 
   render() {
-    const { navigate } = this.props.navigation;
-
     return (
       <Container>
         <View>
-          <Button block onPress={() => navigate('UserLogin')}>
+          <Button block onPress={() => Actions.UserLogin()}>
             <Text>Login</Text>
           </Button>
         </View>
 
         <View>
-          <Button block onPress={() => navigate('CreateUser')}>
+          <Button block onPress={() => Actions.CreateUser()}>
             <Text>Cadastro</Text>
           </Button>
         </View>

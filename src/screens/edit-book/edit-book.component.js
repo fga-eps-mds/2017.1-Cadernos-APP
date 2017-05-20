@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Actions } from 'react-native-router-flux';
+
 import {
   Container,
   Content,
@@ -11,34 +13,15 @@ import {
 
 import styles from './edit-book.styles';
 
+import { GoBack } from '../../components';
+
 export default class EditBook extends React.Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
-      title: this.props.title,
-    }
-  }
-
-  static navigationOptions = {
-    title: 'Editar Caderno'
-  };
-
-  /**
-   * If the book was just created, params will be undefined, but the selected book will
-   * already be stored in the store.
-   *
-   * If the book was selected in a list or similar book selection, the selected book
-   * will be passed by params. In this case, set the given book as the selected book
-   * in the store.
-   */
-  componentWillMount() {
-    const { params } = this.props.navigation.state;
-
-    // Verify if the params has the book, otherwise just ignored it
-    if (params && params.book && params.book.id > 0) {
-      this.props.setSelectedBook(params.book);
+      title: this.props.book.title,
     }
   }
 
@@ -51,6 +34,7 @@ export default class EditBook extends React.Component {
   render() {
     return (
       <Container style={styles.container}>
+        <GoBack />
 
         <Item regular style={styles.formItem}>
           <Input
