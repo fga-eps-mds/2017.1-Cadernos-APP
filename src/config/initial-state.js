@@ -21,6 +21,7 @@ const initialState = {
     errors: {},
     created: false,
     cover: ""
+    edited: false
   },
 
   // Book list from screen after loggin or logged user books

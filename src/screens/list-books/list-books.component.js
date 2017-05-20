@@ -21,6 +21,7 @@ export default class ListBooksComponent extends Component {
     title: 'Cadernos'
   };
 
+
   componentDidMount() {
     this.props.fetchBooks();
   }
