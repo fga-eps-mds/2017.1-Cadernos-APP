@@ -19,11 +19,14 @@ import {
 
 describe("ListBookComponent Component", () => {
   it("display a Spinner when sendingData", () => {
+    const bookList = {
+      books: [],
+      sendingData: true
+    }
+
     const wrapper = shallow(
       <ListBookComponent
-        sendingData={true}
-        books={[]}
-        navigation={{}}
+        bookList={bookList}
       />
     );
 
@@ -33,11 +36,14 @@ describe("ListBookComponent Component", () => {
   });
 
   it("won't display a Spinner when sendingData is false", () => {
+    const bookList = {
+      books: [],
+      sendingData: false
+    }
+
     const wrapper = shallow(
       <ListBookComponent
-        sendingData={false}
-        books={[]}
-        navigation={{}}
+        bookList={bookList}
       />
     );
 
@@ -47,16 +53,17 @@ describe("ListBookComponent Component", () => {
   });
 
   it("display a book list when sendingData is false", () => {
-    const books = [
-      {id: 1, title: "A"},
-      {id: 2, title: "B"}
-    ];
+    const bookList = {
+      books: [
+        {id: 1, title: "A"},
+        {id: 2, title: "B"}
+      ],
+      sendingData: false
+    }
 
     const wrapper = shallow(
       <ListBookComponent
-        sendingData={false}
-        books={books}
-        navigation={{}}
+        bookList={bookList}
       />
     );
 
@@ -66,15 +73,18 @@ describe("ListBookComponent Component", () => {
 
     expect(
       wrapper.find(ListItem).length
-    ).to.equal(books.length);
+    ).to.equal(bookList.books.length);
   });
 
   it("has a button to create a book", () => {
+    const bookList = {
+      books: [],
+      sendingData: false
+    }
+
     const wrapper = shallow(
       <ListBookComponent
-        sendingData={false}
-        books={[]}
-        navigation={{}}
+        bookList={bookList}
       />
     );
 
@@ -87,50 +97,30 @@ describe("ListBookComponent Component", () => {
     ).to.equal(true);
   });
 
-  it("The book on press navigate to CreateBook", () => {
-    const navigation = {
-      navigate: (route) => {
-        expect(route).to.equal('CreateBook');
-      }
-    }
-
-    const wrapper = shallow(
-      <ListBookComponent
-        sendingData={false}
-        books={[]}
-        navigation={navigation}
-      />
-    );
-
-    const button = wrapper.find(Button);
-    button.simulate('press');
-  });
-
   it("the ListItem on press navigate to ViewBook", () => {
-    const books = [
-      {id: 1, title: "A"},
-      {id: 2, title: "B"},
-    ];
+    const bookList = {
+      books: [
+        {id: 1, title: "A"},
+        {id: 2, title: "B"}
+      ],
+      sendingData: false
+    }
 
     const INDEX_BOOK_TO_FIND = 1;
 
-    const navigation = {
-      navigate: (route, params) => {
-        expect(route).to.equal('ViewBook');
-        expect(params.book.id).to.equal(books[INDEX_BOOK_TO_FIND].id);
-        expect(params.book.title).to.equal(books[INDEX_BOOK_TO_FIND].title);
-      }
+    const viewBook = (book) => {
+      expect(book.id).to.equal(bookList.books[INDEX_BOOK_TO_FIND].id);
+      expect(book.title).to.equal(bookList.books[INDEX_BOOK_TO_FIND].title);
     }
 
     const wrapper = shallow(
       <ListBookComponent
-        sendingData={false}
-        books={books}
-        navigation={navigation}
+        bookList={bookList}
+        viewBook={viewBook}
       />
     );
 
-    const bookListItem = wrapper.findWhere(component =>  component.key() == books[INDEX_BOOK_TO_FIND].id);
+    const bookListItem = wrapper.findWhere(component =>  component.key() == bookList.books[INDEX_BOOK_TO_FIND].id);
     expect(bookListItem.length).to.equal(1);
 
     bookListItem.simulate('press');

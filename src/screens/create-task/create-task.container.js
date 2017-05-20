@@ -1,24 +1,30 @@
 import { connect } from 'react-redux';
 import CreateTaskComponent from './create-task.component';
 
-import { asyncTaskSet, taskSetErrors, taskSetCreated } from '../../actions/task-actions';
+import { asyncTaskSet, taskSetErrors, taskSetCreated, taskSet } from '../../actions/task-actions';
+
+import { Actions } from 'react-native-router-flux';
 
 const mapStateToProps = (state) => {
   return {
-    id: state.task.id,
-    title: state.task.title,
-    content: state.task.content,
+    task: state.task,
+    book: state.book,
     loggedUserId: state.user.id,
-    sendingData: state.task.sendingData,
-    errors: state.task.errors,
-    created: state.task.created
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createTask(taskData) {
-      dispatch(asyncTaskSet(taskData));
+      const callback = (createdTask) => {
+        console.log('Task created !!');
+        console.log(createdTask);
+
+        // After creating the task go to view task
+        // Actions.ViewTask();
+      }
+
+      dispatch(asyncTaskSet(taskData, callback));
     },
 
     clearErrors() {

@@ -3,7 +3,8 @@ import { expect } from 'chai';
 
 import {
   BOOK_LIST_SET,
-  BOOK_LIST_SET_SENDING_DATA
+  BOOK_LIST_SET_SENDING_DATA,
+  BOOK_LIST_ADD_BOOK
 } from '../../../src/config/actions-types';
 
 import {
@@ -32,5 +33,14 @@ describe("Book List Reducer", () => {
 
     expect(bookList.sendingData).to.equal(true);
     expect(bookList.books).to.be.instanceof(Array);
+  });
+
+  it("Add a new book to the list", () => {
+    const bookList = bookListReducer(initialState.bookList, {
+      type: BOOK_LIST_ADD_BOOK,
+      book: {id: 7, title: 'testing'}
+    });
+
+    expect(bookList.books[0].id).to.eq(7);
   });
 });

@@ -26,18 +26,11 @@ export default class CreateTaskComponent extends Component {
     }
   }
 
-  static navigationOptions = {
-    title: 'Adicionar Atividade'
-  };
-
-  componentWillReceiveProps(nextProps) {
-    const { navigate } = this.props.navigation;
-
-
-    if (this.props.created === false && nextProps.created === true) {
-      this.props.clearErrors();
-      navigate('Viewtasks');
-    }
+  componentDidMount() {
+    this.setState({
+      title: this.props.task.title,
+      content: this.props.task.content
+    });
   }
 
   componentWillUnmount() {
@@ -54,7 +47,8 @@ export default class CreateTaskComponent extends Component {
     return {
       title: this.state.title,
       content: this.state.content,
-      loggedUserId: this.props.loggedUserId
+      loggedUserId: this.props.loggedUserId,
+      selectedBookId: this.props.book.id
     }
   }
 
@@ -72,6 +66,7 @@ export default class CreateTaskComponent extends Component {
             />
 
           </Item>
+          <ListErrors errors={this.props.task.errors.title} />
 
           <Item regular style={styles.formItem}>
             <Input
@@ -80,14 +75,13 @@ export default class CreateTaskComponent extends Component {
               onChangeText={(text) => this.handleFieldOnChange('content', text)}
               value={this.state.content}
             />
-
           </Item>
+          <ListErrors errors={this.props.task.errors.content} />
 
-          <ListErrors errors={this.props.errors.title} />
         </KeyboardAvoidingView>
 
         <View style={{ flex: 1 }}>
-          {this.props.sendingData ?
+          {this.props.task.sendingData ?
             <Spinner />
             :
             <Button warning block style={{ borderRadius: 30 }}

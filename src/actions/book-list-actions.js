@@ -1,4 +1,4 @@
-import { BOOK_LIST_SET, BOOK_LIST_SET_SENDING_DATA } from '../config/actions-types';
+import { BOOK_LIST_SET, BOOK_LIST_SET_SENDING_DATA, BOOK_LIST_ADD_BOOK } from '../config/actions-types';
 import axios from '../config/axios';
 
 import initialState from '../config/initial-state';
@@ -18,6 +18,13 @@ export const bookListSet = (booksArray) => {
       sendingData: initialState.bookList.sendingData,
       books
     }
+  }
+}
+
+export const bookListAddBook = (book) => {
+  return {
+    type: BOOK_LIST_ADD_BOOK,
+    book
   }
 }
 

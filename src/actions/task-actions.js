@@ -9,12 +9,8 @@ import axios from '../config/axios';
 
 import initialState from '../config/initial-state';
 
-import {
-  navigate
-} from 'react-navigation';
-
 export const taskSet = ({
-  id, title, content,
+  id, title, content, userId,
   sendingData = initialState.task.sendingData,
   errors = initialState.task.errors,
   created = initialState.task.created
@@ -54,18 +50,19 @@ export const taskSetCreated = (created) => {
   }
 }
 
-export const asyncTaskSet = (taskData) => {
+export const asyncTaskSet = (taskData, callback) => {
   return (dispatch) => {
     dispatch(taskSetSendingData(true));
 
     axios.post('/tasks', {
       title: taskData.title,
       content: taskData.content,
-      user_id: taskData.loggedUserId
+      user_id: taskData.loggedUserId,
+      book_id: taskData.selectedBookId
     })
     .then(response => {
       if (response.data && response.data.id) {
-        dispatch(taskSet({
+        const task = {
           id: response.data.id,
           title: response.data.title,
           content: response.data.content,
@@ -73,7 +70,10 @@ export const asyncTaskSet = (taskData) => {
           created: true,
           errors: {},
           sendingData: false
-        }));
+        }
+
+        dispatch(taskSet(task));
+        callback(task);
       }
     })
     .catch(err => {
