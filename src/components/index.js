@@ -1,11 +1,11 @@
 import App from './app/app.component';
-import AppRouter from './app-router/app-router.component';
 import InputErrorDisplay from './input-error-display/input-error-display.component';
 import ListErrors from './list-errors/list-errors.component';
+import GoBack from './go-back/go-back.component';
 
 export {
   App,
-  AppRouter,
   InputErrorDisplay,
-  ListErrors
+  ListErrors,
+  GoBack
 }

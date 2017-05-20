@@ -1,28 +1,38 @@
 import { connect } from 'react-redux';
 import CreateBookComponent from './create-book.component';
 
-import { asyncBookSet, bookSetErrors, bookSetCreated } from '../../actions/book-actions';
+import { asyncBookSet, bookSetErrors, bookSetCreated, bookSet } from '../../actions/book-actions';
+import { bookListAddBook } from '../../actions/book-list-actions';
+
+import initialState from '../../config/initial-state';
+
+import { Actions } from 'react-native-router-flux';
 
 const mapStateToProps = (state) => {
   return {
-    id: state.book.id,
-    title: state.book.title,
-    loggedUserId: state.user.id,
-    sendingData: state.book.sendingData,
-    errors: state.book.errors,
-    created: state.book.created
+    book: state.book,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createBook(bookData) {
-      dispatch(asyncBookSet(bookData));
+      const callback = (book) => {
+        dispatch(bookListAddBook(book));
+        Actions.ViewBook();
+      }
+
+      dispatch(asyncBookSet(bookData, callback));
     },
 
     clearErrors() {
       dispatch(bookSetErrors({}));
       dispatch(bookSetCreated(false));
+    },
+
+    clearSelectedBook() {
+      dispatch(bookSet(initialState.book));
     }
   }
 }

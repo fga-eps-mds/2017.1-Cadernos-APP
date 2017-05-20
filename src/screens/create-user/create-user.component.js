@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import { Actions } from 'react-native-router-flux';
+
 import {
   Text,
   View,
@@ -15,7 +18,7 @@ import styles from './create-user.styles';
 
 import { KeyboardAvoidingView } from 'react-native';
 
-import { InputErrorDisplay } from '../../components';
+import { InputErrorDisplay, GoBack } from '../../components';
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -29,12 +32,10 @@ export default class CreateUser extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { navigate } = this.props.navigation;
-
     if (this.props.isRegistered === false && nextProps.isRegistered === true) {
       console.log("props antigas:" + this.props.isRegistered + " // props novas:" + nextProps.isRegistered)
       this.props.cleanUserErrors();
-      navigate('UserLogin');
+      Actions.UserLogin();
     }
   }
 
@@ -52,6 +53,8 @@ export default class CreateUser extends Component {
   render() {
     return (
       <Container style={styles.container}>
+        <GoBack />
+
         <View style={styles.wrapperTitle}>
           <H1 style={styles.title}>CADASTRE-SE</H1>
           <Text>Prazer em te conhecer. Seja bem-vindo!</Text>

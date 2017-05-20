@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import { Actions } from 'react-native-router-flux';
+
 import {
   Text,
   View,
@@ -13,7 +16,7 @@ import {
 
 import styles from './user-login.styles';
 
-import { InputErrorDisplay } from '../../components';
+import { InputErrorDisplay, GoBack } from '../../components';
 
 
 export default class UserLogin extends Component {
@@ -35,11 +38,11 @@ export default class UserLogin extends Component {
     this.props.cleanUserErrors();
   }
   render() {
-    const { navigate } = this.props.navigation;
     if (this.props.authenticated) {
 
       return (
         <Container style={styles.container}>
+
           <View style={{ flex: 1 }}>
             {this.props.sendingData ?
               <Spinner />
@@ -52,11 +55,11 @@ export default class UserLogin extends Component {
             }
           </View>
 
-          <Button block onPress={() => navigate('EditUser')}>
+          <Button block onPress={() => Actions.EditUser()}>
             <Text>Editar Usuário</Text>
           </Button>
 
-           <Button block warning onPress={() => navigate('ListBooks')}>
+           <Button block warning onPress={() => Actions.ListBooks()}>
             <Text>Ver cadernos</Text>
           </Button>
         </Container>
@@ -66,6 +69,8 @@ export default class UserLogin extends Component {
 
       return (
         <Container style={styles.container}>
+          <GoBack />
+
           <View style={styles.wrapperTitle}>
             <H1 style={styles.title}>ENTRE</H1>
             <Text>Prazer em te receber novamente. Seja bem-vindo!</Text>
