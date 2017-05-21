@@ -18,6 +18,7 @@ import styles from './list-books.styles';
 import GoBack from '../../components/go-back/go-back.component';
 
 export default class ListBooksComponent extends Component {
+
   componentDidMount() {
     this.props.fetchBooks();
   }
