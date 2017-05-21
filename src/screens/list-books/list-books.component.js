@@ -36,7 +36,7 @@ export default class ListBooksComponent extends Component {
         <Card style={styles.bookCard}>
           <CardItem cardBody style={styles.bookCardItem}>
             <Image
-              source={{uri: book.cover}}
+              source={{uri: book.coverOriginal}}
               style={styles.bookCardImage}
             />
           </CardItem>

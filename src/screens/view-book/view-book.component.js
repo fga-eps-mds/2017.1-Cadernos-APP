@@ -32,7 +32,7 @@ export default class ViewBook extends React.Component {
 
 
         <Content>
-          <Image style={{width: 240, height: 120}} source={{uri: this.props.book.cover}} />
+          <Image style={{width: 240, height: 120}} source={{uri: this.props.book.coverOriginal}} />
         </Content>
 
         <Button block bordered warning onPress={() => Actions.EditBook()}>

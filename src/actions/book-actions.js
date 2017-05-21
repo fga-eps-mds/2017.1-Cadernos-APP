@@ -12,7 +12,7 @@ import initialState from '../config/initial-state';
 
 
 export const bookSet = ({
-  id, title, userId, cover,
+  id, title, userId, coverOriginal, coverMedium, coverThumb,
   sendingData = initialState.book.sendingData,
   errors = initialState.book.errors,
   created = initialState.book.created,
@@ -27,7 +27,9 @@ export const bookSet = ({
       sendingData,
       errors,
       created,
-      cover,
+      coverOriginal,
+      coverMedium,
+      coverThumb,
       edited
     }
   }
@@ -77,7 +79,9 @@ export const asyncBookSet = (bookData, callback) => {
           id: response.data.id,
           title: response.data.title,
           userId: response.data.user_id,
-          cover: `${getBaseUrl()}${response.data.cover}`,
+          coverOriginal: `${getBaseUrl()}${response.data.cover_originalr}`,
+          coverMedium: `${getBaseUrl()}${response.data.cover_medium}`,
+          coverThumb: `${getBaseUrl()}${response.data.cover_thumb}`,
           created: true,
           errors: {},
           sendingData: false

@@ -71,7 +71,7 @@ export default class EditBook extends Component {
 
           <Content style={{marginTop: 10, marginBottom: 10}}>
             <ImagePicker
-              actualImageUrl={this.props.book.cover}
+              actualImageUrl={this.props.book.coverOriginal}
               sendImageTo={(imageSource, imageBase64) => this.props.uploadCover(this.props.book, imageSource, imageBase64)}
             />
           </Content>

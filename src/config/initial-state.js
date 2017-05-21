@@ -20,7 +20,9 @@ const initialState = {
     sendingData: false,
     errors: {},
     created: false,
-    cover: "",
+    coverOriginal: "",
+    coverMedium: "",
+    coverThumb: "",
     edited: false
   },
 

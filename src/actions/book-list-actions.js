@@ -8,12 +8,14 @@ import axios, { getBaseUrl } from '../config/axios';
 
 import initialState from '../config/initial-state';
 
-const getBookData = (book) => {
+export const getBookData = (book) => {
   return {
     id: book.id,
     title: book.title,
     userId: book.user_id,
-    cover: `${getBaseUrl()}${book.cover}`,
+    coverOriginal: `${getBaseUrl()}${book.cover_original}`,
+    coverMedium: `${getBaseUrl()}${book.cover_medium}`,
+    coverThumb: `${getBaseUrl()}${book.cover_thumb}`
   }
 }
 
