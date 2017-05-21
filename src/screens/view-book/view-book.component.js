@@ -9,6 +9,10 @@ import {
   Button
 } from 'native-base';
 
+import {
+  Image
+} from 'react-native';
+
 import styles from './view-book.styles';
 
 import GoBack from '../../components/go-back/go-back.component';
@@ -26,6 +30,10 @@ export default class ViewBook extends React.Component {
           </Text>
         </Content>
 
+
+        <Content>
+          <Image style={{width: 240, height: 120}} source={{uri: this.props.book.cover}} />
+        </Content>
 
         <Button block bordered warning onPress={() => Actions.EditBook()}>
           <Text>Editar caderno</Text>

@@ -6,6 +6,9 @@ import { bookSet, asyncEditBookSet, bookSetErrors, asyncUpdateBookCover } from '
 
 import { Actions } from 'react-native-router-flux';
 
+import {
+  Toast
+} from 'native-base';
 
 const mapStateToProps = (state) => {
   return {
@@ -48,6 +51,13 @@ const mapDispatchToProps = (dispatch) => {
 
       const callback = (updatedBook) => {
         dispatch(bookListUpdateBook(updatedBook));
+
+        Toast.show({
+          text: 'Nova capa enviada',
+          buttonText: 'OK',
+          position: 'bottom',
+          type: 'success'
+        });
       }
 
       dispatch(asyncUpdateBookCover({

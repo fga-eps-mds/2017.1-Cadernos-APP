@@ -75,6 +75,15 @@ export default class ImagePicker extends Component {
     });
   }
 
+  sendImageTapped() {
+    if (this.state.avatarSource !== null) {
+      this.props.sendImageTo(this.state.avatarSource, this.state.imgBase64)
+    } else {
+      console.log("ImagePicker");
+      console.log("There is no image selected to send");
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -88,10 +97,10 @@ export default class ImagePicker extends Component {
           </View>
         </TouchableOpacity>
 
-        <Button block bordered warning
-          onPress={() => this.props.sendImageTo(this.state.avatarSource, this.state.imgBase64)}
+        <Button block bordered warning style={{marginTop: 10}}
+          onPress={() => this.sendImageTapped()}
         >
-          <Text>Upload</Text>
+          <Text>Enviar capa</Text>
         </Button>
       </View>
     );
