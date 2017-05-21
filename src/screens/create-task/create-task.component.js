@@ -43,7 +43,7 @@ export default class CreateTaskComponent extends Component {
   getTaskData() {
     return {
       title: this.state.title,
-      user_id: this.props.book.user_id,
+      user_id: this.props.loggedUserId,
       content: this.state.content,
       book_id: this.props.book.id
     }
@@ -78,8 +78,7 @@ export default class CreateTaskComponent extends Component {
 
 
         </KeyboardAvoidingView>
-        <Text>{'user id: ' + this.props.book.user_id}</Text>
-        <Text>{'book id: ' + this.props.book.id}</Text>
+
         <View style={{ flex: 1 }}>
           {this.props.task.sendingData ?
             <Spinner />
