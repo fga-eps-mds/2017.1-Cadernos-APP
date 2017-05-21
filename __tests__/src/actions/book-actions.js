@@ -5,7 +5,8 @@ import {
   BOOK_SET,
   BOOK_SET_ERRORS,
   BOOK_SET_SENDING_DATA,
-  BOOK_SET_CREATED
+  BOOK_SET_CREATED,
+  BOOK_SET_EDITED
 } from '../../../src/config/actions-types';
 
 import initialState from '../../../src/config/initial-state';
@@ -14,7 +15,8 @@ import {
   bookSet,
   bookSetErrors,
   bookSetSendingData,
-  bookSetCreated
+  bookSetCreated,
+  bookSetEdited
 } from '../../../src/actions/book-actions';
 
 describe("Book Actions", () => {
@@ -60,4 +62,11 @@ describe("Book Actions", () => {
     expect(reducerAction.type).to.equal(BOOK_SET_CREATED);
     expect(reducerAction.created).to.equal(created);
   });
+
+  it("Set the edited book to the reducer", () => {
+    const reducerAction = bookSetEdited(true);
+
+    expect(reducerAction.type).to.equal(BOOK_SET_EDITED);
+    expect(reducerAction.edited).to.equal(true);
+  })
 });
