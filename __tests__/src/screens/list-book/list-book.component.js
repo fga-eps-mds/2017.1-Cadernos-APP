@@ -55,8 +55,8 @@ describe("ListBookComponent Component", () => {
   it("display a book list when sendingData is false", () => {
     const bookList = {
       books: [
-        {id: 1, title: "A"},
-        {id: 2, title: "B"}
+        { id: 1, title: "A" },
+        { id: 2, title: "B" }
       ],
       sendingData: false
     }
@@ -100,8 +100,8 @@ describe("ListBookComponent Component", () => {
   it("the ListItem on press navigate to ViewBook", () => {
     const bookList = {
       books: [
-        {id: 1, title: "A"},
-        {id: 2, title: "B"}
+        { id: 1, title: "A" },
+        { id: 2, title: "B" }
       ],
       sendingData: false
     }
@@ -120,9 +120,27 @@ describe("ListBookComponent Component", () => {
       />
     );
 
-    const bookListItem = wrapper.findWhere(component =>  component.key() == bookList.books[INDEX_BOOK_TO_FIND].id);
+    const bookListItem = wrapper.findWhere(component => component.key() == bookList.books[INDEX_BOOK_TO_FIND].id);
     expect(bookListItem.length).to.equal(1);
 
     bookListItem.simulate('press');
+  });
+
+  it("wont render a button to create a book when user is visitor", () => {
+    const bookList = {
+      books: [],
+      sendingData: false
+    }
+
+    const wrapper = shallow(
+      <ListBookComponent
+        bookList={bookList}
+        isVisitor={true}
+      />
+    );
+
+    expect(
+      wrapper.find(Button).length
+    ).to.equal(0);
   });
 });
