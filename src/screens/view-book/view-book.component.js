@@ -11,7 +11,7 @@ import {
 
 import styles from './view-book.styles';
 
-import { GoBack } from '../../components';
+import GoBack from '../../components/go-back/go-back.component';
 
 export default class ViewBook extends React.Component {
 

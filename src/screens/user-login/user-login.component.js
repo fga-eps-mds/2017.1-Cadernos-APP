@@ -16,8 +16,8 @@ import {
 
 import styles from './user-login.styles';
 
-import { InputErrorDisplay, GoBack } from '../../components';
-
+import InputErrorDisplay from '../../components/input-error-display/input-error-display.component';
+import GoBack from '../../components/go-back/go-back.component';
 
 export default class UserLogin extends Component {
   constructor(props) {
