@@ -16,6 +16,7 @@ import styles from './edit-book.styles';
 
 import GoBack from '../../components/go-back/go-back.component';
 
+import ListErrors from '../../components/list-errors/list-errors.component'
 export default class EditBook extends Component {
 
   constructor(props) {
@@ -28,6 +29,7 @@ export default class EditBook extends Component {
 
   componentDidMount() {
     this.setState({ title: this.props.book.title });
+    this.props.clearErrors();
   }
 
   handleFieldOnChange(field, value) {
@@ -59,6 +61,8 @@ export default class EditBook extends Component {
             value={this.state.title}
           />
         </Item>
+
+        <ListErrors errors={this.props.book.errors.title} />
 
         <Content>
           <Text>id do usuário: {this.props.book.userId}</Text>
