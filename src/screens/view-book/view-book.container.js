@@ -2,10 +2,12 @@ import { connect } from 'react-redux';
 import ViewBookComponent from './view-book.component';
 
 import { bookSet } from '../../actions/book-actions';
+import { taskSet } from '../../actions/task-actions';
 
 const mapStateToProps = (state) => {
   return {
-    book: state.book
+    book: state.book,
+    task: state.task
   }
 }
 

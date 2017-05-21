@@ -28,3 +28,4 @@ export const TASK_SET_ERRORS = 'TASK_SET_ERRORS';
 // task list actions
 export const TASK_LIST_SET = 'TASK_LIST_SET';
 export const TASK_LIST_SET_SENDING_DATA = 'TASK_LIST_SET_SENDING_DATA';
+export const TASK_LIST_ADD_BOOK = 'TASK_LIST_ADD_BOOK';

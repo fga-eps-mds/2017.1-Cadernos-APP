@@ -12,6 +12,7 @@ import {
 } from 'native-base';
 
 import { KeyboardAvoidingView, Alert } from 'react-native';
+import GoBack from '../../components/go-back/go-back.component';
 
 import styles from './create-task.styles';
 import ListErrors from '../../components/list-errors/list-errors.component';
@@ -26,12 +27,8 @@ export default class CreateTaskComponent extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState({
-      title: this.props.task.title,
-      content: this.props.task.content
-    });
-  }
+
+
 
   componentWillUnmount() {
     this.props.clearErrors();
@@ -46,15 +43,16 @@ export default class CreateTaskComponent extends Component {
   getTaskData() {
     return {
       title: this.state.title,
+      user_id: this.props.book.user_id,
       content: this.state.content,
-      loggedUserId: this.props.loggedUserId,
-      selectedBookId: this.props.book.id
+      book_id: this.props.book.id
     }
   }
 
   render() {
     return (
       <Container style={styles.container}>
+
         <KeyboardAvoidingView behavior="padding" style={styles.wrapperForm}>
           <Item regular style={styles.formItem}>
             <Input
@@ -78,8 +76,10 @@ export default class CreateTaskComponent extends Component {
           </Item>
           <ListErrors errors={this.props.task.errors.content} />
 
-        </KeyboardAvoidingView>
 
+        </KeyboardAvoidingView>
+        <Text>{'user id: ' + this.props.book.user_id}</Text>
+        <Text>{'book id: ' + this.props.book.id}</Text>
         <View style={{ flex: 1 }}>
           {this.props.task.sendingData ?
             <Spinner />

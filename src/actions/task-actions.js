@@ -10,7 +10,7 @@ import axios from '../config/axios';
 import initialState from '../config/initial-state';
 
 export const taskSet = ({
-  id, title, content, userId,
+  id, title, content, user_id,
   sendingData = initialState.task.sendingData,
   errors = initialState.task.errors,
   created = initialState.task.created
@@ -18,10 +18,9 @@ export const taskSet = ({
   return {
     type: TASK_SET,
     task: {
-      id,
       title,
       content,
-      userId,
+      user_id,
       sendingData,
       errors,
       created
@@ -53,40 +52,41 @@ export const taskSetCreated = (created) => {
 export const asyncTaskSet = (taskData, callback) => {
   return (dispatch) => {
     dispatch(taskSetSendingData(true));
-
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    console.log(taskData);
     axios.post('/tasks', {
       title: taskData.title,
       content: taskData.content,
-      user_id: taskData.loggedUserId,
-      book_id: taskData.selectedBookId
+      user_id: taskData.user_id,
+      book_id: taskData.book_id
     })
-    .then(response => {
-      if (response.data && response.data.id) {
-        const task = {
-          id: response.data.id,
-          title: response.data.title,
-          content: response.data.content,
-          userId: response.data.user_id,
-          created: true,
-          errors: {},
-          sendingData: false
+      .then(response => {
+        if (response.data && response.data.id) {
+          const task = {
+            id: response.data.id,
+            title: response.data.title,
+            content: response.data.content,
+            user_id: response.data.user_id,
+            created: true,
+            errors: {},
+            sendingData: false
+          }
+
+          dispatch(taskSet(task));
+          callback(task);
+        }
+      })
+      .catch(err => {
+        if (err.response && err.response.status === 422) {
+          dispatch(taskSetErrors(err.response.data));
         }
 
-        dispatch(taskSet(task));
-        callback(task);
-      }
-    })
-    .catch(err => {
-      if (err.response && err.response.status === 422) {
-        dispatch(taskSetErrors(err.response.data));
-      }
+        console.log('ERROR while creating task');
+        console.log(err);
 
-      console.log('ERROR while creating task');
-      console.log(err);
-
-      // to when the user try to create another task,
-      // the screen won't open with a loading on the send button
-      dispatch(taskSetSendingData(false));
-    });
+        // to when the user try to create another task,
+        // the screen won't open with a loading on the send button
+        dispatch(taskSetSendingData(false));
+      });
   }
 }
