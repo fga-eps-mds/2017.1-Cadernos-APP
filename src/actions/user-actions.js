@@ -1,4 +1,4 @@
-import { USER_SET, USER_ERRORS, USER_SENDING_DATA, USER_LOGIN, USER_AUTHENTICATED, USER_LOGOUT, CLEAN_USER_AUTHENTICATION_ERRORS, USER_REGISTER } from '../config/actions-types';
+import { USER_SET, USER_ERRORS, USER_SENDING_DATA, USER_LOGIN, VISITOR_LOGIN, USER_AUTHENTICATED, USER_LOGOUT, CLEAN_USER_AUTHENTICATION_ERRORS, USER_REGISTER } from '../config/actions-types';
 
 import axios, { setAuthorizationToken } from '../config/axios';
 
@@ -11,7 +11,8 @@ export const userSet = ({
   isRegistered = initialState.user.isRegistered,
   authenticated = initialState.user.authenticated,
   isUpdated = initialState.user.isUpdated,
-  errors = initialState.user.errors
+  errors = initialState.user.errors,
+  isVisitor = initialState.user.isVisitor
 }) => {
   return {
     type: USER_SET,
@@ -24,7 +25,8 @@ export const userSet = ({
       isRegistered,
       authenticated,
       isUpdated,
-      errors
+      errors,
+      isVisitor
     }
   }
 };
@@ -34,9 +36,14 @@ export const userLogin = (user) => {
     type: USER_LOGIN,
     user: {
       email: user.email,
-      password: user.password
+      password: user.password,
+      isVisitor: false
     }
   }
+};
+
+export const visitorLogin = (isVisitor) => {
+  return {type: VISITOR_LOGIN, isVisitor}
 };
 
 export const userLogout = () => {
@@ -44,7 +51,8 @@ export const userLogout = () => {
     type: USER_LOGOUT,
     user: {
       email: '',
-      password: ''
+      password: '',
+      isVisitor: false
     }
   }
 };
