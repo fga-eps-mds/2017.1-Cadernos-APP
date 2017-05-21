@@ -8,7 +8,6 @@ import {
   bookReducer,
   userReducer,
   taskReducer,
-  taskListReducer
 } from '../reducers';
 
 const reducers = combineReducers({
@@ -16,7 +15,6 @@ const reducers = combineReducers({
   book: bookReducer,
   bookList: bookListReducer,
   task: taskReducer,
-  taskList: taskListReducer
 });
 
 const store = createStore(reducers, initialState, applyMiddleware(thunk));

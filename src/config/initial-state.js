@@ -39,12 +39,6 @@ const initialState = {
     created: false
   },
 
-  // task list from screen after loggin or logged user activities
-  taskList: {
-    sendingData: false,
-    activities: []
-  }
-
 };
 
 export default initialState;
