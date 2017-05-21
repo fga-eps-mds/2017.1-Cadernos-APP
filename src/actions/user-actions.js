@@ -11,7 +11,8 @@ export const userSet = ({
   isRegistered = initialState.user.isRegistered,
   authenticated = initialState.user.authenticated,
   isUpdated = initialState.user.isUpdated,
-  errors = initialState.user.errors
+  errors = initialState.user.errors,
+  isVisitor = initialState.user.isVisitor
 }) => {
   return {
     type: USER_SET,
@@ -24,7 +25,8 @@ export const userSet = ({
       isRegistered,
       authenticated,
       isUpdated,
-      errors
+      errors,
+      isVisitor
     }
   }
 };
