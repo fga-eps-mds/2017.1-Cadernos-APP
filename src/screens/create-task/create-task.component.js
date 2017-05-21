@@ -52,7 +52,7 @@ export default class CreateTaskComponent extends Component {
   render() {
     return (
       <Container style={styles.container}>
-
+<GoBack />
         <KeyboardAvoidingView behavior="padding" style={styles.wrapperForm}>
           <Item regular style={styles.formItem}>
             <Input

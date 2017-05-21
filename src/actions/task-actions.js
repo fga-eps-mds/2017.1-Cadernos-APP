@@ -9,6 +9,8 @@ import axios from '../config/axios';
 
 import initialState from '../config/initial-state';
 
+import {Actions} from 'react-native-router-flux';
+
 export const taskSet = ({
   id, title, content, user_id,
   sendingData = initialState.task.sendingData,
@@ -74,6 +76,7 @@ export const asyncTaskSet = (taskData, callback) => {
 
           dispatch(taskSet(task));
           callback(task);
+          Actions.pop();
         }
       })
       .catch(err => {
