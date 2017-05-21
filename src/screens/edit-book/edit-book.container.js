@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import EditBookComponent from './edit-book.component';
 
 import { bookListUpdateBook } from '../../actions/book-list-actions';
-import { bookSet, asyncEditBookSet, bookSetErrors } from '../../actions/book-actions';
+import { bookSet, asyncEditBookSet, bookSetErrors, asyncUpdateBookCover } from '../../actions/book-actions';
 
 import { Actions } from 'react-native-router-flux';
 
@@ -41,6 +41,19 @@ const mapDispatchToProps = (dispatch) => {
 
     setSelectedBook(book) {
       dispatch(bookSet(book));
+    },
+
+    uploadCover(book, imageSource, imageBase64) {
+      imageBase64 = `data:image/png;base64,${imageBase64}`;
+
+      const callback = (updatedBook) => {
+        dispatch(bookListUpdateBook(updatedBook));
+      }
+
+      dispatch(asyncUpdateBookCover({
+        id: book.id,
+        imageBase64
+      }, callback));
     }
   }
 }

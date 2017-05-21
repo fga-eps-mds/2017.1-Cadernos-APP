@@ -131,3 +131,28 @@ export const asyncEditBookSet = (bookData, callback) => {
     });
   }
 }
+
+export const asyncUpdateBookCover = ({
+  id, imageBase64
+}, callback) => {
+  return (dispatch) => {
+    dispatch(bookSetSendingData(true));
+
+    axios.post(`/books/${id}/cover`, {
+      cover_base: imageBase64
+    })
+    .then(response => {
+      if (response.data.success) {
+        dispatch(bookSet(response.data.book));
+        callback(response.data.book);
+      } else {
+        console.log("API fail to update cover");
+        console.log(response.data);
+      }
+    })
+    .catch(err => {
+      console.log('Error while uploading cover');
+      console.log(err);
+    });
+  }
+}

@@ -15,6 +15,7 @@ import {
 import styles from './edit-book.styles';
 
 import GoBack from '../../components/go-back/go-back.component';
+import ImagePicker from '../../components/image-picker/image-picker.component';
 
 export default class EditBook extends Component {
 
@@ -64,6 +65,13 @@ export default class EditBook extends Component {
           <Text>id do usuário: {this.props.book.userId}</Text>
           <Text>id do livro: {this.props.book.id}</Text>
           <Text>editado: {this.props.book.edited}</Text>
+        </Content>
+
+        <Content>
+          <ImagePicker
+            actualImageUrl={this.props.book.cover}
+            sendImageTo={(imageSource, imageBase64) => this.props.uploadCover(this.props.book, imageSource, imageBase64)}
+          />
         </Content>
 
         <Content>
