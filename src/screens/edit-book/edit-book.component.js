@@ -18,6 +18,7 @@ import styles from './edit-book.styles';
 import GoBack from '../../components/go-back/go-back.component';
 
 import ListErrors from '../../components/list-errors/list-errors.component'
+
 export default class EditBook extends Component {
 
   constructor(props) {
@@ -31,6 +32,7 @@ export default class EditBook extends Component {
   componentDidMount() {
     this.setState({ title: this.props.book.title });
     this.props.clearErrors();
+
   }
 
   handleFieldOnChange(field, value) {
@@ -63,6 +65,7 @@ export default class EditBook extends Component {
           />
         </Item>
 
+
         <ListErrors errors={this.props.book.errors.title} />
 
         <Content>
@@ -70,6 +73,7 @@ export default class EditBook extends Component {
             this.props.book.sendingData ?
             <Spinner />
             :
+
           <Button block bordered warning
             onPress={() => this.props.editBook(this.getBookData())}
           >

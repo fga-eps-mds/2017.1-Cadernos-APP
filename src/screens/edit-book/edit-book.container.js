@@ -2,7 +2,9 @@ import { connect } from 'react-redux';
 import EditBookComponent from './edit-book.component';
 
 import { bookListUpdateBook } from '../../actions/book-list-actions';
+
 import { bookSet, asyncEditBookSet, bookSetErrors, bookSetEdited } from '../../actions/book-actions';
+
 
 import { Actions } from 'react-native-router-flux';
 
