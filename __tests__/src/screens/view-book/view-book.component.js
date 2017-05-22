@@ -17,7 +17,7 @@ import {
   Input
 } from 'native-base';
 
-describe("CreateBook Component", () => {
+describe("ViewBook Component", () => {
   it("Display edit button for authorized users", () => {
     const book = {
       id: 1,
@@ -54,4 +54,19 @@ describe("CreateBook Component", () => {
     expect(wrapper.find(Button).length).to.equal(0);
   });
 
+  it("Wont display a button when user is visitor", () => {
+    const book = {
+      title: ''
+    }
+
+    const wrapper = shallow(
+      <ViewBook
+        isVisitor={true}
+        book={book}
+      />
+    );
+    expect(wrapper.find(Button).length).to.equal(0);
+  });
+  
 });
+
