@@ -144,14 +144,14 @@ export const asyncUpdateBookCover = ({
 
     axios.post(`/books/${id}/cover`, {
       cover_base: imageBase64
-    })
+    }, { timeout: 20000 })
     .then(response => {
       if (response.data.success) {
         dispatch(bookSet(response.data.book));
         callback(response.data.book);
       } else {
         console.log("API fail to update cover");
-        console.log(response.data);
+        console.log(response.data.success);
       }
     })
     .catch(err => {

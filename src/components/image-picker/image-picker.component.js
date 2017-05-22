@@ -5,7 +5,7 @@ import {
   Image,
   PixelRatio,
   TouchableOpacity,
-  Platform
+  Platform,
 } from 'react-native';
 
 import {
@@ -22,6 +22,7 @@ export default class ImagePicker extends Component {
     super(props);
 
     this.state = {
+      changeImage: false,
       avatarSource: null,
       imgBase64: '',
     }
@@ -70,6 +71,7 @@ export default class ImagePicker extends Component {
         this.setState({
           avatarSource: source,
           imgBase64: temp,
+          changeImage: true
         });
       }
     });
@@ -87,21 +89,37 @@ export default class ImagePicker extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => this.selectPhotoTapped()}>
-          <View style={styles.imageWrapper}>
-            {this.state.avatarSource === null ?
-              <Image style={styles.image} source={{uri: this.props.actualImageUrl}} />
-            :
-              <Image style={styles.image} source={this.state.avatarSource} />
-            }
-          </View>
-        </TouchableOpacity>
+        {this.state.avatarSource === null ?
+          <Image style={styles.image} source={{uri: this.props.actualImageUrl}} />
+        :
+          <Image style={styles.image} source={this.state.avatarSource} />
+        }
 
-        <Button block bordered warning style={{marginTop: 10}}
-          onPress={() => this.sendImageTapped()}
-        >
-          <Text>Enviar capa</Text>
-        </Button>
+        {this.state.changeImage ?
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <Button style={styles.buttons} block info small bordered onPress={() => this.sendImageTapped()}>
+              <Text>
+                Enviar
+              </Text>
+            </Button>
+
+            <Button style={StyleSheet.flatten([styles.buttons, {marginLeft: 20}])}
+              block danger small bordered onPress={() => this.setState({ changeImage: false })}>
+              <Text>
+                Cancelar
+              </Text>
+            </Button>
+          </View>
+        :
+          <Button block rounded warning small bordered
+            style={styles.buttons}
+            onPress={() => this.selectPhotoTapped()}
+          >
+            <Text>
+              Mudar imagem
+            </Text>
+          </Button>
+        }
       </View>
     );
   }
@@ -120,6 +138,12 @@ const styles = {
     borderWidth: 1,
     width: 240,
     height: 120
+  },
+
+
+  buttons: {
+    marginTop: 20,
+    marginBottom: 10
   },
 
   image: {
