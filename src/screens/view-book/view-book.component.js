@@ -26,10 +26,14 @@ export default class ViewBook extends React.Component {
           </Text>
         </Content>
 
+        {this.props.isVisitor ?
+          <Container></Container>
+        :
+          <Button block bordered warning onPress={() => Actions.EditBook()}>
+            <Text>Editar caderno</Text>
+          </Button>
+        }
 
-        <Button block bordered warning onPress={() => Actions.EditBook()}>
-          <Text>Editar caderno</Text>
-        </Button>
       </Container>
     );
   }
