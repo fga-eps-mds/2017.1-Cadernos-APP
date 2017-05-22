@@ -20,7 +20,8 @@ const initialState = {
     userId: 0,
     sendingData: false,
     errors: {},
-    created: false
+    created: false,
+    edited: false
   },
 
   // Book list from screen after loggin or logged user books

@@ -33,6 +33,7 @@ export default class ViewBook extends React.Component {
             <Text>Editar caderno</Text>
           </Button>
         }
+
       </Container>
     );
   }

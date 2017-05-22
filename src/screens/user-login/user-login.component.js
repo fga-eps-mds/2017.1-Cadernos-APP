@@ -101,7 +101,7 @@ export default class UserLogin extends Component {
               />
             </Item>
             {this.props.errors.error ?
-              <InputErrorDisplay errors={this.props.errors.error.user_authentication} />
+              <InputErrorDisplay userLoginErrors={this.props.errors.error.user_authentication} />
               : null}
           </View>
 
