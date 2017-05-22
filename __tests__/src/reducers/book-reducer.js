@@ -5,7 +5,8 @@ import {
   BOOK_SET,
   BOOK_SET_CREATED,
   BOOK_SET_ERRORS,
-  BOOK_SET_SENDING_DATA
+  BOOK_SET_SENDING_DATA,
+  BOOK_SET_EDITED
 } from '../../../src/config/actions-types';
 
 import initialState from '../../../src/config/initial-state';
@@ -48,4 +49,13 @@ describe("Book Reducer", () => {
 
     expect(book.created).to.equal(true);
   });
+
+  it("Set book edited into the store", () => {
+    const book = bookReducer(initialState.bookList, {
+      type: BOOK_SET_EDITED,
+      edited: true
+    });
+    expect(book.edited).to.equal(true);
+  });
+
 });

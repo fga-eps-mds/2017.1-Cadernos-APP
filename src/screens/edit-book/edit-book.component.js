@@ -9,12 +9,15 @@ import {
   Text,
   Button,
   Input,
-  Item
+  Item,
+  Spinner
 } from 'native-base';
 
 import styles from './edit-book.styles';
 
 import GoBack from '../../components/go-back/go-back.component';
+
+import ListErrors from '../../components/list-errors/list-errors.component'
 
 export default class EditBook extends Component {
 
@@ -28,6 +31,8 @@ export default class EditBook extends Component {
 
   componentDidMount() {
     this.setState({ title: this.props.book.title });
+    this.props.clearErrors();
+
   }
 
   handleFieldOnChange(field, value) {
@@ -60,18 +65,21 @@ export default class EditBook extends Component {
           />
         </Item>
 
-        <Content>
-          <Text>id do usuário: {this.props.book.userId}</Text>
-          <Text>id do livro: {this.props.book.id}</Text>
-          <Text>editado: {this.props.book.edited}</Text>
-        </Content>
+
+        <ListErrors errors={this.props.book.errors.title} />
 
         <Content>
+          {
+            this.props.book.sendingData ?
+            <Spinner />
+            :
+
           <Button block bordered warning
             onPress={() => this.props.editBook(this.getBookData())}
           >
             <Text>Confirmar</Text>
           </Button>
+          }
         </Content>
       </Container>
     );
