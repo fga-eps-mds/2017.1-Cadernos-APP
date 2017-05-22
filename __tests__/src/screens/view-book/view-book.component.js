@@ -59,14 +59,19 @@ describe("ViewBook Component", () => {
       title: ''
     }
 
+    const user = {
+      id: 0
+    }
+
     const wrapper = shallow(
-      <ViewBook
+      <ViewBookComponent
         isVisitor={true}
         book={book}
+        user={user}
       />
     );
     expect(wrapper.find(Button).length).to.equal(0);
   });
-  
+
 });
 
