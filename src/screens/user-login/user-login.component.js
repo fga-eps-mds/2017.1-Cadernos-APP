@@ -35,100 +35,73 @@ export default class UserLogin extends Component {
     });
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    if (this.props.exitUser) {
+      this.props.userLogout();
+    }
+
     this.props.cleanUserErrors();
   }
 
   render() {
-    if (this.props.authenticated) {
+    return (
+      <Container style={styles.container}>
+        <GoBack />
 
-      return (
-        <Container style={styles.container}>
+        <View style={styles.wrapperTitle}>
+          <H1 style={styles.title}>ENTRE</H1>
+          <Text>Prazer em te receber novamente. Seja bem-vindo!</Text>
+        </View>
 
-          <View style={{ flex: 1 }}>
-            {this.props.sendingData ?
-              <Spinner />
-              :
-              <Button warning block style={{ borderRadius: 30 }}
-                onPress={() => { this.props.userLogout(); this.handleFieldOnChange('email', ''); this.handleFieldOnChange('password', '') }}
-              >
-                <Text>SAIR</Text>
-              </Button>
-            }
-          </View>
+        <View style={styles.wrapperForm}>
+          <Item regular style={styles.formItem}>
+            <Input
+              placeholder='Seu e-mail'
+              onChangeText={(text) => this.handleFieldOnChange('email', text)}
+              value={this.state.email}
+            />
+          </Item>
 
+          <Item regular style={styles.formItem}>
+            <Input
+              secureTextEntry
+              placeholder='Sua senha'
+              onChangeText={(text) => this.handleFieldOnChange('password', text)}
+              value={this.state.password}
+            />
+          </Item>
 
-          {this.props.isVisitor ?
-            <Container></Container>
+          {this.props.errors.error ?
+            <InputErrorDisplay userLoginErrors={this.props.errors.error.user_authentication} />
           :
-            <Button block onPress={() => Actions.EditUser()}>
-              <Text>Editar Usuário</Text>
+            null
+          }
+        </View>
+
+        <View style={{ flex: 1 }}>
+          {this.props.sendingData ?
+            <Spinner />
+            :
+            <Button warning block style={{ borderRadius: 30 }}
+              onPress={() => this.props.userLogin(this.state)}
+            >
+              <Text>ENTRAR</Text>
             </Button>
           }
+        </View>
 
-           <Button block warning onPress={() => Actions.ListBooks()}>
-            <Text>Ver cadernos</Text>
-          </Button>
-        </Container>
-      );
-
-    } else {
-
-      return (
-        <Container style={styles.container}>
-          <GoBack />
-
-          <View style={styles.wrapperTitle}>
-            <H1 style={styles.title}>ENTRE</H1>
-            <Text>Prazer em te receber novamente. Seja bem-vindo!</Text>
-          </View>
-
-          <View style={styles.wrapperForm}>
-            <Item regular style={styles.formItem}>
-              <Input
-                placeholder='Seu e-mail'
-                onChangeText={(text) => this.handleFieldOnChange('email', text)}
-                value={this.state.email}
-              />
-            </Item>
-
-            <Item regular style={styles.formItem}>
-              <Input
-                secureTextEntry
-                placeholder='Sua senha'
-                onChangeText={(text) => this.handleFieldOnChange('password', text)}
-                value={this.state.password}
-              />
-            </Item>
-            {this.props.errors.error ?
-              <InputErrorDisplay userLoginErrors={this.props.errors.error.user_authentication} />
-              : null}
-          </View>
-
-          <View style={{ flex: 1 }}>
-            {this.props.sendingData ?
-              <Spinner />
-              :
-              <Button warning block style={{ borderRadius: 30 }}
-                onPress={() => this.props.userLogin(this.state)}
-              >
-                <Text>ENTRAR</Text>
-              </Button>
-            }
-          </View>
-          <View style={{ flex: 1 }}>
-            {this.props.sendingData ?
-              <Container></Container>
-              :
-              <Button warning block style={{ borderRadius: 30 }}
-                onPress={() => this.props.enterAsVisitor()}
-              >
-                <Text>ENTRAR COMO VISITANTE</Text>
-              </Button>
-            }
-          </View>
-        </Container>
-      );
-    }
+        <View style={{ flex: 1 }}>
+          {this.props.sendingData ?
+            <Content />
+            :
+            <Button warning bordered block style={{ borderRadius: 30 }}
+              onPress={() => this.props.enterAsVisitor()}
+            >
+              <Text>ENTRAR COMO VISITANTE</Text>
+            </Button>
+          }
+        </View>
+      </Container>
+    );
   }
 }

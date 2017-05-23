@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import { Actions } from 'react-native-router-flux';
 
@@ -11,26 +11,32 @@ import {
   Text,
   Button,
   Spinner,
-  Card, CardItem, Thumbnail, Left, Icon
+  Card,
+  CardItem,
+  Thumbnail,
+  Left,
+  Icon
 } from 'native-base';
 
 import { Image } from 'react-native';
 
 import styles from './list-books.styles';
 
-import GoBack from '../../components/go-back/go-back.component';
+import GoBack from '../go-back/go-back.component';
 
 export default class ListBooksComponent extends Component {
 
-  componentDidMount() {
-    this.props.fetchBooks();
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+    isVisitor: PropTypes.bool.isRequired,
+    onBookSelected: PropTypes.func.isRequired
   }
 
   renderBookListItem(book) {
     return (
       <ListItem
-        key={book.id}
-        onPress={() => this.props.viewBook(book)}
+        key={`BOOK:${book.id}`}
+        onPress={() => this.props.onBookSelected(book)}
       >
 
         <Card style={styles.bookCard}>
@@ -50,14 +56,12 @@ export default class ListBooksComponent extends Component {
   }
 
   render() {
-    const bookListItems = this.props.bookList.books.map(book => this.renderBookListItem(book));
+    const bookListItems = this.props.books.map(book => this.renderBookListItem(book));
 
     return (
       <Container style={styles.container}>
-        <GoBack />
-
         <View style={styles.listView}>
-          {this.props.bookList.sendingData ?
+          {this.props.books.length === 0 ?
             <Spinner />
             :
             <Content>
@@ -65,19 +69,6 @@ export default class ListBooksComponent extends Component {
                 {bookListItems}
               </List>
             </Content>
-          }
-        </View>
-
-        <View style={styles.buttonView}>
-
-          {this.props.isVisitor ?
-            <Container></Container>
-          :
-            <Button block bordered warning
-              onPress={() => this.props.goToCreateBook()}
-            >
-              <Text>Criar caderno</Text>
-            </Button>
           }
         </View>
       </Container>

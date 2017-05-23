@@ -126,7 +126,7 @@ export const asyncEditUser = (userData) => {
   }
 }
 
-export const asyncUserLogin = (userData) => {
+export const asyncUserLogin = (userData, callback) => {
   return (dispatch) => {
     dispatch(userSendingData(true));
     axios.post(`/authenticate`, {
@@ -143,6 +143,8 @@ export const asyncUserLogin = (userData) => {
 
       setAuthorizationToken(feedBack.data.auth_token);
       dispatch(userSet(user));
+
+      callback(user);
     })
     .catch(err => {
       if (err.response && err.response.data){

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import userLoginComponent from './user-login.component';
 
 import { asyncUserLogin, asyncUserLogout, cleanUserErrors, visitorLogin } from '../../actions/user-actions';
-import { Actions } from 'react-native-router-flux';
+import { Actions, ActionConst } from 'react-native-router-flux';
 
 const mapStateToProps = (state) => {
   return {
@@ -18,7 +18,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     userLogin(userData) {
-      dispatch(asyncUserLogin(userData));
+      const callback = (loggedUser) => {
+        Actions.Home({type: ActionConst.REPLACE});
+      }
+
+      dispatch(asyncUserLogin(userData, callback));
       dispatch(visitorLogin(false));
     },
 
@@ -33,7 +37,7 @@ const mapDispatchToProps = (dispatch) => {
 
     enterAsVisitor(){
       dispatch(visitorLogin(true));
-      Actions.ListBooks();
+      Actions.Home({type: ActionConst.REPLACE});
     }
   }
 }
