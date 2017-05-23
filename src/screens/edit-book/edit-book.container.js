@@ -3,10 +3,19 @@ import EditBookComponent from './edit-book.component';
 
 import { bookListUpdateBook } from '../../actions/book-list-actions';
 
-import { bookSet, asyncEditBookSet, bookSetErrors, bookSetEdited } from '../../actions/book-actions';
-
+import {
+  bookSet,
+  asyncEditBookSet,
+  bookSetErrors,
+  bookSetEdited,
+  asyncUpdateBookCover
+} from '../../actions/book-actions';
 
 import { Actions } from 'react-native-router-flux';
+
+import {
+  Toast
+} from 'native-base';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,11 +25,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+
     editBook(bookData) {
       const callback = (editedBook) => {
-        console.log('Book was edited');
-        console.log(editedBook);
-
         dispatch(bookListUpdateBook(editedBook));
         dispatch(bookSet({
           ...editedBook,
@@ -41,6 +48,26 @@ const mapDispatchToProps = (dispatch) => {
 
     setSelectedBook(book) {
       dispatch(bookSet(book));
+    },
+
+    uploadCover(book, imageSource, imageBase64) {
+      imageBase64 = `data:image/png;base64,${imageBase64}`;
+
+      const callback = (updatedBook) => {
+        dispatch(bookListUpdateBook(updatedBook));
+
+        Toast.show({
+          text: 'Nova capa enviada',
+          buttonText: 'OK',
+          position: 'bottom',
+          type: 'success'
+        });
+      }
+
+      dispatch(asyncUpdateBookCover({
+        id: book.id,
+        imageBase64
+      }, callback));
     }
   }
 }

@@ -10,8 +10,11 @@ import {
   ListItem,
   Text,
   Button,
-  Spinner
+  Spinner,
+  Card, CardItem, Thumbnail, Left, Icon
 } from 'native-base';
+
+import { Image } from 'react-native';
 
 import styles from './list-books.styles';
 
@@ -29,9 +32,19 @@ export default class ListBooksComponent extends Component {
         key={book.id}
         onPress={() => this.props.viewBook(book)}
       >
-        <Text>
-          {book.title}
-        </Text>
+
+        <Card style={styles.bookCard}>
+          <CardItem cardBody style={styles.bookCardItem}>
+            <Image
+              source={{uri: book.coverOriginal}}
+              style={styles.bookCardImage}
+            />
+          </CardItem>
+
+          <CardItem style={styles.bookCardItem}>
+            <Text>{book.title}</Text>
+          </CardItem>
+        </Card>
       </ListItem>
     );
   }

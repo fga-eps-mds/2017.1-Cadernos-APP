@@ -16,6 +16,7 @@ import {
 import styles from './edit-book.styles';
 
 import GoBack from '../../components/go-back/go-back.component';
+import ImagePicker from '../../components/image-picker/image-picker.component';
 
 import ListErrors from '../../components/list-errors/list-errors.component'
 
@@ -56,6 +57,17 @@ export default class EditBook extends Component {
       <Container style={styles.container}>
         <GoBack />
 
+        <Content style={{marginTop: 10, marginBottom: 10, padding: 10}}>
+          {this.props.book.sendingData ?
+            <Spinner />
+          :
+            <ImagePicker
+              actualImageUrl={this.props.book.coverOriginal}
+              sendImageTo={(imageSource, imageBase64) => this.props.uploadCover(this.props.book, imageSource, imageBase64)}
+            />
+          }
+        </Content>
+
         <Item regular style={styles.formItem}>
           <Input
             placeholder='Nome do caderno'
@@ -65,20 +77,17 @@ export default class EditBook extends Component {
           />
         </Item>
 
-
         <ListErrors errors={this.props.book.errors.title} />
 
         <Content>
-          {
-            this.props.book.sendingData ?
+          {this.props.book.sendingData ?
             <Spinner />
-            :
-
-          <Button block bordered warning
-            onPress={() => this.props.editBook(this.getBookData())}
-          >
-            <Text>Confirmar</Text>
-          </Button>
+          :
+            <Button block bordered warning
+              onPress={() => this.props.editBook(this.getBookData())}
+            >
+              <Text>Confirmar</Text>
+            </Button>
           }
         </Content>
       </Container>

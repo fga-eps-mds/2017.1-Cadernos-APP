@@ -4,20 +4,24 @@ import {
   BOOK_LIST_ADD_BOOK,
   BOOK_LIST_UPDATE_BOOK
 } from '../config/actions-types';
-import axios from '../config/axios';
+import axios, { getBaseUrl } from '../config/axios';
 
 import initialState from '../config/initial-state';
 
-const getBookData = (book) => {
+export const getBookData = (book) => {
   return {
     id: book.id,
     title: book.title,
     userId: book.user_id,
+    coverOriginal: `${getBaseUrl()}${book.cover_original}`,
+    coverMedium: `${getBaseUrl()}${book.cover_medium}`,
+    coverThumb: `${getBaseUrl()}${book.cover_thumb}`
   }
 }
 
 export const bookListSet = (booksArray) => {
   const books = booksArray.map(book => getBookData(book));
+
 
   return {
     type: BOOK_LIST_SET,

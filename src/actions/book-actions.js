@@ -6,13 +6,13 @@ import {
   BOOK_SET_EDITED
 } from '../config/actions-types';
 
-import axios from '../config/axios';
+import axios, { getBaseUrl } from '../config/axios';
 
 import initialState from '../config/initial-state';
 
 
 export const bookSet = ({
-  id, title, userId,
+  id, title, userId, coverOriginal, coverMedium, coverThumb,
   sendingData = initialState.book.sendingData,
   errors = initialState.book.errors,
   created = initialState.book.created,
@@ -27,6 +27,9 @@ export const bookSet = ({
       sendingData,
       errors,
       created,
+      coverOriginal,
+      coverMedium,
+      coverThumb,
       edited
     }
   }
@@ -76,6 +79,9 @@ export const asyncBookSet = (bookData, callback) => {
           id: response.data.id,
           title: response.data.title,
           userId: response.data.user_id,
+          coverOriginal: `${getBaseUrl()}${response.data.cover_originalr}`,
+          coverMedium: `${getBaseUrl()}${response.data.cover_medium}`,
+          coverThumb: `${getBaseUrl()}${response.data.cover_thumb}`,
           created: true,
           errors: {},
           sendingData: false
@@ -126,6 +132,31 @@ export const asyncEditBookSet = (bookData, callback) => {
       console.log(err);
 
       dispatch(bookSetSendingData(false));
+    });
+  }
+}
+
+export const asyncUpdateBookCover = ({
+  id, imageBase64
+}, callback) => {
+  return (dispatch) => {
+    dispatch(bookSetSendingData(true));
+
+    axios.post(`/books/${id}/cover`, {
+      cover_base: imageBase64
+    }, { timeout: 20000 })
+    .then(response => {
+      if (response.data.success) {
+        dispatch(bookSet(response.data.book));
+        callback(response.data.book);
+      } else {
+        console.log("API fail to update cover");
+        console.log(response.data.success);
+      }
+    })
+    .catch(err => {
+      console.log('Error while uploading cover');
+      console.log(err);
     });
   }
 }

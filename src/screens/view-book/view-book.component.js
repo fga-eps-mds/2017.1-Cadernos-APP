@@ -9,6 +9,10 @@ import {
   Button
 } from 'native-base';
 
+import {
+  Image
+} from 'react-native';
+
 import styles from './view-book.styles';
 
 import GoBack from '../../components/go-back/go-back.component';
@@ -26,13 +30,19 @@ export default class ViewBook extends React.Component {
           </Text>
         </Content>
 
-        {this.props.user.id === this.props.book.userId ? //Talvez isVisitor bugue aqui, verificar mais tarde
-        <Button block bordered warning onPress={() => Actions.EditBook()}>
-          <Text>Editar caderno</Text>
-        </Button>
-        :
-        null
+        <Content>
+          <Image
+            style={{width: 240, height: 120}}
+            source={{uri: this.props.book.coverOriginal}}
+          />
+        </Content>
 
+        {this.props.user.id === this.props.book.userId ? //Talvez isVisitor bugue aqui, verificar mais tarde
+          <Button block bordered warning onPress={() => Actions.EditBook()}>
+            <Text>Editar caderno</Text>
+          </Button>
+        :
+          null
         }
 
       </Container>

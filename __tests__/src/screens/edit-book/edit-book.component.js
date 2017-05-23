@@ -35,7 +35,7 @@ describe("EditBook Component", () => {
     expect(wrapper.find(Button).length).to.equal(1);
   });
 
-  it("Displays a Spinner when sending data but not a button", () => {
+  it("Displays two Spinners when sending data but not a button", () => {
     const book = {
       sendingData: true,
       errors: {}
@@ -47,7 +47,7 @@ describe("EditBook Component", () => {
       />
     );
 
-    expect(wrapper.find(Spinner).length).to.equal(1);
+    expect(wrapper.find(Spinner).length).to.equal(2);
     expect(wrapper.find(Button).length).to.equal(0);
   });
 
