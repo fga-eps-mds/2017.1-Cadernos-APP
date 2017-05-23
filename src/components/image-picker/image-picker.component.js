@@ -114,6 +114,7 @@ export default class ImagePicker extends Component {
           <Button block rounded warning small bordered
             style={styles.buttons}
             onPress={() => this.selectPhotoTapped()}
+            key="changeImageButton"
           >
             <Text>
               Mudar imagem
