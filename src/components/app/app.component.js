@@ -7,10 +7,11 @@ import {
   UserLoginScreen,
   MainScreen,
   CreateBookScreen,
-  ListBooksScreen,
   ViewBookScreen,
   EditUserScreen,
-  EditBookScreen
+  EditBookScreen,
+  HomeScreen,
+  ProfileScreen
 } from '../../screens';
 
 export default class App extends Component {
@@ -20,8 +21,9 @@ export default class App extends Component {
         <Scene key="Main" component={MainScreen} initial />
         <Scene key="CreateUser" component={CreateUserScreen} />
         <Scene key="UserLogin" component={UserLoginScreen} />
+        <Scene key="Home" component={HomeScreen} />
+        <Scene key="Profile" component={ProfileScreen} />
         <Scene key="EditUser" component={EditUserScreen} />
-        <Scene key="ListBooks" component={ListBooksScreen} />
         <Scene key="CreateBook" component={CreateBookScreen} />
         <Scene key="ViewBook" component={ViewBookScreen} />
         <Scene key="EditBook" component={EditBookScreen} />
