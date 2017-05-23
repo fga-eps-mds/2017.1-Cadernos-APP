@@ -30,14 +30,21 @@ export default class ViewBook extends React.Component {
           </Text>
         </Content>
 
-
         <Content>
-          <Image style={{width: 240, height: 120}} source={{uri: this.props.book.coverOriginal}} />
+          <Image
+            style={{width: 240, height: 120}}
+            source={{uri: this.props.book.coverOriginal}}
+          />
         </Content>
 
-        <Button block bordered warning onPress={() => Actions.EditBook()}>
-          <Text>Editar caderno</Text>
-        </Button>
+        {this.props.user.id === this.props.book.userId ? //Talvez isVisitor bugue aqui, verificar mais tarde
+          <Button block bordered warning onPress={() => Actions.EditBook()}>
+            <Text>Editar caderno</Text>
+          </Button>
+        :
+          null
+        }
+
       </Container>
     );
   }

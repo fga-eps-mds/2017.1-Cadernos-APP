@@ -2,7 +2,14 @@ import { connect } from 'react-redux';
 import EditBookComponent from './edit-book.component';
 
 import { bookListUpdateBook } from '../../actions/book-list-actions';
-import { bookSet, asyncEditBookSet, bookSetErrors, asyncUpdateBookCover } from '../../actions/book-actions';
+
+import {
+  bookSet,
+  asyncEditBookSet,
+  bookSetErrors,
+  bookSetEdited,
+  asyncUpdateBookCover
+} from '../../actions/book-actions';
 
 import { Actions } from 'react-native-router-flux';
 
@@ -21,9 +28,6 @@ const mapDispatchToProps = (dispatch) => {
 
     editBook(bookData) {
       const callback = (editedBook) => {
-        console.log('Book was edited');
-        console.log(editedBook);
-
         dispatch(bookListUpdateBook(editedBook));
         dispatch(bookSet({
           ...editedBook,

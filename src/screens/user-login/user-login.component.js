@@ -16,8 +16,8 @@ import {
 
 import styles from './user-login.styles';
 
-import { InputErrorDisplay, GoBack } from '../../components';
-
+import InputErrorDisplay from '../../components/input-error-display/input-error-display.component';
+import GoBack from '../../components/go-back/go-back.component';
 
 export default class UserLogin extends Component {
   constructor(props) {
@@ -34,9 +34,11 @@ export default class UserLogin extends Component {
       [field]: value
     });
   }
+
   componentWillMount() {
     this.props.cleanUserErrors();
   }
+
   render() {
     if (this.props.authenticated) {
 
@@ -55,9 +57,14 @@ export default class UserLogin extends Component {
             }
           </View>
 
-          <Button block onPress={() => Actions.EditUser()}>
-            <Text>Editar Usuário</Text>
-          </Button>
+
+          {this.props.isVisitor ?
+            <Container></Container>
+          :
+            <Button block onPress={() => Actions.EditUser()}>
+              <Text>Editar Usuário</Text>
+            </Button>
+          }
 
            <Button block warning onPress={() => Actions.ListBooks()}>
             <Text>Ver cadernos</Text>
@@ -94,7 +101,7 @@ export default class UserLogin extends Component {
               />
             </Item>
             {this.props.errors.error ?
-              <InputErrorDisplay errors={this.props.errors.error.user_authentication} />
+              <InputErrorDisplay userLoginErrors={this.props.errors.error.user_authentication} />
               : null}
           </View>
 
@@ -106,6 +113,17 @@ export default class UserLogin extends Component {
                 onPress={() => this.props.userLogin(this.state)}
               >
                 <Text>ENTRAR</Text>
+              </Button>
+            }
+          </View>
+          <View style={{ flex: 1 }}>
+            {this.props.sendingData ?
+              <Container></Container>
+              :
+              <Button warning block style={{ borderRadius: 30 }}
+                onPress={() => this.props.enterAsVisitor()}
+              >
+                <Text>ENTRAR COMO VISITANTE</Text>
               </Button>
             }
           </View>

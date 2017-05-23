@@ -57,6 +57,11 @@ class InputErrorDisplayComponent extends React.Component {
         :
         null
         }
+        {this.props.userLoginErrors == 'Invalid credentials' ?
+        <Text style={styles.errorText}>E-mail e/ou senha inválido(s)!</Text>
+          :
+          null
+        }
 
       </View>
 

@@ -9,6 +9,7 @@ const initialState = {
     isRegistered: false,
     authenticated: false,
     isUpdated: false,
+    isVisitor: false,
     errors: {}
   },
 
