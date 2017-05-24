@@ -9,7 +9,9 @@ import {
   Input,
   Button,
   Spinner,
-  Select
+  Select,
+  Picker
+
 } from 'native-base';
 
 import { KeyboardAvoidingView, Alert } from 'react-native';
@@ -18,26 +20,40 @@ import GoBack from '../../components/go-back/go-back.component';
 import styles from './create-task.styles';
 import ListErrors from '../../components/list-errors/list-errors.component';
 
+//import {ReactSelectize, SimpleSelect, MultiSelect} from 'react-selectize';
+
 
 export default class CreateTaskComponent extends Component {
   constructor(props) {
     super(props);
-
+    data = ['Categoria','Criação', 'Experimento', 'Teórico'];
     this.state = {
       title: '',
       content: '',
-      category_id: ''
+      category_id: '',
+      selected: 'Cate'
     }
+
+
+}
+renderItem(){
+  itens = [];
+  for(let item of data){
+    itens.push(<Picker.Item key = {item} label = {item} value = {item}/>)
   }
+
+  return itens;
+}
 
 
   componentWillUnmount() {
     this.props.clearErrors();
   }
 
-  handleFieldOnChange(field, value) {
+  handleFieldOnChange(field, field2, value) {
     this.setState({
-      [field]: value
+      [field]: value,
+      [field2]: value
     });
   }
 
@@ -80,18 +96,17 @@ export default class CreateTaskComponent extends Component {
           <ListErrors errors={this.props.task.errors.content} />
 
 
-           <Item regular style={styles.formItem}>
-            <Input
-              placeholder='Categoria'
-              returnKeyType='next'
-              onChangeText={(text) => this.handleFieldOnChange('category_id', text)}
-              value={this.state.category_id}
-            />
-          </Item>
-          <ListErrors errors={this.props.task.errors.category_id} />
 
 
         </KeyboardAvoidingView>
+
+        <View>
+  <Picker
+  selectedValue = {this.state.selected}
+  onValueChange = {(value)=> this.handleFieldOnChange('category_id', 'selected', value)}>
+  {this.renderItem()}
+  </Picker>
+</View>
 
         <View style={{ flex: 1 }}>
           {this.props.task.sendingData ?
