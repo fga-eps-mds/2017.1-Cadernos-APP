@@ -31,6 +31,7 @@ describe("Task Actions", () => {
     expect(reducerAction.task.userId).to.equal(taskData.userId);
     expect(reducerAction.task.bookId).to.equal(taskData.bookId);
     expect(reducerAction.task.content).to.equal(taskData.content);
+    expect(reducerAction.task.category_id).to.equal(taskData.category_id);
   });
 
   it("Set the task errors to the reducer", () => {

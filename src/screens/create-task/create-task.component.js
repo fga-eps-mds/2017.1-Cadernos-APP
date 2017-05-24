@@ -9,6 +9,7 @@ import {
   Input,
   Button,
   Spinner,
+  Select
 } from 'native-base';
 
 import { KeyboardAvoidingView, Alert } from 'react-native';
@@ -17,17 +18,17 @@ import GoBack from '../../components/go-back/go-back.component';
 import styles from './create-task.styles';
 import ListErrors from '../../components/list-errors/list-errors.component';
 
+
 export default class CreateTaskComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       title: '',
-      content: ''
+      content: '',
+      category_id: ''
     }
   }
-
-
 
 
   componentWillUnmount() {
@@ -45,12 +46,14 @@ export default class CreateTaskComponent extends Component {
       title: this.state.title,
       user_id: this.props.loggedUserId,
       content: this.state.content,
-      book_id: this.props.book.id
+      book_id: this.props.book.id,
+      category_id: this.state.category_id
     }
   }
 
   render() {
     return (
+
       <Container style={styles.container}>
 <GoBack />
         <KeyboardAvoidingView behavior="padding" style={styles.wrapperForm}>
@@ -75,6 +78,17 @@ export default class CreateTaskComponent extends Component {
             />
           </Item>
           <ListErrors errors={this.props.task.errors.content} />
+
+
+           <Item regular style={styles.formItem}>
+            <Input
+              placeholder='Categoria'
+              returnKeyType='next'
+              onChangeText={(text) => this.handleFieldOnChange('category_id', text)}
+              value={this.state.category_id}
+            />
+          </Item>
+          <ListErrors errors={this.props.task.errors.category_id} />
 
 
         </KeyboardAvoidingView>

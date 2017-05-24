@@ -12,7 +12,7 @@ import initialState from '../config/initial-state';
 import {Actions} from 'react-native-router-flux';
 
 export const taskSet = ({
-  id, title, content, userId, bookId,
+  id, title, content,category_id, userId, bookId,
   sendingData = initialState.task.sendingData,
   errors = initialState.task.errors,
   created = initialState.task.created
@@ -22,6 +22,7 @@ export const taskSet = ({
     task: {
       title,
       content,
+      category_id,
       userId,
       bookId,
       sendingData,
@@ -60,6 +61,7 @@ export const asyncTaskSet = (taskData, callback) => {
     axios.post('/tasks', {
       title: taskData.title,
       content: taskData.content,
+      category_id: taskData.category_id,
       user_id: taskData.loggedUserId,
       book_id: taskData.book_id
     })
@@ -69,6 +71,7 @@ export const asyncTaskSet = (taskData, callback) => {
             id: response.data.id,
             title: response.data.title,
             content: response.data.content,
+            category_id: response.data.category_id,
             userId: response.data.user_id,
             bookId: response.data.book_id,
             created: true,

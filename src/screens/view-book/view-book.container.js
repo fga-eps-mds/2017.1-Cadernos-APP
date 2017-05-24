@@ -7,7 +7,8 @@ import { taskSet } from '../../actions/task-actions';
 const mapStateToProps = (state) => {
   return {
     book: state.book,
-    task: state.task
+    task: state.task,
+    category_id: state.category_id
   }
 }
 

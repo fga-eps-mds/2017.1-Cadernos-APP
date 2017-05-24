@@ -12,6 +12,10 @@ const styles = {
     fontSize: 30,
     fontWeight: 'bold'
   },
+  category_id: {
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
 
   wrapperForm: {
     flex: 4,

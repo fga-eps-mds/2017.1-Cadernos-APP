@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
     task: state.task,
     book: state.book,
     loggedUserId: state.user.id,
+    category_id: state.category_id
   }
 }
 
