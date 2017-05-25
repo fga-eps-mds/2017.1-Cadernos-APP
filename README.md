@@ -21,4 +21,4 @@ MYAPP_RELEASE_KEY_PASSWORD=*****
 
 replace `*****` with our password.
 
-So run `./buildAPK.sh`.
+So run `./buildAPK.sh`. The generated .apk will be into `/android/app/build/outputs/apk`.
