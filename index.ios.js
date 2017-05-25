@@ -25,5 +25,4 @@ export default class ColaborArt extends Component {
   }
 }
 
-
 AppRegistry.registerComponent('ColaborArt', () => ColaborArt);
