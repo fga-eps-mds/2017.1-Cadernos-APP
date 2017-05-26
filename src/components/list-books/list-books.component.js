@@ -42,13 +42,18 @@ export default class ListBooksComponent extends Component {
         <Card style={styles.bookCard}>
           <CardItem cardBody style={styles.bookCardItem}>
             <Image
-              source={{uri: book.coverOriginal}}
+              source={{ uri: book.coverOriginal }}
               style={styles.bookCardImage}
             />
           </CardItem>
 
           <CardItem style={styles.bookCardItem}>
-            <Text>{book.title}</Text>
+            <Text style={styles.title}>{book.title}</Text>
+            <View style={styles.containerIcon}>
+              <Icon style={styles.mdPaper} name='md-paper' />
+              <Icon style={styles.mdPeople} name='md-people' />
+
+            </View>
           </CardItem>
         </Card>
       </ListItem>

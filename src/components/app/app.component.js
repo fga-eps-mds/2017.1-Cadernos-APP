@@ -18,10 +18,10 @@ export default class App extends Component {
   render() {
     return (
       <Router hideNavBar={true}>
-        <Scene key="Main" component={MainScreen} initial />
+        <Scene key="Main" component={MainScreen} />
         <Scene key="CreateUser" component={CreateUserScreen} />
         <Scene key="UserLogin" component={UserLoginScreen} />
-        <Scene key="Home" component={HomeScreen} />
+        <Scene key="Home" component={HomeScreen} initial/>
         <Scene key="Profile" component={ProfileScreen} />
         <Scene key="EditUser" component={EditUserScreen} />
         <Scene key="CreateBook" component={CreateBookScreen} />
