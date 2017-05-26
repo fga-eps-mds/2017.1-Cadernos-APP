@@ -14,6 +14,9 @@ import {
   ProfileScreen
 } from '../../screens';
 
+import ViewTask from '../../screens/view-task/view-task.component';
+import EditTask from '../../screens/edit-task/edit-task.component';
+
 export default class App extends Component {
   render() {
     return (
@@ -27,6 +30,8 @@ export default class App extends Component {
         <Scene key="CreateBook" component={CreateBookScreen} />
         <Scene key="ViewBook" component={ViewBookScreen} />
         <Scene key="EditBook" component={EditBookScreen} />
+        <Scene key="ViewTask" component={ViewTask} />
+        <Scene key="EditTask" component={EditTask} />
       </Router>
     );
   }
