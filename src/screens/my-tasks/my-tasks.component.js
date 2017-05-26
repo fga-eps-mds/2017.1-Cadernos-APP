@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Text, Content} from 'native-base';
+
+import { Container, Text, Content, View } from 'native-base';
 
 import styles from './my-tasks.styles';
 
@@ -7,11 +8,14 @@ import TaskList from '../../components/task-list/task-list.component';
 
 export default class MyTasks extends React.Component {
   render() {
-    return (
-      <Container style={styles.container}>
-        <Text>My tasks</Text>
+    <Container style={styles.container}>
+      <View style={{ flex: 1 }}>
+        <Text>Minhas Tarefas</Text>
+      </View>
+
+      <View style={{ flex: 4 }}>
         <TaskList />
-      </Container>
-  );
+      </View>
+    </Container>
   }
 }
