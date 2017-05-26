@@ -7,7 +7,9 @@ import ViewBookScreen from './view-book/view-book.container';
 import EditBookScreen from './edit-book/edit-book.container';
 import HomeScreen  from './home/home.container';
 import ProfileScreen from './profile/profile.container';
-import ViewBookBase from './view-book-base/view-book-base.component';
+import ViewBookBaseTasks from './view-book-base/view-book-base-tasks.component';
+import ViewBookBaseCategories from './view-book-base/view-book-base-categories.component';
+import ViewBookBaseColaborators from './view-book-base/view-book-base-colaborators.component';
 
 export {
   CreateUserScreen,
@@ -19,5 +21,7 @@ export {
   EditBookScreen,
   HomeScreen,
   ProfileScreen,
-  ViewBookBase
+  ViewBookBaseTasks,
+  ViewBookBaseCategories,
+  ViewBookBaseColaborators
 }

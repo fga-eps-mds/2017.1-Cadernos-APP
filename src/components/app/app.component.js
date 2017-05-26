@@ -12,15 +12,19 @@ import {
   EditBookScreen,
   HomeScreen,
   ProfileScreen,
-  ViewBookBase
+  ViewBookBaseTasks,
+  ViewBookBaseCategories,
+  ViewBookBaseColaborators
 } from '../../screens';
 
 export default class App extends Component {
   render() {
     return (
       <Router hideNavBar={true}>
-        <Scene key="ViewBookBase" component={ViewBookBase} initial/>
-        <Scene key="Main" component={MainScreen}/>
+        <Scene key="ViewBookBaseCategories" component={ViewBookBaseCategories}/>
+        <Scene key="ViewBookBaseColaborators" component={ViewBookBaseColaborators}/>
+        <Scene key="ViewBookBaseTasks" component={ViewBookBaseTasks}/>
+        <Scene key="Main" component={MainScreen}initial/>
         <Scene key="CreateUser" component={CreateUserScreen} />
         <Scene key="UserLogin" component={UserLoginScreen} />
         <Scene key="Home" component={HomeScreen} />
