@@ -17,7 +17,6 @@ import {
 import { EventEmitter } from 'fbemitter';
 import SideBar from '../../screens/side-bar/side-bar.component'
 import Drawer from 'react-native-drawer';
-import NavigationDrawer from '../app-drawer/app-drawer.component';
 
 let _emitter = new EventEmitter();
 
