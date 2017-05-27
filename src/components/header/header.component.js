@@ -5,12 +5,13 @@ import {
   FooterTab,
   Button,
   Icon,
-  Text
+  Text,
+  View
 } from 'native-base';
 
 import { Actions, ActionConst } from 'react-native-router-flux';
-
-export default class SharedFooter extends Component {
+import styles from '../header/header.styles';
+export default class SharedHeader extends Component {
   static propTypes = {
     activeTab: PropTypes.string.isRequired,
     isVisitor: PropTypes.bool.isRequired
@@ -19,34 +20,25 @@ export default class SharedFooter extends Component {
   render() {
     return (
       <Footer >
-        <FooterTab>
-          <Button vertical active={this.props.activeTab === "books"}
-            key="booksTabButton"
-            onPress={() => Actions.Home({type: ActionConst.REPLACE})}
-          >
-            <Icon name="md-book" />
-            <Text>Cadernos</Text>
-          </Button>
+        <FooterTab style={styles.header}>
 
-          {this.props.isVisitor ?
-            null
-          :
-            <Button vertical active={this.props.activeTab === "profile"}
-              key="profileTabButton"
-              onPress={() => Actions.Profile({type: ActionConst.REPLACE})}
-            >
-              <Icon name="person" />
-              <Text>Perfil</Text>
-            </Button>
-          }
+
+
+          <Button>
+            <Icon style={styles.iconsDrawer} name="md-menu" />
+
+          </Button>
+          <Text style={styles.text}>Meus cadernos</Text>
 
           <Button vertical
-            key="exitTabButton"
-            onPress={() => Actions.UserLogin({type: ActionConst.REPLACE, exitUser: true})}
+            key="searchButtom"
           >
-            <Icon name="md-exit" />
-            <Text>Sair</Text>
+            <Icon
+              style={styles.iconsSearch}
+              name="md-search" />
+
           </Button>
+
         </FooterTab>
       </Footer>
     );

@@ -13,6 +13,13 @@ const styles = {
     flex: 1
 
   },
+   numbers: {
+    color: '#fff',
+    paddingTop:0,
+    padding: 4
+
+  },
+
   title: {
     color: '#fff',
     padding: 8
@@ -23,17 +30,23 @@ const styles = {
 
   },
   mdPeople: {
-    marginTop: -10,
-    paddingBottom: 18
+    marginTop: -2,
+    paddingBottom: 8
 
   },
   mdPaper: {
-    marginTop: -10,
-    paddingBottom: 18,
+    marginTop: -2,
+    paddingBottom: 8,
     paddingRight: 15
 
   },
   containerIcon: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+
+  },
+    containerNumber: {
+
     flexDirection: 'row',
     justifyContent: 'space-between'
 

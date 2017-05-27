@@ -10,7 +10,7 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 import styles from './home.styles';
-import SharedFooter from '../../components/header/header.component';
+import SharedHeader from '../../components/header/header.component';
 import ListBooks from '../../components/list-books/list-books.component';
 
 export default class HomeScreen extends Component {
@@ -38,7 +38,7 @@ export default class HomeScreen extends Component {
 
       <Container style={{ flex: 1 }}>
         <View>
-          <SharedFooter
+          <SharedHeader
             activeTab='books'
             isVisitor = {false}
           />
