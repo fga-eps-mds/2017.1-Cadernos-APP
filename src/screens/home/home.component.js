@@ -9,8 +9,8 @@ import {
 } from 'native-base';
 
 import { Actions } from 'react-native-router-flux';
-
-import SharedFooter from '../../components/shared-footer/shared-footer.component';
+import styles from './home.styles';
+import SharedHeader from '../../components/header/header.component';
 import ListBooks from '../../components/list-books/list-books.component';
 
 export default class HomeScreen extends Component {
@@ -35,8 +35,15 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <Container style={{flex: 1}}>
-        <View style={{flex: 8}}>
+
+      <Container style={{ flex: 1 }}>
+        <View>
+          <SharedHeader
+            activeTab='books'
+            isVisitor = {false}
+          />
+        </View>
+        <View style={{ flex: 8 }}>
           <ListBooks
             books={this.props.bookList.books}
             isVisitor={this.props.isVisitor}
@@ -44,25 +51,22 @@ export default class HomeScreen extends Component {
           />
         </View>
 
+
+
         {this.props.isVisitor ?
           null
-        :
-          <View style={{flex: 1, padding: 5, justifyContent: 'center'}}>
-            <Button block warning bordered rounded small
+          :
+          <View style={{ flex: 1, padding: 5, justifyContent: 'center' }}>
+            <Button block warning bordered small
               key="createBookActionButton"
               onPress={() => Actions.CreateBook()}
-            >
-              <Text>Criar caderno</Text>
+              style={styles.btn}>
+              <Text style={styles.title}>Criar caderno</Text>
             </Button>
           </View>
         }
 
-        <View style={{flex: 1}}>
-          <SharedFooter
-            activeTab="books"
-            isVisitor={this.props.isVisitor}
-          />
-        </View>
+
       </Container>
     );
   }
