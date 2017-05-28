@@ -10,9 +10,11 @@ import {
   Picker
 } from 'native-base';
 
-import { ListView, StyleSheet } from 'react-native';
+import { ListView } from 'react-native';
 
 const { Item } = Picker;
+
+import styles from './task-list.styles';
 
 import TaskListItem from '../task-list-item/task-list-item.component';
 
@@ -44,9 +46,9 @@ export default class TaskList extends Component {
       <Container>
         <View style={{ flex: 1}}>
           <Picker>
-            <Item label="Ola" />
-            <Item label="Ola" />
-            <Item label="Ola" />
+            <Item label="Caderno 01" />
+            <Item label="Caderno 02" />
+            <Item label="Caderno 03" />
           </Picker>
         </View>
 
@@ -54,15 +56,14 @@ export default class TaskList extends Component {
           <ListView
             dataSource={this.state.dataSource}
             renderRow={(rowData) => (
-              <TaskListItem
-                task={rowData}
-              />
+              <TaskListItem task={rowData} />
             )}
-            renderSeparator={(sectionId, rowId) => <View key={rowId} style={{flex: 1, height: StyleSheet.hairlineWidth, backgroundColor: '#8E8E8E',}} />}
+            renderSeparator={
+              (sectionId, rowId) => <View key={rowId} style={styles.divisor} />
+            }
           />
         </View>
       </Container>
     );
   }
-
 }

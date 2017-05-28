@@ -58,10 +58,11 @@ export default class App extends Component {
 
           <View style={{flex: 9}}>
             <Router hideNavBar={true}>
+              <Scene key="Main" component={MainScreen} />
+              <Scene key="MyTasks" component={MyTasks} initial />
               <Scene key="ViewBookBaseCategories" component={ViewBookBaseCategories} />
               <Scene key="ViewBookBaseColaborators" component={ViewBookBaseColaborators} />
               <Scene key="ViewBookBaseTasks" component={ViewBookBaseTasks} />
-              <Scene key="Main" component={MainScreen} initial />
               <Scene key="CreateUser" component={CreateUserScreen} />
               <Scene key="UserLogin" component={UserLoginScreen} />
               <Scene key="Home" component={HomeScreen} />
