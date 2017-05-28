@@ -7,7 +7,6 @@ const styles = {
     fontSize: 30,
     fontWeight: 'bold'
   },
-
 };
 
 export default styles;

@@ -10,6 +10,7 @@ import ProfileScreen from './profile/profile.container';
 import ViewBookBaseTasks from './view-book-base/view-book-base-tasks.component';
 import ViewBookBaseCategories from './view-book-base/view-book-base-categories.component';
 import ViewBookBaseColaborators from './view-book-base/view-book-base-colaborators.component';
+import MyTasks from './my-tasks/my-tasks.component';
 
 export {
   CreateUserScreen,
@@ -23,5 +24,6 @@ export {
   ProfileScreen,
   ViewBookBaseTasks,
   ViewBookBaseCategories,
-  ViewBookBaseColaborators
+  ViewBookBaseColaborators,
+  MyTasks
 }

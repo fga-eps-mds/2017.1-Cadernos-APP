@@ -1,18 +1,17 @@
 import React from 'react';
-import { MyTasksContainer, Text, View} from 'native-base';
+import { Container, Text, Content} from 'native-base';
+
+import styles from './my-tasks.styles';
 
 import TaskList from '../../components/task-list/task-list.component';
 
 export default class MyTasks extends React.Component {
   render() {
-    <Container style={styles.container}>
-      <View style={{ flex: 1 }}>
-        <Text>Minhas Tarefas</Text>
-      </View>
-
-      <View style={{ flex: 4 }}>
+    return (
+      <Container style={styles.container}>
+        <Text>My tasks</Text>
         <TaskList />
-      </View>
-    </Container>
+      </Container>
+  );
   }
 }
