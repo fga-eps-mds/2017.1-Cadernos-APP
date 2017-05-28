@@ -17,39 +17,30 @@ import {
   ViewBookBaseColaborators
 } from '../../screens';
 
-import { EventEmitter } from 'fbemitter';
 import SideBar from '../../screens/side-bar/side-bar.component'
-import Drawer from 'react-native-drawer';
 
-let _emitter = new EventEmitter();
+import { Drawer } from 'native-base';
 
 export default class App extends Component {
+
+  closeDrawer = () => {
+    this.drawer._root.close()
+  };
+
+  openDrawer = () => {
+    this.drawer._root.open();
+  };
+
   componentDidMount() {
-    var self = this;
-
-    _emitter.addListener('openMenu', () => {
-      self._drawer.open();
-    });
-
-    _emitter.addListener('back', () => {
-      self._navigator.pop();
-    });
+    this.openDrawer();
   }
-
 
   render() {
     return (
       <Drawer
-        ref={(ref) => this._drawer = ref}
+        ref={(ref) => { this.drawer = ref; }}
         content={<SideBar />}
-        tapToClose
-        openDrawerOffset={0.2}
-        panOpenMask={0.2}
-        panCloseMask={0.2}
-        negotiatePan
-        tweenHandler={(ratio) => ({
-          main: { opacity: Math.max(0.54, 1 - ratio) },
-        })}
+        onClose={() => this.closeDrawer()}
       >
         <Router hideNavBar={true}>
           <Scene key="ViewBookBaseCategories" component={ViewBookBaseCategories} />
