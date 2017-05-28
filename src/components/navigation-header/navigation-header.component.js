@@ -1,38 +1,43 @@
 import React, { Component, PropTypes } from 'react';
 
 import {
-  Container, Content, ListItem, Text, CheckBox, Header, Left, Button, Icon, Body, Title, Right
+  Container,
+  Content,
+  ListItem,
+  Text,
+  CheckBox,
+  Header,
+  Left,
+  Button,
+  Icon,
+  Body,
+  Title,
+  Right
 } from 'native-base';
 
 import { Actions } from 'react-native-router-flux';
 
 export default class NavigationHeader extends Component {
   static propTypes = {
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
     openDrawer: PropTypes.func.isRequired,
-    shouldGoBack: PropTypes.bool,
+    shouldGoBack: PropTypes.bool.isRequired
   };
-
-  static defaultProps = {
-    title: "Ola Mundo !",
-    shouldGoBack: false
-  }
-
-  goBack = () => {
-    if (this.props.shouldGoBack) {
-      Actions.pop();
-    }
-  }
 
   render() {
     return (
       <Container>
         <Header>
-          <Left>
-            <Button transparent onPress={this.goBack}>
-              <Icon name='arrow-back' />
-            </Button>
-          </Left>
+          {this.props.shouldGoBack ?
+            <Left>
+              <Button transparent onPress={() => Actions.pop()}>
+                <Icon name='arrow-back' />
+              </Button>
+            </Left>
+          :
+            <Left />
+          }
+
 
           <Body>
             <Title>{this.props.title}</Title>

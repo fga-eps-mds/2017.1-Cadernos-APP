@@ -1,27 +1,8 @@
-import React, { Component } from 'react';
-
-import { Router, Scene } from 'react-native-router-flux';
-
-import {
-  CreateUserScreen,
-  UserLoginScreen,
-  MainScreen,
-  CreateBookScreen,
-  ViewBookScreen,
-  EditUserScreen,
-  EditBookScreen,
-  HomeScreen,
-  ProfileScreen,
-  ViewBookBaseTasks,
-  ViewBookBaseCategories,
-  ViewBookBaseColaborators
-} from '../../screens';
-
-import ViewTask from '../../screens/view-task/view-task.component';
-import EditTask from '../../screens/edit-task/edit-task.component';
+import React, { Component, PropTypes } from 'react';
 
 import SideBar from '../../screens/side-bar/side-bar.component'
 import NavigationHeader from '../navigation-header/navigation-header.component';
+import AppRouter from '../app-router/app-router.component';
 
 import { Drawer, Container, View } from 'native-base';
 
@@ -35,8 +16,16 @@ export default class App extends Component {
     this.drawer._root.open();
   };
 
-  componentDidMount() {
-    this.openDrawer();
+  static childContextTypes = {
+    openDrawer: PropTypes.func,
+    closeDrawer: PropTypes.func
+  };
+
+  getChildContext() {
+    return {
+      openDrawer: this.openDrawer,
+      closeDrawer: this.closeDrawer
+    };
   }
 
   render() {
@@ -47,31 +36,8 @@ export default class App extends Component {
         onClose={() => this.closeDrawer()}
         side="right"
       >
-        <Container style={{flex: 1}}>
-          <View style={{flex: 1}}>
-            <NavigationHeader
-              openDrawer={this.openDrawer}
-            />
-          </View>
-
-          <View style={{flex: 9}}>
-            <Router hideNavBar={true}>
-              <Scene key="Main" component={MainScreen} initial />
-              <Scene key="ViewBookBaseCategories" component={ViewBookBaseCategories} />
-              <Scene key="ViewBookBaseColaborators" component={ViewBookBaseColaborators} />
-              <Scene key="ViewBookBaseTasks" component={ViewBookBaseTasks} />
-              <Scene key="CreateUser" component={CreateUserScreen} />
-              <Scene key="UserLogin" component={UserLoginScreen} />
-              <Scene key="Home" component={HomeScreen} />
-              <Scene key="Profile" component={ProfileScreen} />
-              <Scene key="EditUser" component={EditUserScreen} />
-              <Scene key="CreateBook" component={CreateBookScreen} />
-              <Scene key="ViewBook" component={ViewBookScreen} />
-              <Scene key="EditBook" component={EditBookScreen} />
-              <Scene key="ViewTask" component={ViewTask} />
-              <Scene key="EditTask" component={EditTask} />
-            </Router>
-          </View>
+        <Container style={{ flex: 1 }}>
+          <AppRouter />
         </Container>
       </Drawer>
     );
