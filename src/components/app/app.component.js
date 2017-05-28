@@ -19,7 +19,6 @@ import {
   ViewBookBaseColaborators
 } from '../../screens';
 
-
 import SideBar from '../../screens/side-bar/side-bar.component'
 import NavigationHeader from '../navigation-header/navigation-header.component';
 
@@ -58,8 +57,8 @@ export default class App extends Component {
 
           <View style={{flex: 9}}>
             <Router hideNavBar={true}>
-              <Scene key="Main" component={MainScreen} />
-              <Scene key="MyTasks" component={MyTasks} initial />
+              <Scene key="Main" component={MainScreen} initial />
+              <Scene key="MyTasks" component={MyTasks} />
               <Scene key="ViewBookBaseCategories" component={ViewBookBaseCategories} />
               <Scene key="ViewBookBaseColaborators" component={ViewBookBaseColaborators} />
               <Scene key="ViewBookBaseTasks" component={ViewBookBaseTasks} />
