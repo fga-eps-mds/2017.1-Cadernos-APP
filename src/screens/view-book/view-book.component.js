@@ -6,7 +6,8 @@ import {
   Container,
   Content,
   Text,
-  Button
+  Button,
+  View
 } from 'native-base';
 
 import {
@@ -16,36 +17,46 @@ import {
 import styles from './view-book.styles';
 
 import GoBack from '../../components/go-back/go-back.component';
+import TaskList from '../../components/task-list/task-list.component';
 
 export default class ViewBook extends React.Component {
 
   render() {
     return (
       <Container style={styles.container}>
-        <GoBack />
+        <View style={{ flex: 1 }}>
+          <GoBack />
+        </View>
 
-        <Content>
+        <View style={{ flex: 1 }}>
           <Text style={styles.title}>
             {this.props.book.title}
           </Text>
-        </Content>
+        </View>
 
-        <Content>
+        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
           <Image
-            style={{width: 240, height: 120}}
-            source={{uri: this.props.book.coverOriginal}}
+            style={{ width: 240, height: 120 }}
+            source={{ uri: this.props.book.coverOriginal }}
           />
-        </Content>
+        </View>
+
+        <View style={{ flex: 4 }}>
+          <TaskList />
+        </View>
+
 
         {this.props.user.id === this.props.book.userId ? //Talvez isVisitor bugue aqui, verificar mais tarde
-          <Button block bordered warning onPress={() => Actions.EditBook()}>
-            <Text>Editar caderno</Text>
-          </Button>
-        :
+          <View style={{ flex: 1 }}>
+            <Button block bordered warning onPress={() => Actions.EditBook()}>
+              <Text>Editar caderno</Text>
+            </Button>
+          </View>
+          :
           null
         }
 
-      </Container>
+      </Container >
     );
   }
 }
