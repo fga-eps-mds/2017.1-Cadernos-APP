@@ -6,13 +6,15 @@ import initialState from './initial-state';
 import {
   bookListReducer,
   bookReducer,
-  userReducer
+  userReducer,
+  drawerDataReducer
 } from '../reducers';
 
 const reducers = combineReducers({
   user: userReducer,
   book: bookReducer,
-  bookList: bookListReducer
+  bookList: bookListReducer,
+  drawerData: drawerDataReducer
 });
 
 const store = createStore(reducers, initialState, applyMiddleware(thunk));

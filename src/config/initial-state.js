@@ -1,4 +1,10 @@
 const initialState = {
+  drawerData: {
+    displaySelf: false,
+    displayGoBack: false,
+    title: ""
+  },
+
    // current logged user
   user: {
     id: 0,
