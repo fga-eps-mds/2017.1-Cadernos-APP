@@ -31,13 +31,16 @@ export const userSet = ({
   }
 };
 
-export const userLogin = (user) => {
+export const userLogin = ({
+  email, password,
+  isVisitor = false
+}) => {
   return {
     type: USER_LOGIN,
     user: {
-      email: user.email,
-      password: user.password,
-      isVisitor: false
+      email,
+      password,
+      isVisitor
     }
   }
 };

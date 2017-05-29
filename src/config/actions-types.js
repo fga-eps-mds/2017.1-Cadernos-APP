@@ -1,3 +1,6 @@
+// Login actions
+export const LOGIN_SET_REMEMBER = 'LOGIN_SET_REMEMBER';
+
 // User actions
 export const USER_SET = 'USER_SET';
 export const USER_SENDING_DATA = 'USER_SENDING_DATA';

@@ -1,45 +1,53 @@
 import React, { Component, PropTypes } from 'react';
 
 import {
-  Container, Content, ListItem, Text, CheckBox, Header, Left, Button, Icon, Body, Title, Right
+  Container,
+  Content,
+  ListItem,
+  Text,
+  CheckBox,
+  Header,
+  Left,
+  Button,
+  Icon,
+  Body,
+  Title,
+  Right
 } from 'native-base';
 
 import { Actions } from 'react-native-router-flux';
 
 export default class NavigationHeader extends Component {
   static propTypes = {
-    title: PropTypes.string,
-    openDrawer: PropTypes.func.isRequired,
-    shouldGoBack: PropTypes.bool,
+    title: PropTypes.string.isRequired,
+    displayGoBack: PropTypes.bool.isRequired
   };
 
-  static defaultProps = {
-    title: "Ola Mundo !",
-    shouldGoBack: false
-  }
-
-  goBack = () => {
-    if (this.props.shouldGoBack) {
-      Actions.pop();
-    }
-  }
+  static contextTypes = {
+    openDrawer: PropTypes.func.isRequired
+  };
 
   render() {
     return (
       <Container>
         <Header>
-          <Left>
-            <Button transparent onPress={this.goBack}>
-              <Icon name='arrow-back' />
-            </Button>
-          </Left>
+          {this.props.displayGoBack ?
+            <Left>
+              <Button transparent onPress={() => Actions.pop()}>
+                <Icon name='arrow-back' />
+              </Button>
+            </Left>
+          :
+            <Left />
+          }
+
 
           <Body>
-            <Title>{this.props.title}</Title>
+            <Title style={{fontSize: 14}}>{this.props.title}</Title>
           </Body>
 
           <Right>
-            <Button transparent onPress={this.props.openDrawer}>
+            <Button transparent onPress={this.context.openDrawer}>
               <Icon name='menu' />
             </Button>
           </Right>

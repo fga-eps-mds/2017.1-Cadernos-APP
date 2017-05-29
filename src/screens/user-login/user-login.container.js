@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 import userLoginComponent from './user-login.component';
 
-import { asyncUserLogin, asyncUserLogout, cleanUserErrors, visitorLogin } from '../../actions/user-actions';
 import { Actions, ActionConst } from 'react-native-router-flux';
+import { asyncUserLogin, asyncUserLogout, cleanUserErrors, visitorLogin } from '../../actions/user-actions';
+import { setLoginRemember } from '../../actions/login-actions';
+import { setStoredUserLogin } from '../../device-storage/login';
 
 const mapStateToProps = (state) => {
   return {
@@ -11,19 +13,26 @@ const mapStateToProps = (state) => {
     errors: state.user.errors,
     email: state.user.email,
     password: state.user.password,
-    isVisitor: state.user.isVisitor
+    isVisitor: state.user.isVisitor,
+    rememberLogin: state.login.remember
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userLogin(userData) {
+    userLogin(data) {
       const callback = (loggedUser) => {
         Actions.Home({type: ActionConst.REPLACE});
+
+        dispatch(setLoginRemember(data.login.remember));
+        setStoredUserLogin({
+          rememberLogin: data.login.remember,
+          email: data.user.email,
+          password: data.user.password
+        });
       }
 
-      dispatch(asyncUserLogin(userData, callback));
-      dispatch(visitorLogin(false));
+      dispatch(asyncUserLogin(data.user, callback));
     },
 
     userLogout() {
