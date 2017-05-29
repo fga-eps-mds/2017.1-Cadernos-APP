@@ -9,7 +9,18 @@ import {
   Container
 } from 'native-base';
 
+import { getStoredUserLogin } from '../../device-storage/login';
+
 export default class Main extends React.Component {
+
+  componentDidMount() {
+    if (this.props.rememberLogin) {
+      getStoredUserLogin()
+        .then(data => {
+          this.props.setupUserLogin({ ...data });
+        });
+    }
+  }
 
   render() {
     return (

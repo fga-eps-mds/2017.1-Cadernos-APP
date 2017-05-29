@@ -30,7 +30,14 @@ describe("User Actions", () => {
   it("Set the entire user to the reducer", () => {
     const userData = {
       ...initialState.user,
-      id: 1, name: 'user test', email: 'testing@email.com', password: 'testingPassword'
+      id: 1, name: 'user test', email: 'testing@email.com', password: 'testingPassword',
+
+      sendingData: !initialState.user.sendingData,
+      isRegistered: !initialState.user.isRegistered,
+      authenticated: !initialState.user.authenticated,
+      isUpdated: !initialState.user.isUpdated,
+      errors: {name: ['some error here']},
+      isVisitor: !initialState.user.isVisitor
     };
 
     const reducerAction = userSet(userData);
@@ -41,6 +48,12 @@ describe("User Actions", () => {
     expect(reducerAction.user.email).to.equal(userData.email);
     expect(reducerAction.user.password).to.equal(userData.password);
 
+    expect(reducerAction.user.sendingData).to.not.eq(initialState.user.sendingData);
+    expect(reducerAction.user.isRegistered).to.not.eq(initialState.user.isRegistered);
+    expect(reducerAction.user.authenticated).to.not.eq(initialState.user.authenticated);
+    expect(reducerAction.user.isUpdated).to.not.eq(initialState.user.isUpdated);
+    expect(reducerAction.user.errors.name).to.include('some error here');
+    expect(reducerAction.user.isVisitor).to.not.eq(initialState.user.isVisitor);
   });
 
   it("Set the user errors to the reducer", () => {

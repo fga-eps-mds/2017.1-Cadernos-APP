@@ -1,4 +1,8 @@
 const initialState = {
+  login: {
+    remember: true
+  },
+
    // current logged user
   user: {
     id: 0,

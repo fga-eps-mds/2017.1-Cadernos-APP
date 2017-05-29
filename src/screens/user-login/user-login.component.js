@@ -11,7 +11,9 @@ import {
   Item,
   Input,
   Button,
-  Spinner
+  Spinner,
+  ListItem,
+  CheckBox
 } from 'native-base';
 
 import styles from './user-login.styles';
@@ -25,7 +27,8 @@ export default class UserLogin extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      remember: true
     }
   }
 
@@ -41,6 +44,28 @@ export default class UserLogin extends Component {
     }
 
     this.props.cleanUserErrors();
+
+    this.setState({
+      email: this.props.email,
+      password: this.props.password,
+      remember: this.props.rememberLogin
+    });
+  }
+
+  getUserData() {
+    const data = {
+      user: {
+        email: this.state.email,
+        password: this.state.password,
+        isVisitor: false
+      },
+
+      login: {
+        remember: this.state.remember
+      }
+    }
+
+    return data;
   }
 
   render() {
@@ -73,9 +98,16 @@ export default class UserLogin extends Component {
 
           {this.props.errors.error ?
             <InputErrorDisplay userLoginErrors={this.props.errors.error.user_authentication} />
-          :
+            :
             null
           }
+        </View>
+
+        <View style={{ flex: 1 }}>
+          <ListItem onPress={() => this.handleFieldOnChange('remember', !this.state.remember)}>
+            <CheckBox checked={this.state.remember} />
+            <Text style={{marginLeft: 10}}>Lembrar email e senha</Text>
+          </ListItem>
         </View>
 
         <View style={{ flex: 1 }}>
@@ -83,7 +115,7 @@ export default class UserLogin extends Component {
             <Spinner />
             :
             <Button warning block style={{ borderRadius: 30 }}
-              onPress={() => this.props.userLogin(this.state)}
+              onPress={() => this.props.userLogin(this.getUserData())}
             >
               <Text>ENTRAR</Text>
             </Button>
