@@ -20,15 +20,18 @@ import { Actions } from 'react-native-router-flux';
 export default class NavigationHeader extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    openDrawer: PropTypes.func.isRequired,
-    shouldGoBack: PropTypes.bool.isRequired
+    displayGoBack: PropTypes.bool.isRequired
+  };
+
+  static contextTypes = {
+    openDrawer: PropTypes.func.isRequired
   };
 
   render() {
     return (
       <Container>
         <Header>
-          {this.props.shouldGoBack ?
+          {this.props.displayGoBack ?
             <Left>
               <Button transparent onPress={() => Actions.pop()}>
                 <Icon name='arrow-back' />
@@ -40,11 +43,11 @@ export default class NavigationHeader extends Component {
 
 
           <Body>
-            <Title>{this.props.title}</Title>
+            <Title style={{fontSize: 14}}>{this.props.title}</Title>
           </Body>
 
           <Right>
-            <Button transparent onPress={this.props.openDrawer}>
+            <Button transparent onPress={this.context.openDrawer}>
               <Icon name='menu' />
             </Button>
           </Right>

@@ -1,9 +1,3 @@
-// Drawer actions
-export const DRAWER_DISPLAY_SELF = 'DRAWER_DISPLAY_SELF';
-export const DRAWER_DISPLAY_GO_BACK = 'DRAWER_DISPLAY_GO_BACK';
-export const DRAWER_TITLE = 'DRAWER_TITLE';
-export const DRAWER_SET = 'DRAWER_SET';
-
 // User actions
 export const USER_SET = 'USER_SET';
 export const USER_SENDING_DATA = 'USER_SENDING_DATA';

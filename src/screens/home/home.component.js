@@ -26,16 +26,6 @@ export default class HomeScreen extends Component {
     isVisitor: PropTypes.bool.isRequired
   }
 
-  static contextTypes = {
-    openDrawer: PropTypes.func.isRequired,
-    closeDrawer: PropTypes.func.isRequired
-  };
-
-  componentWillMount() {
-    this.context.closeDrawer();
-    this.props.setupDrawer();
-  }
-
   componentDidMount() {
     this.props.fetchBooks();
   }
@@ -49,9 +39,8 @@ export default class HomeScreen extends Component {
       <Container style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
           <NavigationHeader
-            openDrawer={this.context.openDrawer}
-            title={this.props.drawerData.title}
-            shouldGoBack={this.props.drawerData.displayGoBack}
+            title={"Meus cadernos"}
+            displayGoBack={false}
           />
         </View>
 
