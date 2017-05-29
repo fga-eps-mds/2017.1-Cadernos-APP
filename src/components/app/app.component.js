@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+import { Drawer, Container, View } from 'native-base';
 
 import SideBar from '../../screens/side-bar/side-bar.component'
 import NavigationHeader from '../navigation-header/navigation-header.component';
 import AppRouter from '../app-router/app-router.component';
-
-import { Drawer, Container, View } from 'native-base';
 
 export default class App extends Component {
 

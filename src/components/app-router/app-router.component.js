@@ -19,12 +19,14 @@ import {
 
 import ViewTask from '../../screens/view-task/view-task.component';
 import EditTask from '../../screens/edit-task/edit-task.component';
+import MyTasks from '../../screens/my-tasks/my-tasks.component';
 
 export default class AppRouter extends Component {
   render() {
     return (
       <Router hideNavBar={true}>
         <Scene key="Main" component={MainScreen} initial />
+        <Scene key="MyTasks" component={MyTasks} />
         <Scene key="ViewBookBaseCategories" component={ViewBookBaseCategories} />
         <Scene key="ViewBookBaseColaborators" component={ViewBookBaseColaborators} />
         <Scene key="ViewBookBaseTasks" component={ViewBookBaseTasks} />

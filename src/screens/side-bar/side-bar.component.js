@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+
+import { Actions } from 'react-native-router-flux';
 
 import {
   Container,
   Text,
+  Button,
   View,
   Content,
   CardItem,
@@ -15,6 +18,10 @@ import { Image } from 'react-native';
 import styles from './side-bar.styles';
 
 export default class SideBar extends Component {
+
+  myTasks = () => {
+    Actions.MyTasks();
+  }
 
   render() {
     return (
@@ -41,7 +48,9 @@ export default class SideBar extends Component {
 
           <View style={styles.textView2}>
             <Icon name="md-clipboard" />
-            <Text style={styles.text4}>Minhas Tarefas</Text>
+            <Button transparent onPress={this.myTasks}>
+              <Text style={styles.text4}>Minhas Tarefas</Text>
+            </Button>
           </View>
 
           <View style={styles.textView2}>
