@@ -7,7 +7,8 @@ import {
   Content,
   Text,
   Button,
-  View
+  View,
+  Icon
 } from 'native-base';
 
 import {
@@ -21,19 +22,31 @@ import TaskList from '../../components/task-list/task-list.component';
 
 export default class ViewBook extends React.Component {
 
+
+  getBookId(){
+    return this.props.book.id
+  }
+
   render() {
     return (
       <Container style={styles.container}>
         <View style={{ flex: 1 }}>
           <GoBack />
         </View>
-
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>
-            {this.props.book.title}
-          </Text>
-        </View>
-
+        <Container style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.title}>
+              {this.props.book.title}
+            </Text>
+          </View>
+          {this.props.user.id === this.props.book.userId ?
+            <Button danger small onPress={() => this.props.deleteBook(this.getBookId())} style={styles.deleteButton}>
+              <Icon name="md-close-circle" />
+            </Button>
+            :
+            null
+          }
+        </Container>
         <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
           <Image
             style={{ width: 240, height: 120 }}

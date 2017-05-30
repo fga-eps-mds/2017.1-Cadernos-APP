@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import ViewBookComponent from './view-book.component';
 
-import { bookSet } from '../../actions/book-actions';
+import { bookSet, asyncBookDelete } from '../../actions/book-actions';
+import { asyncBookListSet } from '../../actions/book-list-actions'
+import { Actions } from 'react-native-router-flux';
 
 const mapStateToProps = (state) => {
   return {
@@ -16,13 +18,19 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setSelectedBook(book) {
       dispatch(bookSet(book));
+    },
+    deleteBook(bookId) {
+
+        dispatch(asyncBookDelete(bookId));
+
+        Actions.pop();
+      }
     }
   }
-}
 
-const ViewBookContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-) (ViewBookComponent);
+  const ViewBookContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ViewBookComponent);
 
-export default ViewBookContainer;
+  export default ViewBookContainer;
