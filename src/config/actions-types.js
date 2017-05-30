@@ -24,3 +24,6 @@ export const BOOK_LIST_SET = 'BOOK_LIST_SET';
 export const BOOK_LIST_SET_SENDING_DATA = 'BOOK_LIST_SET_SENDING_DATA';
 export const BOOK_LIST_ADD_BOOK = 'BOOK_LIST_ADD_BOOK';
 export const BOOK_LIST_UPDATE_BOOK = 'BOOK_LIST_UPDATE_BOOK';
+
+// Tasks actions
+export const TASKS_SET = 'TASKS_SET';

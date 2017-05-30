@@ -35,7 +35,9 @@ const initialState = {
   bookList: {
     sendingData: false,
     books: []
-  }
+  },
+
+  tasks: []
 };
 
 export default initialState;
