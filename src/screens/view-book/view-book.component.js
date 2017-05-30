@@ -18,14 +18,22 @@ import styles from './view-book.styles';
 
 import GoBack from '../../components/go-back/go-back.component';
 import TaskList from '../../components/task-list/task-list.component';
+import NavigationHeader from '../../components/navigation-header/navigation-header.component';
 
 export default class ViewBook extends React.Component {
+
+  componentDidMount() {
+    this.props.fetchBookTasks(this.props.book);
+  }
 
   render() {
     return (
       <Container style={styles.container}>
         <View style={{ flex: 1 }}>
-          <GoBack />
+          <NavigationHeader
+            title={this.props.book.title}
+            displayGoBack={true}
+          />
         </View>
 
         <View style={{ flex: 1 }}>
@@ -42,7 +50,7 @@ export default class ViewBook extends React.Component {
         </View>
 
         <View style={{ flex: 4 }}>
-          <TaskList />
+          <TaskList tasks={this.props.tasks} />
         </View>
 
 

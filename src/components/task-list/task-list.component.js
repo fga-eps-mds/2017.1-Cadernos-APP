@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import {
   Container,
@@ -24,21 +24,20 @@ export default class TaskList extends Component {
 
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
-    const taskList = [
-      {id: 1, title: "AAA", bookId: 1, user: {name: 'Fulano'}},
-      {id: 2, title: "BBB", bookId: 1, user: {name: 'Fulano'}},
-      {id: 3, title: "CCC", bookId: 1, user: {name: 'Fulano'}},
-      {id: 4, title: "DDD", bookId: 1, user: {name: 'Fulano'}},
-      {id: 5, title: "EEE", bookId: 1, user: {name: 'Fulano'}},
-      {id: 6, title: "FFF", bookId: 1, user: {name: 'Fulano'}},
-      {id: 8, title: "GGG", bookId: 1, user: {name: 'Fulano'}},
-      {id: 9, title: "HHH", bookId: 1, user: {name: 'Fulano'}},
-      {id: 10, title: "III", bookId: 1, user: {name: 'Fulano'}},
-    ]
-
     this.state = {
-      dataSource: ds.cloneWithRows(taskList)
+      dataSource: ds.cloneWithRows([])
     };
+  }
+
+  static propTypes = {
+    tasks: PropTypes.array.isRequired
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log("AQUUIIII");
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(nextProps.tasks)
+    });
   }
 
   render() {
@@ -61,6 +60,7 @@ export default class TaskList extends Component {
             renderSeparator={
               (sectionId, rowId) => <View key={rowId} style={styles.divisor} />
             }
+            enableEmptySections={true}
           />
         </View>
       </Container>
