@@ -27,3 +27,4 @@ export const BOOK_LIST_UPDATE_BOOK = 'BOOK_LIST_UPDATE_BOOK';
 
 // Tasks actions
 export const TASKS_SET = 'TASKS_SET';
+export const TASKS_DELETE = 'TASKS_DELETE';

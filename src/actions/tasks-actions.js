@@ -1,4 +1,4 @@
-import { TASKS_SET } from '../config/actions-types';
+import { TASKS_SET, TASKS_DELETE } from '../config/actions-types';
 
 import axios from '../config/axios';
 
@@ -9,12 +9,17 @@ export const setTasks = (tasks=[]) => {
   }
 }
 
+export const taskDelete = (task) => {
+  return {
+    type: TASKS_DELETE,
+    task
+  }
+}
+
 export const asyncSetTasks = (book) => {
   return (dispatch) => {
     axios.get(`/books/${book.id}/tasks`)
       .then(response => {
-        console.log("TASKS !");
-        console.log(response.data);
         dispatch(setTasks(response.data));
       })
       .catch(err => {
@@ -23,5 +28,20 @@ export const asyncSetTasks = (book) => {
       });
 
     //dispatch(setTasks(tasks));
+  }
+}
+
+
+export const asyncTaskDelete = (task, callBack) => {
+  return (dispatch) => {
+    axios.delete(`/tasks/${task.id}`)
+      .then(response => {
+        dispatch(taskDelete(task));
+        callBack(response);
+      })
+      .catch(err =>{
+        console.log(`Erro while deleting task`);
+        console.log(err);
+      })
   }
 }
