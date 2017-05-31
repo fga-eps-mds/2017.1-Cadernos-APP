@@ -11,6 +11,7 @@ import ViewBookBaseTasks from './view-book-base/view-book-base-tasks.component';
 import ViewBookBaseCategories from './view-book-base/view-book-base-categories.component';
 import ViewBookBaseColaborators from './view-book-base/view-book-base-colaborators.component';
 import MyTasks from './my-tasks/my-tasks.component';
+import ViewTask from './view-task/view-task.container'
 
 export {
   CreateUserScreen,
@@ -25,5 +26,6 @@ export {
   ViewBookBaseTasks,
   ViewBookBaseCategories,
   ViewBookBaseColaborators,
-  MyTasks
+  MyTasks,
+  ViewTask
 }

@@ -14,10 +14,10 @@ import {
   ProfileScreen,
   ViewBookBaseTasks,
   ViewBookBaseCategories,
-  ViewBookBaseColaborators
+  ViewBookBaseColaborators,
+  ViewTask
 } from '../../screens';
 
-import ViewTask from '../../screens/view-task/view-task.component';
 import EditTask from '../../screens/edit-task/edit-task.component';
 import MyTasks from '../../screens/my-tasks/my-tasks.component';
 

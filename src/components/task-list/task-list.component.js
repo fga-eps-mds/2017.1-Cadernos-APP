@@ -34,7 +34,6 @@ export default class TaskList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("AQUUIIII");
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(nextProps.tasks)
     });
