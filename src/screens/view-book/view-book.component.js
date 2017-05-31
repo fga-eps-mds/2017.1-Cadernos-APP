@@ -8,11 +8,13 @@ import {
   Text,
   Button,
   View,
-  Icon
+  Icon,
+  ActionSheet
 } from 'native-base';
 
 import {
-  Image
+  Image,
+  Alert
 } from 'react-native';
 
 import styles from './view-book.styles';
@@ -20,10 +22,16 @@ import styles from './view-book.styles';
 import GoBack from '../../components/go-back/go-back.component';
 import TaskList from '../../components/task-list/task-list.component';
 
+var BUTTONS = ['Sim', 'Não']
+var YES_INDEX = 1;
+var NO_INDEX = 2;
 export default class ViewBook extends React.Component {
+  constructor(props) {
+    super(props);
+    this.actionSheet = null;
+  }
 
-
-  getBookId(){
+  getBookId() {
     return this.props.book.id
   }
 
@@ -40,9 +48,21 @@ export default class ViewBook extends React.Component {
             </Text>
           </View>
           {this.props.user.id === this.props.book.userId ?
-            <Button danger small onPress={() => this.props.deleteBook(this.getBookId())} style={styles.deleteButton}>
-              <Icon name="md-close-circle" />
-            </Button>
+            <View>
+              <Button danger small onPress={() =>
+                Alert.alert(
+                  'Deletar o caderno...',
+                  'Deseja deletar o caderno ' + this.props.book.title + '?',
+                  [
+                    { text: 'Sim', onPress: () => this.props.deleteBook(this.getBookId()) },
+                    { text: 'Não', onPress: () => console.log('apertou não mizeravi') }
+                  ],
+                  { cancelable: false }
+                )} style={styles.deleteButton}>
+                <Icon name="md-close-circle" />
+              </Button>
+              <ActionSheet ref={(c) => { this.actionSheet = c; }} />
+            </View>
             :
             null
           }
