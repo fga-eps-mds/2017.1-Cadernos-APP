@@ -18,7 +18,7 @@ import {
 } from 'native-base';
 
 describe("ViewBook Component", () => {
-  it("Display edit button for authorized users", () => {
+  it("Display edit and delete button for authorized users", () => {
     const book = {
       id: 1,
       userId: 1,
@@ -33,7 +33,7 @@ describe("ViewBook Component", () => {
       <ViewBookComponent user={user} book={book}/>
     );
 
-    expect(wrapper.find(Button).length).to.equal(1);
+    expect(wrapper.find(Button).length).to.equal(2);
   });
 
   it("Not displaying edit button for unauthorized users", () => {

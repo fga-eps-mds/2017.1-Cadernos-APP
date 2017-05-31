@@ -7,11 +7,15 @@ import {
   Content,
   Text,
   Button,
-  View
+  View,
+  Icon,
+  ActionSheet,
+  Spinner
 } from 'native-base';
 
 import {
-  Image
+  Image,
+  Alert
 } from 'react-native';
 
 import styles from './view-book.styles';
@@ -19,7 +23,16 @@ import styles from './view-book.styles';
 import GoBack from '../../components/go-back/go-back.component';
 import TaskList from '../../components/task-list/task-list.component';
 
+
 export default class ViewBook extends React.Component {
+  constructor(props) {
+    super(props);
+    this.actionSheet = null;
+  }
+
+  getBookId() {
+    return this.props.book.id
+  }
 
   render() {
     return (
@@ -27,13 +40,32 @@ export default class ViewBook extends React.Component {
         <View style={{ flex: 1 }}>
           <GoBack />
         </View>
-
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>
-            {this.props.book.title}
-          </Text>
-        </View>
-
+        <Container style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={{ flex: 1 }}>
+            <Text style={styles.title}>
+              {this.props.book.title}
+            </Text>
+          </View>
+          {this.props.user.id === this.props.book.userId ?
+            <View>
+              <Button danger small onPress={() =>
+                Alert.alert(
+                  'Deletar o caderno...',
+                  'Deseja deletar o caderno ' + this.props.book.title + '?',
+                  [
+                    { text: 'Sim', onPress: () => this.props.deleteBook(this.getBookId()) },
+                    { text: 'Não', onPress: () => console.log('apertou não mizeravi') }
+                  ],
+                  { cancelable: false }
+                )} style={styles.deleteButton}>
+                <Icon name="md-close-circle" />
+              </Button>
+              <ActionSheet ref={(c) => { this.actionSheet = c; }} />
+            </View>
+            :
+            null
+          }
+        </Container>
         <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
           <Image
             style={{ width: 240, height: 120 }}
@@ -48,9 +80,13 @@ export default class ViewBook extends React.Component {
 
         {this.props.user.id === this.props.book.userId ? //Talvez isVisitor bugue aqui, verificar mais tarde
           <View style={{ flex: 1 }}>
+            {this.props.sendingData ?
+            <Spinner />
+            :
             <Button block bordered warning onPress={() => Actions.EditBook()}>
               <Text>Editar caderno</Text>
             </Button>
+            }
           </View>
           :
           null
