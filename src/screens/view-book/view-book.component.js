@@ -23,9 +23,7 @@ import styles from './view-book.styles';
 import GoBack from '../../components/go-back/go-back.component';
 import TaskList from '../../components/task-list/task-list.component';
 
-var BUTTONS = ['Sim', 'Não']
-var YES_INDEX = 1;
-var NO_INDEX = 2;
+
 export default class ViewBook extends React.Component {
   constructor(props) {
     super(props);
