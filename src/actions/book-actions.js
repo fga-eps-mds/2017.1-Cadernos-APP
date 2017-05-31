@@ -161,13 +161,15 @@ export const asyncUpdateBookCover = ({
   }
 }
 
-export const asyncBookDelete = (bookId) => {
+export const asyncBookDelete = (bookId, callback) => {
   return (dispatch) => {
+    dispatch(bookSetSendingData(true));
     axios.delete(`/books/${bookId}`, {
       id: bookId
     })
       .then(response => {
         dispatch(asyncBookListSet());
+        callback();
       })
       .catch(err => {
         if (err.response && err.response.status === 422) {

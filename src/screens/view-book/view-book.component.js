@@ -9,7 +9,8 @@ import {
   Button,
   View,
   Icon,
-  ActionSheet
+  ActionSheet,
+  Spinner
 } from 'native-base';
 
 import {
@@ -81,9 +82,13 @@ export default class ViewBook extends React.Component {
 
         {this.props.user.id === this.props.book.userId ? //Talvez isVisitor bugue aqui, verificar mais tarde
           <View style={{ flex: 1 }}>
+            {this.props.sendingData ?
+            <Spinner />
+            :
             <Button block bordered warning onPress={() => Actions.EditBook()}>
               <Text>Editar caderno</Text>
             </Button>
+            }
           </View>
           :
           null
