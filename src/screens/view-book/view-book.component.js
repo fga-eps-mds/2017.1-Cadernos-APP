@@ -7,7 +7,10 @@ import {
   Content,
   Text,
   Button,
-  View
+  View,
+  Tabs,
+  Tab,
+
 } from 'native-base';
 
 import {
@@ -36,21 +39,20 @@ export default class ViewBook extends React.Component {
           />
         </View>
 
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>
-            {this.props.book.title}
-          </Text>
-        </View>
+        <View style={{ flex: 8 }}>
+          <Tabs>
+            <Tab heading="Tarefas">
+              <TaskList tasks={this.props.tasks} />
+            </Tab>
 
-        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
-          <Image
-            style={{ width: 240, height: 120 }}
-            source={{ uri: this.props.book.coverOriginal }}
-          />
-        </View>
+            <Tab heading="Categorias">
+              <Text>Um texto away</Text>
+            </Tab>
 
-        <View style={{ flex: 4 }}>
-          <TaskList tasks={this.props.tasks} />
+            <Tab heading="Colaboradores">
+              <Text>Um texto away</Text>
+            </Tab>
+          </Tabs>
         </View>
 
 
