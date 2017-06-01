@@ -42,7 +42,10 @@ export default class ViewBook extends React.Component {
         <View style={{ flex: 8 }}>
           <Tabs>
             <Tab heading="Tarefas">
-              <TaskList tasks={this.props.tasks} />
+              <TaskList
+                tasks={this.props.tasks}
+                isVisitor={this.props.isVisitor}
+              />
             </Tab>
 
             <Tab heading="Categorias">

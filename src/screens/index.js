@@ -11,8 +11,10 @@ import ViewBookBaseTasks from './view-book-base/view-book-base-tasks.component';
 import ViewBookBaseCategories from './view-book-base/view-book-base-categories.component';
 import ViewBookBaseColaborators from './view-book-base/view-book-base-colaborators.component';
 import MyTasks from './my-tasks/my-tasks.component';
-import ViewTask from './view-task/view-task.container'
+import ViewTask from './view-task/view-task.container';
+import CreateTaskScreen from './create-task/create-task.container'
 
+console.log(CreateTaskScreen);
 export {
   CreateUserScreen,
   MainScreen,
@@ -27,5 +29,6 @@ export {
   ViewBookBaseCategories,
   ViewBookBaseColaborators,
   MyTasks,
-  ViewTask
+  ViewTask,
+  CreateTaskScreen
 }

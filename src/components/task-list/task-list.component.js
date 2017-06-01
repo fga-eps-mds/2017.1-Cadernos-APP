@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { Actions } from 'react-native-router-flux';
 
 import {
   Container,
@@ -7,7 +8,8 @@ import {
   Text,
   List,
   ListItem,
-  Picker
+  Picker,
+  Button
 } from 'native-base';
 
 import { ListView } from 'react-native';
@@ -30,7 +32,8 @@ export default class TaskList extends Component {
   }
 
   static propTypes = {
-    tasks: PropTypes.array.isRequired
+    tasks: PropTypes.array.isRequired,
+    isVisitor: PropTypes.bool.isRequired
   }
 
   componentWillReceiveProps(nextProps) {
@@ -62,6 +65,19 @@ export default class TaskList extends Component {
             enableEmptySections={true}
           />
         </View>
+
+        {this.props.isVisitor ?
+          null
+          :
+          <View style={{ flex: 1, padding: 5, justifyContent: 'center' }}>
+            <Button block warning bordered rounded small
+              key="createBookActionButton"
+              onPress={() => Actions.CreateTask()}
+            >
+              <Text>Criar tarefa</Text>
+            </Button>
+          </View>
+        }
       </Container>
     );
   }
