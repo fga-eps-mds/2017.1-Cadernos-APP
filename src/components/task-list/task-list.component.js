@@ -14,8 +14,6 @@ import {
 
 import { ListView } from 'react-native';
 
-const { Item } = Picker;
-
 import styles from './task-list.styles';
 
 import TaskListItem from '../task-list-item/task-list-item.component';
@@ -33,7 +31,9 @@ export default class TaskList extends Component {
 
   static propTypes = {
     tasks: PropTypes.array.isRequired,
-    isVisitor: PropTypes.bool.isRequired
+    isVisitor: PropTypes.bool.isRequired,
+    book: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,15 +45,21 @@ export default class TaskList extends Component {
   render() {
     return (
       <Container>
-        <View style={{ flex: 1}}>
+        <View style={{ flex: 1 }}>
           <Picker>
-            <Item label="Caderno 01" />
-            <Item label="Caderno 02" />
-            <Item label="Caderno 03" />
+            {this.props.categories.map(category => {
+              return (
+                <Picker.Item
+                  label={category.name}
+                  value={category.id}
+                  key={category.name}
+                />
+              );
+            })}
           </Picker>
         </View>
 
-        <View style={{ flex: 3}}>
+        <View style={{ flex: 3 }}>
           <ListView
             dataSource={this.state.dataSource}
             renderRow={(rowData) => (
@@ -72,7 +78,10 @@ export default class TaskList extends Component {
           <View style={{ flex: 1, padding: 5, justifyContent: 'center' }}>
             <Button block warning bordered rounded small
               key="createBookActionButton"
-              onPress={() => Actions.CreateTask()}
+              onPress={() => Actions.CreateTask({
+                book: this.props.book,
+                user: this.props.user,
+              })}
             >
               <Text>Criar tarefa</Text>
             </Button>

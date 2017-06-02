@@ -10,7 +10,6 @@ import {
   View,
   Tabs,
   Tab,
-
 } from 'native-base';
 
 import {
@@ -27,6 +26,7 @@ export default class ViewBook extends React.Component {
 
   componentDidMount() {
     this.props.fetchBookTasks(this.props.book);
+    this.props.fetchCategories();
   }
 
   render() {
@@ -45,6 +45,9 @@ export default class ViewBook extends React.Component {
               <TaskList
                 tasks={this.props.tasks}
                 isVisitor={this.props.isVisitor}
+                book={this.props.book}
+                user={this.props.user}
+                categories={this.props.categories}
               />
             </Tab>
 

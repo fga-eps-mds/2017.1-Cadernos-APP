@@ -1,13 +1,52 @@
 import React, { Component, PropTypes } from 'react'
-import { Container, Text, Button, Content, View, Input, Item, Textarea } from 'native-base'
+import {
+  Container,
+  Text,
+  Button,
+  Content,
+  View,
+  Input,
+  Item,
+  Textarea,
+  Picker,
+  Spinner
+} from 'native-base'
 import Navigation from '../../components/navigation-header/navigation-header.component'
 import { Dimensions } from 'react-native'
 
 const { height, width } = Dimensions.get('window');
 
 export default class CreateTask extends Component {
-  static propTypes = {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      title: '',
+      content: '',
+      category: 0
+    }
+  }
+
+  static propTypes = {
+    createTask: PropTypes.func.isRequired,
+    categories: PropTypes.array.isRequired,
+    sendingData: PropTypes.bool.isRequired
+  }
+
+  componentDidMount() {
+    this.setState({
+      category: this.props.categories[0].id
+    })
+  }
+
+  getData() {
+    return {
+      title: this.state.title,
+      content: this.state.content,
+      user_id: this.props.user.id,
+      book_id: this.props.book.id,
+      category_id: this.state.category
+    };
   }
 
   render() {
@@ -16,23 +55,49 @@ export default class CreateTask extends Component {
         <View style={{ flex: 1 }}>
           <Navigation title='Criar Tarefa' displayGoBack={true} />
         </View>
-        <View style={{ flex: 6, padding: 5 }}>
-          <Item>
-            <Input
-              placeholder='title'
-            />
-          </Item>
-          <Item>
-            <Textarea style={{ marginTop: 10, width, height: 200 }}
-              placeholder='Conteudo'
-            />
-          </Item>
 
+        <View style={{ flex: 1 }}>
+          <Picker
+            selectedValue={this.state.category}
+            onValueChange={(value) => this.setState({category: value})}
+          >
+            {this.props.categories.map(category => {
+              return (
+                <Picker.Item
+                  label={category.name}
+                  value={category.id}
+                  key={category.name}
+                />
+              );
+            })}
+          </Picker>
         </View>
+
+        <View style={{ flex: 5, padding: 5 }}>
+          <Item>
+            <Input placeholder='title'
+              value={this.state.title}
+              onChangeText={(text) => this.setState({ title: text })} />
+          </Item>
+          <Item>
+            <Textarea style={{ marginTop: 10, width: width * 0.9, height: 150 }}
+              placeholder='Conteudo'
+              value={this.state.content}
+              onChangeText={(text) => this.setState({ content: text })} />
+          </Item>
+        </View>
+
         <View style={{ flex: 2 }}>
-          <Button block success bordered rounded >
-            <Text> Criar </Text>
-          </Button>
+          {this.props.sendingData ?
+            <Spinner />
+          :
+            <Button block success bordered rounded
+              onPress={() => this.props.createTask(this.getData())}
+            >
+              <Text>Criar</Text>
+            </Button>
+          }
+
           <Button style={{ marginTop: 10 }} block warning bordered rounded >
             <Text> Cancelar </Text>
           </Button>
