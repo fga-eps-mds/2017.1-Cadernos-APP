@@ -37,7 +37,11 @@ const initialState = {
     books: []
   },
 
-  tasks: []
+  tasks: [],
+
+  singleTask: {},
+
+  categories: []
 };
 
 export default initialState;
