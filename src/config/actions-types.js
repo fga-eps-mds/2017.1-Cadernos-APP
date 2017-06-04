@@ -37,3 +37,6 @@ export const SINGLE_TASK_CLEAR = 'SINGLE_TASK_CLEAR';
 
 // Categories actions
 export const CATEGORIES_SET = 'CATEGORIES_SET';
+
+// Invites actions
+export const INVITES_SET = 'INVITES_SET'
