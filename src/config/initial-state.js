@@ -31,6 +31,8 @@ const initialState = {
     edited: false
   },
 
+  invites: [],
+
   // Book list from screen after loggin or logged user books
   bookList: {
     sendingData: false,
@@ -53,7 +55,7 @@ const initialState = {
     errors: {}
   },
 
-categories: []
+  categories: []
 };
 
 export default initialState;
