@@ -15,7 +15,9 @@ import {
 import buttonStyle from '../../global-styles/button.styles';
 
 import Navigation from '../../components/navigation-header/navigation-header.component'
-import { Dimensions } from 'react-native'
+import ListErrors from '../../components/list-errors/list-errors.component';
+
+import { Dimensions } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
@@ -42,6 +44,10 @@ export default class CreateTask extends Component {
     })
   }
 
+  componentWillUnmount() {
+    this.props.clearTaskData();
+  }
+
   getData() {
     return {
       title: this.state.title,
@@ -62,7 +68,7 @@ export default class CreateTask extends Component {
         <View style={{ flex: 1 }}>
           <Picker mode="dropdown"
             selectedValue={this.state.category}
-            onValueChange={(value) => this.setState({category: value})}
+            onValueChange={(value) => this.setState({ category: value })}
           >
             {this.props.categories.map(category => {
               return (
@@ -77,25 +83,37 @@ export default class CreateTask extends Component {
         </View>
 
         <View style={{ flex: 5, padding: 5 }}>
-          <Item>
-            <Input placeholder='title'
-              value={this.state.title}
-              onChangeText={(text) => this.setState({ title: text })} />
-          </Item>
-          <Item>
-            <Textarea style={{ marginTop: 10, width: width * 0.9, height: 150 }}
-              placeholder='Conteudo'
-              value={this.state.content}
-              onChangeText={(text) => this.setState({ content: text })} />
-          </Item>
+          <Content>
+            <Item>
+              <Input placeholder='title'
+                value={this.state.title}
+                onChangeText={(text) => this.setState({ title: text })} />
+            </Item>
+            {this.props.errors && this.props.errors.title ?
+              <ListErrors errors={this.props.errors.title} />
+              :
+              null
+            }
+
+            <Item>
+              <Textarea style={{ marginTop: 10, width: width * 0.9, height: 150 }}
+                placeholder='Conteudo'
+                value={this.state.content}
+                onChangeText={(text) => this.setState({ content: text })} />
+            </Item>
+            {this.props.errors && this.props.errors.content ?
+              <ListErrors errors={this.props.errors.content} />
+              :
+              null
+            }
+          </Content>
         </View>
 
         <View style={{ flex: 2 }}>
           {this.props.sendingData ?
             <Spinner />
-          :
-            <Button block
-              onPress={() => this.props.createTask(this.getData())}
+            :
+            <Button block onPress={() => this.props.createTask(this.getData())}
               style={{...buttonStyle.button, ...buttonStyle.default}}>
               <Text>Criar</Text>
             </Button>

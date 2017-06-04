@@ -18,7 +18,7 @@ import {
 } from 'native-base';
 
 describe("ViewBook Component", () => {
-  it("Display edit button for authorized users", () => {
+  it("Display edit and delete button for authorized users", () => {
     const book = {
       id: 1,
       userId: 1,
@@ -30,13 +30,19 @@ describe("ViewBook Component", () => {
     }
 
     const wrapper = shallow(
-      <ViewBookComponent user={user} book={book}/>
+      <ViewBookComponent
+        user={user}
+        book={book}
+        tasks={[]}
+        isVisitor={false}
+        sendingData={false}
+      />
     );
 
-    expect(wrapper.find(Button).length).to.equal(1);
+    expect(wrapper.find(Button).length).to.equal(2);
   });
 
-  it("Not displaying edit button for unauthorized users", () => {
+  it("Disable edit and delete buttons for unauthorized users", () => {
     const book = {
       id: 1,
       userId: 10,
@@ -48,29 +54,20 @@ describe("ViewBook Component", () => {
     }
 
     const wrapper = shallow(
-      <ViewBookComponent user={user} book={book}/>
-    );
-
-    expect(wrapper.find(Button).length).to.equal(0);
-  });
-
-  it("Wont display a button when user is visitor", () => {
-    const book = {
-      title: ''
-    }
-
-    const user = {
-      id: 0
-    }
-
-    const wrapper = shallow(
       <ViewBookComponent
-        isVisitor={true}
-        book={book}
         user={user}
+        book={book}
+        tasks={[]}
+        isVisitor={false}
+        sendingData={false}
       />
     );
-    expect(wrapper.find(Button).length).to.equal(0);
+
+    const editButton = wrapper.findWhere(c => c.key() == "edit-book-button")
+    const deleteButton = wrapper.findWhere(c => c.key() == "delete-book-button")
+
+    expect(editButton.prop("disabled")).to.equal(true);
+    expect(deleteButton.prop("disabled")).to.equal(true);
   });
 
 });

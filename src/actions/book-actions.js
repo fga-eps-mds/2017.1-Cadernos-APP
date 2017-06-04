@@ -10,6 +10,7 @@ import axios, { getBaseUrl } from '../config/axios';
 
 import initialState from '../config/initial-state';
 
+import { asyncBookListSet } from '../actions/book-list-actions'
 
 export const bookSet = ({
   id, title, userId, coverOriginal, coverMedium, coverThumb,
@@ -64,7 +65,6 @@ export const bookSetEdited = (edited) => {
   }
 }
 
-
 export const asyncBookSet = (bookData, callback) => {
   return (dispatch) => {
     dispatch(bookSetSendingData(true));
@@ -73,37 +73,37 @@ export const asyncBookSet = (bookData, callback) => {
       title: bookData.title,
       user_id: bookData.loggedUserId
     })
-    .then(response => {
-      if (response.data && response.data.id) {
-        const book = {
-          id: response.data.id,
-          title: response.data.title,
-          userId: response.data.user_id,
-          coverOriginal: `${getBaseUrl()}${response.data.cover_originalr}`,
-          coverMedium: `${getBaseUrl()}${response.data.cover_medium}`,
-          coverThumb: `${getBaseUrl()}${response.data.cover_thumb}`,
-          created: true,
-          errors: {},
-          sendingData: false
+      .then(response => {
+        if (response.data && response.data.id) {
+          const book = {
+            id: response.data.id,
+            title: response.data.title,
+            userId: response.data.user_id,
+            coverOriginal: `${getBaseUrl()}${response.data.cover_originalr}`,
+            coverMedium: `${getBaseUrl()}${response.data.cover_medium}`,
+            coverThumb: `${getBaseUrl()}${response.data.cover_thumb}`,
+            created: true,
+            errors: {},
+            sendingData: false
+          }
+
+          dispatch(bookSet(book));
+
+          callback(book);
+        }
+      })
+      .catch(err => {
+        if (err.response && err.response.status === 422) {
+          dispatch(bookSetErrors(err.response.data));
         }
 
-        dispatch(bookSet(book));
+        console.log('ERROR while editing book');
+        console.log(err);
 
-        callback(book);
-      }
-    })
-    .catch(err => {
-      if (err.response && err.response.status === 422) {
-        dispatch(bookSetErrors(err.response.data));
-      }
-
-      console.log('ERROR while editing book');
-      console.log(err);
-
-      // to when the user try to create another book,
-      // the screen won't open with a loading on the send button
-      dispatch(bookSetSendingData(false));
-    });
+        // to when the user try to create another book,
+        // the screen won't open with a loading on the send button
+        dispatch(bookSetSendingData(false));
+      });
   }
 }
 
@@ -114,22 +114,22 @@ export const asyncEditBookSet = (bookData, callback) => {
     axios.patch(`/books/${bookData.id}`, {
       title: bookData.title
     })
-    .then(response => {
-      dispatch(bookSetEdited(true));
-      dispatch(bookSet({...response.data}));
+      .then(response => {
+        dispatch(bookSetEdited(true));
+        dispatch(bookSet({ ...response.data }));
 
-      callback(response.data);
-    })
-    .catch(err => {
-      if (err.response && err.response.status === 422) {
-        dispatch(bookSetErrors(err.response.data));
-      }
+        callback(response.data);
+      })
+      .catch(err => {
+        if (err.response && err.response.status === 422) {
+          dispatch(bookSetErrors(err.response.data));
+        }
 
-      console.log('ERROR while editing book');
-      console.log(err);
+        console.log('ERROR while editing book');
+        console.log(err);
 
-      dispatch(bookSetSendingData(false));
-    });
+        dispatch(bookSetSendingData(false));
+      });
   }
 }
 
@@ -142,18 +142,40 @@ export const asyncUpdateBookCover = ({
     axios.post(`/books/${id}/cover`, {
       cover_base: imageBase64
     }, { timeout: 20000 })
-    .then(response => {
-      if (response.data.success) {
-        dispatch(bookSet(response.data.book));
-        callback(response.data.book);
-      } else {
-        console.log("API fail to update cover");
-        console.log(response.data.success);
-      }
+      .then(response => {
+        if (response.data.success) {
+          dispatch(bookSet(response.data.book));
+          callback(response.data.book);
+        } else {
+          console.log("API fail to update cover");
+          console.log(response.data.success);
+        }
+      })
+      .catch(err => {
+        console.log('Error while uploading cover');
+        console.log(err);
+      });
+  }
+}
+
+export const asyncBookDelete = (bookId, callback) => {
+  return (dispatch) => {
+    dispatch(bookSetSendingData(true));
+    axios.delete(`/books/${bookId}`, {
+      id: bookId
     })
-    .catch(err => {
-      console.log('Error while uploading cover');
-      console.log(err);
-    });
+      .then(response => {
+        dispatch(asyncBookListSet());
+        callback();
+      })
+      .catch(err => {
+        if (err.response && err.response.status === 422) {
+          dispatch(bookSetErrors(err.response.data));
+        }
+
+        console.log('ERROR while deleting book');
+        console.log(err);
+
+      });
   }
 }

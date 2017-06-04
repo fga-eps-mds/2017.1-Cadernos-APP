@@ -1,11 +1,12 @@
-import { SINGLE_TASK_SET, SINGLE_TASK_SENDING_DATA } from '../config/actions-types';
+import { SINGLE_TASK_SET, SINGLE_TASK_SENDING_DATA, SINGLE_TASK_CLEAR } from '../config/actions-types';
 
+import initialState from '../config/initial-state';
 import axios from '../config/axios';
 
-export const setSingleTask = ({ }) => {
+export const setSingleTask = (singleTask={...initialState.singleTask}) => {
   return {
     type: SINGLE_TASK_SET,
-    singleTask: {}
+    singleTask
   }
 }
 
@@ -16,6 +17,12 @@ export const setSingleTaskSendingData = (sendingData) => {
   }
 }
 
+export const clearSingleTask = () => {
+  return (dispatch) => {
+    dispatch(setSingleTask(initialState.singleTask));
+  }
+}
+
 export const asyncSetSingleTask = (taskData, callback) => {
   return (dispatch) => {
     dispatch(setSingleTaskSendingData(true));
@@ -23,13 +30,24 @@ export const asyncSetSingleTask = (taskData, callback) => {
     axios.post('/tasks', {
       task: taskData
     })
-    .then(response => {
-      dispatch(setSingleTaskSendingData(false));
-      callback(response.data);
-    })
-    .catch(err => {
-      console.log("Error while creating task:");
-      console.warn(err);
-    });
+      .then(response => {
+        callback(response.data);
+      })
+      .catch(err => {
+        if (err.response &&
+          err.response.data &&
+          err.response.status === 422
+        ) {
+          dispatch(setSingleTask({
+            errors: err.response.data
+          }));
+        } else {
+          console.log("Error while creating task:");
+          console.warn(err);
+        }
+      })
+      .finally(() => {
+        dispatch(setSingleTaskSendingData(false));
+      });
   }
 }
