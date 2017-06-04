@@ -19,8 +19,17 @@ import styles from './side-bar.styles';
 
 export default class SideBar extends Component {
 
+  static contextTypes = {
+    closeDrawer: PropTypes.func.isRequired
+  };
+
   myTasks = () => {
     Actions.MyTasks();
+  }
+
+  MyInvites = () => {
+    Actions.InviteList();
+    this.context.closeDrawer();
   }
 
   render() {
@@ -55,7 +64,9 @@ export default class SideBar extends Component {
 
           <View style={styles.textView2}>
             <Icon name="md-mail" />
-            <Text style={styles.text4}>Convites de colaraboração</Text>
+            <Button transparent onPress={() => this.MyInvites()}>
+              <Text style={styles.text4}>Convites de colaboração</Text>
+            </Button>
           </View>
 
         </View>
