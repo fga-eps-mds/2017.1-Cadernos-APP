@@ -46,7 +46,7 @@ export default class TaskList extends Component {
     return (
       <Container>
         <View style={{ flex: 1 }}>
-          <Picker>
+          <Picker mode="dropdown">
             {this.props.categories.map(category => {
               return (
                 <Picker.Item
@@ -81,8 +81,7 @@ export default class TaskList extends Component {
               onPress={() => Actions.CreateTask({
                 book: this.props.book,
                 user: this.props.user,
-              })}
-            >
+              })}>
               <Text>Criar tarefa</Text>
             </Button>
           </View>
