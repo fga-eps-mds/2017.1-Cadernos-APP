@@ -113,7 +113,7 @@ export default class ViewBook extends React.Component {
             </Tab>
 
             <Tab heading="Colaboradores">
-              <List>
+              <List style={{flex: 4}}>
                 <ListItem>
                   <Text>Colaborador 1</Text>
                 </ListItem>
@@ -126,6 +126,7 @@ export default class ViewBook extends React.Component {
                   <Text>Colaborador 3</Text>
                 </ListItem>
               </List>
+              <View style={{flex: 1, justifyContent: 'center', alignSelf: 'center'}}>
               <Button bordered rounded small info
                 key="invite-collaborator-button"
                 disabled={this.props.user.id !== this.props.book.userId}
@@ -137,10 +138,10 @@ export default class ViewBook extends React.Component {
                 key="invite-collaborator-list-button"
                 disabled={this.props.user.id !== this.props.book.userId}
               >
-                <Text>Convites pendentes</Text>
+                <Text>  Convites pendentes </Text>
               </Button>
 
-
+              </View>
 
             </Tab>
           </Tabs>
