@@ -3,7 +3,7 @@ const initialState = {
     remember: true
   },
 
-   // current logged user
+  // current logged user
   user: {
     id: 0,
     name: '',
@@ -39,9 +39,21 @@ const initialState = {
 
   tasks: [],
 
-  singleTask: {},
+  singleTask: {
+    id: 0,
+    title: "",
+    content: "",
+    book_id: 0,
+    user_id: 0,
+    category_id: 0,
+    documents: [],
+    images: [],
+    user: {},
+    sendingData: false,
+    errors: {}
+  },
 
-  categories: []
+categories: []
 };
 
 export default initialState;
