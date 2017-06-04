@@ -25,25 +25,25 @@ export default class InviteList extends Component {
     });
   }
 
+  componentDidMount() {
+    this.props.getInvites(this.props.user)
+  }
+
   render() {
     return (
-      <Container style={{flex: 1}}>
-        <NavigationHeader style={{flex: 1}}
+      <Container style={{ flex: 1 }}>
+        <NavigationHeader style={{ flex: 1 }}
           title={"Meus convites"}
           displayGoBack={true} />
-        <List style={{flex: 6}}>
-          <ListItem>
-            <Text>Convite 1</Text>
-          </ListItem>
-          <ListItem>
-            <Text>Convite 2</Text>
-          </ListItem>
-          <ListItem>
-            <Text>Convite 3</Text>
-          </ListItem>
-          <ListItem>
-            <Text>Convite 4</Text>
-          </ListItem>
+        <List style={{ flex: 6 }}>
+          {this.props.invites.map(invite => {
+            return (
+              <ListItem key={invite.id} >
+
+                <Text>{invite.sender_name + " te enviou um convite para colaborar com " + invite.book_title}</Text>
+              </ListItem>
+            );
+          })}
         </List>
 
 
