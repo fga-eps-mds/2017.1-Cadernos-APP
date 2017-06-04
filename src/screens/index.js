@@ -13,6 +13,7 @@ import ViewBookBaseColaborators from './view-book-base/view-book-base-colaborato
 import MyTasks from './my-tasks/my-tasks.component';
 import ViewTask from './view-task/view-task.container';
 import CreateTaskScreen from './create-task/create-task.container'
+import InviteCollaboratorScreen from './invite-collaborator/invite-collaborator.container'
 
 export {
   CreateUserScreen,
@@ -29,5 +30,6 @@ export {
   ViewBookBaseColaborators,
   MyTasks,
   ViewTask,
-  CreateTaskScreen
+  CreateTaskScreen,
+  InviteCollaboratorScreen
 }
