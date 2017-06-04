@@ -18,6 +18,8 @@ import {
   Alert
 } from 'react-native';
 
+import buttonStyle from '../../global-styles/button.styles';
+
 const imageUrlMock = "http://68.media.tumblr.com/57995a853ed4ca881e6053e7e14ec21b/tumblr_mjb683SkIO1qbgtxfo1_500.gif";
 
 import GoBack from "../../components/go-back/go-back.component";
@@ -103,13 +105,14 @@ export default class EditTask extends Component {
 
         <View style={{ flex: 2 }}>
           <View style={{flex: 1}}>
-            <Button block bordered success>
+            <Button block style={buttonStyle.default}>
               <Text>Salvar</Text>
             </Button>
           </View>
 
           <View style={{flex: 1}}>
-            <Button block danger onPress={() => this.getUserConfirmation()}>
+            <Button block style={buttonStyle.delete}
+              onPress={() => this.getUserConfirmation()}>
               <Text>Excluir</Text>
             </Button>
           </View>

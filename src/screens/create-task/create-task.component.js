@@ -12,6 +12,8 @@ import {
   Spinner
 } from 'native-base'
 
+import buttonStyle from '../../global-styles/button.styles';
+
 import Navigation from '../../components/navigation-header/navigation-header.component'
 import ListErrors from '../../components/list-errors/list-errors.component';
 
@@ -64,7 +66,7 @@ export default class CreateTask extends Component {
         </View>
 
         <View style={{ flex: 1 }}>
-          <Picker
+          <Picker mode="dropdown"
             selectedValue={this.state.category}
             onValueChange={(value) => this.setState({ category: value })}
           >
@@ -111,16 +113,11 @@ export default class CreateTask extends Component {
           {this.props.sendingData ?
             <Spinner />
             :
-            <Button block success bordered rounded
-              onPress={() => this.props.createTask(this.getData())}
-            >
+            <Button block onPress={() => this.props.createTask(this.getData())}
+              style={{...buttonStyle.button, ...buttonStyle.default}}>
               <Text>Criar</Text>
             </Button>
           }
-
-          <Button style={{ marginTop: 10 }} block warning bordered rounded >
-            <Text> Cancelar </Text>
-          </Button>
         </View>
       </Container>
     );
