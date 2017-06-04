@@ -3,7 +3,7 @@ import InviteList from './invite-list.component';
 
 import { Actions } from 'react-native-router-flux';
 
-import { asyncInviteGet } from '../../actions/invite-actions'
+import { asyncInviteGet, asyncInviteDelete } from '../../actions/invite-actions'
 
 
 const mapStateToProps = (state) => {
@@ -17,7 +17,12 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getInvites(user) {
       dispatch(asyncInviteGet(user))
+    },
+
+    delete(key, user){
+      dispatch(asyncInviteDelete(key, user))
     }
+
   }
 }
 
