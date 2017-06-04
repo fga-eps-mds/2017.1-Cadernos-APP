@@ -51,3 +51,21 @@ export const asyncSetSingleTask = (taskData, callback) => {
       });
   }
 }
+
+export const asyncEditSingleTask = (taskData) => {
+  console.log(taskData);
+
+  return (dispatch) => {
+    axios.patch(`/tasks/${taskData.id}`, {
+      task: taskData
+    })
+    .then(response => {
+      console.log("eoq");
+      console.log(response.data);
+    })
+    .catch(err => {
+      console.log("erro fdp");
+      console.log(err);
+    });
+  }
+}

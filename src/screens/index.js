@@ -12,7 +12,8 @@ import ViewBookBaseCategories from './view-book-base/view-book-base-categories.c
 import ViewBookBaseColaborators from './view-book-base/view-book-base-colaborators.component';
 import MyTasks from './my-tasks/my-tasks.component';
 import ViewTask from './view-task/view-task.container';
-import CreateTaskScreen from './create-task/create-task.container'
+import CreateTaskScreen from './create-task/create-task.container';
+import EditTaskScreen from './edit-task/edit-task.container';
 
 export {
   CreateUserScreen,
@@ -29,5 +30,6 @@ export {
   ViewBookBaseColaborators,
   MyTasks,
   ViewTask,
-  CreateTaskScreen
+  CreateTaskScreen,
+  EditTaskScreen
 }

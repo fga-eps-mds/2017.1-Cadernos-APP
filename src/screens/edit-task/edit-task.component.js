@@ -36,6 +36,8 @@ export default class EditTask extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
+
     this.setState({
       title: this.props.task.title,
       content: this.props.task.content
@@ -58,12 +60,20 @@ export default class EditTask extends Component {
   }
 
   getTaskData() {
-    return {}
+      console.log("SINGLE TASKS");
+      console.log(this.props.task);
+
+      const task = {
+        ...this.props.task,
+        title: this.state.title,
+        content: this.state.content,
+        category: this.state.selectedValue
+      }
+
+      return task;
   }
 
   render() {
-    const { id, bookId, user, title, content } = this.props.task;
-
     return (
       <Container style={{ flex: 1, padding: 5 }}>
         <GoBack />
@@ -105,7 +115,8 @@ export default class EditTask extends Component {
 
         <View style={{ flex: 2 }}>
           <View style={{flex: 1}}>
-            <Button block style={buttonStyle.default}>
+            <Button block style={buttonStyle.default}
+            onPress={() => this.props.editTask(this.getTaskData())}>
               <Text>Salvar</Text>
             </Button>
           </View>
