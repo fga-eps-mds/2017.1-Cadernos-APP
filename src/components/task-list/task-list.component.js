@@ -77,12 +77,12 @@ export default class TaskList extends Component {
           null
           :
           <View style={{ flex: 1, padding: 5, justifyContent: 'center' }}>
-            <Button block warning small
+            <Button block
               key="createBookActionButton"
               onPress={() => Actions.CreateTask({
                 book: this.props.book,
                 user: this.props.user,
-              })} style={buttonStyle.button}>
+              })} style={buttonStyle.default}>
               <Text>Criar tarefa</Text>
             </Button>
           </View>

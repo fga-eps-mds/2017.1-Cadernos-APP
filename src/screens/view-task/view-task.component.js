@@ -6,6 +6,7 @@ import {
   List,
   ListItem,
   Button,
+  H1,
   Text,
   View
 } from 'native-base';
@@ -13,6 +14,9 @@ import {
 import {
   Image, Alert
 } from 'react-native';
+
+import titleStyle from '../../global-styles/titles.styles';
+import buttonStyle from '../../global-styles/button.styles';
 
 import { Actions } from 'react-native-router-flux';
 
@@ -42,14 +46,17 @@ export default class ViewTask extends Component {
 
         <View style={{ flex: 2 }}>
           <View>
-            <Text>{title}</Text>
+             <H1 style={titleStyle.h1}>Nome da tarefa</H1>
+             <Text>{title}</Text>
           </View>
 
           <View>
+            <H1 style={titleStyle.h1}>Proprietário da tarefa</H1>
             <Text>Tarefa de: {user.name}</Text>
           </View>
 
           <View>
+            <H1 style={titleStyle.h1}>Conteudo</H1>
             <Text>
               {this.props.task.content}
             </Text>
@@ -57,15 +64,13 @@ export default class ViewTask extends Component {
         </View>
 
         <View style={{ flex: 1, marginTop: 5 }}>
-          <Button bordered warning block
-            onPress={() => Actions.EditTask({task: this.props.task})}
-          >
+          <Button block style={{...buttonStyle.button, ...buttonStyle.default}}
+            onPress={() => Actions.EditTask({task: this.props.task})}>
             <Text>Editar dados</Text>
           </Button>
 
-          <Button bordered danger block
-            onPress={() => this.getUserConfirmation()}
-          >
+          <Button block style={{...buttonStyle.button, ...buttonStyle.delete}}
+            onPress={() => this.getUserConfirmation()}>
             <Text>Excluir</Text>
           </Button>
         </View>
