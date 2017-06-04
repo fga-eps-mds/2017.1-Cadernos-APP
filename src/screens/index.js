@@ -12,8 +12,9 @@ import ViewBookBaseCategories from './view-book-base/view-book-base-categories.c
 import ViewBookBaseColaborators from './view-book-base/view-book-base-colaborators.component';
 import MyTasks from './my-tasks/my-tasks.component';
 import ViewTask from './view-task/view-task.container';
-import CreateTaskScreen from './create-task/create-task.container'
-import InviteCollaboratorScreen from './invite-collaborator/invite-collaborator.container'
+import CreateTaskScreen from './create-task/create-task.container';
+import InviteCollaboratorScreen from './invite-collaborator/invite-collaborator.container';
+import InviteListScreen from './invite-list/invite-list.container'
 
 export {
   CreateUserScreen,
@@ -31,5 +32,6 @@ export {
   MyTasks,
   ViewTask,
   CreateTaskScreen,
-  InviteCollaboratorScreen
+  InviteCollaboratorScreen,
+  InviteListScreen
 }

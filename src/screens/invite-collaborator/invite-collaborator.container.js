@@ -17,9 +17,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const HomeContainer = connect(
+const InviteCollaboratorContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(InviteCollaborator);
 
-export default HomeContainer;
+export default InviteCollaboratorContainer;

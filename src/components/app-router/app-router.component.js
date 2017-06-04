@@ -17,7 +17,8 @@ import {
   ViewBookBaseColaborators,
   ViewTask,
   CreateTaskScreen,
-  InviteCollaboratorScreen
+  InviteCollaboratorScreen,
+  InviteListScreen
 } from '../../screens';
 
 import EditTask from '../../screens/edit-task/edit-task.component';
@@ -44,7 +45,8 @@ export default class AppRouter extends Component {
         <Scene key="EditTask" component={EditTask} />
         <Scene key="CreateTask" component={CreateTaskScreen} />
         <Scene key="InviteCollaborator" component={InviteCollaboratorScreen} />
+        <Scene key="InviteList" component={InviteListScreen} />
       </Router>
-        );
+    );
   }
 }
