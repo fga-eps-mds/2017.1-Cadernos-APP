@@ -12,7 +12,7 @@ import {
 } from 'native-base';
 
 import {
-  Image, Alert
+  Image, Alert, ScrollView
 } from 'react-native';
 
 import titleStyle from '../../global-styles/titles.styles';
@@ -44,7 +44,7 @@ export default class ViewTask extends Component {
       <Container style={{ flex: 1, padding: 5 }}>
         <GoBack />
 
-        <View style={{ flex: 2 }}>
+        <View style={{ flex: 4 }}>
           <View>
              <H1 style={titleStyle.h1}>Nome da tarefa</H1>
              <Text>{title}</Text>
@@ -52,15 +52,17 @@ export default class ViewTask extends Component {
 
           <View>
             <H1 style={titleStyle.h1}>Proprietário da tarefa</H1>
-            <Text>Tarefa de: {user.name}</Text>
+            <Text>{user.name}</Text>
           </View>
 
           <View>
             <H1 style={titleStyle.h1}>Conteudo</H1>
+          </View>
+          <ScrollView>
             <Text>
               {this.props.task.content}
             </Text>
-          </View>
+          </ScrollView>
         </View>
 
         <View style={{ flex: 1, marginTop: 5 }}>
