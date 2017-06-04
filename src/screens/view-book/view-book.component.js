@@ -10,10 +10,14 @@ import {
   View,
   Tabs,
   Tab,
+  Icon,
+  ActionSheet,
+  Spinner
 } from 'native-base';
 
 import {
-  Image
+  Image,
+  Alert
 } from 'react-native';
 
 import styles from './view-book.styles';
@@ -22,11 +26,54 @@ import GoBack from '../../components/go-back/go-back.component';
 import TaskList from '../../components/task-list/task-list.component';
 import NavigationHeader from '../../components/navigation-header/navigation-header.component';
 
+
 export default class ViewBook extends React.Component {
+  constructor(props) {
+    super(props);
+    this.actionSheet = null;
+  }
+
+  getBookId() {
+    return this.props.book.id
+  }
 
   componentDidMount() {
     this.props.fetchBookTasks(this.props.book);
     this.props.fetchCategories();
+  }
+
+  deleteBookConfirmation() {
+    Alert.alert(
+      'Deletar o caderno...',
+      'Deseja deletar o caderno ' + this.props.book.title + '?',
+      [
+        { text: 'Sim', onPress: () => this.props.deleteBook(this.getBookId()) },
+        { text: 'Não', onPress: () => console.log('apertou não mizeravi') }
+      ],
+      { cancelable: false }
+    )
+  }
+
+  displayBookActions() {
+    return (
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+        <Button bordered rounded small warning
+          key="edit-book-button"
+          onPress={() => Actions.EditBook()}
+          disabled={this.props.user.id !== this.props.book.userId}
+        >
+          <Text>Editar caderno</Text>
+        </Button>
+
+        <Button bordered rounded small danger
+          key="delete-book-button"
+          onPress={() => this.deleteBookConfirmation()}
+          disabled={this.props.user.id !== this.props.book.userId}
+        >
+          <Text>Deletar caderno</Text>
+        </Button>
+      </View>
+    );
   }
 
   render() {
@@ -39,7 +86,15 @@ export default class ViewBook extends React.Component {
           />
         </View>
 
-        <View style={{ flex: 8 }}>
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          {this.props.sendingData === false ?
+            this.displayBookActions()
+            :
+            <Spinner />
+          }
+        </View>
+
+        <View style={{ flex: 7 }}>
           <Tabs>
             <Tab heading="Tarefas">
               <TaskList
@@ -60,18 +115,6 @@ export default class ViewBook extends React.Component {
             </Tab>
           </Tabs>
         </View>
-
-
-        {this.props.user.id === this.props.book.userId ? //Talvez isVisitor bugue aqui, verificar mais tarde
-          <View style={{ flex: 1 }}>
-            <Button block bordered warning onPress={() => Actions.EditBook()}>
-              <Text>Editar caderno</Text>
-            </Button>
-          </View>
-          :
-          null
-        }
-
       </Container >
     );
   }

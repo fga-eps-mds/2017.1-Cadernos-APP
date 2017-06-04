@@ -14,7 +14,6 @@ import MyTasks from './my-tasks/my-tasks.component';
 import ViewTask from './view-task/view-task.container';
 import CreateTaskScreen from './create-task/create-task.container'
 
-console.log(CreateTaskScreen);
 export {
   CreateUserScreen,
   MainScreen,
