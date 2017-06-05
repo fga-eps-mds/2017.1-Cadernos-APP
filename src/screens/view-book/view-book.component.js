@@ -21,6 +21,7 @@ import {
 } from 'react-native';
 
 import styles from './view-book.styles';
+import buttonStyle from '../../global-styles/button.styles';
 
 import GoBack from '../../components/go-back/go-back.component';
 import TaskList from '../../components/task-list/task-list.component';
@@ -57,7 +58,7 @@ export default class ViewBook extends React.Component {
   displayBookActions() {
     return (
       <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-        <Button bordered rounded small warning
+        <Button style={{...buttonStyle.button, ...buttonStyle.default}}
           key="edit-book-button"
           onPress={() => Actions.EditBook()}
           disabled={this.props.user.id !== this.props.book.userId}
@@ -65,11 +66,10 @@ export default class ViewBook extends React.Component {
           <Text>Editar caderno</Text>
         </Button>
 
-        <Button bordered rounded small danger
+        <Button style={{...buttonStyle.button, ...buttonStyle.delete}}
           key="delete-book-button"
           onPress={() => this.deleteBookConfirmation()}
-          disabled={this.props.user.id !== this.props.book.userId}
-        >
+          disabled={this.props.user.id !== this.props.book.userId}>
           <Text>Deletar caderno</Text>
         </Button>
       </View>
@@ -78,7 +78,7 @@ export default class ViewBook extends React.Component {
 
   render() {
     return (
-      <Container style={styles.container}>
+      <Container style={styles.container} primary>
         <View style={{ flex: 1 }}>
           <NavigationHeader
             title={this.props.book.title}

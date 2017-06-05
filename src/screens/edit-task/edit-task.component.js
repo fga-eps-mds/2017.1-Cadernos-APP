@@ -24,6 +24,10 @@ const imageUrlMock = "http://68.media.tumblr.com/57995a853ed4ca881e6053e7e14ec21
 
 import GoBack from "../../components/go-back/go-back.component";
 
+import { Dimensions } from 'react-native';
+
+const { height, width } = Dimensions.get('window');
+
 export default class EditTask extends Component {
   constructor(props) {
     super(props);
@@ -107,7 +111,7 @@ export default class EditTask extends Component {
                 value={this.state.content}
                 onChangeText={(text) => this.handleInputChange('content', text)}
                 placeholder="Content"
-                style={{ height: 150 }}
+                style={{ width: width * 0.9, height: 150}}
               />
             </Item>
           </View>
