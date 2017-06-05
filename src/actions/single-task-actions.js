@@ -52,19 +52,21 @@ export const asyncSetSingleTask = (taskData, callback) => {
   }
 }
 
-export const asyncEditSingleTask = (taskData) => {
-  console.log(taskData);
+export const asyncEditSingleTask = (taskData, callback) => {
 
   return (dispatch) => {
     axios.patch(`/tasks/${taskData.id}`, {
       task: taskData
     })
     .then(response => {
-      console.log("eoq");
+      dispatch(setSingleTask(response.data));
+      console.log("Resultado do edit de task");
       console.log(response.data);
+
+      callback(response.data);
     })
     .catch(err => {
-      console.log("erro fdp");
+      console.warn("Erro ao editar task");
       console.log(err);
     });
   }

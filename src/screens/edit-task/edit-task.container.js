@@ -3,6 +3,7 @@ import EditTask from './edit-task.component'
 
 import { Actions } from 'react-native-router-flux';
 import { asyncEditSingleTask } from '../../actions/single-task-actions';
+import { taskUpdate } from '../../actions/tasks-actions';
 
 const mapStateToProps = (state) => {
   console.log(state.singleTask);
@@ -15,7 +16,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     editTask(taskData) {
-      dispatch(asyncEditSingleTask(taskData));
+      const callback = (updatedTask) => {
+        dispatch(taskUpdate(updatedTask));
+      }
+
+      dispatch(asyncEditSingleTask(taskData, callback));
+      Actions.pop({ refresh: taskData }); // Go back to ViewBook
     }
   }
 }

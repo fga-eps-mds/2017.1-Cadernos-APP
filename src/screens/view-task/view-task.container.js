@@ -20,9 +20,6 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     goToEditTask(task) {
-      console.log("E pra setar !!!");
-      console.log(task);
-
       dispatch(setSingleTask(task));
       Actions.EditTask();
     }
