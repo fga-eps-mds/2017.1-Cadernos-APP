@@ -10,6 +10,8 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 
+import buttonStyle from '../../global-styles/button.styles';
+
 import SharedFooter from '../../components/shared-footer/shared-footer.component';
 import ListBooks from '../../components/list-books/list-books.component';
 import NavigationHeader from '../../components/navigation-header/navigation-header.component';
@@ -56,7 +58,7 @@ export default class HomeScreen extends Component {
           null
           :
           <View style={{ flex: 1, padding: 5, justifyContent: 'center' }}>
-            <Button block warning bordered rounded small
+            <Button block style={{...buttonStyle.button, ...buttonStyle.default}}
               key="createBookActionButton"
               onPress={() => Actions.CreateBook()}
             >

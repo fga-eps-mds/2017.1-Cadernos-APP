@@ -1,7 +1,7 @@
 const styles = {
   container: {
-    padding: 5,
     flex: 1,
+    backgroundColor: '#3D51B4'
   },
   title:{
     fontSize: 30,

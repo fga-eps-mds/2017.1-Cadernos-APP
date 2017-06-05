@@ -7,14 +7,20 @@ import {
   bookListReducer,
   bookReducer,
   userReducer,
-  loginReducer
+  loginReducer,
+  tasksReducer,
+  singleTaskReducer,
+  categoriesReducer
 } from '../reducers';
 
 const reducers = combineReducers({
   user: userReducer,
   book: bookReducer,
   bookList: bookListReducer,
-  login: loginReducer
+  login: loginReducer,
+  tasks: tasksReducer,
+  singleTask: singleTaskReducer,
+  categories: categoriesReducer
 });
 
 const store = createStore(reducers, initialState, applyMiddleware(thunk));

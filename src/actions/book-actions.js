@@ -111,9 +111,6 @@ export const asyncEditBookSet = (bookData, callback) => {
   return (dispatch) => {
     dispatch(bookSetSendingData(true));
 
-    console.log('UPDATE !');
-    console.log(bookData);
-
     axios.patch(`/books/${bookData.id}`, {
       title: bookData.title
     })

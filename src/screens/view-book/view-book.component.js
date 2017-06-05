@@ -8,6 +8,8 @@ import {
   Text,
   Button,
   View,
+  Tabs,
+  Tab,
   Icon,
   ActionSheet,
   Spinner
@@ -19,9 +21,11 @@ import {
 } from 'react-native';
 
 import styles from './view-book.styles';
+import buttonStyle from '../../global-styles/button.styles';
 
 import GoBack from '../../components/go-back/go-back.component';
 import TaskList from '../../components/task-list/task-list.component';
+import NavigationHeader from '../../components/navigation-header/navigation-header.component';
 
 
 export default class ViewBook extends React.Component {
@@ -34,64 +38,83 @@ export default class ViewBook extends React.Component {
     return this.props.book.id
   }
 
+  componentDidMount() {
+    this.props.fetchBookTasks(this.props.book);
+    this.props.fetchCategories();
+  }
+
+  deleteBookConfirmation() {
+    Alert.alert(
+      'Deletar o caderno...',
+      'Deseja deletar o caderno ' + this.props.book.title + '?',
+      [
+        { text: 'Sim', onPress: () => this.props.deleteBook(this.getBookId()) },
+        { text: 'Não', onPress: () => console.log('apertou não mizeravi') }
+      ],
+      { cancelable: false }
+    )
+  }
+
+  displayBookActions() {
+    return (
+      <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+        <Button style={{...buttonStyle.button, ...buttonStyle.default}}
+          key="edit-book-button"
+          onPress={() => Actions.EditBook()}
+          disabled={this.props.user.id !== this.props.book.userId}
+        >
+          <Text>Editar caderno</Text>
+        </Button>
+
+        <Button style={{...buttonStyle.button, ...buttonStyle.delete}}
+          key="delete-book-button"
+          onPress={() => this.deleteBookConfirmation()}
+          disabled={this.props.user.id !== this.props.book.userId}>
+          <Text>Deletar caderno</Text>
+        </Button>
+      </View>
+    );
+  }
+
   render() {
     return (
-      <Container style={styles.container}>
+      <Container style={styles.container} primary>
         <View style={{ flex: 1 }}>
-          <GoBack />
-        </View>
-        <Container style={{ flex: 1, flexDirection: 'row' }}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.title}>
-              {this.props.book.title}
-            </Text>
-          </View>
-          {this.props.user.id === this.props.book.userId ?
-            <View>
-              <Button danger small onPress={() =>
-                Alert.alert(
-                  'Deletar o caderno...',
-                  'Deseja deletar o caderno ' + this.props.book.title + '?',
-                  [
-                    { text: 'Sim', onPress: () => this.props.deleteBook(this.getBookId()) },
-                    { text: 'Não', onPress: () => console.log('apertou não mizeravi') }
-                  ],
-                  { cancelable: false }
-                )} style={styles.deleteButton}>
-                <Icon name="md-close-circle" />
-              </Button>
-              <ActionSheet ref={(c) => { this.actionSheet = c; }} />
-            </View>
-            :
-            null
-          }
-        </Container>
-        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
-          <Image
-            style={{ width: 240, height: 120 }}
-            source={{ uri: this.props.book.coverOriginal }}
+          <NavigationHeader
+            title={this.props.book.title}
+            displayGoBack={true}
           />
         </View>
 
-        <View style={{ flex: 4 }}>
-          <TaskList />
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          {this.props.sendingData === false ?
+            this.displayBookActions()
+            :
+            <Spinner />
+          }
         </View>
 
+        <View style={{ flex: 7 }}>
+          <Tabs>
+            <Tab heading="Tarefas">
+              <TaskList
+                tasks={this.props.tasks}
+                isVisitor={this.props.isVisitor}
+                book={this.props.book}
+                user={this.props.user}
+                categories={this.props.categories}
+              />
+            </Tab>
 
-        {this.props.user.id === this.props.book.userId ? //Talvez isVisitor bugue aqui, verificar mais tarde
-          <View style={{ flex: 1 }}>
-            {this.props.sendingData ?
-            <Spinner />
-            :
-            <Button block bordered warning onPress={() => Actions.EditBook()}>
-              <Text>Editar caderno</Text>
-            </Button>
-            }
-          </View>
-          :
-          null
-        }
+            <Tab heading="Categorias">
+              <Text>Um texto away</Text>
+            </Tab>
 
+            <Tab heading="Colaboradores">
+              <Text>Um texto away</Text>
+            </Tab>
+          </Tabs>
+        </View>
       </Container >
     );
   }
