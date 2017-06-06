@@ -5,10 +5,19 @@ import {
   FooterTab,
   Button,
   Icon,
-  Text
+  Text,
+  Input,
+  Item,
+  Container
 } from 'native-base';
 
 import { Actions, ActionConst } from 'react-native-router-flux';
+
+import { Dimensions } from 'react-native';
+
+const { height, width } = Dimensions.get('window');
+
+import style from '../../global-styles/button.styles';
 
 export default class SharedFooter extends Component {
   static propTypes = {
@@ -18,34 +27,13 @@ export default class SharedFooter extends Component {
 
   render() {
     return (
-      <Footer >
-        <FooterTab>
-          <Button vertical active={this.props.activeTab === "books"}
-            key="booksTabButton"
-            onPress={() => Actions.Home({type: ActionConst.REPLACE})}
-          >
-            <Icon name="md-book" />
-            <Text>Cadernos</Text>
-          </Button>
-
-          {this.props.isVisitor ?
-            null
-          :
-            <Button vertical active={this.props.activeTab === "profile"}
-              key="profileTabButton"
-              onPress={() => Actions.Profile({type: ActionConst.REPLACE})}
-            >
-              <Icon name="person" />
-              <Text>Perfil</Text>
-            </Button>
-          }
-
-          <Button vertical
-            key="exitTabButton"
-            onPress={() => Actions.UserLogin({type: ActionConst.REPLACE, exitUser: true})}
-          >
-            <Icon name="md-exit" />
-            <Text>Sair</Text>
+      <Footer>
+        <FooterTab style={style.sharedFooter}>
+          <Item style={{width: width * 0.7, marginLeft: 10}}>
+            <Input placeholder="Pesquise caderno por titulo" style={{color: '#FFF'}} placeholderTextColor="white"/>
+          </Item>
+          <Button>
+            <Icon name="ios-search" style={{color: '#FFF'}}/>
           </Button>
         </FooterTab>
       </Footer>

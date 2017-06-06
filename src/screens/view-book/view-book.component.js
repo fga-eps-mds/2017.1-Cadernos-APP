@@ -78,7 +78,7 @@ export default class ViewBook extends React.Component {
 
   render() {
     return (
-      <Container style={styles.container} primary>
+      <Container style={styles.container}>
         <View style={{ flex: 1 }}>
           <NavigationHeader
             title={this.props.book.title}
