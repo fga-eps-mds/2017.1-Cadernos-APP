@@ -55,30 +55,37 @@ export default class ViewBook extends React.Component {
     )
   }
 
+  /**
+   * Display only if owner is logged
+   */
   displayBookActions() {
-    return (
-      <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-        <Button style={{...buttonStyle.button, ...buttonStyle.default}}
-          key="edit-book-button"
-          onPress={() => Actions.EditBook()}
-          disabled={this.props.user.id !== this.props.book.userId}
-        >
-          <Text>Editar caderno</Text>
-        </Button>
+    console.log();
+    if ( this.props.user.id === this.props.book.userId ) {
+      return (
+        <View style={{ flex: 1, justifyContent: 'center' }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+            <Button style={{...buttonStyle.button, ...buttonStyle.default}}
+              key="edit-book-button"
+              onPress={() => Actions.EditBook()}>
+              <Text>Editar caderno</Text>
+            </Button>
 
-        <Button style={{...buttonStyle.button, ...buttonStyle.delete}}
-          key="delete-book-button"
-          onPress={() => this.deleteBookConfirmation()}
-          disabled={this.props.user.id !== this.props.book.userId}>
-          <Text>Deletar caderno</Text>
-        </Button>
-      </View>
-    );
+            <Button style={{...buttonStyle.button, ...buttonStyle.delete}}
+              key="delete-book-button"
+              onPress={() => this.deleteBookConfirmation()}>
+              <Text>Deletar caderno</Text>
+            </Button>
+          </View>
+        </View>
+      );
+    } else {
+      return null;
+    }
   }
 
   render() {
     return (
-      <Container style={styles.container} primary>
+      <Container style={styles.container}>
         <View style={{ flex: 1 }}>
           <NavigationHeader
             title={this.props.book.title}
@@ -86,13 +93,7 @@ export default class ViewBook extends React.Component {
           />
         </View>
 
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-          {this.props.sendingData === false ?
-            this.displayBookActions()
-            :
-            <Spinner />
-          }
-        </View>
+        {this.displayBookActions()}
 
         <View style={{ flex: 7 }}>
           <Tabs>
@@ -107,11 +108,11 @@ export default class ViewBook extends React.Component {
             </Tab>
 
             <Tab heading="Categorias">
-              <Text>Um texto away</Text>
+              <Text>Aqui irá ficar as categorias(TO DO)</Text>
             </Tab>
 
             <Tab heading="Colaboradores">
-              <Text>Um texto away</Text>
+              <Text>Aqui irá ficar os colaboradores(TO DO)</Text>
             </Tab>
           </Tabs>
         </View>

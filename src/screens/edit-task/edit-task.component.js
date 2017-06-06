@@ -86,8 +86,7 @@ export default class EditTask extends Component {
           <View>
             <Picker
               selectedValue={this.state.selectedValue}
-              onValueChange={(value) => this.setState({ selectedValue: value })}
-            >
+              onValueChange={(value) => this.setState({ selectedValue: value })}>
               <Picker.Item label="Ciclano" value={2} />
               <Picker.Item label="Fulano" value={1} />
               <Picker.Item label="Deltrano" value={3} />
