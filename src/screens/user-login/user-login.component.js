@@ -17,6 +17,7 @@ import {
 } from 'native-base';
 
 import styles from './user-login.styles';
+import commonStyle from '../../styles/common.styles';
 
 import InputErrorDisplay from '../../components/input-error-display/input-error-display.component';
 import GoBack from '../../components/go-back/go-back.component';
@@ -114,7 +115,7 @@ export default class UserLogin extends Component {
           {this.props.sendingData ?
             <Spinner />
             :
-            <Button warning block style={{ borderRadius: 30 }}
+            <Button warning block style={commonStyle.call_to_action}
               onPress={() => this.props.userLogin(this.getUserData())}
             >
               <Text>ENTRAR</Text>
@@ -126,10 +127,10 @@ export default class UserLogin extends Component {
           {this.props.sendingData ?
             <Content />
             :
-            <Button warning bordered block style={{ borderRadius: 30 }}
+            <Button warning bordered block style={commonStyle.call_to_action__negative}
               onPress={() => this.props.enterAsVisitor()}
             >
-              <Text>ENTRAR COMO VISITANTE</Text>
+              <Text style={commonStyle.call_to_action_text__negative}>ENTRAR COMO VISITANTE</Text>
             </Button>
           }
         </View>

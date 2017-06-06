@@ -35,11 +35,11 @@ export default class Main extends React.Component {
 
 
           <Button style={styles.button} block onPress={() => Actions.UserLogin()}>
-            <Text>Login</Text>
+            <Text>LOGIN</Text>
           </Button>
           <Text style={{marginTop: 20}}>Não tem uma conta?</Text>
           <Button style={styles.button} block onPress={() => Actions.CreateUser()}>
-            <Text>Cadastro</Text>
+            <Text>CADASTRO</Text>
           </Button>
       </Container>
     );
