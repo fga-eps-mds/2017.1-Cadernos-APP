@@ -12,7 +12,7 @@ import { Actions } from 'react-native-router-flux';
 
 import buttonStyle from '../../global-styles/button.styles';
 
-import SharedFooter from '../../components/shared-footer/shared-footer.component';
+import SharedFooter from '../../components/shared-footer/shared-footer.container';
 import ListBooks from '../../components/list-books/list-books.component';
 import NavigationHeader from '../../components/navigation-header/navigation-header.component';
 

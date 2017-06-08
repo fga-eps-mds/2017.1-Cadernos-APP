@@ -25,14 +25,22 @@ export default class SharedFooter extends Component {
     isVisitor: PropTypes.bool.isRequired
   }
 
+  handleFieldOnChange(field, value) {
+    this.setState({
+      [field]: value
+    });
+  }
+
+
   render() {
     return (
       <Footer>
         <FooterTab style={style.sharedFooter}>
           <Item style={{width: width * 0.7, marginLeft: 10}}>
-            <Input placeholder="Pesquise caderno por titulo" style={{color: '#FFF'}} placeholderTextColor="white"/>
+            <Input placeholder="Pesquise caderno por titulo" style={{color: '#FFF'}} placeholderTextColor="white"
+              onChangeText={(text) => this.handleFieldOnChange('keyword', text)}/>
           </Item>
-          <Button>
+          <Button onPress={() => this.props.setupSearch(this.state.keyword)}>
             <Icon name="ios-search" style={{color: '#FFF'}}/>
           </Button>
         </FooterTab>

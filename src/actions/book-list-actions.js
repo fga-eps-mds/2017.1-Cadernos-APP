@@ -2,7 +2,8 @@ import {
   BOOK_LIST_SET,
   BOOK_LIST_SET_SENDING_DATA,
   BOOK_LIST_ADD_BOOK,
-  BOOK_LIST_UPDATE_BOOK
+  BOOK_LIST_UPDATE_BOOK,
+  BOOK_SEARCH
 } from '../config/actions-types';
 import axios, { getBaseUrl } from '../config/axios';
 
@@ -70,6 +71,26 @@ export const asyncBookListSet = () => {
     })
     .finally(() => {
       dispatch(bookListSetSendingData(false));
+    });
+  }
+}
+
+export const searchBooks = (keyword) => {
+  return (dispatch) => {
+     console.log("vai pequisar");
+     axios.get(`/book/search/${keyword}`)
+    .then(response => {
+           if (response.data) {
+             dispatch(bookListSet(response.data));
+           }
+    })
+    .catch(err => {
+           // Meybe an user internet error
+           console.log('Error while searching');
+           console.log(err);
+    })
+    .finally(() => {
+           dispatch(bookListSetSendingData(false));
     });
   }
 }
