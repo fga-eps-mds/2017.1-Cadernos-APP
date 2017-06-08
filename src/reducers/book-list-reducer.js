@@ -42,10 +42,6 @@ const bookListReducer = (state = initialState.bookList, action) => {
         keyword: action.keyword
       };
 
-      return update(state, {
-        books: {$set: books}
-      });
-
     default:
       return state;
   }

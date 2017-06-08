@@ -75,12 +75,15 @@ export const asyncBookListSet = () => {
   }
 }
 
-export const searchBooks = (keyword) => {
+export const searchBooks = (keyword, callback) => {
   return (dispatch) => {
      console.log("vai pequisar");
      axios.get(`/book/search/${keyword}`)
     .then(response => {
-           if (response.data) {
+           if (response.data[0] == null) {
+             console.log("eae men")
+             callback();
+           }else{
              dispatch(bookListSet(response.data));
            }
     })
