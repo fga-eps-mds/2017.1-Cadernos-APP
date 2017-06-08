@@ -27,5 +27,8 @@ describe("Index.android  ColaborArt Component", () => {
       wrapper.findWhere(component => component.type() === Provider)
             .length
     ).to.equal(1);
+
+
+
   });
 });

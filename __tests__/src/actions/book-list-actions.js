@@ -4,7 +4,8 @@ import { expect } from 'chai';
 import {
   BOOK_LIST_SET,
   BOOK_LIST_SET_SENDING_DATA,
-  BOOK_LIST_ADD_BOOK
+  BOOK_LIST_ADD_BOOK,
+  BOOK_LIST_UPDATE_BOOK
 } from '../../../src/config/actions-types';
 
 import initialState from '../../../src/config/initial-state';
@@ -12,7 +13,8 @@ import initialState from '../../../src/config/initial-state';
 import {
   bookListSet,
   bookListSetSendingData,
-  bookListAddBook
+  bookListAddBook,
+  bookListUpdateBook
 } from '../../../src/actions/book-list-actions';
 
 describe("Book List Actions", () => {
@@ -46,5 +48,14 @@ describe("Book List Actions", () => {
     expect(reducerAction.type).to.equal(BOOK_LIST_ADD_BOOK);
     expect(reducerAction.book.id).to.equal(4);
     expect(reducerAction.book.title).to.equal('test book');
+  })
+
+  it("Update book on the list", () =>{
+    const reducerAction = bookListUpdateBook({id: 4, title: 'test book'});
+
+    expect(reducerAction.type).to.equal(BOOK_LIST_UPDATE_BOOK);
+    expect(reducerAction.book.id).to.equal(4);
+    expect(reducerAction.book.title).to.equal('test book');
+
   })
 });
