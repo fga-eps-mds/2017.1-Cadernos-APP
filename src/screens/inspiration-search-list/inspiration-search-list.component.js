@@ -40,6 +40,13 @@ export default class InspirationSearchList extends Component {
     this.props.viewBook(book);
   }
 
+  getInspirationData(selectedBook){
+    return  data = {
+      primary: this.props.primary,
+      inspirational: selectedBook
+    }
+  }
+
   render() {
     return (
       <Container style={{ flex: 1 }}>
@@ -61,7 +68,10 @@ export default class InspirationSearchList extends Component {
                     </CardItem>
                   </Card>
                   <View style={{ flexDirection: 'column' }}>
-                    <Button small>
+                    <Button
+                    small
+                    onPress={() => this.props.addInspiration(this.getInspirationData(book))}
+                    >
                       <Text>+</Text>
                       </Button>
                   </View>
