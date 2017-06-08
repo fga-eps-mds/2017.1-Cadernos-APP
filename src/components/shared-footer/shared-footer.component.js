@@ -20,9 +20,31 @@ const { height, width } = Dimensions.get('window');
 import style from '../../global-styles/button.styles';
 
 export default class SharedFooter extends Component {
+    constructor(props) {
+    super(props);
+
+    this.state = {
+      keyword: ''
+    }
+  }
+
   static propTypes = {
     activeTab: PropTypes.string.isRequired,
     isVisitor: PropTypes.bool.isRequired
+  }
+
+  handleFieldOnChange(field, value) {
+    this.setState({
+      [field]: value
+    });
+  }
+
+  getSearchResult(){
+    if (this.state.keyword === ''){
+      this.props.bookList();
+    }else{
+      this.props.setupSearch(this.state.keyword)
+    }
   }
 
   render() {
@@ -30,9 +52,11 @@ export default class SharedFooter extends Component {
       <Footer>
         <FooterTab style={style.sharedFooter}>
           <Item style={{width: width * 0.7, marginLeft: 10}}>
-            <Input placeholder="Pesquise caderno por titulo" style={{color: '#FFF'}} placeholderTextColor="white"/>
+          <Icon name="md-book" style={{color: '#FFF'}}/>
+            <Input placeholder="Pesquisar Caderno" style={{color: '#FFF'}} placeholderTextColor="white"
+              onChangeText={(text) => this.handleFieldOnChange('keyword', text)}/>
           </Item>
-          <Button>
+          <Button onPress={() => this.getSearchResult()}>
             <Icon name="ios-search" style={{color: '#FFF'}}/>
           </Button>
         </FooterTab>
