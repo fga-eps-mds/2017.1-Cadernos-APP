@@ -53,7 +53,8 @@ const initialState = {
     errors: {}
   },
 
-categories: []
+categories: [],
+inspirations: []
 };
 
 export default initialState;

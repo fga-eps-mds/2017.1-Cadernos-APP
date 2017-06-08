@@ -40,3 +40,6 @@ export const SINGLE_TASK_EDIT = 'SINGLE_TASK_EDIT';
 
 // Categories actions
 export const CATEGORIES_SET = 'CATEGORIES_SET';
+
+//
+export const INSPIRATIONS_SET = 'INSPIRATIONS_SET'
