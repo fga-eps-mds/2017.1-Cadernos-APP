@@ -11,6 +11,7 @@ export const USER_LOGOUT = 'USER_LOGOUT';
 export const CLEAN_USER_AUTHENTICATION_ERRORS = 'CLEAN_USER_AUTHENTICATION_ERRORS';
 export const USER_REGISTER = 'USER_REGISTER';
 export const VISITOR_LOGIN = 'VISITOR_LOGIN';
+export const USER_UPDATE = 'USER_UPDATE';
 
 // Book actions
 export const BOOK_SET = 'BOOK_SET';
