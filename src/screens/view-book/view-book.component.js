@@ -58,15 +58,22 @@ export default class ViewBook extends React.Component {
   displayBookActions() {
     return (
       <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-        <Button style={{...buttonStyle.button, ...buttonStyle.default}}
+        <Button style={{ ...buttonStyle.button, ...buttonStyle.default }}
           key="edit-book-button"
           onPress={() => Actions.EditBook()}
           disabled={this.props.user.id !== this.props.book.userId}
         >
           <Text>Editar caderno</Text>
         </Button>
+        <Button style={{ ...buttonStyle.button, ...buttonStyle.default }}
+          key="inspirations-book-button"
+          onPress={() => Actions.InspirationList()}
+          //disabled={this.props.user.id !== this.props.book.userId}
+        >
+          <Text>Inspirações</Text>
+        </Button>
 
-        <Button style={{...buttonStyle.button, ...buttonStyle.delete}}
+        <Button style={{ ...buttonStyle.button, ...buttonStyle.delete }}
           key="delete-book-button"
           onPress={() => this.deleteBookConfirmation()}
           disabled={this.props.user.id !== this.props.book.userId}>

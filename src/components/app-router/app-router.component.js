@@ -17,7 +17,9 @@ import {
   ViewBookBaseColaborators,
   ViewTask,
   CreateTaskScreen,
-  EditTaskScreen
+  EditTaskScreen,
+  InspirationListScreen,
+  InspirationSearchListScreen
 } from '../../screens';
 
 
@@ -40,6 +42,8 @@ export default class AppRouter extends Component {
         <Scene key="ViewTask" component={ViewTask} />
         <Scene key="EditTask" component={EditTaskScreen} />
         <Scene key="CreateTask" component={CreateTaskScreen} />
+        <Scene key="InspirationList" component={InspirationListScreen} />
+        <Scene key="InspirationSearchList" component={InspirationSearchListScreen} />
       </Router>
     );
   }
