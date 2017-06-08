@@ -32,6 +32,7 @@ const initialState = {
   },
 
   invites: [],
+  memberships: [],
 
   // Book list from screen after loggin or logged user books
   bookList: {

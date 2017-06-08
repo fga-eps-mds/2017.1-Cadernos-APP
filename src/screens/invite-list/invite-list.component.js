@@ -56,7 +56,10 @@ export default class InviteList extends Component {
 
                 <Text style={styles.textList}>{invite.sender_name + " te enviou um convite para colaborar com " + invite.book_title}</Text>
                 <View style={{ flexDirection: 'column' }}>
-                  <Button style={styles.buttonList}>
+                  <Button
+                  style={styles.buttonList}
+                  onPress={() => this.props.accept(invite.id, this.props.user)}
+                  >
                     <Text style={styles.buttonText}>Aceitar</Text>
                   </Button>
                   <Button
