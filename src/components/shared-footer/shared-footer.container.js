@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import SharedFooter from './shared-footer.component';
 
-import { searchBooks } from '../../actions/book-list-actions';
+import { searchBooks, asyncBookListSet } from '../../actions/book-list-actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setupSearch(keyword) {
       dispatch(searchBooks(keyword));
+    },
+    bookList(){
+      dispatch(asyncBookListSet())
     }
   }
 }

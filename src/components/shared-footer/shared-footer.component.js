@@ -31,6 +31,13 @@ export default class SharedFooter extends Component {
     });
   }
 
+  getSearchResult(){
+    if (this.state.keyword === ''){
+      this.props.bookList();
+    }else{
+      this.props.setupSearch(this.state.keyword)
+    }
+  }
 
   render() {
     return (
@@ -40,7 +47,7 @@ export default class SharedFooter extends Component {
             <Input placeholder="Pesquise caderno por titulo" style={{color: '#FFF'}} placeholderTextColor="white"
               onChangeText={(text) => this.handleFieldOnChange('keyword', text)}/>
           </Item>
-          <Button onPress={() => this.props.setupSearch(this.state.keyword)}>
+          <Button onPress={() => this.getSearchResult()}>
             <Icon name="ios-search" style={{color: '#FFF'}}/>
           </Button>
         </FooterTab>
