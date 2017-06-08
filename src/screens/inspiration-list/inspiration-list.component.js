@@ -36,28 +36,31 @@ export default class InspirationList extends Component {
         <NavigationHeader style={{ flex: 1 }}
           title={"Inspirações"}
           displayGoBack={true} />
-        <List style={{flex: 6}}>
-          {this.props.inspirations.map(inspiration => {
-            return (
-              <ListItem key={inspiration.id} >
-                <Card>
-                  <CardItem>
-                    <Text>{inspiration.inspirational_title}</Text>
-                  </CardItem>
-                </Card>
-                <View style={{ flexDirection: 'column' }}>
-                  <Button danger
-                    small
-                    //onPress={() => this.props.addInspiration(this.getInspirationData(book))}
-                  >
-                    <Text>-</Text>
-                  </Button>
-                </View>
-              </ListItem>
-            );
-          })}
-        </List>
-
+        <View style={{ flex: 7 }}>
+          <Content>
+            <List>
+              {this.props.inspirations.map(inspiration => {
+                return (
+                  <ListItem key={inspiration.id} >
+                    <Card>
+                      <CardItem>
+                        <Text>{inspiration.inspirational_title}</Text>
+                      </CardItem>
+                    </Card>
+                    <View style={{ flexDirection: 'column' }}>
+                      <Button danger
+                        small
+                      //onPress={() => this.props.addInspiration(this.getInspirationData(book))}
+                      >
+                        <Text>-</Text>
+                      </Button>
+                    </View>
+                  </ListItem>
+                );
+              })}
+            </List>
+          </Content>
+        </View>
         <Button
           onPress={() => Actions.InspirationSearchList()}
         //disabled={this.props.user.id !== this.props.book.userId}

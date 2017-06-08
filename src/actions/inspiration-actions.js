@@ -21,16 +21,33 @@ export const asyncGetInspirations = (data) => {
   }
 }
 
-export const asyncSetInspiration = (data) => {
+export const asyncUpdateInspirations = (data) => {
+  return (dispatch) => {
+    axios.get(`/books/${data}/inspirations`)
+      .then(response => {
+        dispatch(setInspirations(response.data));
+      })
+      .catch(err => {
+        console.log("Error while updating inspirations list");
+        console.log(err);
+      });
+  }
+}
+
+export const asyncSetInspiration = (data, callback) => {
   return (dispatch) => {
     axios.post("/inspirations", {
       primary_id: data.primary.id,
       inspirational_id: data.inspirational.id
     })
       .then(response => {
+        console.log("=================================================")
         console.log(response.data)
+        dispatch(asyncUpdateInspirations(response.data.primary_id))
+        callback(true)
       })
       .catch(err => {
+        callback(false)
         console.log("Error while setting inspirations");
         console.log(err);
       });

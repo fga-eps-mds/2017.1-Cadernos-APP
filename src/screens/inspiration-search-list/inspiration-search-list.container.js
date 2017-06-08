@@ -8,6 +8,8 @@ import { bookSet } from '../../actions/book-actions';
 
 import { asyncSetInspiration } from '../../actions/inspiration-actions'
 
+import { Toast } from 'native-base'
+
 const mapStateToProps = (state) => {
   return {
     bookList: state.bookList,
@@ -27,8 +29,24 @@ const mapDispatchToProps = (dispatch) => {
       Actions.ViewBook();
     },
     addInspiration(data) {
-      //console.log(data)
-      dispatch(asyncSetInspiration(data))
+      const callback = (result) => {
+        if (result) {
+          Toast.show({
+            text: 'Relação formada!',
+            position: 'center',
+            buttonText: 'Ok!'
+          });
+
+          Actions.pop();
+        } else {
+          Toast.show({
+            text: 'Houve um problema... Verifique a relação!',
+            position: 'center',
+            buttonText: 'Ok!'
+          })
+        }
+      }
+      dispatch(asyncSetInspiration(data, callback))
     }
   }
 }

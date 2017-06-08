@@ -40,8 +40,8 @@ export default class InspirationSearchList extends Component {
     this.props.viewBook(book);
   }
 
-  getInspirationData(selectedBook){
-    return  data = {
+  getInspirationData(selectedBook) {
+    return data = {
       primary: this.props.primary,
       inspirational: selectedBook
     }
@@ -58,29 +58,32 @@ export default class InspirationSearchList extends Component {
         </View>
 
         <View style={{ flex: 8 }}>
-          <List>
-            {this.props.bookList.books.map(book => {
-              return (
-                <ListItem key={book.id} >
-                  <Card>
-                    <CardItem>
-                      <Text>{book.title}</Text>
-                    </CardItem>
-                  </Card>
-                  <View style={{ flexDirection: 'column' }}>
-                    <Button
-                    small
-                    onPress={() => this.props.addInspiration(this.getInspirationData(book))}
-                    >
-                      <Text>+</Text>
+          <Content>
+            <List>
+              {this.props.bookList.books.map(book => {
+                return (
+                  <ListItem key={book.id} >
+                    <Card>
+                      <CardItem>
+                        <Text>{book.title}</Text>
+                      </CardItem>
+                    </Card>
+                    <View style={{ flexDirection: 'column' }}>
+                      <Button
+                        small
+                        onPress={() => this.props.addInspiration(this.getInspirationData(book))}
+                      >
+                        <Text>+</Text>
                       </Button>
-                  </View>
-                </ListItem>
-              );
-            })}
-          </List>
+                    </View>
+                  </ListItem>
+                );
+              })}
+            </List>
+          </Content>
 
         </View>
+
         <View style={{ flex: 1 }}>
           <SharedFooter
             activeTab="books"
