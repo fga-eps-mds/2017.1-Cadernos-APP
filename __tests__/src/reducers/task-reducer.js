@@ -1,8 +1,11 @@
 import { expect } from 'chai';
 
 import {
-  TASKS_SET
-} from '../../../src/config/actions-types' ;
+  TASKS_SET,
+  TASKS_DELETE,
+  TASKS_ADD,
+  TASKS_UPDATE
+} from '../../../src/config/actions-types';
 
 
 import taskReducer from '../../../src/reducers/tasks-reducer';
@@ -13,9 +16,52 @@ describe("Tasks reducer", () => {
 
     tasks = taskReducer(tasks, {
       type: TASKS_SET,
-      tasks: [{id: 3}, {id: 7}]
+      tasks: [{ id: 3 }, { id: 7 }]
     });
 
     expect(tasks.length).to.eq(2);
   });
+
+  it("Delete tasks", () => {
+    let tasks = [
+      { id: 3 }, { id: 7 }
+    ]
+
+    tasks = taskReducer(tasks, {
+      type: TASKS_DELETE,
+      task: { id: 7 }
+    });
+
+    expect(tasks.length).to.eq(1);
+    expect(tasks[0].id).to.eq(3);
+  });
+
+  it("Add tasks", () => {
+    let tasks = [
+      { id: 3 }
+    ]
+
+    tasks = taskReducer(tasks, {
+      type: TASKS_ADD,
+      task: { id: 7 }
+    });
+
+    expect(tasks.length).to.eq(2);
+    expect(tasks[1].id).to.eq(7);
+  });
+
+   it("Update tasks", () => {
+    let tasks = [
+      { id: 3 }
+    ]
+
+    tasks = taskReducer(tasks, {
+      type: TASKS_UPDATE,
+      task: { id: 3 }
+    });
+
+    expect(tasks.length).to.eq(1);
+    expect(tasks[0].id).to.eq(3);
+  });
+
 })
