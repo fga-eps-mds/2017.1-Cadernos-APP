@@ -8,7 +8,8 @@ import { Actions } from 'react-native-router-flux';
 const mapStateToProps = (state) => {
   return {
     inspirations: state.inspirations,
-    primary: state.book
+    primary: state.book,
+    user: state.user
   }
 }
 

@@ -50,6 +50,7 @@ export default class InspirationList extends Component {
                     <View style={{ flexDirection: 'column' }}>
                       <Button danger
                         small
+                        disabled={this.props.user.id !== this.props.primary.userId}
                       //onPress={() => this.props.addInspiration(this.getInspirationData(book))}
                       >
                         <Text>-</Text>
@@ -63,7 +64,7 @@ export default class InspirationList extends Component {
         </View>
         <Button
           onPress={() => Actions.InspirationSearchList()}
-        //disabled={this.props.user.id !== this.props.book.userId}
+        disabled={this.props.user.id !== this.props.primary.userId}
         >
           <Text>Adicionar Inspirações</Text>
         </Button>
