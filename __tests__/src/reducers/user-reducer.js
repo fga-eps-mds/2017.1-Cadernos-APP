@@ -5,7 +5,11 @@ import {
   VISITOR_LOGIN,
   USER_SET,
   USER_SENDING_DATA,
-  USER_REGISTER
+  USER_REGISTER,
+  USER_AUTHENTICATED,
+  USER_ERRORS,
+  USER_LOGOUT,
+  USER_LOGIN
 
 } from '../../../src/config/actions-types';
 
@@ -34,13 +38,50 @@ describe("User Reducer", () => {
     expect(user.sendingData).to.equal(true);
   });
 
+  it("Errors user", () => {
+    const user = userReducer(initialState.user, {
+      type: USER_ERRORS,
+      errors: 1
+    });
+
+    expect(user.errors).to.equal(1);
+  });
+
   it("Set user_registre", () => {
     const user = userReducer(initialState.user, {
       type: USER_REGISTER,
-       isRegistered: true
+      isRegistered: true
     });
 
-    expect(user. isRegistered).to.equal(true);
+    expect(user.isRegistered).to.equal(true);
+
+  });
+  it("Set user_authenticated", () => {
+    const user = userReducer(initialState.user, {
+      type: USER_AUTHENTICATED,
+      authenticated: true
+    });
+
+    expect(user.authenticated).to.equal(true);
+
+  });
+  it("Set user_logout", () => {
+    const user = userReducer(initialState.user, {
+      type: USER_LOGOUT,
+      isUserLogout: false
+    });
+
+    expect(user.isUserLogout).to.equal(false);
+
+  });
+
+  it("Set user_login", () => {
+    const user = userReducer(initialState.user, {
+      type: USER_LOGIN,
+      isUserLogin: false
+    });
+
+    expect(user.isUserLogin).to.equal(false);
 
   });
 

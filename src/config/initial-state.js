@@ -15,6 +15,8 @@ const initialState = {
     isUpdated: false,
     isVisitor: false,
     isUser: false,
+    isUserLogout: false,
+    isUserLogin: false,
     errors: {}
   },
 
