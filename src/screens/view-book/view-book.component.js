@@ -55,34 +55,6 @@ export default class ViewBook extends React.Component {
     )
   }
 
-  displayBookActions() {
-    return (
-      <View style={{ flexDirection: 'row', height: 50}}>
-        <Button style={{ ...buttonStyle.button, ...buttonStyle.default }}
-          key="edit-book-button"
-          onPress={() => Actions.EditBook()}
-          disabled={this.props.user.id !== this.props.book.userId}
-        >
-          <Text>Editar caderno</Text>
-        </Button>
-        <Button style={{ ...buttonStyle.button, ...buttonStyle.default }}
-          key="inspirations-book-button"
-          onPress={() => Actions.InspirationList()}
-          //disabled={this.props.user.id !== this.props.book.userId}
-        >
-          <Text>Inspirações</Text>
-        </Button>
-
-        <Button style={{ ...buttonStyle.button, ...buttonStyle.delete }}
-          key="delete-book-button"
-          onPress={() => this.deleteBookConfirmation()}
-          disabled={this.props.user.id !== this.props.book.userId}>
-          <Text>Deletar caderno</Text>
-        </Button>
-      </View>
-    );
-  }
-
   render() {
     return (
         <View style={{height: '100%', marginTop: 0}}>
