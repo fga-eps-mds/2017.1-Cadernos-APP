@@ -33,7 +33,6 @@ export const asyncInviteGet = (user) => {
     axios.get(`/users/${user.id}/invites`)
       .then(response => {
         dispatch(setInvites(response.data));
-        console.log("===========================================================")
         console.log(response.data);
       })
       .catch(err => {
@@ -49,7 +48,6 @@ export const asyncInviteDelete = (key, user) => {
   return (dispatch) => {
     axios.delete(`/invites/${key}`)
       .then(response => {
-        console.log("===========================================================")
         console.log(response.data);
         dispatch(asyncInviteGet(user));
       })

@@ -21,10 +21,8 @@ export const asyncMembershipSet = (inviteData, user, callback) => {
       })
       .catch(err => {
         callback(false)
-        console.log("===============================================")
         console.log("Error while creating membership");
         console.log(err);
-        console.log("===============================================")
       });
   }
 }
@@ -34,11 +32,10 @@ export const asyncMembershipGet = (book) => {
     axios.get(`/books/${book.id}/members`)
       .then(response => {
         dispatch(setMemberships(response.data));
-        console.log("===========================================================")
         console.log(response.data);
       })
       .catch(err => {
-        console.log(`Erro while getting members of book`);
+        console.log(`Error while getting members of book`);
         console.log(err);
       });
 
@@ -50,7 +47,6 @@ export const asyncMembershipDelete = (key, book) => {
   return (dispatch) => {
     axios.delete(`/memberships/${key}`)
       .then(response => {
-        console.log("===========================================================")
         console.log(response.data);
         dispatch(asyncMembershiṕGet(book));
       })
