@@ -11,7 +11,8 @@ import {
   tasksReducer,
   singleTaskReducer,
   categoriesReducer,
-  inviteReducer
+  inviteReducer,
+  membershipsReducer
 } from '../reducers';
 
 const reducers = combineReducers({
@@ -22,7 +23,8 @@ const reducers = combineReducers({
   tasks: tasksReducer,
   singleTask: singleTaskReducer,
   categories: categoriesReducer,
-  invites: inviteReducer
+  invites: inviteReducer,
+  memberships: membershipsReducer
 });
 
 const store = createStore(reducers, initialState, applyMiddleware(thunk));
