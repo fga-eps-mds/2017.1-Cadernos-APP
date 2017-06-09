@@ -12,7 +12,9 @@ import {
   Tab,
   Icon,
   ActionSheet,
-  Spinner
+  Spinner,
+  List,
+  ListItem
 } from 'native-base';
 
 import {
@@ -111,7 +113,36 @@ export default class ViewBook extends React.Component {
             </Tab>
 
             <Tab heading="Colaboradores">
-              <Text>Um texto away</Text>
+              <List style={{flex: 4}}>
+                <ListItem>
+                  <Text>Colaborador 1</Text>
+                </ListItem>
+
+                <ListItem>
+                  <Text>Colaborador 2</Text>
+                </ListItem>
+
+                <ListItem>
+                  <Text>Colaborador 3</Text>
+                </ListItem>
+              </List>
+              <View style={{flex: 1, justifyContent: 'center', alignSelf: 'center'}}>
+              <Button bordered rounded small info
+                key="invite-collaborator-button"
+                disabled={this.props.user.id !== this.props.book.userId}
+                onPress={() => Actions.InviteCollaborator()}
+              >
+                <Text>Convidar colaborador</Text>
+              </Button>
+              <Button bordered rounded small primary
+                key="invite-collaborator-list-button"
+                disabled={this.props.user.id !== this.props.book.userId}
+              >
+                <Text>  Convites pendentes </Text>
+              </Button>
+
+              </View>
+
             </Tab>
           </Tabs>
         </View>

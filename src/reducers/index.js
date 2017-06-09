@@ -5,6 +5,8 @@ import loginReducer from './login-reducer';
 import tasksReducer from './tasks-reducer';
 import singleTaskReducer from './single-task-reducer';
 import categoriesReducer from './categories-reducer';
+import inviteReducer from './invite-reducer';
+import membershipsReducer from './membership-reducer'
 
 export {
   userReducer,
@@ -13,5 +15,7 @@ export {
   loginReducer,
   tasksReducer,
   singleTaskReducer,
-  categoriesReducer
+  categoriesReducer,
+  inviteReducer,
+  membershipsReducer
 }
