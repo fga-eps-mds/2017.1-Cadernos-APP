@@ -14,6 +14,7 @@ import {
 
 import { ListView } from 'react-native';
 
+import buttonStyle from '../../global-styles/button.styles'
 import styles from './task-list.styles';
 
 import TaskListItem from '../task-list-item/task-list-item.component';
@@ -46,7 +47,7 @@ export default class TaskList extends Component {
     return (
       <Container>
         <View style={{ flex: 1 }}>
-          <Picker>
+          <Picker mode="dropdown">
             {this.props.categories.map(category => {
               return (
                 <Picker.Item
@@ -76,13 +77,12 @@ export default class TaskList extends Component {
           null
           :
           <View style={{ flex: 1, padding: 5, justifyContent: 'center' }}>
-            <Button block warning bordered rounded small
+            <Button block
               key="createBookActionButton"
               onPress={() => Actions.CreateTask({
                 book: this.props.book,
                 user: this.props.user,
-              })}
-            >
+              })} style={buttonStyle.default}>
               <Text>Criar tarefa</Text>
             </Button>
           </View>
