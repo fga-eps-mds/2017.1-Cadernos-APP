@@ -13,6 +13,7 @@ import {
   Body,
   Title,
   Right,
+  View,
   ActionSheet
 } from 'native-base';
 
@@ -39,9 +40,35 @@ export default class NavigationHeader extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      selectedBookAction: -1
-    };
+
+    this.actionSheet = null;
+  }
+
+  showActionSheet() {
+    if ( this.actionSheet !== null ) {
+        console.log('eaeee');
+        // Call as you would ActionSheet.show(config, callback)
+        this.actionSheet._root.showActionSheet({
+          options: BOOK_CONFIG_OPTIONS,
+          cancelButtonIndex: CANCEL_INDEX,
+          destructiveButtonIndex: DESTRUCTIVE_INDEX,
+          title: 'Ações'
+        },
+        (buttonIndex) => {
+          switch (buttonIndex.toString()) {
+            case "0":
+              this.props.editAction();
+              break;
+            case "1":
+              this.props.inspirationAction();
+              break;
+            case "2":
+              this.props.deleteAction();
+              break;
+            default:
+          }
+        });
+    }
   }
 
   render() {
@@ -64,45 +91,20 @@ export default class NavigationHeader extends Component {
 
         <Right>
           {this.props.displayBookActions ?
-            <Button transparent onPress={() => {
-              ActionSheet.show(
-                {
-                  options: BOOK_CONFIG_OPTIONS,
-                  cancelButtonIndex: CANCEL_INDEX,
-                  destructiveButtonIndex: DESTRUCTIVE_INDEX,
-                  title: 'Ações'
-                },
-                (buttonIndex) => {
-                  console.log(buttonIndex)
-                  switch (buttonIndex.toString()) {
-                    case "0":
-                      console.log("case 0")
-                      this.props.editAction();
-                      break;
-                    case "1":
-                      console.log("case 1")
-                      this.props.inspirationAction();
-                      break;
-                    case "2":
-                      console.log("case 2")
-                      this.props.deleteAction();
-                      break;
-                    default:
-                  }
-
-                }
-              )
-            }}>
-              <Icon name='md-cog' />
-            </Button>
+            <View>
+              <Button transparent onPress={() => {this.showActionSheet()}} >
+                <Icon name='md-cog' />
+              </Button>
+              <ActionSheet ref={(c) => { this.actionSheet = c; }} />
+            </View>
             :
             null
           }
-
           <Button transparent onPress={this.context.openDrawer}>
             <Icon name='menu' />
           </Button>
         </Right>
+
       </Header>
     );
   }
