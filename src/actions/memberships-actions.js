@@ -10,19 +10,21 @@ export const setMemberships = (memberships = []) => {
   }
 }
 
-export const asyncMembershipSet = (inviteData, callback) => {
+export const asyncMembershipSet = (inviteData, user, callback) => {
   return (dispatch) => {
-    axios.post("/memberships", {
-      email: inviteData.email,
+    axios.post('/memberships', {
+      email: user.email,
       book_id: inviteData.book_id,
     })
       .then(response => {
-        callback(true);
+        callback(true)
       })
       .catch(err => {
         callback(false)
+        console.log("===============================================")
         console.log("Error while creating membership");
         console.log(err);
+        console.log("===============================================")
       });
   }
 }
