@@ -89,6 +89,10 @@ export default class ViewBook extends React.Component {
             <NavigationHeader
               title={this.props.book.title}
               displayGoBack={true}
+              displayBookActions={true}
+              editAction={() => Actions.EditBook()}
+              deleteAction={() => this.deleteBookConfirmation()}
+              inspirationAction={() => Actions.InspirationList()}
             />
           <Tabs>
               <Tab heading="Tarefas">
