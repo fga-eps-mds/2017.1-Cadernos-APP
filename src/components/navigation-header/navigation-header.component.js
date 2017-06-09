@@ -44,65 +44,66 @@ export default class NavigationHeader extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-      switch (this.state.selectedBookAction) {
-        case 0:
-          this.props.editAction();
-          break;
-        case 1:
-          this.props.inspirationAction();
-          break;
-        case 2:
-          this.props.deleteAction();
-          break;
-        default:
-      }
-  }
-
   render() {
     return (
-        <Header>
-          {this.props.displayGoBack ?
-            <Left>
-              <Button transparent onPress={() => Actions.pop()}>
-                <Icon name='arrow-back' />
-              </Button>
-            </Left>
+      <Header>
+        {this.props.displayGoBack ?
+          <Left>
+            <Button transparent onPress={() => Actions.pop()}>
+              <Icon name='arrow-back' />
+            </Button>
+          </Left>
           :
-            <Left />
+          <Left />
+        }
+
+
+        <Body>
+          <Title style={{ fontSize: 14 }}>{this.props.title}</Title>
+        </Body>
+
+        <Right>
+          {this.props.displayBookActions ?
+            <Button transparent onPress={() => {
+              ActionSheet.show(
+                {
+                  options: BOOK_CONFIG_OPTIONS,
+                  cancelButtonIndex: CANCEL_INDEX,
+                  destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                  title: 'Ações'
+                },
+                (buttonIndex) => {
+                  console.log(buttonIndex)
+                  switch (buttonIndex.toString()) {
+                    case "0":
+                      console.log("case 0")
+                      this.props.editAction();
+                      break;
+                    case "1":
+                      console.log("case 1")
+                      this.props.inspirationAction();
+                      break;
+                    case "2":
+                      console.log("case 2")
+                      this.props.deleteAction();
+                      break;
+                    default:
+                  }
+
+                }
+              )
+            }}>
+              <Icon name='md-cog' />
+            </Button>
+            :
+            null
           }
 
-
-          <Body>
-            <Title style={{fontSize: 14}}>{this.props.title}</Title>
-          </Body>
-
-          <Right>
-            {this.props.displayBookActions ?
-              <Button transparent onPress={() => {
-                ActionSheet.show(
-                  {
-                    options: BOOK_CONFIG_OPTIONS,
-                    cancelButtonIndex: CANCEL_INDEX,
-                    destructiveButtonIndex: DESTRUCTIVE_INDEX,
-                    title: 'Ações'
-                  },
-                  (buttonIndex) => {
-                    this.setState({ selectedBookAction: buttonIndex });
-                  }
-                  )
-                }}>
-                <Icon name='md-cog' />
-              </Button>
-              :
-              null
-            }
-
-            <Button transparent onPress={this.context.openDrawer}>
-              <Icon name='menu' />
-            </Button>
-          </Right>
-        </Header>
+          <Button transparent onPress={this.context.openDrawer}>
+            <Icon name='menu' />
+          </Button>
+        </Right>
+      </Header>
     );
   }
 }
