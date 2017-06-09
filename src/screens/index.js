@@ -14,7 +14,8 @@ import MyTasks from './my-tasks/my-tasks.component';
 import ViewTask from './view-task/view-task.container';
 import CreateTaskScreen from './create-task/create-task.container';
 import InviteCollaboratorScreen from './invite-collaborator/invite-collaborator.container';
-import InviteListScreen from './invite-list/invite-list.container'
+import InviteListScreen from './invite-list/invite-list.container';
+import EditTaskScreen from './edit-task/edit-task.container';
 
 export {
   CreateUserScreen,
@@ -33,5 +34,6 @@ export {
   ViewTask,
   CreateTaskScreen,
   InviteCollaboratorScreen,
-  InviteListScreen
+  InviteListScreen,
+  EditTaskScreen
 }

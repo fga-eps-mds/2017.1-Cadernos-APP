@@ -1,4 +1,4 @@
-import { TASKS_SET, TASKS_DELETE, TASKS_ADD } from '../config/actions-types';
+import { TASKS_SET, TASKS_DELETE, TASKS_ADD, TASKS_UPDATE } from '../config/actions-types';
 
 import axios from '../config/axios';
 
@@ -19,6 +19,13 @@ export const taskDelete = (task) => {
 export const taskAdd = (task) => {
   return {
     type: TASKS_ADD,
+    task
+  }
+}
+
+export const taskUpdate = (task) => {
+  return {
+    type: TASKS_UPDATE,
     task
   }
 }

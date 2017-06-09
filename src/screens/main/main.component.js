@@ -10,6 +10,7 @@ import {
 } from 'native-base';
 
 import { getStoredUserLogin } from '../../device-storage/login';
+import styles from './main.styles';
 
 export default class Main extends React.Component {
 
@@ -24,18 +25,22 @@ export default class Main extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container style={styles.container}>
         <View>
-          <Button block onPress={() => Actions.UserLogin()}>
-            <Text>Login</Text>
-          </Button>
+          <Text style={styles.title}>
+            CADERNOS
+          </Text>
+          <Text style={styles.subtitle}>GUARDANDO A HISTÓRIA DA ARTE</Text>
         </View>
 
-        <View>
-          <Button block onPress={() => Actions.CreateUser()}>
-            <Text>Cadastro</Text>
+
+          <Button style={styles.button} block onPress={() => Actions.UserLogin()}>
+            <Text>LOGIN</Text>
           </Button>
-        </View>
+          <Text style={{marginTop: 20}}>Não tem uma conta?</Text>
+          <Button style={styles.button} block onPress={() => Actions.CreateUser()}>
+            <Text>CADASTRO</Text>
+          </Button>
       </Container>
     );
   }

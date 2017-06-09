@@ -29,11 +29,13 @@ export const BOOK_LIST_UPDATE_BOOK = 'BOOK_LIST_UPDATE_BOOK';
 export const TASKS_SET = 'TASKS_SET';
 export const TASKS_DELETE = 'TASKS_DELETE';
 export const TASKS_ADD = 'TASKS_ADD';
+export const TASKS_UPDATE = 'TASKS_UPDATE';
 
 // Single task
 export const SINGLE_TASK_SET = 'SINGLE_TASK_SET';
 export const SINGLE_TASK_SENDING_DATA = 'SINGLE_TASK_SENDING_DATA';
 export const SINGLE_TASK_CLEAR = 'SINGLE_TASK_CLEAR';
+export const SINGLE_TASK_EDIT = 'SINGLE_TASK_EDIT';
 
 // Categories actions
 export const CATEGORIES_SET = 'CATEGORIES_SET';
