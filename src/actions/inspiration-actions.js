@@ -41,14 +41,29 @@ export const asyncSetInspiration = (data, callback) => {
       inspirational_id: data.inspirational.id
     })
       .then(response => {
-        console.log("=================================================")
-        console.log(response.data)
         dispatch(asyncUpdateInspirations(response.data.primary_id))
         callback(true)
       })
       .catch(err => {
         callback(false)
         console.log("Error while setting inspirations");
+        console.log(err);
+      });
+  }
+}
+
+export const asyncDeleteInspiration = (data, callback, book_id) => {
+  return (dispatch) => {
+    axios.delete(`/inspirations/${data}`)
+
+      .then(response => {
+        console.log("deletado com sucesso!")
+        dispatch(asyncUpdateInspirations(book_id))
+        callback(true)
+      })
+      .catch(err => {
+        callback(false)
+        console.log("Error while deleting inspiration");
         console.log(err);
       });
   }

@@ -14,6 +14,7 @@ import {
   CardItem
 } from 'native-base';
 
+import { Alert } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 
 import NavigationHeader from '../../components/navigation-header/navigation-header.component';
@@ -29,6 +30,21 @@ export default class InspirationList extends Component {
     this.setState({
       [field]: value
     });
+  }
+
+  callAlertToDelete(inspiration_id, book_id, inspiration_title) {
+    console.log("===============================================================")
+    console.log(inspiration_title)
+    Alert.alert(
+      'Deletar relação',
+      "Deseja deletar a relação do caderno " + inspiration_title + "?",
+      [
+        { text: 'Sim', onPress: () => this.props.deleteInspiration(inspiration_id, book_id) },
+        { text: 'Não', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+      ],
+      { cancelable: false }
+    )
+
   }
   render() {
     return (
@@ -48,13 +64,17 @@ export default class InspirationList extends Component {
                       </CardItem>
                     </Card>
                     <View style={{ flexDirection: 'column' }}>
-                      <Button danger
-                        small
-                        disabled={this.props.user.id !== this.props.primary.userId}
-                      //onPress={() => this.props.addInspiration(this.getInspirationData(book))}
-                      >
-                        <Text>-</Text>
-                      </Button>
+                      {
+                        this.props.user.id === this.props.primary.userId ?
+                          <Button danger
+                            small
+                            onPress={() => this.callAlertToDelete(inspiration.id, this.props.primary.id, inspiration.inspirational_title)}
+                          >
+                            <Text>-</Text>
+                          </Button>
+                          :
+                          null
+                      }
                     </View>
                   </ListItem>
                 );
@@ -62,13 +82,16 @@ export default class InspirationList extends Component {
             </List>
           </Content>
         </View>
-        <Button
-          onPress={() => Actions.InspirationSearchList()}
-        disabled={this.props.user.id !== this.props.primary.userId}
-        >
-          <Text>Adicionar Inspirações</Text>
-        </Button>
-
+        {this.props.user.id === this.props.primary.userId ?
+          <Button
+            onPress={() => Actions.InspirationSearchList()}
+            disabled={this.props.user.id !== this.props.primary.userId}
+          >
+            <Text>Adicionar Inspirações</Text>
+          </Button>
+          :
+          null
+        }
       </Container>
     );
   }
