@@ -29,7 +29,6 @@ export default class NavigationHeader extends Component {
 
   render() {
     return (
-      <Container>
         <Header>
           {this.props.displayGoBack ?
             <Left>
@@ -52,7 +51,6 @@ export default class NavigationHeader extends Component {
             </Button>
           </Right>
         </Header>
-      </Container>
     );
   }
 }

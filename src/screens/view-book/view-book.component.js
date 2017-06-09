@@ -85,13 +85,12 @@ export default class ViewBook extends React.Component {
 
   render() {
     return (
-        <View style={{ flex: 1, marginTop: 0}}>
+        <View style={{height: '100%', marginTop: 0}}>
             <NavigationHeader
               title={this.props.book.title}
               displayGoBack={true}
-              style={{flex: 1}}
             />
-          <Tabs style={{flex: 10}}>
+          <Tabs>
               <Tab heading="Tarefas">
                 <TaskList
                   tasks={this.props.tasks}
