@@ -58,7 +58,7 @@ export default class InviteList extends Component {
                 <View style={{ flexDirection: 'column' }}>
                   <Button
                   style={styles.buttonList}
-                  onPress={() => this.props.accept(invite.id, this.props.user)}
+                  onPress={() => this.props.accept(invite, this.props.user)}
                   >
                     <Text style={styles.buttonText}>Aceitar</Text>
                   </Button>
