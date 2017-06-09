@@ -43,6 +43,7 @@ export default class ViewBook extends React.Component {
   componentDidMount() {
     this.props.fetchBookTasks(this.props.book);
     this.props.fetchCategories();
+    this.props.getMemberships(this.props.book);
   }
 
   deleteBookConfirmation() {
@@ -60,7 +61,7 @@ export default class ViewBook extends React.Component {
   displayBookActions() {
     return (
       <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-        <Button style={{...buttonStyle.button, ...buttonStyle.default}}
+        <Button style={{ ...buttonStyle.button, ...buttonStyle.default }}
           key="edit-book-button"
           onPress={() => Actions.EditBook()}
           disabled={this.props.user.id !== this.props.book.userId}
@@ -68,7 +69,7 @@ export default class ViewBook extends React.Component {
           <Text>Editar caderno</Text>
         </Button>
 
-        <Button style={{...buttonStyle.button, ...buttonStyle.delete}}
+        <Button style={{ ...buttonStyle.button, ...buttonStyle.delete }}
           key="delete-book-button"
           onPress={() => this.deleteBookConfirmation()}
           disabled={this.props.user.id !== this.props.book.userId}>
@@ -113,33 +114,27 @@ export default class ViewBook extends React.Component {
             </Tab>
 
             <Tab heading="Colaboradores">
-              <List style={{flex: 4}}>
-                <ListItem>
-                  <Text>Colaborador 1</Text>
-                </ListItem>
-
-                <ListItem>
-                  <Text>Colaborador 2</Text>
-                </ListItem>
-
-                <ListItem>
-                  <Text>Colaborador 3</Text>
-                </ListItem>
-              </List>
-              <View style={{flex: 1, justifyContent: 'center', alignSelf: 'center'}}>
-              <Button bordered rounded small info
-                key="invite-collaborator-button"
-                disabled={this.props.user.id !== this.props.book.userId}
-                onPress={() => Actions.InviteCollaborator()}
-              >
-                <Text>Convidar colaborador</Text>
-              </Button>
-              <Button bordered rounded small primary
-                key="invite-collaborator-list-button"
-                disabled={this.props.user.id !== this.props.book.userId}
-              >
-                <Text>  Convites pendentes </Text>
-              </Button>
+              {this.props.memberships.map(membership => {
+                return (
+                  <ListItem key={membership.id} >
+                    <Text style={styles.textList}>{membership.member_name}</Text>
+                  </ListItem>
+                );
+              })}
+              <View style={{ flex: 1, justifyContent: 'center', alignSelf: 'center' }}>
+                <Button bordered rounded small info
+                  key="invite-collaborator-button"
+                  disabled={this.props.user.id !== this.props.book.userId}
+                  onPress={() => Actions.InviteCollaborator()}
+                >
+                  <Text>Convidar colaborador</Text>
+                </Button>
+                <Button bordered rounded small primary
+                  key="invite-collaborator-list-button"
+                  disabled={this.props.user.id !== this.props.book.userId}
+                >
+                  <Text>  Convites pendentes </Text>
+                </Button>
 
               </View>
 
