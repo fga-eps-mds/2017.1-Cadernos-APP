@@ -57,7 +57,7 @@ export default class ViewBook extends React.Component {
 
   displayBookActions() {
     return (
-      <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+      <View style={{ flexDirection: 'row', height: 50}}>
         <Button style={{ ...buttonStyle.button, ...buttonStyle.default }}
           key="edit-book-button"
           onPress={() => Actions.EditBook()}
@@ -85,41 +85,26 @@ export default class ViewBook extends React.Component {
 
   render() {
     return (
-      <Container style={styles.container}>
-        <View style={{ flex: 1 }}>
-          <NavigationHeader
-            title={this.props.book.title}
-            displayGoBack={true}
-          />
-        </View>
+      <Container>
+        <View style={{ flex: 7 , backgroundColor: 'red', marginTop: 0}}>
+            <Tabs>
+              <Tab heading="Tarefas">
+                <TaskList
+                  tasks={this.props.tasks}
+                  isVisitor={this.props.isVisitor}
+                  book={this.props.book}
+                  user={this.props.user}
+                  categories={this.props.categories}
+                />
+              </Tab>
 
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-          {this.props.sendingData === false ?
-            this.displayBookActions()
-            :
-            <Spinner />
-          }
-        </View>
+              <Tab heading="Categorias">
+                <Text>Um texto away</Text>
+              </Tab>
 
-        <View style={{ flex: 7 }}>
-          <Tabs>
-            <Tab heading="Tarefas">
-              <TaskList
-                tasks={this.props.tasks}
-                isVisitor={this.props.isVisitor}
-                book={this.props.book}
-                user={this.props.user}
-                categories={this.props.categories}
-              />
-            </Tab>
-
-            <Tab heading="Categorias">
-              <Text>Um texto away</Text>
-            </Tab>
-
-            <Tab heading="Colaboradores">
-              <Text>Um texto away</Text>
-            </Tab>
+              <Tab heading="Colaboradores">
+                <Text>Um texto away</Text>
+              </Tab>
           </Tabs>
         </View>
       </Container >
