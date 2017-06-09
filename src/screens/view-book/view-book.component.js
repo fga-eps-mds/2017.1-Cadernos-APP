@@ -85,9 +85,13 @@ export default class ViewBook extends React.Component {
 
   render() {
     return (
-      <Container>
-        <View style={{ flex: 7 , backgroundColor: 'red', marginTop: 0}}>
-            <Tabs>
+        <View style={{ flex: 1, marginTop: 0}}>
+            <NavigationHeader
+              title={this.props.book.title}
+              displayGoBack={true}
+              style={{flex: 1}}
+            />
+          <Tabs style={{flex: 10}}>
               <Tab heading="Tarefas">
                 <TaskList
                   tasks={this.props.tasks}
@@ -107,7 +111,6 @@ export default class ViewBook extends React.Component {
               </Tab>
           </Tabs>
         </View>
-      </Container >
     );
   }
 }
