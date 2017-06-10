@@ -2,9 +2,9 @@ import { shallow } from 'enzyme';
 import { expect } from 'chai';
 
 import {
-SINGLE_TASK_SET,
-SINGLE_TASK_SENDING_DATA,
-SINGLE_TASK_CLEAR
+  SINGLE_TASK_SET,
+  SINGLE_TASK_SENDING_DATA,
+  SINGLE_TASK_CLEAR
 
 } from '../../../src/config/actions-types';
 
@@ -23,5 +23,22 @@ describe("Single Tasks reducer", () => {
 
     expect(singleTask.id).to.eq(0);
   });
-  })
+  it("Set sendingData single_task", () => {
+    let singleTask = SingleTaskReducer(initialState.singleTask, {
+      type: SINGLE_TASK_SENDING_DATA,
+      sendingData: true
+    });
+
+    expect(singleTask.sendingData).to.equal(true);
+  });
+  it("Set sendingData single_task_clear", () => {
+    let singleTask = SingleTaskReducer(initialState.singleTask, {
+      type: SINGLE_TASK_CLEAR,
+
+    });
+
+    expect(singleTask.sendingData).to.equal();
+  });
+
+})
 
