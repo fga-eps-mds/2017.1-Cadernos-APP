@@ -16,6 +16,7 @@ import CreateTaskScreen from './create-task/create-task.container';
 import EditTaskScreen from './edit-task/edit-task.container';
 import InspirationListScreen from './inspiration-list/inspiration-list.container'
 import InspirationSearchListScreen from './inspiration-search-list/inspiration-search-list.container'
+import ViewInspirationScreen from './view-inspiration/view-inspiration.container'
 
 export {
   CreateUserScreen,
@@ -35,5 +36,6 @@ export {
   CreateTaskScreen,
   EditTaskScreen,
   InspirationListScreen,
-  InspirationSearchListScreen
+  InspirationSearchListScreen,
+  ViewInspirationScreen
 }

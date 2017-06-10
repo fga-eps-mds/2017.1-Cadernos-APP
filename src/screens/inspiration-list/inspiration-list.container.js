@@ -41,8 +41,11 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(asyncDeleteInspiration(data, callback, book_id))
     },
     selectInspiration(data) {
-      dispatch(asyncGetInspiration(data));
-      //Actions.ViewBook();
+      const callback = () => {
+        Actions.ViewInspiration();
+      }
+      dispatch(asyncGetInspiration(data, callback));
+
     }
   }
 }
