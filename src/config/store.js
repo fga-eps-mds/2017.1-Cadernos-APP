@@ -22,7 +22,8 @@ const reducers = combineReducers({
   tasks: tasksReducer,
   singleTask: singleTaskReducer,
   categories: categoriesReducer,
-  inspirations: inspirationReducer
+  inspirations: inspirationReducer,
+  inspiration: inspirationReducer
 });
 
 const store = createStore(reducers, initialState, applyMiddleware(thunk));

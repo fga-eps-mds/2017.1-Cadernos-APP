@@ -38,6 +38,9 @@ const mapDispatchToProps = (dispatch) => {
         }
       }
       dispatch(asyncDeleteInspiration(data, callback, book_id))
+    },
+    selectInspiration(data){
+      dispatch(asyncInspirationGet(data))
     }
   }
 }

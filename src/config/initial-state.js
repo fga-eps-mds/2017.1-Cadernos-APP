@@ -31,6 +31,20 @@ const initialState = {
     edited: false
   },
 
+  //selected inspiration
+  inspiration: {
+    id: 0,
+    title: '',
+    userId: 0,
+    sendingData: false,
+    errors: {},
+    created: false,
+    coverOriginal: "",
+    coverMedium: "",
+    coverThumb: "",
+    edited: false
+  },
+
   // Book list from screen after loggin or logged user books
   bookList: {
     sendingData: false,
@@ -53,8 +67,8 @@ const initialState = {
     errors: {}
   },
 
-categories: [],
-inspirations: []
+  categories: [],
+  inspirations: []
 };
 
 export default initialState;

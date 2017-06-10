@@ -55,21 +55,26 @@ export default class InspirationList extends Component {
           displayGoBack={true}
           displayAddInspiration={this.shouldShowInspirationButtons()}
         />
-      <View style={{ flex: 7 }}>
+        <View style={{ flex: 7 }}>
           <Content>
             <List>
               {this.props.inspirations.map(inspiration => {
                 return (
-                  <ListItem key={inspiration.id} style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}} >
+                  <ListItem
+                    onPress={() => {
+                      this.props.selectInspiration(inspiration.inspirational_id)
+                    }
+                    }
+                    key={inspiration.id} style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }} >
                     <Text>{inspiration.inspirational_title}</Text>
                     {this.shouldShowInspirationButtons() ?
-                        <Button transparent onPress={
-                            () => {
-                              this.callAlertToDelete(inspiration.id, this.props.primary.id, inspiration.inspirational_title)
-                            }
-                          }>
-                          <Icon name='md-trash' style={{color: '#c0392b'}}/>
-                        </Button>
+                      <Button transparent onPress={
+                        () => {
+                          this.callAlertToDelete(inspiration.id, this.props.primary.id, inspiration.inspirational_title)
+                        }
+                      }>
+                        <Icon name='md-trash' style={{ color: '#c0392b' }} />
+                      </Button>
                       :
                       null
                     }

@@ -8,6 +8,13 @@ export const setInspirations = (inspirations = []) => {
   }
 }
 
+export const setInspiration = (inspiration = []) => {
+  return {
+    type: INSPIRATION_SET,
+    inspiration
+  }
+}
+
 export const asyncGetInspirations = (data) => {
   return (dispatch) => {
     axios.get(`/books/${data.id}/inspirations`)
