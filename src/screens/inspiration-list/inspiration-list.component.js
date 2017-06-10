@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-
 import {
   Container,
   Content,
@@ -11,19 +10,19 @@ import {
   List,
   ListItem,
   Card,
-  CardItem
+  CardItem,
+  Icon
 } from 'native-base';
-
+import { ListView } from 'react-native';
 import { Alert } from 'react-native'
 import { Actions } from 'react-native-router-flux';
-
 import NavigationHeader from '../../components/navigation-header/navigation-header.component';
-
+import commonStyle from '../../styles/common.styles';
 
 export default class InspirationList extends Component {
 
   componentDidMount() {
-    this.props.getInspirations(this.props.primary)
+    this.props.getInspirations(this.props.primary);
   }
 
   handleFieldOnChange(field, value) {
@@ -33,8 +32,6 @@ export default class InspirationList extends Component {
   }
 
   callAlertToDelete(inspiration_id, book_id, inspiration_title) {
-    console.log("===============================================================")
-    console.log(inspiration_title)
     Alert.alert(
       'Deletar relação',
       "Deseja deletar a relação do caderno " + inspiration_title + "?",
@@ -44,54 +41,40 @@ export default class InspirationList extends Component {
       ],
       { cancelable: false }
     )
-
   }
+
+  shouldShowAddInspirationButton() {
+    return this.props.user.id === this.props.primary.userId;
+  }
+
   render() {
     return (
       <Container style={{ flex: 1 }}>
         <NavigationHeader style={{ flex: 1 }}
           title={"Inspirações"}
-          displayGoBack={true} />
-        <View style={{ flex: 7 }}>
+          displayGoBack={true}
+          displayAddInspiration={this.shouldShowAddInspirationButton()}
+        />
+      <View style={{ flex: 7 }}>
           <Content>
             <List>
               {this.props.inspirations.map(inspiration => {
                 return (
-                  <ListItem key={inspiration.id} >
-                    <Card>
-                      <CardItem>
-                        <Text>{inspiration.inspirational_title}</Text>
-                      </CardItem>
-                    </Card>
-                    <View style={{ flexDirection: 'column' }}>
-                      {
-                        this.props.user.id === this.props.primary.userId ?
-                          <Button danger
-                            small
-                            onPress={() => this.callAlertToDelete(inspiration.id, this.props.primary.id, inspiration.inspirational_title)}
-                          >
-                            <Text>-</Text>
-                          </Button>
-                          :
-                          null
-                      }
-                    </View>
+                  <ListItem key={inspiration.id} style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}} >
+                    <Text>{inspiration.inspirational_title}</Text>
+                    <Button style={{backgroundColor: 'transparent'}} onPress={
+                        () => {
+                          this.callAlertToDelete(inspiration.id, this.props.primary.id, inspiration.inspirational_title)
+                        }
+                      }>
+                      <Icon name='md-trash' style={{color: '#c0392b'}}/>
+                    </Button>
                   </ListItem>
                 );
               })}
             </List>
           </Content>
         </View>
-        {this.props.user.id === this.props.primary.userId ?
-          <Button
-            onPress={() => Actions.InspirationSearchList()}
-            disabled={this.props.user.id !== this.props.primary.userId}
-          >
-            <Text>Adicionar Inspirações</Text>
-          </Button>
-          :
-          null
-        }
       </Container>
     );
   }

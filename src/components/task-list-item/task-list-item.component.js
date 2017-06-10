@@ -18,7 +18,7 @@ export default class TaskListItem extends Component {
 
     return (
       <TouchableOpacity onPress={() => Actions.ViewTask({ task: this.props.task })}>
-        <View key={`${bookId}:${id}`} style={{ padding: 15 }}>
+        <View key={`${bookId}:${id}`} style={{ paddingTop: 20, paddingBottom: 20, paddingLeft: 15 }}>
           <Text>{title}</Text>
         </View>
       </TouchableOpacity>

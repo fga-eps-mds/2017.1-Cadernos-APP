@@ -12,6 +12,9 @@ export const asyncGetInspirations = (data) => {
   return (dispatch) => {
     axios.get(`/books/${data.id}/inspirations`)
       .then(response => {
+        console.log('@------------@');
+        console.log(response);
+        console.log('@------------@');
         dispatch(setInspirations(response.data));
       })
       .catch(err => {

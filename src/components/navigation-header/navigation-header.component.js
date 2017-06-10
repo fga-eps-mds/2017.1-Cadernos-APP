@@ -84,7 +84,6 @@ export default class NavigationHeader extends Component {
           <Left />
         }
 
-
         <Body>
           <Title style={{ fontSize: 14 }}>{this.props.title}</Title>
         </Body>
@@ -100,6 +99,15 @@ export default class NavigationHeader extends Component {
             :
             null
           }
+
+          {this.props.displayAddInspiration ?
+            <Button transparent onPress={() => {Actions.InspirationSearchList()}} >
+              <Icon name='md-add' />
+            </Button>
+            :
+            null
+          }
+
           <Button transparent onPress={this.context.openDrawer}>
             <Icon name='menu' />
           </Button>
