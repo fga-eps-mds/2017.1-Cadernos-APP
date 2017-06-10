@@ -17,7 +17,7 @@ import {
 import { KeyboardAvoidingView, Alert } from 'react-native';
 
 import styles from './create-book.styles';
-import ListErrors from '../../components/list-errors/list-errors.component';
+import InputErrorDisplay from '../../components/input-error-display/input-error-display.component';
 import GoBack from '../../components/go-back/go-back.component';
 
 export default class CreateBookComponent extends Component {
@@ -64,8 +64,11 @@ export default class CreateBookComponent extends Component {
               value={this.state.title}
             />
           </Item>
-
-          <ListErrors errors={this.props.book.errors.title} />
+           {this.props.book.errors.title ?
+            <InputErrorDisplay bookCreateErrors={this.props.book.errors.title} />
+            :
+            null
+          }
         </KeyboardAvoidingView>
 
         <View style={{ flex: 1 }}>
