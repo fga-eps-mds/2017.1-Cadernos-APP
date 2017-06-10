@@ -65,6 +65,8 @@ export default class ViewBook extends React.Component {
               editAction={() => Actions.EditBook()}
               deleteAction={() => this.deleteBookConfirmation()}
               inspirationAction={() => Actions.InspirationList()}
+              currentLoggedUser = {this.props.user.id}
+              bookOwner = {this.props.book.userId}
             />
           <Tabs>
               <Tab heading="Tarefas">
