@@ -62,6 +62,11 @@ class InputErrorDisplayComponent extends React.Component {
           :
           null
         }
+        {this.props.bookCreateErrors == 'has already been taken' ?
+        <Text style={styles.errorText}>Título já existente!</Text>
+          :
+          null
+        }
 
       </View>
 
