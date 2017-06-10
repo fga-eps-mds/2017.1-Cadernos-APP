@@ -43,7 +43,7 @@ export default class InspirationList extends Component {
     )
   }
 
-  shouldShowAddInspirationButton() {
+  shouldShowInspirationButtons() {
     return this.props.user.id === this.props.primary.userId;
   }
 
@@ -53,7 +53,7 @@ export default class InspirationList extends Component {
         <NavigationHeader style={{ flex: 1 }}
           title={"Inspirações"}
           displayGoBack={true}
-          displayAddInspiration={this.shouldShowAddInspirationButton()}
+          displayAddInspiration={this.shouldShowInspirationButtons()}
         />
       <View style={{ flex: 7 }}>
           <Content>
@@ -62,13 +62,18 @@ export default class InspirationList extends Component {
                 return (
                   <ListItem key={inspiration.id} style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}} >
                     <Text>{inspiration.inspirational_title}</Text>
-                    <Button style={{backgroundColor: 'transparent'}} onPress={
-                        () => {
-                          this.callAlertToDelete(inspiration.id, this.props.primary.id, inspiration.inspirational_title)
-                        }
-                      }>
-                      <Icon name='md-trash' style={{color: '#c0392b'}}/>
-                    </Button>
+                    {this.shouldShowInspirationButtons() ?
+                        <Button style={{backgroundColor: 'transparent'}} onPress={
+                            () => {
+                              this.callAlertToDelete(inspiration.id, this.props.primary.id, inspiration.inspirational_title)
+                            }
+                          }>
+                          <Icon name='md-trash' style={{color: '#c0392b'}}/>
+                        </Button>
+                      :
+                      null
+                    }
+
                   </ListItem>
                 );
               })}
