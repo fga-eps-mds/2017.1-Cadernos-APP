@@ -39,7 +39,12 @@ describe("ViewBook Component", () => {
       />
     );
 
-    expect(wrapper.find(Button).length).to.equal(2);
+    const editButton = wrapper.findWhere(c => c.key() == "edit-book-button")
+    const deleteButton = wrapper.findWhere(c => c.key() == "delete-book-button")
+
+    expect(editButton.prop("disabled")).to.equal(false);
+    expect(deleteButton.prop("disabled")).to.equal(false);
+
   });
 
   it("Disable edit and delete buttons for unauthorized users", () => {

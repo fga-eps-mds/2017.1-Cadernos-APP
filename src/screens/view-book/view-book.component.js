@@ -114,13 +114,17 @@ export default class ViewBook extends React.Component {
             </Tab>
 
             <Tab heading="Colaboradores">
-              {this.props.memberships.map(membership => {
-                return (
-                  <ListItem key={membership.id} >
-                    <Text style={styles.textList}>{membership.member_name}</Text>
-                  </ListItem>
-                );
-              })}
+                {this.props.memberships ?
+                  this.props.memberships.map(membership => {
+                  return (
+                    <ListItem key={membership.id} >
+                      <Text style={styles.textList}>{membership.member_name}</Text>
+                    </ListItem>
+                  );
+                  })
+                  :
+                  null
+              }
               <View style={{ flex: 1, justifyContent: 'center', alignSelf: 'center' }}>
                 <Button bordered rounded small info
                   key="invite-collaborator-button"
