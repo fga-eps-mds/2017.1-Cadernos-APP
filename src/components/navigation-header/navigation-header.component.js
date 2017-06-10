@@ -25,6 +25,12 @@ let BOOK_CONFIG_OPTIONS = [
   'Deletar',
   'Cancelar'
 ];
+
+let NOT_OWNER_BOOK_CONFIG_OPTIONS = [
+  'Inspirações',
+  'Cancelar'
+]
+
 let DESTRUCTIVE_INDEX = 2;
 let CANCEL_INDEX = 3;
 
@@ -45,29 +51,48 @@ export default class NavigationHeader extends Component {
   }
 
   showActionSheet() {
-    if ( this.actionSheet !== null ) {
-        console.log('eaeee');
-        // Call as you would ActionSheet.show(config, callback)
+    if (this.actionSheet !== null) {
+      console.log('eaeee');
+
+      console.log(this.props.currentLoggedUser + " e " + this.props.bookOwner)
+      // Call as you would ActionSheet.show(config, callback)
+      if (this.props.currentLoggedUser === this.props.bookOwner) {
         this.actionSheet._root.showActionSheet({
           options: BOOK_CONFIG_OPTIONS,
           cancelButtonIndex: CANCEL_INDEX,
           destructiveButtonIndex: DESTRUCTIVE_INDEX,
           title: 'Ações'
         },
-        (buttonIndex) => {
-          switch (buttonIndex.toString()) {
-            case "0":
-              this.props.editAction();
-              break;
-            case "1":
-              this.props.inspirationAction();
-              break;
-            case "2":
-              this.props.deleteAction();
-              break;
-            default:
-          }
-        });
+          (buttonIndex) => {
+            switch (buttonIndex.toString()) {
+              case "0":
+                this.props.editAction();
+                break;
+              case "1":
+                this.props.inspirationAction();
+                break;
+              case "2":
+                this.props.deleteAction();
+                break;
+              default:
+            }
+          });
+      } else {
+        this.actionSheet._root.showActionSheet({
+          options: NOT_OWNER_BOOK_CONFIG_OPTIONS,
+          cancelButtonIndex: CANCEL_INDEX,
+          destructiveButtonIndex: DESTRUCTIVE_INDEX,
+          title: 'Ações'
+        },
+          (buttonIndex) => {
+            switch (buttonIndex.toString()) {
+              case "0":
+                this.props.inspirationAction();
+                break;
+              default:
+            }
+          });
+      }
     }
   }
 
@@ -91,7 +116,7 @@ export default class NavigationHeader extends Component {
         <Right>
           {this.props.displayBookActions ?
             <View>
-              <Button transparent onPress={() => {this.showActionSheet()}} >
+              <Button light transparent onPress={() => { this.showActionSheet() }} >
                 <Icon name='md-cog' />
               </Button>
               <ActionSheet ref={(c) => { this.actionSheet = c; }} />
@@ -101,7 +126,7 @@ export default class NavigationHeader extends Component {
           }
 
           {this.props.displayAddInspiration ?
-            <Button transparent onPress={() => {Actions.InspirationSearchList()}} >
+            <Button transparent onPress={() => { Actions.InspirationSearchList() }} >
               <Icon name='md-add' />
             </Button>
             :
