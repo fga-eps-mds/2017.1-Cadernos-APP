@@ -9,7 +9,8 @@ import {
   USER_AUTHENTICATED,
   USER_ERRORS,
   USER_LOGOUT,
-  USER_LOGIN
+  USER_LOGIN,
+  CLEAN_USER_AUTHENTICATION_ERRORS
 
 } from '../../../src/config/actions-types';
 
@@ -84,5 +85,6 @@ describe("User Reducer", () => {
     expect(user.isUserLogin).to.equal(false);
 
   });
+
 
 })
