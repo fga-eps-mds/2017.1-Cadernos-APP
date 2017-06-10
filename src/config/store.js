@@ -13,7 +13,9 @@ import {
   categoriesReducer,
   inspirationReducer,
   singleInspirationReducer,
-  singleInspirationTasksReducer
+  singleInspirationTasksReducer,
+  inviteReducer,
+  membershipsReducer
 } from '../reducers';
 
 const reducers = combineReducers({
@@ -26,7 +28,10 @@ const reducers = combineReducers({
   categories: categoriesReducer,
   inspirations: inspirationReducer,
   inspiration: singleInspirationReducer,
-  inspirationTasks: singleInspirationTasksReducer
+  inspirationTasks: singleInspirationTasksReducer,
+  invites: inviteReducer,
+  memberships: membershipsReducer
+
 });
 
 const store = createStore(reducers, initialState, applyMiddleware(thunk));

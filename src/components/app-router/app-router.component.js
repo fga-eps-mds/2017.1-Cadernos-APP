@@ -20,7 +20,10 @@ import {
   EditTaskScreen,
   InspirationListScreen,
   InspirationSearchListScreen,
-  ViewInspirationScreen
+  ViewInspirationScreen,
+  InviteCollaboratorScreen,
+  InviteListScreen,
+
 } from '../../screens';
 
 
@@ -46,6 +49,8 @@ export default class AppRouter extends Component {
         <Scene key="InspirationList" component={InspirationListScreen} />
         <Scene key="InspirationSearchList" component={InspirationSearchListScreen} />
         <Scene key="ViewInspiration" component={ViewInspirationScreen} />
+        <Scene key="InviteCollaborator" component={InviteCollaboratorScreen} />
+        <Scene key="InviteList" component={InviteListScreen} />
       </Router>
     );
   }

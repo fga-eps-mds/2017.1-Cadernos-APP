@@ -44,6 +44,9 @@ const initialState = {
     coverThumb: "",
     edited: false
   },
+  invites: [],
+  memberships: [],
+
 
   // Book list from screen after loggin or logged user books
   bookList: {
@@ -68,8 +71,11 @@ const initialState = {
     errors: {}
   },
 
+
   categories: [],
   inspirations: []
+
+
 };
 
 export default initialState;

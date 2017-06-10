@@ -8,6 +8,8 @@ import categoriesReducer from './categories-reducer';
 import inspirationReducer from './inspiration-reducer';
 import singleInspirationReducer from './single-inspiration-reducer';
 import singleInspirationTasksReducer from './single-inspiration-tasks-reducer'
+import inviteReducer from './invite-reducer';
+import membershipsReducer from './membership-reducer';
 
 export {
   userReducer,
@@ -19,5 +21,7 @@ export {
   categoriesReducer,
   inspirationReducer,
   singleInspirationReducer,
-  singleInspirationTasksReducer
+  singleInspirationTasksReducer,
+  inviteReducer,
+  membershipsReducer
 }
