@@ -55,8 +55,8 @@ export default class ViewInspiration extends React.Component {
           <Tabs>
               <Tab heading="Tarefas">
                 <TaskList
-                  tasks={this.props.tasks}
-                  isVisitor={this.props.isVisitor}
+                  tasks={this.props.inspirationTasks}
+                  isVisitor={true}
                   book={this.props.inspiration}
                   user={this.props.user}
                   categories={this.props.categories}
