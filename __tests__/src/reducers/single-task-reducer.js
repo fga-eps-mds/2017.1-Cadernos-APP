@@ -10,13 +10,13 @@ import {
 
 import initialState from '../../../src/config/initial-state';
 
-import SingleTaskReducer from '../../../src/reducers/single-task-reducer';
+import singleTaskReducer from '../../../src/reducers/single-task-reducer';
 
 describe("Single Tasks reducer", () => {
   it("set tasks", () => {
     let singleTask = []
 
-    singleTask = SingleTaskReducer(initialState.singleTask, {
+    singleTask = singleTaskReducer(initialState.singleTask, {
       type: SINGLE_TASK_SET,
       singleTask: { id: 0 }
     });
@@ -24,7 +24,7 @@ describe("Single Tasks reducer", () => {
     expect(singleTask.id).to.eq(0);
   });
   it("Set sendingData single_task", () => {
-    let singleTask = SingleTaskReducer(initialState.singleTask, {
+    let singleTask = singleTaskReducer(initialState.singleTask, {
       type: SINGLE_TASK_SENDING_DATA,
       sendingData: true
     });
@@ -32,7 +32,7 @@ describe("Single Tasks reducer", () => {
     expect(singleTask.sendingData).to.equal(true);
   });
   it("Set sendingData single_task_clear", () => {
-    let singleTask = SingleTaskReducer(initialState.singleTask, {
+    let singleTask = singleTaskReducer(initialState.singleTask, {
       type: SINGLE_TASK_CLEAR,
 
     });
