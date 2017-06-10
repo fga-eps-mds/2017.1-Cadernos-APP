@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import InspirationList from './inspiration-list.component';
 import { asyncGetInspirations, asyncDeleteInspiration } from '../../actions/inspiration-actions'
+import { asyncGetInspiration } from '../../actions/single-inspiration-actions'
 import { Actions } from 'react-native-router-flux';
 import { Toast } from 'native-base'
 
@@ -39,8 +40,9 @@ const mapDispatchToProps = (dispatch) => {
       }
       dispatch(asyncDeleteInspiration(data, callback, book_id))
     },
-    selectInspiration(data){
-      dispatch(asyncInspirationGet(data))
+    selectInspiration(data) {
+      dispatch(asyncGetInspiration(data));
+      //Actions.ViewBook();
     }
   }
 }

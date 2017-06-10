@@ -66,9 +66,9 @@ export default class InspirationList extends Component {
                     }
                     }
                     key={inspiration.id} style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }} >
-                    <Text>{inspiration.inspirational_title}</Text>
+                    <Text numberOfLines={5} style={{ flex: 10 }}>{inspiration.inspirational_title}</Text>
                     {this.shouldShowInspirationButtons() ?
-                      <Button transparent onPress={
+                      <Button style={{ flex: 1 }} transparent onPress={
                         () => {
                           this.callAlertToDelete(inspiration.id, this.props.primary.id, inspiration.inspirational_title)
                         }

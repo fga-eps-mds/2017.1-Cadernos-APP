@@ -64,8 +64,9 @@ export default class InspirationSearchList extends Component {
               {this.props.bookList.books.map(book => {
                 return (
                   <ListItem key={book.id} style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-                    <Text>{book.title}</Text>
+                    <Text numberOfLines={5} style={{flex: 10}}>{book.title}</Text>
                       <Button
+                        style={{flex: 1}}
                         small
                         style={{backgroundColor: 'transparent'}}
                         onPress={() => this.props.addInspiration(this.getInspirationData(book))}

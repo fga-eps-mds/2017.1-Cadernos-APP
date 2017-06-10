@@ -6,6 +6,7 @@ import tasksReducer from './tasks-reducer';
 import singleTaskReducer from './single-task-reducer';
 import categoriesReducer from './categories-reducer';
 import inspirationReducer from './inspiration-reducer';
+import singleInspirationReducer from './single-inspiration-reducer';
 
 export {
   userReducer,
@@ -15,5 +16,6 @@ export {
   tasksReducer,
   singleTaskReducer,
   categoriesReducer,
-  inspirationReducer
+  inspirationReducer,
+  singleInspirationReducer
 }

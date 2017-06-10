@@ -7,9 +7,6 @@ export const inspirationReducer = (state=initialState.inspirations, action) => {
     case INSPIRATIONS_SET:
       return [...action.inspirations];
 
-    case INSPIRATION_SET:
-      return [...action.inspiration];
-
     default:
       return state;
   }
