@@ -41,5 +41,12 @@ export const SINGLE_TASK_EDIT = 'SINGLE_TASK_EDIT';
 // Categories actions
 export const CATEGORIES_SET = 'CATEGORIES_SET';
 
+
 //
-export const INSPIRATIONS_SET = 'INSPIRATIONS_SET'
+export const INSPIRATIONS_SET = 'INSPIRATIONS_SET';
+
+// Invites actions
+export const INVITES_SET = 'INVITES_SET';
+
+//Memberships actions
+export const MEMBERSHIPS_SET = 'MEMBERSHIPS_SET';

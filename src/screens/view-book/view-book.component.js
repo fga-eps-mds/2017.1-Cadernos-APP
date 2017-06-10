@@ -12,7 +12,9 @@ import {
   Tab,
   Icon,
   ActionSheet,
-  Spinner
+  Spinner,
+  List,
+  ListItem
 } from 'native-base';
 
 import {
@@ -41,6 +43,7 @@ export default class ViewBook extends React.Component {
   componentDidMount() {
     this.props.fetchBookTasks(this.props.book);
     this.props.fetchCategories();
+    this.props.getMemberships(this.props.book);
   }
 
   deleteBookConfirmation() {
@@ -84,7 +87,30 @@ export default class ViewBook extends React.Component {
               </Tab>
 
               <Tab heading="Colaboradores">
-                <Text>Um texto away</Text>
+                {this.props.memberships.map(membership => {
+                  return (
+                    <ListItem key={membership.id} >
+                      <Text style={styles.textList}>{membership.member_name}</Text>
+                    </ListItem>
+                  );
+                })}
+                <View style={{ flex: 1, justifyContent: 'center', alignSelf: 'center' }}>
+                  <Button bordered rounded small info
+                    key="invite-collaborator-button"
+                    disabled={this.props.user.id !== this.props.book.userId}
+                    onPress={() => Actions.InviteCollaborator()}
+                  >
+                    <Text>Convidar colaborador</Text>
+                  </Button>
+                  <Button bordered rounded small primary
+                    key="invite-collaborator-list-button"
+                    disabled={this.props.user.id !== this.props.book.userId}
+                  >
+                    <Text>  Convites pendentes </Text>
+                  </Button>
+
+                </View>
+
               </Tab>
           </Tabs>
         </View>
