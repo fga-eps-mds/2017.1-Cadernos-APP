@@ -52,6 +52,7 @@ const initialState = {
   },
 
   tasks: [],
+  inspirationTasks: [],
 
   singleTask: {
     id: 0,

@@ -12,7 +12,8 @@ import {
   singleTaskReducer,
   categoriesReducer,
   inspirationReducer,
-  singleInspirationReducer
+  singleInspirationReducer,
+  singleInspirationTasksReducer
 } from '../reducers';
 
 const reducers = combineReducers({
@@ -24,7 +25,8 @@ const reducers = combineReducers({
   singleTask: singleTaskReducer,
   categories: categoriesReducer,
   inspirations: inspirationReducer,
-  inspiration: singleInspirationReducer
+  inspiration: singleInspirationReducer,
+  inspirationTasks: singleInspirationTasksReducer
 });
 
 const store = createStore(reducers, initialState, applyMiddleware(thunk));
