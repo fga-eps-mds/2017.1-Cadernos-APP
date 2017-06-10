@@ -9,7 +9,8 @@ import {
   List,
   ListItem,
   Card,
-  CardItem
+  CardItem,
+  Icon
 } from 'native-base';
 
 import { Actions } from 'react-native-router-flux';
@@ -62,20 +63,16 @@ export default class InspirationSearchList extends Component {
             <List>
               {this.props.bookList.books.map(book => {
                 return (
-                  <ListItem key={book.id} >
-                    <Card>
-                      <CardItem>
-                        <Text>{book.title}</Text>
-                      </CardItem>
-                    </Card>
-                    <View style={{ flexDirection: 'column' }}>
+                  <ListItem key={book.id} style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <Text>{book.title}</Text>
                       <Button
                         small
+                        style={{backgroundColor: 'transparent'}}
                         onPress={() => this.props.addInspiration(this.getInspirationData(book))}
                       >
-                        <Text>+</Text>
+                        <Icon name='md-add' style={{color: '#27ae60'}}/>
                       </Button>
-                    </View>
+
                   </ListItem>
                 );
               })}
