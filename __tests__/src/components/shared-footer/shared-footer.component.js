@@ -20,7 +20,7 @@ describe("SharedFooter Component", () => {
     expect(
       wrapper.find(Button)
       .length
-    ).to.equal(3);
+    ).to.equal(1);
   });
 
   it("wont show profile tab if the user a visitor", () => {
