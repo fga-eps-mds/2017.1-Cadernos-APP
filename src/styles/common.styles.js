@@ -26,6 +26,15 @@ const styles = {
     fontSize: 35,
     fontFamily: 'System',
     color: '#323232'
+  },
+
+  bottomButtonAction: {
+    width: '90%',
+    borderRadius: 25,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    backgroundColor: '#FF8C2B',
+    marginBottom: 0
   }
 }
 

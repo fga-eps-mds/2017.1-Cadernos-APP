@@ -12,7 +12,7 @@ import { Actions } from 'react-native-router-flux';
 
 import buttonStyle from '../../global-styles/button.styles';
 
-import SharedFooter from '../../components/shared-footer/shared-footer.component';
+import SharedFooter from '../../components/shared-footer/shared-footer.container';
 import ListBooks from '../../components/list-books/list-books.component';
 import NavigationHeader from '../../components/navigation-header/navigation-header.component';
 
@@ -50,8 +50,7 @@ export default class HomeScreen extends Component {
           <ListBooks
             books={this.props.bookList.books}
             isVisitor={this.props.isVisitor}
-            onBookSelected={this.handleBookSelected}
-          />
+            onBookSelected={this.handleBookSelected}/>
         </View>
 
         {this.props.isVisitor ?
@@ -60,8 +59,7 @@ export default class HomeScreen extends Component {
           <View style={{ flex: 1, padding: 5, justifyContent: 'center' }}>
             <Button block style={{...buttonStyle.button, ...buttonStyle.default}}
               key="createBookActionButton"
-              onPress={() => Actions.CreateBook()}
-            >
+              onPress={() => Actions.CreateBook()}>
               <Text>Criar caderno</Text>
             </Button>
           </View>
@@ -70,8 +68,7 @@ export default class HomeScreen extends Component {
         <View style={{ flex: 1 }}>
           <SharedFooter
             activeTab="books"
-            isVisitor={this.props.isVisitor}
-          />
+            isVisitor={this.props.isVisitor}/>
         </View>
       </Container>
     );

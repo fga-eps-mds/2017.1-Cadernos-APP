@@ -16,6 +16,9 @@ import CreateTaskScreen from './create-task/create-task.container';
 import InviteCollaboratorScreen from './invite-collaborator/invite-collaborator.container';
 import InviteListScreen from './invite-list/invite-list.container';
 import EditTaskScreen from './edit-task/edit-task.container';
+import InspirationListScreen from './inspiration-list/inspiration-list.container'
+import InspirationSearchListScreen from './inspiration-search-list/inspiration-search-list.container'
+import ViewInspirationScreen from './view-inspiration/view-inspiration.container'
 
 export {
   CreateUserScreen,
@@ -33,7 +36,10 @@ export {
   MyTasks,
   ViewTask,
   CreateTaskScreen,
+  EditTaskScreen,
+  InspirationListScreen,
+  InspirationSearchListScreen,
+  ViewInspirationScreen,
   InviteCollaboratorScreen,
   InviteListScreen,
-  EditTaskScreen
 }
