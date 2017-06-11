@@ -7,28 +7,26 @@ import { expect } from 'chai';
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
-import { SharedFooter } from '../../../../src/components';
+import SharedFooter from '../../../../src/components/shared-footer/shared-footer.component';
 
 import {
-  Button
+  Button,
+  Input
 } from 'native-base';
 
 describe("SharedFooter Component", () => {
-  it("Has 3 tab buttons", () => {
-    const wrapper = shallow(<SharedFooter activeTab="books" isVisitor={false} />);
+  const wrapper = shallow(<SharedFooter activeTab="books" isVisitor={false} />);
 
+  it("Has a button to search", () => {
     expect(
-      wrapper.find(Button)
-      .length
-    ).to.equal(3);
+      wrapper.find(Button).length
+    ).to.equal(1);
   });
 
-  it("wont show profile tab if the user a visitor", () => {
-    const wrapper = shallow(<SharedFooter activeTab="books" isVisitor={true} />);
-
+  it("Has a input to search", () => {
     expect(
-      wrapper.findWhere(c => c.key() === "profileTabButton")
-        .length
-    ).to.equal(0);
+      wrapper.find(Input).length
+    ).to.equal(1);
   });
+
 });

@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 
 import {
   Footer,
-  FooterTab,
   Button,
   Icon,
   Text,
@@ -50,16 +49,14 @@ export default class SharedFooter extends Component {
   render() {
     return (
       <Footer>
-        <FooterTab style={style.sharedFooter}>
           <Item style={{width: width * 0.7, marginLeft: 10}}>
-          <Icon name="md-book" style={{color: '#FFF'}}/>
+            <Icon name="md-book" style={{color: '#FFF'}}/>
             <Input placeholder="Pesquisar Caderno" style={{color: '#FFF'}} placeholderTextColor="white"
               onChangeText={(text) => this.handleFieldOnChange('keyword', text)}/>
           </Item>
           <Button onPress={() => this.getSearchResult()}>
             <Icon name="ios-search" style={{color: '#FFF'}}/>
           </Button>
-        </FooterTab>
       </Footer>
     );
   }
