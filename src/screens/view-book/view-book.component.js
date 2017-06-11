@@ -104,9 +104,8 @@ export default class ViewBook extends React.Component {
                   </Button>
                   <Button bordered rounded small primary
                     key="invite-collaborator-list-button"
-                    disabled={this.props.user.id !== this.props.book.userId}
-                  >
-                    <Text>  Convites pendentes </Text>
+                    disabled={this.props.user.id !== this.props.book.userId}>
+                    <Text>Convites pendentes</Text>
                   </Button>
 
                 </View>
