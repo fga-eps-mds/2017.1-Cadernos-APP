@@ -7,6 +7,7 @@ import { bookSet, asyncBookDelete } from '../../actions/book-actions';
 import { asyncBookListSet } from '../../actions/book-list-actions'
 import { asyncSetTasks } from '../../actions/tasks-actions';
 import { asyncSetCategories } from '../../actions/categories-actions';
+import { asyncMembershipGet } from '../../actions/memberships-actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -15,7 +16,8 @@ const mapStateToProps = (state) => {
     tasks: state.tasks,
     categories: state.categories,
     isVisitor: state.user.isVisitor,
-    sendingData: state.book.sendingData
+    sendingData: state.book.sendingData,
+    memberships: state.memberships
   }
 }
 
@@ -31,6 +33,10 @@ const mapDispatchToProps = (dispatch) => {
 
     fetchCategories() {
       dispatch(asyncSetCategories());
+    },
+
+    getMemberships(book) {
+      dispatch(asyncMembershipGet(book))
     },
 
     deleteBook(bookId) {

@@ -10,7 +10,12 @@ import {
   loginReducer,
   tasksReducer,
   singleTaskReducer,
-  categoriesReducer
+  categoriesReducer,
+  inspirationReducer,
+  singleInspirationReducer,
+  singleInspirationTasksReducer,
+  inviteReducer,
+  membershipsReducer
 } from '../reducers';
 
 const reducers = combineReducers({
@@ -20,7 +25,13 @@ const reducers = combineReducers({
   login: loginReducer,
   tasks: tasksReducer,
   singleTask: singleTaskReducer,
-  categories: categoriesReducer
+  categories: categoriesReducer,
+  inspirations: inspirationReducer,
+  inspiration: singleInspirationReducer,
+  inspirationTasks: singleInspirationTasksReducer,
+  invites: inviteReducer,
+  memberships: membershipsReducer
+
 });
 
 const store = createStore(reducers, initialState, applyMiddleware(thunk));

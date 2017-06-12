@@ -18,57 +18,37 @@ import {
 } from 'native-base';
 
 describe("ViewBook Component", () => {
-  it("Display edit and delete button for authorized users", () => {
-    const book = {
-      id: 1,
-      userId: 1,
-      title: 'abc'
-    }
+  const book = {
+    id: 1,
+    userId: 10,
+    title: 'abc'
+  }
 
-    const user = {
-      id: 1
-    }
+  const user = {
+    id: 1
+  }
 
-    const wrapper = shallow(
-      <ViewBookComponent
-        user={user}
-        book={book}
-        tasks={[]}
-        isVisitor={false}
-        sendingData={false}
-      />
-    );
+  const wrapper = shallow(
+    <ViewBookComponent
+      user={user}
+      book={book}
+      tasks={[]}
+      memberships={[]}
+      isVisitor={false}
+      sendingData={false}
+    />
+  );
 
-    expect(wrapper.find(Button).length).to.equal(2);
+  it("Have one view", () => {
+    expect(wrapper.length).to.equal(1);
   });
 
-  it("Disable edit and delete buttons for unauthorized users", () => {
-    const book = {
-      id: 1,
-      userId: 10,
-      title: 'abc'
-    }
-
-    const user = {
-      id: 1
-    }
-
-    const wrapper = shallow(
-      <ViewBookComponent
-        user={user}
-        book={book}
-        tasks={[]}
-        isVisitor={false}
-        sendingData={false}
-      />
-    );
-
-    const editButton = wrapper.findWhere(c => c.key() == "edit-book-button")
-    const deleteButton = wrapper.findWhere(c => c.key() == "delete-book-button")
-
-    expect(editButton.prop("disabled")).to.equal(true);
-    expect(deleteButton.prop("disabled")).to.equal(true);
+  it("Have invite collaborator Button", () => {
+    expect(wrapper.contains(<Text>Convidar colaborador</Text>)).to.equal(true);
   });
 
+  it("Have pendent invites", () => {
+    expect(wrapper.contains(<Text>Convites pendentes</Text>)).to.equal(true);
+  });
 });
 

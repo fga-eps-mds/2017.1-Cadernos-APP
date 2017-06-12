@@ -4,7 +4,7 @@ import ListErrors from './list-errors/list-errors.component';
 import GoBack from './go-back/go-back.component';
 import ImagePicker from './image-picker/image-picker.component';
 import ListBooks from './list-books/list-books.component';
-import SharedFooter from './shared-footer/shared-footer.component';
+import SharedFooter from './shared-footer/shared-footer.container';
 
 export {
   App,

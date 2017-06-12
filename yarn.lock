@@ -3421,6 +3421,12 @@ react-native-keyboard-aware-scroll-view@0.2.7:
   dependencies:
     react-timer-mixin "^0.13.3"
 
+react-native-popover@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-popover/-/react-native-popover-0.2.0.tgz#bf66a4ce5d0583ff331edb00890380f4a1171f6f"
+  dependencies:
+    react-tween-state "0.0.5"
+
 react-native-router-flux@3.38.0:
   version "3.38.0"
   resolved "https://registry.yarnpkg.com/react-native-router-flux/-/react-native-router-flux-3.38.0.tgz#f5f8ec2875b46f96f61006ff502d0d80268e6ce2"
@@ -3572,6 +3578,12 @@ react-transform-hmr@^1.0.4:
   dependencies:
     global "^4.3.0"
     react-proxy "^1.1.7"
+
+react-tween-state@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/react-tween-state/-/react-tween-state-0.0.5.tgz#bd25c27f2558b839a6c7aee3b85fab967760d1d2"
+  dependencies:
+    tween-functions "^1.0.1"
 
 react-tween-state@^0.1.5:
   version "0.1.5"

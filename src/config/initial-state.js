@@ -34,6 +34,23 @@ const initialState = {
     edited: false
   },
 
+  //selected inspiration
+  inspiration: {
+    id: 0,
+    title: '',
+    userId: 0,
+    sendingData: false,
+    errors: {},
+    created: false,
+    coverOriginal: "",
+    coverMedium: "",
+    coverThumb: "",
+    edited: false
+  },
+  invites: [],
+  memberships: [],
+
+
   // Book list from screen after loggin or logged user books
   bookList: {
     sendingData: false,
@@ -41,6 +58,7 @@ const initialState = {
   },
 
   tasks: [],
+  inspirationTasks: [],
 
   singleTask: {
     id: 0,
@@ -56,7 +74,11 @@ const initialState = {
     errors: {}
   },
 
-categories: []
+
+  categories: [],
+  inspirations: []
+
+
 };
 
 export default initialState;
