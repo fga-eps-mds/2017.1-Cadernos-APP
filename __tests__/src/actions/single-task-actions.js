@@ -9,7 +9,7 @@ import {
 
 import initialState from '../../../src/config/initial-state';
 
-import { setSingleTask, setSingleTaskSendingData } from '../../../src/actions/single-task-actions';
+import { setSingleTask, setSingleTaskSendingData, clearSingleTask } from '../../../src/actions/single-task-actions';
 
 describe("Single Task Actions", () => {
   it("Set the entire single task to the reducer", () => {
@@ -36,4 +36,10 @@ describe("Single Task Actions", () => {
     expect(reducerAction.type).to.equal(SINGLE_TASK_SENDING_DATA);
     expect(reducerAction.sendingData).to.equal(true);
   });
+  it("Set a Clear task to the reducer", () =>{
+      const fakeDispatch = (action) => {
+        expect(action.type).to.equal(SINGLE_TASK_SET);
+      }
+      clearSingleTask()(fakeDispatch);
+  })
 });
