@@ -36,6 +36,7 @@ describe("ViewBook Component", () => {
       memberships={[]}
       isVisitor={false}
       sendingData={false}
+      categories={[]}
     />
   );
 
@@ -51,4 +52,3 @@ describe("ViewBook Component", () => {
     expect(wrapper.contains(<Text>Convites pendentes</Text>)).to.equal(true);
   });
 });
-
