@@ -14,7 +14,7 @@ import {
   Spinner
 } from 'native-base';
 
-import styles from './create-user.styles';
+//import styles from './create-user.styles';
 
 import { KeyboardAvoidingView } from 'react-native';
 
@@ -52,16 +52,18 @@ export default class CreateUser extends Component {
 
   render() {
     return (
-      <Container style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
         <GoBack />
+
 
         <View style={styles.wrapperTitle}>
           <H1 style={styles.title}>CADASTRE-SE</H1>
           <Text>Prazer em te conhecer. Seja bem-vindo!</Text>
         </View>
 
-        <KeyboardAvoidingView behavior="padding" style={styles.wrapperForm}>
-          <Content>
+        <Content style={{ flex: 1 }}>
+          <View style={styles.wrapperForm}>
+
             <Item regular style={styles.formItem}>
               <Input
                 placeholder='Seu nome'
@@ -100,22 +102,60 @@ export default class CreateUser extends Component {
             </Item>
 
             <InputErrorDisplay passwordErrors={this.props.errors.password} />
-          </Content>
-        </KeyboardAvoidingView>
 
-        <View style={{ flex: 1 }}>
-          {this.props.sendingData ?
-            <Spinner />
-            :
-            <Button warning block style={{ borderRadius: 30 }}
-              onPress={() => this.props.createUser(this.state)}
-            >
-              <Text>CRIAR CONTA</Text>
+          </View>
+
+          <View>
+            {this.props.sendingData ?
+              <Spinner />
+              :
+              <Button warning block style={{ borderRadius: 30 }}
+                onPress={() => this.props.createUser(this.state)}
+              >
+                <Text>CRIAR CONTA</Text>
+              </Button>
+            }
+
+          </View>
+
+          <View style={{ flex: 1, alignItems:'center' }}>
+            <Text style={{ marginTop: 20, marginBottom: 5 }}>Já possui uma conta?</Text>
+            <Button rounded warning bordered small block onPress={() => Actions.UserLogin()}>
+              <Text>Clique aqui para realizar o Login</Text>
             </Button>
-          }
-
-        </View>
-      </Container>
+          </View>
+        </Content>
+      </KeyboardAvoidingView>
     );
   }
+}
+
+
+const styles = {
+  container: {
+    flex: 1,
+    padding: 15,
+    backgroundColor: '#fff'
+  },
+
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold'
+  },
+
+  wrapperTitle: {
+    flex: 0.3,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  wrapperForm: {
+    height: '60%'
+  },
+
+  formItem: {
+    marginBottom: 3,
+    marginTop: 8,
+    height: '21%'
+  },
 }
