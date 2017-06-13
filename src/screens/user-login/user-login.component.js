@@ -18,7 +18,7 @@ import {
 
 import { KeyboardAvoidingView } from 'react-native'
 
-///import styles from './user-login.styles';
+import styles from './user-login.styles';
 import commonStyle from '../../styles/common.styles';
 
 import InputErrorDisplay from '../../components/input-error-display/input-error-display.component';
@@ -142,49 +142,5 @@ export default class UserLogin extends Component {
         </Content>
       </KeyboardAvoidingView>
     );
-  }
-}
-
-
-const styles = {
-  container: {
-    flex: 1,
-    padding: 15
-  },
-
-  title: {
-    fontSize: 30,
-    fontWeight: 'bold'
-  },
-
-  wrapperTitle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-
-  wrapperForm: {
-    flex: 1,
-    paddingTop: 5,
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start'
-  },
-
-  formItem1: {
-    marginBottom: 10,
-    height: '34%'
-
-  },
-
-  formItem2: {
-    height: '34%'
-  },
-  formButton: {
-    flex: 1,
-    padding: -30
-  },
-
-  enterButton: {
-    marginBottom: 10
   }
 }

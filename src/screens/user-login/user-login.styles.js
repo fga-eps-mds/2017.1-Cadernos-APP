@@ -1,7 +1,7 @@
 const styles = {
   container: {
-    padding: 5,
-    backgroundColor: '#fff'
+    flex: 1,
+    padding: 15
   },
 
   title: {
@@ -12,17 +12,31 @@ const styles = {
   wrapperTitle: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   wrapperForm: {
-    flex: 2,
-    paddingVertical: 5,
+    flex: 1,
+    paddingTop: 5,
     alignItems: 'flex-start',
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-start'
   },
 
-  formItem: {
+  formItem1: {
+    marginBottom: 10,
+    height: '34%'
+
+  },
+
+  formItem2: {
+    height: '34%'
+  },
+  formButton: {
+    flex: 1,
+    padding: -30
+  },
+
+  enterButton: {
     marginBottom: 10
   }
 }
