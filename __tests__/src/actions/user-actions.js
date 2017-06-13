@@ -10,6 +10,7 @@ import {
   USER_REGISTER,
   USER_SENDING_DATA,
   USER_SET,
+  USER_UPDATE,
   VISITOR_LOGIN
 } from '../../../src/config/actions-types';
 
@@ -23,7 +24,11 @@ import {
   userErrors,
   userSendingData,
   userLogin,
-  userLogout
+  userLogout,
+  cleanUserErrors,
+  userRegister,
+  userUpdate
+
 } from '../../../src/actions/user-actions';
 
 describe("User Actions", () => {
@@ -113,5 +118,24 @@ describe("User Actions", () => {
     expect(reducerAction.user.password).to.equal('');
     expect(reducerAction.user.isVisitor).to.equal(false);
   });
+  it("Clear errors as User", () =>{
+    const reducerAction = cleanUserErrors();
 
+    expect(reducerAction.type).to.equal(CLEAN_USER_AUTHENTICATION_ERRORS);
+  });
+  it("Register a user", () =>{
+    const isRegistered = true;
+    const reducerAction = userRegister(isRegistered);
+
+    expect(reducerAction.type).to.equal(USER_REGISTER);
+    expect(reducerAction.isRegistered).to.equal(isRegistered);
+  });
+  it("Update as User", () =>{
+    const isUpdated = true;
+    const reducerAction = userUpdate(isUpdated);
+
+    expect(reducerAction.type).to.equal(USER_UPDATE);
+    expect(reducerAction.isUpdated).to.equal(isUpdated);
+
+  })
 });

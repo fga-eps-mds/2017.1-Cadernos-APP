@@ -34,7 +34,8 @@ export default class TaskList extends Component {
     tasks: PropTypes.array.isRequired,
     isVisitor: PropTypes.bool.isRequired,
     book: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired
+    user: PropTypes.object.isRequired,
+    categories: PropTypes.array.isRequired
   }
 
   componentWillReceiveProps(nextProps) {
