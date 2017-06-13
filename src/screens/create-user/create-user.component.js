@@ -90,7 +90,7 @@ export default class CreateUser extends Component {
             <InputErrorDisplay emailErrors={this.props.errors.email} />
 
 
-            <Item regular style={styles.formItem}>
+            <Item last regular style={styles.formItem}>
               <Input
                 secureTextEntry
                 placeholder='Sua senha'
