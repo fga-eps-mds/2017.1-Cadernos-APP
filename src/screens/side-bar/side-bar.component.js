@@ -74,7 +74,9 @@ export default class SideBar extends Component {
         <View style={styles.bottomView}>
           <View style={styles.sideView}>
             <Icon name="md-contact" style={styles.icon} />
-            <Text style={styles.text3}>Editar perfil</Text>
+            <Button transparent onPress={() => Actions.EditProfile()}>
+              <Text style={styles.text3}>Editar Perfil</Text>
+            </Button>
           </View>
           <View style={styles.sideView}>
             <Icon name="md-exit" style={styles.icon} />

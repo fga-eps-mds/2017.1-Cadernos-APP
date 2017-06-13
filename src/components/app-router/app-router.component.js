@@ -23,6 +23,7 @@ import {
   ViewInspirationScreen,
   InviteCollaboratorScreen,
   InviteListScreen,
+  EditProfileScreen
 
 } from '../../screens';
 
@@ -51,6 +52,7 @@ export default class AppRouter extends Component {
         <Scene key="ViewInspiration" component={ViewInspirationScreen} />
         <Scene key="InviteCollaborator" component={InviteCollaboratorScreen} />
         <Scene key="InviteList" component={InviteListScreen} />
+        <Scene key="EditProfile" component={EditProfileScreen} />
       </Router>
     );
   }
