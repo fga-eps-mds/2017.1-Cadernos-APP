@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+
 import {
   Container,
   Text,
@@ -16,6 +17,8 @@ import buttonStyle from '../../global-styles/button.styles';
 
 import Navigation from '../../components/navigation-header/navigation-header.component'
 import ListErrors from '../../components/list-errors/list-errors.component';
+
+import ImagePicker from '../../components/image-picker/image-picker.component';
 
 import { Dimensions } from 'react-native';
 
@@ -106,6 +109,12 @@ export default class CreateTask extends Component {
               :
               null
             }
+          </Content>
+          <Content>
+            <ImagePicker
+              actualImageUrl={this.props.task}
+              sendImageTo={(imageSource, imageBase64) => this.props.uploadImage(this.props.task, imageSource, imageBase64)}
+            />
           </Content>
         </View>
 

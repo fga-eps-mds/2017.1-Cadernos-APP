@@ -117,7 +117,7 @@ export default class ImagePicker extends Component {
             key="changeImageButton"
           >
             <Text>
-              Mudar imagem
+              Selecionar imagem
             </Text>
           </Button>
         }
