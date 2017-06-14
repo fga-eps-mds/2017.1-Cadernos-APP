@@ -106,15 +106,15 @@ export default class UserLogin extends Component {
             }
           </View>
 
+
+
+          <View>
+            <ListItem onPress={() => this.handleFieldOnChange('remember', !this.state.remember)}>
+              <CheckBox checked={this.state.remember} />
+              <Text style={{ marginLeft: 10 }}>Lembrar email e senha</Text>
+            </ListItem>
+          </View>
           <View style={styles.formButton}>
-
-            <View>
-              <ListItem onPress={() => this.handleFieldOnChange('remember', !this.state.remember)}>
-                <CheckBox checked={this.state.remember} />
-                <Text style={{ marginLeft: 10 }}>Lembrar email e senha</Text>
-              </ListItem>
-            </View>
-
             <View style={styles.enterButton}>
               {this.props.sendingData ?
                 <Spinner />

@@ -32,8 +32,7 @@ const styles = {
     height: '34%'
   },
   formButton: {
-    flex: 1,
-    padding: -30
+    paddingTop: '23%'
   },
 
   enterButton: {
