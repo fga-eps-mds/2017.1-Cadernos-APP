@@ -47,7 +47,10 @@ export default class TaskList extends Component {
   render() {
     return (
       <Container>
-        <Picker mode="dropdown">
+        <Picker
+          mode="dropdown"
+          style={{paddingTop: 10, backgroundColor: '#2980b9' }}
+        >
           {this.props.categories.map(category => {
             return (
               <Picker.Item
@@ -59,7 +62,7 @@ export default class TaskList extends Component {
           })}
         </Picker>
 
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <ListView
             dataSource={this.state.dataSource}
             renderRow={(rowData) => (
@@ -75,7 +78,7 @@ export default class TaskList extends Component {
         {this.props.isVisitor ?
           null
           :
-          <View style={{marginBottom: 0, padding: 5}}>
+          <View style={{ marginBottom: 0, padding: 5 }}>
             <Button block
               key="createBookActionButton"
               onPress={() => Actions.CreateTask({
