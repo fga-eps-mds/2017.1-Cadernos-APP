@@ -18,7 +18,7 @@ import buttonStyle from '../../global-styles/button.styles';
 import Navigation from '../../components/navigation-header/navigation-header.component'
 import ListErrors from '../../components/list-errors/list-errors.component';
 
-import ImagePicker from '../../components/image-picker/image-picker.component';
+import ImagePicker from '../../components/image-picker/image-picker-task.component';
 
 import { Dimensions } from 'react-native';
 
@@ -31,7 +31,8 @@ export default class CreateTask extends Component {
     this.state = {
       title: '',
       content: '',
-      category: 0
+      category: 0,
+      images: []
     }
   }
 
@@ -51,13 +52,15 @@ export default class CreateTask extends Component {
     this.props.clearTaskData();
   }
 
+
   getData() {
     return {
       title: this.state.title,
       content: this.state.content,
       user_id: this.props.user.id,
       book_id: this.props.book.id,
-      category_id: this.state.category
+      category_id: this.state.category,
+      images: [this.state.images]
     };
   }
 
@@ -112,8 +115,9 @@ export default class CreateTask extends Component {
           </Content>
           <Content>
             <ImagePicker
-              actualImageUrl={this.props.task}
-              sendImageTo={(imageSource, imageBase64) => this.props.uploadImage(this.props.task, imageSource, imageBase64)}
+              //actualImageUrl={this.props.task.ima}
+              sendImageTo={(imageSource, imageBase64) => this.props.uploadImage(this.state.task, imageSource, imageBase64)}
+              onImageChange={(imageBase64) => this.setState({images: imageBase64})}
             />
           </Content>
         </View>

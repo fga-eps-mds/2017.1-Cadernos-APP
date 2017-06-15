@@ -2,7 +2,16 @@ import { connect } from 'react-redux'
 import CreateTask from './create-task.component'
 
 import { Actions } from 'react-native-router-flux';
-import { asyncSetSingleTask, clearSingleTask } from '../../actions/single-task-actions';
+import { taskUpdate } from '../../actions/tasks-actions';
+
+import {
+    asyncSetSingleTask,
+    clearSingleTask,
+    asyncUpdateImageTask
+} from '../../actions/single-task-actions';
+
+import { Toast } from 'native-base';
+
 import { taskAdd } from '../../actions/tasks-actions';
 
 const mapStateToProps = (state) => {
@@ -29,6 +38,26 @@ const mapDispatchToProps = (dispatch) => {
 
     clearTaskData() {
       dispatch(clearSingleTask());
+    },
+
+    uploadImage(taskData, imageSource, imageBase64) {
+      imageBase64 = `data:image/png;base64,${imageBase64}`;
+
+      const callback = (updatedTask) => {
+        //dispatch(taskUpdate(updatedTask));
+
+        Toast.show({
+          text: 'Nova Imagem enviada',
+          buttonText: 'OK',
+          position: 'bottom',
+          type: 'success'
+        });
+      }
+
+      dispatch(asyncUpdateImageTask({
+        id: singleTask.id,
+        imageBase64
+      }, callback));
     }
   }
 }
