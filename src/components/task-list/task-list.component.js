@@ -26,6 +26,8 @@ export default class TaskList extends Component {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
     this.state = {
+      categories: [ {id: 0, name: 'Todas'} ],
+      selectedCategory: 0,
       dataSource: ds.cloneWithRows([])
     };
   }
@@ -42,13 +44,43 @@ export default class TaskList extends Component {
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(nextProps.tasks)
     });
+
+    if (this.state.categories.length < nextProps.categories.length) {
+      let categories = this.state.categories;
+      categories = categories.concat(nextProps.categories);
+
+      this.setState({ categories });
+    }
+  }
+
+  filterTaskByCategory(selectedCategory) {
+    const tasks = this.props.tasks.filter(task => {
+      return selectedCategory === 0 ||
+             task.category_id === selectedCategory;
+    });
+
+    return tasks;
+  }
+
+  handlePickerOnValueChange(selected) {
+    this.setState({selectedCategory: selected});
+
+    const tasks = this.filterTaskByCategory(selected);
+
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(tasks)
+    });
   }
 
   render() {
     return (
       <Container>
-        <Picker mode="dropdown">
-          {this.props.categories.map(category => {
+        <Picker
+          mode="dropdown"
+          selectedValue={this.state.selectedCategory}
+          onValueChange={(selected) => this.handlePickerOnValueChange(selected)}
+        >
+          {this.state.categories.map(category => {
             return (
               <Picker.Item
                 label={category.name}

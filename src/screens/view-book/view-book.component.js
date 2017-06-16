@@ -82,10 +82,6 @@ export default class ViewBook extends React.Component {
                 />
               </Tab>
 
-              <Tab heading="Categorias">
-                <Text>Um texto away</Text>
-              </Tab>
-
               <Tab heading="Colaboradores">
                 {this.props.memberships.map(membership => {
                   return (
