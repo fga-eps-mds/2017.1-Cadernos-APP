@@ -29,4 +29,32 @@ describe("SharedFooter Component", () => {
     ).to.equal(1);
   });
 
+  it("get search result", () => {
+    wrapper.setState({ keyword: "abcd" });
+
+    let testedWithKeyword = false;
+    let testedWithoutKeyword = false;
+    wrapper.setProps({
+      setupSearch () {
+        testedWithKeyword = true;
+      },
+
+      bookList() {
+        testedWithoutKeyword = true;
+      }
+    })
+
+    wrapper.find(Button).simulate("press");
+    expect(testedWithKeyword).to.eq(true);
+
+
+    wrapper.setState({ keyword: "" });
+    wrapper.find(Button).simulate("press");
+    expect(testedWithoutKeyword).to.eq(true);
+  });
+
+  it("changes keyword", () => {
+    let input = wrapper.find(Input);
+    input.simulate("changeText");
+  });
 });
