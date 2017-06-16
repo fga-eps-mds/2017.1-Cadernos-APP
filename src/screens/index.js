@@ -19,6 +19,7 @@ import EditTaskScreen from './edit-task/edit-task.container';
 import InspirationListScreen from './inspiration-list/inspiration-list.container'
 import InspirationSearchListScreen from './inspiration-search-list/inspiration-search-list.container'
 import ViewInspirationScreen from './view-inspiration/view-inspiration.container'
+import SketchScreen from './sketch/sketch.component';
 
 export {
   CreateUserScreen,
@@ -42,4 +43,5 @@ export {
   ViewInspirationScreen,
   InviteCollaboratorScreen,
   InviteListScreen,
+  SketchScreen
 }

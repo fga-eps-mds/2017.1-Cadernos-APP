@@ -14,9 +14,9 @@ import {
 
 import buttonStyle from '../../global-styles/button.styles';
 
-import Navigation from '../../components/navigation-header/navigation-header.component'
+import Navigation from '../../components/navigation-header/navigation-header.component';
 import ListErrors from '../../components/list-errors/list-errors.component';
-
+import { Actions } from 'react-native-router-flux';
 import { Dimensions } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
@@ -109,12 +109,18 @@ export default class CreateTask extends Component {
           </Content>
         </View>
 
+        <View style={{ marginLeft:'30%', marginBottom: 10 }}>
+          <Button rounded small onPress={() => Actions.Sketch()}>
+            <Text>Abrir sketch</Text>
+          </Button>
+        </View>
+
         <View style={{ flex: 2 }}>
           {this.props.sendingData ?
             <Spinner />
             :
             <Button block onPress={() => this.props.createTask(this.getData())}
-              style={{...buttonStyle.button, ...buttonStyle.default}}>
+              style={{ ...buttonStyle.button, ...buttonStyle.default }}>
               <Text>Criar</Text>
             </Button>
           }
