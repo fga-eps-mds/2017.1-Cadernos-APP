@@ -24,13 +24,7 @@ const mapDispatchToProps = (dispatch) => {
       console.log("==============================================")
       console.log(book_id)
       callback = (response) => {
-        if (response) {
-          Toast.show({
-            text: 'Relação deletada!',
-            position: 'center',
-            buttonText: 'Ok!'
-          });
-        } else {
+        if (!response) {
           Toast.show({
             text: 'Houve um problema ao deletar a inspiração...',
             position: 'center',

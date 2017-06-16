@@ -52,7 +52,7 @@ export const asyncInviteDelete = (key, user) => {
         dispatch(asyncInviteGet(user));
       })
       .catch(err => {
-        console.log(`Erro while deleting tasks of book`);
+        console.log(`Erro while deleting invite`);
         console.log(err);
       });
 

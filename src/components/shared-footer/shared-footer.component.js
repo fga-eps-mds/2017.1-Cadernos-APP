@@ -19,7 +19,7 @@ const { height, width } = Dimensions.get('window');
 import style from '../../global-styles/button.styles';
 
 export default class SharedFooter extends Component {
-    constructor(props) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -38,25 +38,34 @@ export default class SharedFooter extends Component {
     });
   }
 
-  getSearchResult(){
-    if (this.state.keyword === ''){
+  getSearchResult() {
+    if (this.state.keyword === '') {
       this.props.bookList();
-    }else{
+    } else {
       this.props.setupSearch(this.state.keyword)
     }
   }
 
   render() {
     return (
-      <Footer>
-          <Item style={{width: width * 0.7, marginLeft: 10}}>
-            <Icon name="md-book" style={{color: '#FFF'}}/>
-            <Input placeholder="Pesquisar Caderno" style={{color: '#FFF'}} placeholderTextColor="white"
-              onChangeText={(text) => this.handleFieldOnChange('keyword', text)}/>
-          </Item>
-          <Button onPress={() => this.getSearchResult()}>
-            <Icon name="ios-search" style={{color: '#FFF'}}/>
-          </Button>
+      <Footer style={{ backgroundColor: '#DCB032', height: 45 }}>
+        <Item style={{ width: width * 0.7, marginLeft: '5%'}} >
+          <Icon name="md-book" style={{ color: '#FFF' }}  />
+          <Input
+            //autoCorrect="false"
+            underlineColorAndroid='#DCB032'
+            keyboardType='email-address'
+            autoComplete={false}
+            placeholderTextColor="white"
+            selectTextOnFocus={true}
+            placeholder="Pesquisar Caderno"
+            style={{ color: '#FFF' }}
+            placeholderTextColor="white"
+            onChangeText={(text) => this.handleFieldOnChange('keyword', text)} />
+        </Item>
+        <Button light transparent backgroundColor='#DCB032' onPress={() => this.getSearchResult()}>
+          <Icon name="ios-search" style={{ color: 'white' }} />
+        </Button>
       </Footer>
     );
   }
