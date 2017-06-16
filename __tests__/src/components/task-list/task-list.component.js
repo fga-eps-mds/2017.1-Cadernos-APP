@@ -16,7 +16,8 @@ import {
   ListItem,
   Spinner,
   Button,
-  Text
+  Text,
+  Picker
 } from 'native-base';
 
 describe("Task List Component",() =>{
@@ -59,4 +60,36 @@ describe("Task List Component",() =>{
 
     wrapper.setProps({tasks: [{id: 1}, {id: 4}]})
   });
+
+  it ("add more categorias when new categories is passed as props", () => {
+    const wrapper = shallow(
+      <TaskList
+        {...commomData}
+      />
+    );
+
+    wrapper.setProps({
+      tasks: [
+        {id: 1, title: "AA", category_id: 1 },
+        {id: 2, title: "AB", category_id: 1 },
+        {id: 3, title: "BA", category_id: 2 },
+        {id: 4, title: "BB", category_id: 2 },
+        {id: 5, title: "BC", category_id: 2 },
+        {id: 6, title: "BD", category_id: 2 },
+      ],
+
+      categories: [
+        {id: 1, name: "A"},
+        {id: 2, name: "B"}
+      ]
+    });
+
+    const picker = wrapper.find(Picker);
+    expect(picker.length).to.eq(1);
+
+    expect(
+      picker.find(Picker.Item)
+      .length
+    ).to.eq(3);
+  })
 })
