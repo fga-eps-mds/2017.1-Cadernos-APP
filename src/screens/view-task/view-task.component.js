@@ -17,7 +17,7 @@ import {
 
 import titleStyle from '../../global-styles/titles.styles';
 import buttonStyle from '../../global-styles/button.styles';
-
+import axios, { getBaseUrl } from '../../config/axios'
 import { Actions } from 'react-native-router-flux';
 
 const imageUrlMock = "http://68.media.tumblr.com/57995a853ed4ca881e6053e7e14ec21b/tumblr_mjb683SkIO1qbgtxfo1_500.gif";
@@ -31,10 +31,10 @@ export default class ViewTask extends Component {
       'ATENÇÃO',
       'Tem certeza que deseja deletar essa atividade ?',
       [
-        {text: 'Não', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'Sim', onPress: () => this.props.deleteTask(this.props.task)},
+        { text: 'Não', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: 'Sim', onPress: () => this.props.deleteTask(this.props.task) },
       ],
-      { cancelable: false } )
+      { cancelable: false })
   }
 
   render() {
@@ -44,10 +44,10 @@ export default class ViewTask extends Component {
       <Container style={{ flex: 1, padding: 5 }}>
         <GoBack />
 
-        <View style={{ flex: 4 }}>
+        <Content style={{ flex: 9 }}>
           <View>
-             <H1 style={titleStyle.h1}>Nome da tarefa</H1>
-             <Text>{title}</Text>
+            <H1 style={titleStyle.h1}>Nome da tarefa</H1>
+            <Text>{title}</Text>
           </View>
 
           <View>
@@ -58,20 +58,23 @@ export default class ViewTask extends Component {
           <View>
             <H1 style={titleStyle.h1}>Conteudo</H1>
           </View>
-          <ScrollView>
+          <View style={{marginBottom: 10}}>
             <Text>
               {this.props.task.content}
             </Text>
-          </ScrollView>
-        </View>
+          </View>
+            <Image
+            style={{width: 251, height: 120, alignItems: 'center'}}
+            source={{ uri: `${getBaseUrl()}${this.props.task.picture_original}` }} />
+        </Content>
 
-        <View style={{ flex: 1, marginTop: 5 }}>
-          <Button block style={{...buttonStyle.button, ...buttonStyle.default}}
+        <View style={{paddingTop: 10 }}>
+          <Button rounded block style={{ ...buttonStyle.button, ...buttonStyle.default }}
             onPress={() => this.props.goToEditTask(this.props.task)}>
             <Text>Editar dados</Text>
           </Button>
 
-          <Button block style={{...buttonStyle.button, ...buttonStyle.delete}}
+          <Button rounded block style={{ ...buttonStyle.button, ...buttonStyle.delete }}
             onPress={() => this.getUserConfirmation()}>
             <Text>Excluir</Text>
           </Button>
