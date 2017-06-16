@@ -31,6 +31,29 @@ class InputErrorDisplayComponent extends React.Component {
         null
         }
 
+        {this.props.titleErrors && this.props.titleErrors[0] == 'can\'t be blank' ?
+        <Text style={styles.errorText}>
+          Título vazio!
+        </Text>
+        :
+        this.props.titleErrors && this.props.titleErrors[0] == 'is invalid' ?
+        <Text style={styles.errorText}>
+          Título inválido!
+        </Text>
+        :
+        this.props.titleErrors && this.props.titleErrors[0] == 'is too short (minimum is 5 characters)' ?
+        <Text style={styles.errorText}>
+          Título muito curto! (mínimo 5 de caracteres)
+        </Text>
+        :
+        this.props.titleErrors && this.props.titleErrors[0] == 'is too long (maximum is 80 characters)' ?
+        <Text style={styles.errorText}>
+          Título muito longo! (máximo 80 de caracteres)
+        </Text>
+        :
+        null
+        }
+
         {this.props.nameErrors && this.props.nameErrors[0] == 'can\'t be blank'?
         <Text style={styles.errorText}>
           Nome vazio!
