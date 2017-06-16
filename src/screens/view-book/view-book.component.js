@@ -60,55 +60,65 @@ export default class ViewBook extends React.Component {
 
   render() {
     return (
-        <View style={{height: '100%', marginTop: 0}}>
-            <NavigationHeader
-              title={this.props.book.title}
-              displayGoBack={true}
-              displayBookActions={true}
-              editAction={() => Actions.EditBook()}
-              deleteAction={() => this.deleteBookConfirmation()}
-              inspirationAction={() => Actions.InspirationList()}
-              currentLoggedUser = {this.props.user.id}
-              bookOwner = {this.props.book.userId}
+      <View style={{ height: '100%', marginTop: 0 }}>
+        <NavigationHeader
+          title={this.props.book.title}
+          displayGoBack={true}
+          displayBookActions={true}
+          editAction={() => Actions.EditBook()}
+          deleteAction={() => this.deleteBookConfirmation()}
+          inspirationAction={() => Actions.InspirationList()}
+          currentLoggedUser={this.props.user.id}
+          bookOwner={this.props.book.userId}
+        />
+        <Tabs>
+          <Tab
+            heading="Tarefas"
+            activeTabStyle={{ backgroundColor: '#2980b9' }}
+            tabStyle={{ backgroundColor: '#3498db' }}
+            textStyle={{ color: 'white' }}
+            activeTextStyle={{ color: 'white' }}
+          >
+            <TaskList
+              tasks={this.props.tasks}
+              isVisitor={this.props.isVisitor}
+              book={this.props.book}
+              user={this.props.user}
+              categories={this.props.categories}
             />
-          <Tabs>
-              <Tab heading="Tarefas">
-                <TaskList
-                  tasks={this.props.tasks}
-                  isVisitor={this.props.isVisitor}
-                  book={this.props.book}
-                  user={this.props.user}
-                  categories={this.props.categories}
-                />
-              </Tab>
+          </Tab>
+          <Tab
+            heading="Colaboradores"
+            activeTabStyle={{ backgroundColor: '#2980b9' }}
+            tabStyle={{ backgroundColor: '#3498db' }}
+            textStyle={{ color: 'white' }}
+            activeTextStyle={{ color: 'white' }}
+          >
+            {this.props.memberships.map(membership => {
+              return (
+                <ListItem key={membership.id} >
+                  <Text style={styles.textList}>{membership.member_name}</Text>
+                </ListItem>
+              );
+            })}
+            <View style={{ flex: 1, justifyContent: 'flex-end', alignSelf: 'center' }}>
+              <Button bordered rounded small info style={styles.collaboratorButtons}
+                key="invite-collaborator-button"
+                disabled={this.props.user.id !== this.props.book.userId}
+                onPress={() => Actions.InviteCollaborator()}
+              >
+                <Text>Convidar colaborador</Text>
+              </Button>
+              <Button bordered rounded small primary style={styles.collaboratorButtons}
+                key="invite-collaborator-list-button"
+                disabled={this.props.user.id !== this.props.book.userId}>
+                <Text>Convites pendentes</Text>
+              </Button>
+            </View>
 
-              <Tab heading="Colaboradores">
-                {this.props.memberships.map(membership => {
-                  return (
-                    <ListItem key={membership.id} >
-                      <Text style={styles.textList}>{membership.member_name}</Text>
-                    </ListItem>
-                  );
-                })}
-                <View style={{ flex: 1, justifyContent: 'center', alignSelf: 'center' }}>
-                  <Button bordered rounded small info
-                    key="invite-collaborator-button"
-                    disabled={this.props.user.id !== this.props.book.userId}
-                    onPress={() => Actions.InviteCollaborator()}
-                  >
-                    <Text>Convidar colaborador</Text>
-                  </Button>
-                  <Button bordered rounded small primary
-                    key="invite-collaborator-list-button"
-                    disabled={this.props.user.id !== this.props.book.userId}>
-                    <Text>Convites pendentes</Text>
-                  </Button>
-
-                </View>
-
-              </Tab>
-          </Tabs>
-        </View>
+          </Tab>
+        </Tabs>
+      </View>
     );
   }
 }

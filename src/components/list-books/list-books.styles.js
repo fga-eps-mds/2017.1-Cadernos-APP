@@ -14,16 +14,20 @@ const styles = {
 
   bookCard: {
     alignItems: 'center',
+    backgroundColor: 'white'
   },
 
   bookCardImage: {
-    width: 260,
-    height: 120
+    width: 251,
+    height: 120,
+    alignItems: 'center',
   },
 
   bookCardItem: {
-    width: 260,
-    alignItems: 'center',
+    width: 258,
+    //alignItems: 'center',
+    borderWidth: 3,
+    marginTop: 8
   },
 }
 

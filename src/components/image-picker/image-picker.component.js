@@ -89,28 +89,29 @@ export default class ImagePicker extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.state.avatarSource === null ?
-          <Image style={styles.image} source={{uri: this.props.actualImageUrl}} />
-        :
-          <Image style={styles.image} source={this.state.avatarSource} />
-        }
-
+        <View style={styles.imageWrapper}>
+          {this.state.avatarSource === null ?
+            <Image style={styles.image} source={{ uri: this.props.actualImageUrl }} />
+            :
+            <Image style={styles.image} source={this.state.avatarSource} />
+          }
+        </View>
         {this.state.changeImage ?
-          <View style={{flex: 1, flexDirection: 'row'}}>
+          <View style={{ flex: 1, flexDirection: 'row' }}>
             <Button style={styles.buttons} block info small bordered onPress={() => this.sendImageTapped()}>
               <Text>
                 Enviar
               </Text>
             </Button>
 
-            <Button style={StyleSheet.flatten([styles.buttons, {marginLeft: 20}])}
+            <Button style={StyleSheet.flatten([styles.buttons, { marginLeft: 20 }])}
               block danger small bordered onPress={() => this.setState({ changeImage: false })}>
               <Text>
                 Cancelar
               </Text>
             </Button>
           </View>
-        :
+          :
           <Button block rounded warning small bordered
             style={styles.buttons}
             onPress={() => this.selectPhotoTapped()}
@@ -133,12 +134,8 @@ const styles = {
   },
 
   imageWrapper: {
-    borderColor: '#9B9B9B',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    width: 240,
-    height: 120
+    borderWidth: 3.5,
+    borderColor: 'black',
   },
 
 

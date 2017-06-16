@@ -16,6 +16,8 @@ import {
   CheckBox
 } from 'native-base';
 
+import { KeyboardAvoidingView } from 'react-native'
+
 import styles from './user-login.styles';
 import commonStyle from '../../styles/common.styles';
 
@@ -71,70 +73,74 @@ export default class UserLogin extends Component {
 
   render() {
     return (
-      <Container style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
         <GoBack />
+        <Content>
+          <View style={styles.wrapperTitle}>
+            <H1 style={styles.title}>ENTRE</H1>
+            <Text>Prazer em te receber novamente. Seja bem-vindo!</Text>
+          </View>
 
-        <View style={styles.wrapperTitle}>
-          <H1 style={styles.title}>ENTRE</H1>
-          <Text>Prazer em te receber novamente. Seja bem-vindo!</Text>
-        </View>
+          <View style={styles.wrapperForm}>
+            <Item regular style={styles.formItem1}>
+              <Input
+                placeholder='Seu e-mail'
+                onChangeText={(text) => this.handleFieldOnChange('email', text)}
+                value={this.state.email}
+              />
+            </Item>
 
-        <View style={styles.wrapperForm}>
-          <Item regular style={styles.formItem}>
-            <Input
-              placeholder='Seu e-mail'
-              onChangeText={(text) => this.handleFieldOnChange('email', text)}
-              value={this.state.email}
-            />
-          </Item>
+            <Item regular style={styles.formItem2}>
+              <Input
+                secureTextEntry
+                placeholder='Sua senha'
+                onChangeText={(text) => this.handleFieldOnChange('password', text)}
+                value={this.state.password}
+              />
+            </Item>
 
-          <Item regular style={styles.formItem}>
-            <Input
-              secureTextEntry
-              placeholder='Sua senha'
-              onChangeText={(text) => this.handleFieldOnChange('password', text)}
-              value={this.state.password}
-            />
-          </Item>
+            {this.props.errors.error ?
+              <InputErrorDisplay userLoginErrors={this.props.errors.error.user_authentication} />
+              :
+              null
+            }
+          </View>
 
-          {this.props.errors.error ?
-            <InputErrorDisplay userLoginErrors={this.props.errors.error.user_authentication} />
-            :
-            null
-          }
-        </View>
 
-        <View style={{ flex: 1 }}>
-          <ListItem onPress={() => this.handleFieldOnChange('remember', !this.state.remember)}>
-            <CheckBox checked={this.state.remember} />
-            <Text style={{marginLeft: 10}}>Lembrar email e senha</Text>
-          </ListItem>
-        </View>
 
-        <View style={{ flex: 1 }}>
-          {this.props.sendingData ?
-            <Spinner />
-            :
-            <Button warning block style={commonStyle.call_to_action}
-              onPress={() => this.props.userLogin(this.getUserData())}
-            >
-              <Text>ENTRAR</Text>
-            </Button>
-          }
-        </View>
+          <View>
+            <ListItem onPress={() => this.handleFieldOnChange('remember', !this.state.remember)}>
+              <CheckBox checked={this.state.remember} />
+              <Text style={{ marginLeft: 10 }}>Lembrar email e senha</Text>
+            </ListItem>
+          </View>
+          <View style={styles.formButton}>
+            <View style={styles.enterButton}>
+              {this.props.sendingData ?
+                <Spinner />
+                :
+                <Button warning block style={commonStyle.call_to_action}
+                  onPress={() => this.props.userLogin(this.getUserData())}
+                >
+                  <Text>ENTRAR</Text>
+                </Button>
+              }
+            </View>
 
-        <View style={{ flex: 1 }}>
-          {this.props.sendingData ?
-            <Content />
-            :
-            <Button warning bordered block style={commonStyle.call_to_action__negative}
-              onPress={() => this.props.enterAsVisitor()}
-            >
-              <Text style={commonStyle.call_to_action_text__negative}>ENTRAR COMO VISITANTE</Text>
-            </Button>
-          }
-        </View>
-      </Container>
+            <View>
+              {this.props.sendingData ?
+                null
+                :
+                <Button warning bordered block style={commonStyle.call_to_action__negative}
+                  onPress={() => this.props.enterAsVisitor()}
+                >
+                  <Text style={commonStyle.call_to_action_text__negative}>ENTRAR COMO VISITANTE</Text>
+                </Button>
+              }
+            </View>
+          </View>
+        </Content>
+      </KeyboardAvoidingView>
     );
   }
 }

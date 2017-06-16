@@ -39,39 +39,38 @@ export default class ViewInspiration extends React.Component {
   }
 
   componentDidMount() {
-    console.log("aquii " + this.props.inspiration.id +" e "+ this.props.inspiration.title)
+    console.log("aquii " + this.props.inspiration.id + " e " + this.props.inspiration.title)
     this.props.fetchInspirationTasks(this.props.inspiration);
     this.props.fetchCategories();
   }
 
   render() {
     return (
-        <View style={{height: '100%', marginTop: 0}}>
-            <NavigationHeader
-              title={this.props.inspiration.title}
-              displayGoBack={true}
-              displayBookActions={false}
+      <View style={{ height: '100%', marginTop: 0 }}>
+        <NavigationHeader
+          title={this.props.inspiration.title}
+          displayGoBack={true}
+          displayBookActions={false}
+        />
+        <Tabs>
+          <Tab
+            heading={"Tarefas de " + this.props.inspiration.title}
+            activeTabStyle={{ backgroundColor: '#2980b9' }}
+            tabStyle={{ backgroundColor: '#3498db' }}
+            textStyle={{ color: 'white' }}
+            activeTextStyle={{ color: 'white' }}>
+            <TaskList
+              tasks={this.props.inspirationTasks}
+              isVisitor={true}
+              book={this.props.inspiration}
+              user={this.props.user}
+              categories={this.props.categories}
             />
-          <Tabs>
-              <Tab heading="Tarefas">
-                <TaskList
-                  tasks={this.props.inspirationTasks}
-                  isVisitor={true}
-                  book={this.props.inspiration}
-                  user={this.props.user}
-                  categories={this.props.categories}
-                />
-              </Tab>
+          </Tab>
 
-              <Tab heading="Categorias">
-                <Text>Um texto away</Text>
-              </Tab>
 
-              <Tab heading="Colaboradores">
-                <Text>Um texto away</Text>
-              </Tab>
-          </Tabs>
-        </View>
+        </Tabs>
+      </View>
     );
   }
 }

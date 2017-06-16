@@ -1,6 +1,6 @@
 const styles = {
   container: {
-    padding: 5,
+    paddingHorizontal: 15,
     flex: 1,
   },
   title: {

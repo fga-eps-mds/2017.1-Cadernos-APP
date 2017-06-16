@@ -26,7 +26,7 @@ export default class TaskList extends Component {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
     this.state = {
-      categories: [ {id: 0, name: 'Todas'} ],
+      categories: [{ id: 0, name: 'Todas' }],
       selectedCategory: 0,
       dataSource: ds.cloneWithRows([])
     };
@@ -56,14 +56,14 @@ export default class TaskList extends Component {
   filterTaskByCategory(selectedCategory) {
     const tasks = this.props.tasks.filter(task => {
       return selectedCategory === 0 ||
-             task.category_id === selectedCategory;
+        task.category_id === selectedCategory;
     });
 
     return tasks;
   }
 
   handlePickerOnValueChange(selected) {
-    this.setState({selectedCategory: selected});
+    this.setState({ selectedCategory: selected });
   }
 
   render() {
@@ -76,6 +76,7 @@ export default class TaskList extends Component {
           mode="dropdown"
           selectedValue={this.state.selectedCategory}
           onValueChange={(selected) => this.handlePickerOnValueChange(selected)}
+          style={{ paddingTop: 10, backgroundColor: '#2980b9' }}
         >
           {this.state.categories.map(category => {
             return (
@@ -88,7 +89,7 @@ export default class TaskList extends Component {
           })}
         </Picker>
 
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <ListView
             dataSource={dataSource}
             renderRow={(rowData) => (
@@ -104,7 +105,7 @@ export default class TaskList extends Component {
         {this.props.isVisitor ?
           null
           :
-          <View style={{marginBottom: 0, padding: 5}}>
+          <View style={{ marginBottom: 0, padding: 5 }}>
             <Button block
               key="createBookActionButton"
               onPress={() => Actions.CreateTask({
