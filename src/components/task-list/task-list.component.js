@@ -64,15 +64,12 @@ export default class TaskList extends Component {
 
   handlePickerOnValueChange(selected) {
     this.setState({selectedCategory: selected});
-
-    const tasks = this.filterTaskByCategory(selected);
-
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(tasks)
-    });
   }
 
   render() {
+    const tasks = this.filterTaskByCategory(this.state.selectedCategory);
+    const dataSource = this.state.dataSource.cloneWithRows(tasks);
+
     return (
       <Container>
         <Picker
@@ -93,7 +90,7 @@ export default class TaskList extends Component {
 
         <View style={{flex: 1}}>
           <ListView
-            dataSource={this.state.dataSource}
+            dataSource={dataSource}
             renderRow={(rowData) => (
               <TaskListItem task={rowData} />
             )}
