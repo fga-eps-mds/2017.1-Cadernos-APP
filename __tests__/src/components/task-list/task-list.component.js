@@ -20,6 +20,8 @@ import {
   Picker
 } from 'native-base';
 
+import { ListView } from 'react-native';
+
 describe("Task List Component",() =>{
   const commomData = {
     tasks:[],
@@ -91,5 +93,41 @@ describe("Task List Component",() =>{
       picker.find(Picker.Item)
       .length
     ).to.eq(3);
-  })
+  });
+
+  it ("add more categorias when new categories is passed as props", () => {
+    const wrapper = shallow(
+      <TaskList
+        {...commomData}
+      />
+    );
+
+    wrapper.setProps({
+      tasks: [
+        {id: 1, title: "AA", category_id: 1 },
+        {id: 2, title: "AB", category_id: 1 },
+        {id: 3, title: "BA", category_id: 2 },
+        {id: 4, title: "BB", category_id: 2 },
+        {id: 5, title: "BC", category_id: 2 },
+        {id: 6, title: "BD", category_id: 2 },
+      ],
+
+      categories: [
+        {id: 1, name: "A"},
+        {id: 2, name: "B"}
+      ]
+    });
+
+    wrapper.setState({ selectedCategory: 1 });
+
+    let listView = wrapper.find(ListView);
+    let rowCount = listView.props("dataSource").dataSource._cachedRowCount
+    expect(rowCount).to.eq(2)
+
+    wrapper.setState({ selectedCategory: 2 });
+
+    listView = wrapper.find(ListView);
+    rowCount = listView.props("dataSource").dataSource._cachedRowCount
+    expect(rowCount).to.eq(4);
+  });
 })
