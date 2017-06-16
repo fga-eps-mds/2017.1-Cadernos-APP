@@ -98,7 +98,7 @@ export default class NavigationHeader extends Component {
 
   render() {
     return (
-      <Header>
+      <Header noShadow iosBarStyle='light-content' androidStatusBarColor={'#FFC513'} style={{ backgroundColor: '#FFC513', height: 50 }}>
         {this.props.displayGoBack ?
           <Left>
             <Button transparent onPress={() => Actions.pop()}>
@@ -110,7 +110,7 @@ export default class NavigationHeader extends Component {
         }
 
         <Body>
-          <Title style={{ fontSize: 14 }}>{this.props.title}</Title>
+          <Title style={{ fontSize: 15 }}>{this.props.title}</Title>
         </Body>
 
         <Right>
@@ -137,7 +137,6 @@ export default class NavigationHeader extends Component {
             <Icon name='menu' />
           </Button>
         </Right>
-
       </Header>
     );
   }
