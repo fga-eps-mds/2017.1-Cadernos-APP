@@ -8,6 +8,10 @@ import { asyncBookListSet } from '../../actions/book-list-actions'
 import { asyncSetTasks } from '../../actions/tasks-actions';
 import { asyncSetCategories } from '../../actions/categories-actions';
 import { asyncMembershipGet } from '../../actions/memberships-actions';
+import { Toast } from 'native-base'
+import { Clipboard } from 'react-native'
+
+import { getBaseUrl } from '../../config/axios';
 
 const mapStateToProps = (state) => {
   return {
@@ -37,6 +41,15 @@ const mapDispatchToProps = (dispatch) => {
 
     getMemberships(book) {
       dispatch(asyncMembershipGet(book))
+    },
+
+    copiarLink(book){
+      Clipboard.setString(`${getBaseUrl()}/books/${book.id}/${book.title}.pdf`)
+      Toast.show({
+              text: 'Link copiado',
+              position: 'center',
+              buttonText: 'Ok'
+            })
     },
 
     deleteBook(bookId) {
