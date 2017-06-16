@@ -116,7 +116,7 @@ export default class NavigationHeader extends Component {
         <Right>
           {this.props.displayBookActions ?
             <View>
-              <Button light transparent onPress={() => { this.showActionSheet() }} >
+              <Button light transparent onPress={() => { this.showActionSheet() }} key="buttonWithActionSheet">
                 <Icon name='md-cog' />
               </Button>
               <ActionSheet ref={(c) => { this.actionSheet = c; }} />
