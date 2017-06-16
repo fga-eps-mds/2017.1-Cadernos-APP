@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
         {
 
           if (inviteAccepted) {
-            dispatch(asyncInviteDelete(key, user))
+            dispatch(asyncInviteDelete(key.id, user))
             Toast.show({
               text: 'Convite aceito!',
               position: 'center',

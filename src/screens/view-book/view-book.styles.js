@@ -2,14 +2,20 @@ const styles = {
   container: {
     backgroundColor: 'black'
   },
-  title:{
+  title: {
     fontSize: 30,
     fontWeight: 'bold'
   },
-  deleteButton:{
+  deleteButton: {
     marginTop: 7,
     marginRight: 15
+  },
+  collaboratorButtons: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginBottom: 10
   }
+
 
 };
 

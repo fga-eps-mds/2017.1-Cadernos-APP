@@ -1,6 +1,7 @@
 const styles = {
   container: {
-    padding: 5,
+    flex: 1,
+    padding: 15,
     backgroundColor: '#fff'
   },
 
@@ -10,18 +11,19 @@ const styles = {
   },
 
   wrapperTitle: {
-    flex: 1,
+    flex: 0.3,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
   wrapperForm: {
-    flex: 5,
+    height: '60%'
   },
 
   formItem: {
-    marginBottom: 10,
-    marginTop: 10,
+    marginBottom: 3,
+    marginTop: 8,
+    height: '21%'
   },
 }
 
