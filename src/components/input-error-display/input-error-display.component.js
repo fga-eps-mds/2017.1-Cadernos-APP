@@ -54,6 +54,19 @@ class InputErrorDisplayComponent extends React.Component {
         null
         }
 
+        {this.props.contentErrors && this.props.contentErrors[0] == 'can\'t be blank' ?
+        <Text style={styles.errorText}>
+          Conteúdo vazio!
+        </Text>
+        :
+        this.props.contentErrors && this.props.contentErrors[0] == 'is invalid' ?
+        <Text style={styles.errorText}>
+          Conteúdo inválido!
+        </Text>
+        :
+        null
+        }
+
         {this.props.nameErrors && this.props.nameErrors[0] == 'can\'t be blank'?
         <Text style={styles.errorText}>
           Nome vazio!
