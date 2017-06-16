@@ -114,7 +114,6 @@ export default class ViewBook extends React.Component {
                 disabled={this.props.user.id !== this.props.book.userId}>
                 <Text>Convites pendentes</Text>
               </Button>
-
             </View>
 
           </Tab>
