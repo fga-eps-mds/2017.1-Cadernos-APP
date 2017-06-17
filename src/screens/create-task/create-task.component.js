@@ -49,12 +49,14 @@ export default class CreateTask extends Component {
   }
 
   getData() {
+    console.log("teste3: " + this.state.image_url);
     return {
       title: this.state.title,
       content: this.state.content,
       user_id: this.props.user.id,
       book_id: this.props.book.id,
-      category_id: this.state.category
+      category_id: this.state.category,
+      picture_base: this.props.base64
     };
   }
 
