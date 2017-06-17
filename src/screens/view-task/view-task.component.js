@@ -64,7 +64,7 @@ export default class ViewTask extends Component {
             </Text>
           </View>
             <Image
-            style={{width: 251, height: 120, alignItems: 'center'}}
+            style={{width: 300, height: 420, alignItems: 'center'}}
             source={{ uri: `${getBaseUrl()}${this.props.task.picture_original}` }} />
         </Content>
 

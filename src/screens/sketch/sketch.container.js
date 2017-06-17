@@ -1,8 +1,7 @@
 import { connect } from 'react-redux'
 import Sketch from './sketch.component'
-import { imageUrlSet } from '../../actions/single-task-actions';
 import { Actions } from 'react-native-router-flux';
-import { asyncSetSingleTask, clearSingleTask } from '../../actions/single-task-actions';
+import { asyncSetSingleTask, clearSingleTask, asyncUpdateTaskDraw, imageUrlSet } from '../../actions/single-task-actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -12,10 +11,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setImage(image_url){
-      dispatch(imageUrlSet(image_url));
-      Actions.pop({base64: image_url});
-  }
+    setImage(image_url, taskId) {
+      console.log("task id de props: " + taskId);
+      const data = {
+        id: taskId,
+        imageBase64: `data:image/png;base64,${image_url}`
+      };
+
+      //dispatch(imageUrlSet(image_url));
+      dispatch(asyncUpdateTaskDraw(data));
+      Actions.pop();
+    }
   }
 }
 

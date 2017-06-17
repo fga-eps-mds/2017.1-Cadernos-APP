@@ -79,3 +79,26 @@ export const asyncEditSingleTask = (taskData, callback) => {
     });
   }
 }
+
+
+export const asyncUpdateTaskDraw = ({
+  id, imageBase64
+}) => {
+  return (dispatch) => {
+    axios.post(`/tasks/${id}/picture`, {
+      picture_base: imageBase64
+    }, { timeout: 20000 })
+      .then(response => {
+        if (response.data.success) {
+          dispatch(setSingleTask(response.data.task));
+        } else {
+          console.log("API fail to update picture");
+          console.log(response.data.success);
+        }
+      })
+      .catch(err => {
+        console.log('Error while uploading cover');
+        console.log(err);
+      });
+  }
+}

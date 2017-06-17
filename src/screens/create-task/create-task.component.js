@@ -48,15 +48,18 @@ export default class CreateTask extends Component {
     this.props.clearTaskData();
   }
 
+  componentWillReceiveProps(nextProps){
+    this.setState({picture_base: nextProps.base64});
+  }
+
   getData() {
-    console.log("teste3: " + this.state.image_url);
     return {
       title: this.state.title,
       content: this.state.content,
       user_id: this.props.user.id,
       book_id: this.props.book.id,
       category_id: this.state.category,
-      picture_base: this.props.base64
+      picture_base :this.state.picture_base
     };
   }
 
@@ -109,12 +112,6 @@ export default class CreateTask extends Component {
               null
             }
           </Content>
-        </View>
-
-        <View style={{ marginLeft:'30%', marginBottom: 10 }}>
-          <Button rounded small onPress={() => Actions.Sketch()}>
-            <Text>Abrir sketch</Text>
-          </Button>
         </View>
 
         <View style={{ flex: 2 }}>

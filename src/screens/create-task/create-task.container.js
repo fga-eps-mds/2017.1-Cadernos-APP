@@ -18,7 +18,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     createTask(taskData) {
-      console.log("teste2: " +  taskData.picture_base);
       const callback = (createdTask) => {
         dispatch(taskAdd(createdTask));
 

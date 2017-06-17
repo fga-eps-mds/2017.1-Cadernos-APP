@@ -19,7 +19,7 @@ export const singleTaskReducer = (state = initialState.singleTask, action) => {
       return {};
 
     case IMAGE_URL_SET:
-    //console.log("log do reducer: " + action.image_url);
+    //console.log("log do reducer: " + action.image_url); //ainda funciona
       return {
         ...state,
         image_url: action.image_url
