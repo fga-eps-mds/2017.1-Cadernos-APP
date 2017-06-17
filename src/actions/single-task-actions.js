@@ -1,10 +1,10 @@
-import { SINGLE_TASK_SET, SINGLE_TASK_SENDING_DATA, SINGLE_TASK_CLEAR, IMAGE_URL_SET} from '../config/actions-types';
+import { SINGLE_TASK_SET, SINGLE_TASK_SENDING_DATA, SINGLE_TASK_CLEAR, IMAGE_URL_SET } from '../config/actions-types';
 
 import initialState from '../config/initial-state';
 import axios from '../config/axios';
 import FormData from 'form-data';
 
-export const setSingleTask = (singleTask={...initialState.singleTask}) => {
+export const setSingleTask = (singleTask = { ...initialState.singleTask }) => {
   return {
     type: SINGLE_TASK_SET,
     singleTask
@@ -12,7 +12,7 @@ export const setSingleTask = (singleTask={...initialState.singleTask}) => {
 }
 
 export const imageUrlSet = (image_url) => {
-  return{
+  return {
     type: IMAGE_URL_SET,
     image_url
   }
@@ -66,30 +66,31 @@ export const asyncEditSingleTask = (taskData, callback) => {
     axios.patch(`/tasks/${taskData.id}`, {
       task: taskData
     })
-    .then(response => {
-      dispatch(setSingleTask(response.data));
-      console.log("Resultado do edit de task");
-      console.log(response.data);
+      .then(response => {
+        dispatch(setSingleTask(response.data));
+        console.log("Resultado do edit de task");
+        console.log(response.data);
 
-      callback(response.data);
-    })
-    .catch(err => {
-      console.warn("Erro ao editar task");
-      console.log(err);
-    });
+        callback(response.data);
+      })
+      .catch(err => {
+        console.warn("Erro ao editar task");
+        console.log(err);
+      });
   }
 }
 
 
-export const asyncUpdateTaskDraw = ({
-  id, imageBase64
-}) => {
+export const asyncUpdateTaskDraw = (data) => {
+
   return (dispatch) => {
-    axios.post(`/tasks/${id}/picture`, {
-      picture_base: imageBase64
+    axios.post(`/tasks/${data.id}/picture`, {
+      picture_base: data.imageBase64
     }, { timeout: 20000 })
       .then(response => {
         if (response.data.success) {
+          console.log("uhu!!");
+          console.log(response.data);
           dispatch(setSingleTask(response.data.task));
         } else {
           console.log("API fail to update picture");
