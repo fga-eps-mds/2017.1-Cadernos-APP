@@ -67,12 +67,15 @@ const initialState = {
     book_id: 0,
     user_id: 0,
     category_id: 0,
-    documents: [],
-    images: [],
+    picture_original: "",
+    picture_medium: "",
+    picture_thumb: "",
+    image_url: "",
     user: {},
     sendingData: false,
     errors: {}
   },
+
 
 
   categories: [],

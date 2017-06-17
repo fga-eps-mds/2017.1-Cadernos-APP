@@ -1,12 +1,20 @@
-import { SINGLE_TASK_SET, SINGLE_TASK_SENDING_DATA, SINGLE_TASK_CLEAR } from '../config/actions-types';
+import { SINGLE_TASK_SET, SINGLE_TASK_SENDING_DATA, SINGLE_TASK_CLEAR, IMAGE_URL_SET} from '../config/actions-types';
 
 import initialState from '../config/initial-state';
 import axios from '../config/axios';
+import FormData from 'form-data';
 
 export const setSingleTask = (singleTask={...initialState.singleTask}) => {
   return {
     type: SINGLE_TASK_SET,
     singleTask
+  }
+}
+
+export const imageUrlSet = (image_url) => {
+  return{
+    type: IMAGE_URL_SET,
+    image_url
   }
 }
 
@@ -26,7 +34,7 @@ export const clearSingleTask = () => {
 export const asyncSetSingleTask = (taskData, callback) => {
   return (dispatch) => {
     dispatch(setSingleTaskSendingData(true));
-
+    console.log(taskData);
     axios.post('/tasks', {
       task: taskData
     })
