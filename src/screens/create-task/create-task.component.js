@@ -32,7 +32,7 @@ export default class CreateTask extends Component {
       title: '',
       content: '',
       category: 0,
-      images: []
+      picture_base: '',
     }
   }
 
@@ -60,7 +60,7 @@ export default class CreateTask extends Component {
       user_id: this.props.user.id,
       book_id: this.props.book.id,
       category_id: this.state.category,
-      images: [this.state.images]
+      picture_base: [this.state.picture_base]
     };
   }
 
@@ -116,9 +116,13 @@ export default class CreateTask extends Component {
           <Content>
             <ImagePicker
               //actualImageUrl={this.props.task.ima}
-              sendImageTo={(imageSource, imageBase64) => this.props.uploadImage(this.state.task, imageSource, imageBase64)}
-              onImageChange={(imageBase64) => this.setState({images: imageBase64})}
+              //sendImageTo={(imageSource, imageBase64) => this.props.uploadImage(this.state.task, imageSource, imageBase64)}
+              //onImageChange={(imageBase64) => this.setState({picture_base: sendImageTo})}
+              sendImageTo={(imageSource, imageBase64) => this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })}
+
+
             />
+
           </Content>
         </View>
 

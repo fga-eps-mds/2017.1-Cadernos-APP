@@ -26,7 +26,8 @@ export const clearSingleTask = () => {
 export const asyncSetSingleTask = (taskData, callback) => {
   return (dispatch) => {
     dispatch(setSingleTaskSendingData(true));
-
+    console.log("Action: ")
+    console.log(taskData)
     axios.post('/tasks', {
       task: taskData
     })
@@ -72,27 +73,3 @@ export const asyncEditSingleTask = (taskData, callback) => {
   }
 }
 
-export const asyncUpdateImageTask = ({
-  id, imageBase64
-}, callback) => {
-  return (dispatch) => {
-    dispatch(setSingleTaskSendingData(true));
-
-    axios.post(`/tasks/${id}/images`, {
-      imagem_base: imageBase64
-    }, {timeout: 20000})
-    .then(response => {
-      if(response.data.success) {
-        dispatch(setSingleTask(response.data.singleTask));
-        callback(response.data.singleTask);
-      } else {
-        console.log("API fail to update image");
-        console.log(response.data.success);
-      }
-    })
-    .catch(err =>{
-      console.log("Error while uploading image");
-      console.log(err);
-    });
-  }
-}

@@ -29,7 +29,8 @@ const mapDispatchToProps = (dispatch) => {
     createTask(taskData) {
       const callback = (createdTask) => {
         dispatch(taskAdd(createdTask));
-
+        console.log("aqui: ")
+        console.log(createdTask)
         Actions.pop();
       }
 
@@ -40,27 +41,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(clearSingleTask());
     },
 
-    uploadImage(taskData, imageSource, imageBase64) {
-      imageBase64 = `data:image/png;base64,${imageBase64}`;
-
-      const callback = (updatedTask) => {
-        //dispatch(taskUpdate(updatedTask));
-
-        Toast.show({
-          text: 'Nova Imagem enviada',
-          buttonText: 'OK',
-          position: 'bottom',
-          type: 'success'
-        });
-      }
-
-      dispatch(asyncUpdateImageTask({
-        id: singleTask.id,
-        imageBase64
-      }, callback));
     }
   }
-}
+
 
 const CreateTaskContainer = connect(mapStateToProps, mapDispatchToProps)(CreateTask);
 export default CreateTaskContainer;
