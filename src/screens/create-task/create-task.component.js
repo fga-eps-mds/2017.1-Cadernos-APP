@@ -60,7 +60,7 @@ export default class CreateTask extends Component {
       user_id: this.props.user.id,
       book_id: this.props.book.id,
       category_id: this.state.category,
-      picture_base: [this.state.picture_base]
+      picture_base: this.state.picture_base
     };
   }
 
