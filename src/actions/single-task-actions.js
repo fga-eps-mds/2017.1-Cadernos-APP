@@ -26,8 +26,7 @@ export const clearSingleTask = () => {
 export const asyncSetSingleTask = (taskData, callback) => {
   return (dispatch) => {
     dispatch(setSingleTaskSendingData(true));
-    console.log("Action: ")
-    console.log(taskData)
+
     axios.post('/tasks', {
       task: taskData
     })

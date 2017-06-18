@@ -115,9 +115,6 @@ export default class CreateTask extends Component {
           </Content>
           <Content>
             <ImagePicker
-              //actualImageUrl={this.props.task.ima}
-              //sendImageTo={(imageSource, imageBase64) => this.props.uploadImage(this.state.task, imageSource, imageBase64)}
-              //onImageChange={(imageBase64) => this.setState({picture_base: sendImageTo})}
               sendImageTo={(imageSource, imageBase64) => this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })}
 
 

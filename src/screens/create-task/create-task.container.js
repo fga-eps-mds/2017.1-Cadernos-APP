@@ -29,8 +29,6 @@ const mapDispatchToProps = (dispatch) => {
     createTask(taskData) {
       const callback = (createdTask) => {
         dispatch(taskAdd(createdTask));
-        console.log("aqui: ")
-        console.log(createdTask)
         Actions.pop();
       }
 
