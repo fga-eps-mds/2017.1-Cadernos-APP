@@ -20,7 +20,7 @@ const styles = {
   taskCardImage: {
     width: 251,
     height: 120,
-    alignItems: 'center',
+    alignItems: 'center'
   },
 
   taskCardItem: {
@@ -28,7 +28,7 @@ const styles = {
     //alignItems: 'center',
     borderWidth: 3,
     marginTop: 8
-  },
+  }
 }
 
 export default styles;

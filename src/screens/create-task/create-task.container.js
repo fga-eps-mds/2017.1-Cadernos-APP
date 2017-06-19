@@ -37,7 +37,7 @@ const mapDispatchToProps = (dispatch) => {
 
     clearTaskData() {
       dispatch(clearSingleTask());
-    },
+    }
 
     }
   }
