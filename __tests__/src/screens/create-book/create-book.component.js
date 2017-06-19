@@ -77,4 +77,20 @@ describe("CreateBook Component", () => {
     wrapper.setState({ title: 'test book title' });
     wrapper.find(Button).simulate('press');
   });
+
+  it("has a input taht set title", () => {
+    const book = {
+      sendingData: true,
+      errors: {}
+    }
+
+    const wrapper = shallow(
+      <CrateBookComponent
+        book={book}
+      />
+    );
+
+    let input = wrapper.find(Input);
+    input.simulate("changeText");
+  })
 });

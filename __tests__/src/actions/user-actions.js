@@ -27,8 +27,8 @@ import {
   userLogout,
   cleanUserErrors,
   userRegister,
-  userUpdate
-
+  userUpdate,
+  userAuthenticated
 } from '../../../src/actions/user-actions';
 
 describe("User Actions", () => {
@@ -137,5 +137,11 @@ describe("User Actions", () => {
     expect(reducerAction.type).to.equal(USER_UPDATE);
     expect(reducerAction.isUpdated).to.equal(isUpdated);
 
-  })
+  });
+
+  it("assign an user as authenticated", () => {
+     let action = userAuthenticated(true);
+
+     expect(action.type).to.eq(USER_AUTHENTICATED);
+  });
 });
