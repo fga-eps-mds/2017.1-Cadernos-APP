@@ -18,7 +18,7 @@ import buttonStyle from '../../global-styles/button.styles';
 import Navigation from '../../components/navigation-header/navigation-header.component'
 import ListErrors from '../../components/list-errors/list-errors.component';
 
-import ImagePicker from '../../components/image-picker/image-picker-task.component';
+import ImagePicker from '../../components/image-picker/image-picker.component';
 
 import { Dimensions } from 'react-native';
 
