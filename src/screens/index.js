@@ -19,7 +19,7 @@ import EditTaskScreen from './edit-task/edit-task.container';
 import InspirationListScreen from './inspiration-list/inspiration-list.container'
 import InspirationSearchListScreen from './inspiration-search-list/inspiration-search-list.container'
 import ViewInspirationScreen from './view-inspiration/view-inspiration.container'
-import EditProfileScreen from './edit-profile/edit-profile.container'
+
 
 export {
   CreateUserScreen,
@@ -42,6 +42,5 @@ export {
   InspirationSearchListScreen,
   ViewInspirationScreen,
   InviteCollaboratorScreen,
-  InviteListScreen,
-  EditProfileScreen
+  InviteListScreen
 }
