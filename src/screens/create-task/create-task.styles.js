@@ -24,7 +24,7 @@ const styles = {
     marginBottom: 3,
     marginTop: 8,
     height: '21%'
-  },
+  }
 }
 
 export default styles;
