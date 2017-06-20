@@ -32,6 +32,7 @@ export default class AppRouter extends Component {
   render() {
     return (
       <Router hideNavBar={true}>
+
         <Scene key="Main" component={MainScreen} initial />
         <Scene key="ViewBookBaseCategories" component={ViewBookBaseCategories} />
         <Scene key="ViewBookBaseColaborators" component={ViewBookBaseColaborators} />

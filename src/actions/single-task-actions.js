@@ -80,7 +80,6 @@ export const asyncEditSingleTask = (taskData, callback) => {
   }
 }
 
-
 export const asyncUpdateTaskDraw = (data) => {
 
   return (dispatch) => {
@@ -103,3 +102,4 @@ export const asyncUpdateTaskDraw = (data) => {
       });
   }
 }
+

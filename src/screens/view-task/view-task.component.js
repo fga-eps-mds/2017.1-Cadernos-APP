@@ -8,12 +8,18 @@ import {
   Button,
   H1,
   Text,
-  View
+  View,
+  Thumbnail,
+  CardItem,
+  Card,
+  Icon
 } from 'native-base';
 
 import {
   Image, Alert, ScrollView
 } from 'react-native';
+
+import styles from './view-task.styles';
 
 import titleStyle from '../../global-styles/titles.styles';
 import buttonStyle from '../../global-styles/button.styles';
@@ -44,42 +50,54 @@ export default class ViewTask extends Component {
       <Container style={{ flex: 1, padding: 5 }}>
         <GoBack />
 
+
         <Content style={{ flex: 9 }}>
-          <View>
-            <H1 style={titleStyle.h1}>Nome da tarefa</H1>
-            <Text>{title}</Text>
-          </View>
+          <View style={{ flex: 2 }}>
 
-          <View>
-            <H1 style={titleStyle.h1}>Proprietário da tarefa</H1>
-            <Text>{user.name}</Text>
-          </View>
+            <View>
+              <H1 style={titleStyle.h1}>Nome da tarefa</H1>
+              <Text>{title}</Text>
+            </View>
 
-          <View>
-            <H1 style={titleStyle.h1}>Conteudo</H1>
-          </View>
-          <View style={{marginBottom: 10}}>
-            <Text>
-              {this.props.task.content}
-            </Text>
-          </View>
+            <View>
+              <H1 style={titleStyle.h1}>Proprietário da tarefa</H1>
+              <Text>{user.name}</Text>
+            </View>
+
+            <View>
+              <H1 style={titleStyle.h1}>Conteudo</H1>
+            </View>
+            <View style={{ marginBottom: 10 }}>
+              <Text>
+                {this.props.task.content}
+              </Text>
+            </View>
             <Image
-            style={{width: 300, height: 420, alignItems: 'center'}}
-            source={{ uri: `${getBaseUrl()}${this.props.task.picture_original}` }} />
+              style={{ width: 300, height: 420, alignItems: 'center' }}
+              source={{ uri: `${getBaseUrl()}${this.props.task.picture_original}` }} />
+          </View>
         </Content>
 
-        <View style={{paddingTop: 10 }}>
+
+        <View style={{ paddingTop: 10 }}>
           <Button rounded block style={{ ...buttonStyle.button, ...buttonStyle.default }}
+
             onPress={() => this.props.goToEditTask(this.props.task)}>
             <Text>Editar dados</Text>
           </Button>
 
+
           <Button rounded block style={{ ...buttonStyle.button, ...buttonStyle.delete }}
+
             onPress={() => this.getUserConfirmation()}>
             <Text>Excluir</Text>
           </Button>
         </View>
+
+
+
       </Container>
     );
   }
+
 }

@@ -26,6 +26,8 @@ export default class TaskList extends Component {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 
     this.state = {
+      categories: [{ id: 0, name: 'Todas' }],
+      selectedCategory: 0,
       dataSource: ds.cloneWithRows([])
     };
   }
@@ -42,16 +44,41 @@ export default class TaskList extends Component {
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(nextProps.tasks)
     });
+
+    if (this.state.categories.length < nextProps.categories.length) {
+      let categories = this.state.categories;
+      categories = categories.concat(nextProps.categories);
+
+      this.setState({ categories });
+    }
+  }
+
+  filterTaskByCategory(selectedCategory) {
+    const tasks = this.props.tasks.filter(task => {
+      return selectedCategory === 0 ||
+        task.category_id === selectedCategory;
+    });
+
+    return tasks;
+  }
+
+  handlePickerOnValueChange(selected) {
+    this.setState({ selectedCategory: selected });
   }
 
   render() {
+    const tasks = this.filterTaskByCategory(this.state.selectedCategory);
+    const dataSource = this.state.dataSource.cloneWithRows(tasks);
+
     return (
       <Container>
         <Picker
           mode="dropdown"
-          style={{paddingTop: 10, backgroundColor: '#2980b9' }}
+          selectedValue={this.state.selectedCategory}
+          onValueChange={(selected) => this.handlePickerOnValueChange(selected)}
+          style={{ paddingTop: 10, backgroundColor: '#2980b9' }}
         >
-          {this.props.categories.map(category => {
+          {this.state.categories.map(category => {
             return (
               <Picker.Item
                 label={category.name}
@@ -64,7 +91,7 @@ export default class TaskList extends Component {
 
         <View style={{ flex: 1 }}>
           <ListView
-            dataSource={this.state.dataSource}
+            dataSource={dataSource}
             renderRow={(rowData) => (
               <TaskListItem task={rowData} />
             )}

@@ -71,6 +71,7 @@ const initialState = {
     picture_medium: "",
     picture_thumb: "",
     image_url: "",
+    picture_base: "",
     user: {},
     sendingData: false,
     errors: {}

@@ -22,13 +22,17 @@ import { Actions } from 'react-native-router-flux';
 let BOOK_CONFIG_OPTIONS = [
   'Editar',
   'Inspirações',
+  'Gerar Ebook',
   'Deletar',
   'Cancelar'
+
 ];
 
 let NOT_OWNER_BOOK_CONFIG_OPTIONS = [
   'Inspirações',
+  'Gerar Ebook',
   'Cancelar'
+
 ]
 
 let DESTRUCTIVE_INDEX = 2;
@@ -52,10 +56,6 @@ export default class NavigationHeader extends Component {
 
   showActionSheet() {
     if (this.actionSheet !== null) {
-      console.log('eaeee');
-
-      console.log(this.props.currentLoggedUser + " e " + this.props.bookOwner)
-      // Call as you would ActionSheet.show(config, callback)
       if (this.props.currentLoggedUser === this.props.bookOwner) {
         this.actionSheet._root.showActionSheet({
           options: BOOK_CONFIG_OPTIONS,
@@ -72,8 +72,12 @@ export default class NavigationHeader extends Component {
                 this.props.inspirationAction();
                 break;
               case "2":
+                this.props.generateBookAction();
+                break;
+              case "3":
                 this.props.deleteAction();
                 break;
+
               default:
             }
           });
@@ -88,6 +92,9 @@ export default class NavigationHeader extends Component {
             switch (buttonIndex.toString()) {
               case "0":
                 this.props.inspirationAction();
+                break;
+              case "1":
+                this.props.generateBookAction();
                 break;
               default:
             }
@@ -116,7 +123,7 @@ export default class NavigationHeader extends Component {
         <Right>
           {this.props.displayBookActions ?
             <View>
-              <Button light transparent onPress={() => { this.showActionSheet() }} >
+              <Button light transparent onPress={() => { this.showActionSheet() }} key="buttonWithActionSheet">
                 <Icon name='md-cog' />
               </Button>
               <ActionSheet ref={(c) => { this.actionSheet = c; }} />

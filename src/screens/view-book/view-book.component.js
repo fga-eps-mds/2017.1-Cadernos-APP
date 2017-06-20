@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Actions } from 'react-native-router-flux';
+import { getBaseUrl } from '../../config/axios';
 
 import {
   Container,
@@ -19,7 +20,8 @@ import {
 
 import {
   Image,
-  Alert
+  Alert,
+  Linking
 } from 'react-native';
 
 import styles from './view-book.styles';
@@ -40,6 +42,17 @@ export default class ViewBook extends React.Component {
     return this.props.book.id
   }
 
+  getEBook(){
+    Alert.alert(
+      'Gerar eBook',
+      this.props.book.title + '.pdf',
+      [
+        {text: 'Abrir eBook em outro app', onPress: () => Linking.openURL(`${getBaseUrl()}/books/${this.props.book.id}/${this.props.book.title}.pdf`)},
+        {text: 'Copiar link', onPress: () => this.props.copiarLink(this.props.book)}
+      ]
+    )
+  }
+
   componentDidMount() {
     this.props.fetchBookTasks(this.props.book);
     this.props.fetchCategories();
@@ -58,6 +71,7 @@ export default class ViewBook extends React.Component {
     )
   }
 
+
   render() {
     return (
       <View style={{ height: '100%', marginTop: 0 }}>
@@ -68,6 +82,7 @@ export default class ViewBook extends React.Component {
           editAction={() => Actions.EditBook()}
           deleteAction={() => this.deleteBookConfirmation()}
           inspirationAction={() => Actions.InspirationList()}
+          generateBookAction={()=> this.getEBook()}
           currentLoggedUser={this.props.user.id}
           bookOwner={this.props.book.userId}
         />
@@ -114,7 +129,6 @@ export default class ViewBook extends React.Component {
                 disabled={this.props.user.id !== this.props.book.userId}>
                 <Text>Convites pendentes</Text>
               </Button>
-
             </View>
 
           </Tab>
