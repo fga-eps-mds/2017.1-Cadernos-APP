@@ -39,7 +39,7 @@ export default class ListBooksComponent extends Component {
         onPress={() => this.props.onBookSelected(book)}
       >
 
-        <Card style={styles.bookCard}>
+        <Card transparent style={styles.bookCard}>
           <CardItem cardBody style={styles.bookCardItem}>
             <Image
               source={{uri: book.coverOriginal}}
@@ -47,7 +47,7 @@ export default class ListBooksComponent extends Component {
             />
           </CardItem>
 
-          <CardItem style={styles.bookCardItem}>
+          <CardItem style={{backgroundColor: 'white'}}>
             <Text>{book.title}</Text>
           </CardItem>
         </Card>

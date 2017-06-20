@@ -67,8 +67,7 @@ const initialState = {
     book_id: 0,
     user_id: 0,
     category_id: 0,
-    documents: [],
-    images: [],
+    picture_base: "",
     user: {},
     sendingData: false,
     errors: {}

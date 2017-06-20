@@ -8,12 +8,18 @@ import {
   Button,
   H1,
   Text,
-  View
+  View,
+  Thumbnail,
+  CardItem,
+  Card,
+  Icon
 } from 'native-base';
 
 import {
   Image, Alert, ScrollView
 } from 'react-native';
+
+import styles from './view-task.styles';
 
 import titleStyle from '../../global-styles/titles.styles';
 import buttonStyle from '../../global-styles/button.styles';
@@ -31,10 +37,10 @@ export default class ViewTask extends Component {
       'ATENÇÃO',
       'Tem certeza que deseja deletar essa atividade ?',
       [
-        {text: 'Não', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'Sim', onPress: () => this.props.deleteTask(this.props.task)},
+        { text: 'Não', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: 'Sim', onPress: () => this.props.deleteTask(this.props.task) },
       ],
-      { cancelable: false } )
+      { cancelable: false })
   }
 
   render() {
@@ -44,10 +50,25 @@ export default class ViewTask extends Component {
       <Container style={{ flex: 1, padding: 5 }}>
         <GoBack />
 
-        <View style={{ flex: 4 }}>
+
+          <Card transparent style={styles.taskCard}>
+            <CardItem cardBody style={styles.taskCardItem}>
+              <Image
+                source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+                style={styles.taskCardImage}
+              />
+            </CardItem>
+
+            <CardItem style={{ backgroundColor: 'white' }}>
+              <Text>teste</Text>
+            </CardItem>
+          </Card>
+
+
+        <View style={{ flex: 2 }}>
           <View>
-             <H1 style={titleStyle.h1}>Nome da tarefa</H1>
-             <Text>{title}</Text>
+            <H1 style={titleStyle.h1}>Nome da tarefa</H1>
+            <Text>{title}</Text>
           </View>
 
           <View>
@@ -66,17 +87,21 @@ export default class ViewTask extends Component {
         </View>
 
         <View style={{ flex: 1, marginTop: 5 }}>
-          <Button block style={{...buttonStyle.button, ...buttonStyle.default}}
+          <Button block style={{ ...buttonStyle.button, ...buttonStyle.default }}
             onPress={() => this.props.goToEditTask(this.props.task)}>
             <Text>Editar dados</Text>
           </Button>
 
-          <Button block style={{...buttonStyle.button, ...buttonStyle.delete}}
+          <Button block style={{ ...buttonStyle.button, ...buttonStyle.delete }}
             onPress={() => this.getUserConfirmation()}>
             <Text>Excluir</Text>
           </Button>
         </View>
+
+
+
       </Container>
     );
   }
+
 }

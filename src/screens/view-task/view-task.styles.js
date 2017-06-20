@@ -12,23 +12,23 @@ const styles = {
     flex: 1
   },
 
-  bookCard: {
+  taskCard: {
     alignItems: 'center',
     backgroundColor: 'white'
   },
 
-  bookCardImage: {
+  taskCardImage: {
     width: 251,
     height: 120,
-    alignItems: 'center',
+    alignItems: 'center'
   },
 
-  bookCardItem: {
+  taskCardItem: {
     width: 258,
     //alignItems: 'center',
     borderWidth: 3,
     marginTop: 8
-  },
+  }
 }
 
 export default styles;

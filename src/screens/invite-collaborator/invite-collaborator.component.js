@@ -39,16 +39,16 @@ export default class InviteCollaborator extends Component {
 
   render() {
     return (
-      <Container>
+      <Container style={{paddingHorizontal: 20, marginTop: 10}} >
         <GoBack />
-        <Item regular>
+        <Item regular >
           <Input
             onChangeText={(text) => this.handleFieldOnChange('email', text)}
             placeholder='E-mail do usuário'
             returnKeyType='next'
           />
         </Item>
-        <Button bordered rounded small success
+        <Button bordered rounded small success style={{marginLeft:'20%', marginTop: 20}}
           onPress={() => this.props.createInvite(this.getInfo())}
           key="confirm-collaborator-button"
         >
