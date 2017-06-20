@@ -119,14 +119,6 @@ export default class CreateTask extends Component {
               null
             }
           </Content>
-          <Content>
-            <ImagePicker
-              sendImageTo={(imageSource, imageBase64) => this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })}
-
-
-            />
-
-          </Content>
         </View>
 
         <View style={{ flex: 2 }}>

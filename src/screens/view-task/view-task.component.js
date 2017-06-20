@@ -25,6 +25,7 @@ import titleStyle from '../../global-styles/titles.styles';
 import buttonStyle from '../../global-styles/button.styles';
 import axios, { getBaseUrl } from '../../config/axios'
 import { Actions } from 'react-native-router-flux';
+import ImagePicker from '../../components/image-picker/image-picker.component';
 
 const imageUrlMock = "http://68.media.tumblr.com/57995a853ed4ca881e6053e7e14ec21b/tumblr_mjb683SkIO1qbgtxfo1_500.gif";
 
@@ -73,7 +74,7 @@ export default class ViewTask extends Component {
               </Text>
             </View>
             <Image
-              style={{ width: 300, height: 420, alignItems: 'center' }}
+              style={{ marginTop: 30, width: 300, height: 420, alignItems: 'center', borderWidth: 1 }}
               source={{ uri: `${getBaseUrl()}${this.props.task.picture_original}` }} />
           </View>
         </Content>

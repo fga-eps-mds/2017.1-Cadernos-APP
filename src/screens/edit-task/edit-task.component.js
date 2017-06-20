@@ -24,6 +24,8 @@ const imageUrlMock = "http://68.media.tumblr.com/57995a853ed4ca881e6053e7e14ec21
 
 import { Actions } from 'react-native-router-flux'
 
+import ImagePicker from '../../components/image-picker/image-picker.component';
+
 import GoBack from "../../components/go-back/go-back.component";
 
 import { Dimensions } from 'react-native';
@@ -73,7 +75,8 @@ export default class EditTask extends Component {
       ...this.props.task,
       title: this.state.title,
       content: this.state.content,
-      category: this.state.selectedValue
+      category: this.state.selectedValue,
+      picture_base: this.state.picture_base
     }
 
     return task;
@@ -122,6 +125,12 @@ export default class EditTask extends Component {
           <Button rounded small onPress={() => Actions.Sketch({ id: this.props.task.id })}>
             <Text>Abrir sketch</Text>
           </Button>
+        </View>
+        <View style={{ paddingBottom: "20%" }}>
+          <ImagePicker
+            sendImageTo={(imageSource, imageBase64) => this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })}
+
+          />
         </View>
         <View style={{ flex: 2 }}>
           <View style={{ flex: 1 }}>
