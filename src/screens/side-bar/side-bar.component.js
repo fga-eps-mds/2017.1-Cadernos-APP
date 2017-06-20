@@ -32,6 +32,16 @@ export default class SideBar extends Component {
     this.context.closeDrawer();
   }
 
+  EditUser = () => {
+    Actions.EditUser();
+    this.context.closeDrawer();
+  }
+
+  Exit = () => {
+    Actions.Main();
+    this.context.closeDrawer();
+  }
+
   render() {
     return (
       <Container style={styles.container}>
@@ -74,11 +84,15 @@ export default class SideBar extends Component {
         <View style={styles.bottomView}>
           <View style={styles.sideView}>
             <Icon name="md-contact" style={styles.icon} />
-            <Text style={styles.text3}>Editar perfil</Text>
+            <Button transparent onPress={() => this.EditUser()}>
+              <Text style={styles.text3}>Editar Perfil</Text>
+            </Button>
           </View>
           <View style={styles.sideView}>
             <Icon name="md-exit" style={styles.icon} />
-            <Text style={styles.text3}>Sair</Text>
+            <Button transparent onPress={() => this.Exit()}>
+              <Text style={styles.text3}>Sair</Text>
+            </Button>
           </View>
         </View>
       </Container>

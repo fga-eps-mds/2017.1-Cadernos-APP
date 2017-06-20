@@ -12,7 +12,8 @@ import {
   Item,
   Input,
   Button,
-  Spinner
+  Spinner,
+  Image
 } from 'native-base';
 
 
@@ -95,6 +96,8 @@ export default class EditUser extends Component {
             />
           </Item>
         </View>
+
+
 
         <View style={{ flex: 1 }}>
           {this.props.sendingData ?
