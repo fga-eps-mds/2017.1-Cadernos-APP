@@ -22,6 +22,8 @@ import { InputErrorDisplay, GoBack } from '../../components';
 
 import ImagePicker from '../../components/image-picker/image-picker.component';
 
+import ImagePicker from '../../components/image-picker/image-picker.component';
+
 import { Dimensions } from 'react-native';
 
 const { height, width } = Dimensions.get('window');

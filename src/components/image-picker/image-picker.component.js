@@ -100,7 +100,7 @@ export default class ImagePicker extends Component {
           <View style={{ flex: 1, flexDirection: 'row' }}>
             <Button style={styles.buttons} block info small bordered onPress={() => this.sendImageTapped()}>
               <Text>
-                Enviar
+                Confirmar Foto
               </Text>
             </Button>
 
@@ -118,7 +118,7 @@ export default class ImagePicker extends Component {
             key="changeImageButton"
           >
             <Text>
-              Mudar imagem
+              Selecionar imagem
             </Text>
           </Button>
         }

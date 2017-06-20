@@ -20,6 +20,7 @@ import InspirationListScreen from './inspiration-list/inspiration-list.container
 import InspirationSearchListScreen from './inspiration-search-list/inspiration-search-list.container'
 import ViewInspirationScreen from './view-inspiration/view-inspiration.container'
 
+
 export {
   CreateUserScreen,
   MainScreen,
@@ -41,5 +42,5 @@ export {
   InspirationSearchListScreen,
   ViewInspirationScreen,
   InviteCollaboratorScreen,
-  InviteListScreen,
+  InviteListScreen
 }

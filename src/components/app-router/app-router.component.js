@@ -22,7 +22,7 @@ import {
   InspirationSearchListScreen,
   ViewInspirationScreen,
   InviteCollaboratorScreen,
-  InviteListScreen,
+  InviteListScreen
 
 } from '../../screens';
 
