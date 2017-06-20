@@ -102,7 +102,7 @@ export default class TaskList extends Component {
           />
         </View>
 
-        {this.props.isVisitor ?
+        {this.props.isVisitor || (this.props.user.id !== this.props.book.userId) ?
           null
           :
           <View style={{ marginBottom: 0, padding: 5 }}>
