@@ -85,10 +85,13 @@ export default class ViewTask extends Component {
             </Text>
           </ScrollView>
         </View>
-
+        {this.props.isVisitor ?
+          null
+          :
         <View style={{ flex: 1, marginTop: 5 }}>
           <Button block style={{ ...buttonStyle.button, ...buttonStyle.default }}
             onPress={() => this.props.goToEditTask(this.props.task)}>
+
             <Text>Editar dados</Text>
           </Button>
 
@@ -97,7 +100,7 @@ export default class ViewTask extends Component {
             <Text>Excluir</Text>
           </Button>
         </View>
-
+      }
 
 
       </Container>
