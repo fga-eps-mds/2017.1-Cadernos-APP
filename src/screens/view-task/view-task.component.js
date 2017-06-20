@@ -74,7 +74,8 @@ export default class ViewTask extends Component {
               </Text>
             </View>
             <Image
-              style={{ marginTop: 30, width: 300, height: 420, alignItems: 'center', borderWidth: 1 }}
+              resizeMode = 'cover'
+              style={{ marginTop: 30, width: 350, height: 350, alignItems: 'center', borderWidth: 1 }}
               source={{ uri: `${getBaseUrl()}${this.props.task.picture_original}` }} />
           </View>
         </Content>

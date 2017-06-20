@@ -52,6 +52,7 @@ class HandNote extends Component {
 
         ImageStore.getBase64ForTag(temp, (base64Data) => {
             // base64Data contains the base64string of the image
+            this.setState({ picture_base: `data:image/png;base64,${base64Data}` })
             this.props.setImage(base64Data, this.props.id); // ainda funciona
         }, (reason) => console.error(reason));
 
