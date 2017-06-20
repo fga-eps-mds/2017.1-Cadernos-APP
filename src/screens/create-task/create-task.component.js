@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+
 import {
   Container,
   Text,
@@ -17,6 +18,8 @@ import buttonStyle from '../../global-styles/button.styles';
 import Navigation from '../../components/navigation-header/navigation-header.component'
 import ListErrors from '../../components/list-errors/list-errors.component';
 
+import ImagePicker from '../../components/image-picker/image-picker.component';
+
 import { Dimensions } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
@@ -28,7 +31,8 @@ export default class CreateTask extends Component {
     this.state = {
       title: '',
       content: '',
-      category: 0
+      category: 0,
+      picture_base: '',
     }
   }
 
@@ -48,13 +52,15 @@ export default class CreateTask extends Component {
     this.props.clearTaskData();
   }
 
+
   getData() {
     return {
       title: this.state.title,
       content: this.state.content,
       user_id: this.props.user.id,
       book_id: this.props.book.id,
-      category_id: this.state.category
+      category_id: this.state.category,
+      picture_base: this.state.picture_base
     };
   }
 
@@ -106,6 +112,14 @@ export default class CreateTask extends Component {
               :
               null
             }
+          </Content>
+          <Content>
+            <ImagePicker
+              sendImageTo={(imageSource, imageBase64) => this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })}
+
+
+            />
+
           </Content>
         </View>
 

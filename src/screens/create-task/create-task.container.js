@@ -2,7 +2,16 @@ import { connect } from 'react-redux'
 import CreateTask from './create-task.component'
 
 import { Actions } from 'react-native-router-flux';
-import { asyncSetSingleTask, clearSingleTask } from '../../actions/single-task-actions';
+import { taskUpdate } from '../../actions/tasks-actions';
+
+import {
+    asyncSetSingleTask,
+    clearSingleTask,
+    asyncUpdateImageTask
+} from '../../actions/single-task-actions';
+
+import { Toast } from 'native-base';
+
 import { taskAdd } from '../../actions/tasks-actions';
 
 const mapStateToProps = (state) => {
@@ -20,7 +29,6 @@ const mapDispatchToProps = (dispatch) => {
     createTask(taskData) {
       const callback = (createdTask) => {
         dispatch(taskAdd(createdTask));
-
         Actions.pop();
       }
 
@@ -30,8 +38,10 @@ const mapDispatchToProps = (dispatch) => {
     clearTaskData() {
       dispatch(clearSingleTask());
     }
+
+    }
   }
-}
+
 
 const CreateTaskContainer = connect(mapStateToProps, mapDispatchToProps)(CreateTask);
 export default CreateTaskContainer;
