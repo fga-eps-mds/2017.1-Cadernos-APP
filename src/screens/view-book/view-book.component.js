@@ -42,13 +42,13 @@ export default class ViewBook extends React.Component {
     return this.props.book.id
   }
 
-  getEBook(){
+  getEBook() {
     Alert.alert(
       'Gerar eBook',
       this.props.book.title + '.pdf',
       [
-        {text: 'Abrir eBook em outro app', onPress: () => Linking.openURL(`${getBaseUrl()}/books/${this.props.book.id}/${this.props.book.title}.pdf`)},
-        {text: 'Copiar link', onPress: () => this.props.copiarLink(this.props.book)}
+        { text: 'Abrir eBook em outro app', onPress: () => Linking.openURL(`${getBaseUrl()}/books/${this.props.book.id}/${this.props.book.title}.pdf`) },
+        { text: 'Copiar link', onPress: () => this.props.copiarLink(this.props.book) }
       ]
     )
   }
@@ -92,7 +92,7 @@ export default class ViewBook extends React.Component {
           editAction={() => Actions.EditBook()}
           deleteAction={() => this.deleteBookConfirmation()}
           inspirationAction={() => Actions.InspirationList()}
-          generateBookAction={()=> this.getEBook()}
+          generateBookAction={() => this.getEBook()}
           currentLoggedUser={this.props.user.id}
           bookOwner={this.props.book.userId}
         />
@@ -119,13 +119,17 @@ export default class ViewBook extends React.Component {
             textStyle={{ color: 'white' }}
             activeTextStyle={{ color: 'white' }}
           >
-            {this.props.memberships.map(membership => {
-              return (
-                <ListItem key={membership.id} >
-                  <Text style={styles.textList}>{membership.member_name}</Text>
-                </ListItem>
-              );
-            })}
+            <View>
+              <Text style={styles.textList}>Owner{this.props.book.user.name}</Text>
+              {this.props.memberships.map(membership => {
+                return (
+                  <ListItem key={membership.id} >
+                    <Text style={styles.textList}>{membership.member_name}</Text>
+                  </ListItem>
+                );
+              })}
+            </View>
+
             <View style={{ flex: 1, justifyContent: 'flex-end', alignSelf: 'center' }}>
               <Button bordered rounded small info style={styles.collaboratorButtons}
                 key="invite-collaborator-button"
