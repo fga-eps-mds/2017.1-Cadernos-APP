@@ -18,8 +18,6 @@ import {
   Picker
 } from 'native-base';
 
-import { ListView } from 'react-native';
-
 describe("Task List Component",() =>{
   const commomData = {
     tasks:[],
@@ -93,7 +91,7 @@ describe("Task List Component",() =>{
     ).to.eq(3);
   });
 
-  it ("add more categorias when new categories is passed as props", () => {
+  it ("Filter tasks based on the selected category", () => {
     const wrapper = shallow(
       <TaskList
         {...commomData}
@@ -118,14 +116,13 @@ describe("Task List Component",() =>{
 
     wrapper.setState({ selectedCategory: 1 });
 
-    let listView = wrapper.find(ListView);
-    let rowCount = listView.props("dataSource").dataSource._cachedRowCount
-    expect(rowCount).to.eq(2)
+    let listItem = wrapper.find(ListItem);
+
+    expect(listItem.length).to.eq(2)
 
     wrapper.setState({ selectedCategory: 2 });
 
-    listView = wrapper.find(ListView);
-    rowCount = listView.props("dataSource").dataSource._cachedRowCount
-    expect(rowCount).to.eq(4);
+    listItem = wrapper.find(ListItem);
+    expect(listItem.length).to.eq(4);
   });
 })
