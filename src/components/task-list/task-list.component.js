@@ -9,15 +9,14 @@ import {
   List,
   ListItem,
   Picker,
-  Button
+  Button,
+  Spinner
 } from 'native-base';
 
 import { ListView } from 'react-native';
 
 import buttonStyle from '../../global-styles/button.styles'
 import styles from './task-list.styles';
-
-import TaskListItem from '../task-list-item/task-list-item.component';
 
 export default class TaskList extends Component {
   constructor(props) {
@@ -74,20 +73,24 @@ export default class TaskList extends Component {
 
         {/*<View style={{ flex: 1 }}>*/}
           <Content>
-            <List>
-              {tasks.map(task => {
-                return (
-                  <ListItem
-                    key={`${task.bookId}::${task.id}`}
-                    onPress={() => Actions.ViewTask({ task })}
-                  >
-                    <View >
-                      <Text>{task.title}</Text>
-                    </View>
-                  </ListItem>
-                );
-              })}
-            </List>
+            {this.props.tasks.length > 0 ?
+              <List>
+                {tasks.map(task => {
+                  return (
+                    <ListItem
+                      key={`${task.bookId}::${task.id}`}
+                      onPress={() => Actions.ViewTask({ task })}
+                    >
+                      <View >
+                        <Text>{task.title}</Text>
+                      </View>
+                    </ListItem>
+                  );
+                })}
+              </List>
+            :
+              <Spinner />
+            }
           </Content>
         {/*</View>*/}
 

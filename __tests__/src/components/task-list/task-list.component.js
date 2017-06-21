@@ -9,8 +9,6 @@ import renderer from 'react-test-renderer';
 
 import TaskList from '../../../../src/components/task-list/task-list.component';
 
-import TaskListItem from '../../../../src/components/task-list-item/task-list-item.component';
-
 import {
   List,
   ListItem,
