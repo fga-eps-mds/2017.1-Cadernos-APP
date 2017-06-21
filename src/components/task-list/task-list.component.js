@@ -59,7 +59,7 @@ export default class TaskList extends Component {
   isMemberShip(){
       isMemberShip = false;
       this.props.memberships.map(membership => {
-        if(membership.id === this.props.user.id){
+        if(membership.id !== this.props.user.id){
           isMemberShip = true;
         }
       });

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import {
   Container,
@@ -23,7 +23,6 @@ import styles from './view-task.styles';
 
 import titleStyle from '../../global-styles/titles.styles';
 import buttonStyle from '../../global-styles/button.styles';
-
 import { Actions } from 'react-native-router-flux';
 
 const imageUrlMock = "http://68.media.tumblr.com/57995a853ed4ca881e6053e7e14ec21b/tumblr_mjb683SkIO1qbgtxfo1_500.gif";
@@ -42,7 +41,6 @@ export default class ViewTask extends Component {
       ],
       { cancelable: false })
   }
-
   render() {
     const { id, bookId, user, title, content } = this.props.task;
 
@@ -65,9 +63,9 @@ export default class ViewTask extends Component {
           </Card>
 
 
-        <View style={{ flex: 2 }}>
           <View>
             <H1 style={titleStyle.h1}>Nome da tarefa</H1>
+            <View style={{ flex: 2 }}>
             <Text>{title}</Text>
           </View>
 
@@ -85,9 +83,6 @@ export default class ViewTask extends Component {
             </Text>
           </ScrollView>
         </View>
-        {this.props.isVisitor ?
-          null
-          :
         <View style={{ flex: 1, marginTop: 5 }}>
           <Button block style={{ ...buttonStyle.button, ...buttonStyle.default }}
             onPress={() => this.props.goToEditTask(this.props.task)}>
@@ -100,9 +95,6 @@ export default class ViewTask extends Component {
             <Text>Excluir</Text>
           </Button>
         </View>
-      }
-
-
       </Container>
     );
   }
