@@ -23,12 +23,8 @@ export default class TaskList extends Component {
   constructor(props) {
     super(props);
 
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
     this.state = {
-      categories: [{ id: 0, name: 'Todas' }],
-      selectedCategory: 0,
-      dataSource: ds.cloneWithRows([])
+      selectedCategory: 0
     };
   }
 
@@ -38,19 +34,6 @@ export default class TaskList extends Component {
     book: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
     categories: PropTypes.array.isRequired
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(nextProps.tasks)
-    });
-
-    if (this.state.categories.length < nextProps.categories.length) {
-      let categories = this.state.categories;
-      categories = categories.concat(nextProps.categories);
-
-      this.setState({ categories });
-    }
   }
 
   filterTaskByCategory(selectedCategory) {
@@ -68,7 +51,7 @@ export default class TaskList extends Component {
 
   render() {
     const tasks = this.filterTaskByCategory(this.state.selectedCategory);
-    const dataSource = this.state.dataSource.cloneWithRows(tasks);
+    const categories = [{ id: 0, name: 'Todas' }].concat(this.props.categories);
 
     return (
       <Container>
@@ -78,7 +61,7 @@ export default class TaskList extends Component {
           onValueChange={(selected) => this.handlePickerOnValueChange(selected)}
           style={{ paddingTop: 10, backgroundColor: '#2980b9' }}
         >
-          {this.state.categories.map(category => {
+          {categories.map(category => {
             return (
               <Picker.Item
                 label={category.name}
@@ -89,18 +72,24 @@ export default class TaskList extends Component {
           })}
         </Picker>
 
-        <View style={{ flex: 1 }}>
-          <ListView
-            dataSource={dataSource}
-            renderRow={(rowData) => (
-              <TaskListItem task={rowData} />
-            )}
-            renderSeparator={
-              (sectionId, rowId) => <View key={rowId} style={styles.divisor} />
-            }
-            enableEmptySections={true}
-          />
-        </View>
+        {/*<View style={{ flex: 1 }}>*/}
+          <Content>
+            <List>
+              {tasks.map(task => {
+                return (
+                  <ListItem
+                    key={`${task.bookId}::${task.id}`}
+                    onPress={() => Actions.ViewTask({ task })}
+                  >
+                    <View >
+                      <Text>{task.title}</Text>
+                    </View>
+                  </ListItem>
+                );
+              })}
+            </List>
+          </Content>
+        {/*</View>*/}
 
         {this.props.isVisitor ?
           null
