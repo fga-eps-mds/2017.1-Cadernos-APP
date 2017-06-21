@@ -54,9 +54,19 @@ export default class ViewBook extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchBookTasks(this.props.book);
-    this.props.fetchCategories();
-    this.props.getMemberships(this.props.book);
+    // Wait the screen to be fully displayed
+    setTimeout(() => {
+      this.props.fetchBookTasks(this.props.book);
+      this.props.getMemberships(this.props.book);
+
+      if (this.props.categories.length === 0) {
+        this.props.fetchCategories();
+      }
+    }, 200);
+  }
+
+  componentWillUnmount() {
+    this.props.clearTasks();
   }
 
   deleteBookConfirmation() {
