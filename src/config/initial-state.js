@@ -57,6 +57,27 @@ const initialState = {
     books: []
   },
 
+  /**
+   tasks : Array<Task> = [
+     {
+      id: Number,
+      title: String,
+      content: String,
+      book_id: Number,
+      user_id: Number,
+      category_id: Number,
+      created_at: String,
+      updated_at: String,
+      picture_original: String,
+      picture_medium: String,
+      picture_thumb: String,
+      user: {
+        id: Number,
+        name: String
+      }
+    }
+  ]
+  */
   tasks: [],
   inspirationTasks: [],
 

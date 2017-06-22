@@ -18,6 +18,9 @@ import buttonStyle from '../../global-styles/button.styles';
 import Navigation from '../../components/navigation-header/navigation-header.component';
 import ListErrors from '../../components/list-errors/list-errors.component';
 import { Actions } from 'react-native-router-flux';
+
+import InputErrorDisplay from '../../components/input-error-display/input-error-display.component';
+
 import ImagePicker from '../../components/image-picker/image-picker.component';
 import { Dimensions } from 'react-native';
 
@@ -39,6 +42,12 @@ export default class CreateTask extends Component {
     createTask: PropTypes.func.isRequired,
     categories: PropTypes.array.isRequired,
     sendingData: PropTypes.bool.isRequired
+  }
+
+ handleFieldOnChange(field, value) {
+    this.setState({
+      [field]: value
+    });
   }
 
   componentDidMount() {
@@ -94,15 +103,17 @@ export default class CreateTask extends Component {
           </Picker>
         </View>
 
-        <View style={{ flex: 5, padding: 5 }}>
-          <Content>
-            <Item>
-              <Input placeholder='title'
+          <View style={styles.wrapperForm}>
+            <Item regular style={styles.formItem}>
+              <Input
+                placeholder='Titulo'
+                onChangeText={(text) => this.handleFieldOnChange('title', text)}
                 value={this.state.title}
-                onChangeText={(text) => this.setState({ title: text })} />
+              />
             </Item>
+
             {this.props.errors && this.props.errors.title ?
-              <ListErrors errors={this.props.errors.title} />
+              <InputErrorDisplay titleErrors={this.props.errors.title} />
               :
               null
             }
@@ -114,10 +125,11 @@ export default class CreateTask extends Component {
                 onChangeText={(text) => this.setState({ content: text })} />
             </Item>
             {this.props.errors && this.props.errors.content ?
-              <ListErrors errors={this.props.errors.content} />
+              <InputErrorDisplay contentErrors={this.props.errors.content} />
               :
               null
             }
+
           </Content>
         </View>
 

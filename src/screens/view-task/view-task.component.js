@@ -117,21 +117,19 @@ export default class ViewTask extends Component {
                 style={{ margin: 5 }}
                 source={{ uri: `${getBaseUrl()}${this.props.task.picture_original}` }}
               />
-
             </Container>
           </Container>
           :
           null}
         <View style={{ paddingTop: 10 }}>
           <Button rounded warning small block style={{ marginBottom: '2%', width: '70%', alignSelf: 'center' }}
+          key="gotoEditTaskButton"
 
             onPress={() => this.props.goToEditTask(this.props.task)}>
             <Text>Editar dados</Text>
           </Button>
 
-
           <Button rounded danger small block style={{ alignSelf: 'center', width: '70%' }}
-
             onPress={() => this.getUserConfirmation()}>
             <Text>Excluir</Text>
           </Button>
