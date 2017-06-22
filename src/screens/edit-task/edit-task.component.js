@@ -86,67 +86,66 @@ export default class EditTask extends Component {
     return (
       <Container style={{ flex: 1, padding: 5 }}>
         <GoBack />
-
-        <View style={{ flex: 6 }}>
+        <Content>
           <View>
-            <Picker
-              selectedValue={this.state.selectedValue}
-              onValueChange={(value) => this.setState({ selectedValue: value })}
-            >
-              <Picker.Item label="Ciclano" value={2} />
-              <Picker.Item label="Fulano" value={1} />
-              <Picker.Item label="Deltrano" value={3} />
-              <Picker.Item label="Beltrano" value={4} />
-            </Picker>
+            <View>
+              <Picker
+                selectedValue={this.state.selectedValue}
+                onValueChange={(value) => this.setState({ selectedValue: value })}
+              >
+                <Picker.Item label="Ciclano" value={2} />
+                <Picker.Item label="Fulano" value={1} />
+                <Picker.Item label="Deltrano" value={3} />
+                <Picker.Item label="Beltrano" value={4} />
+              </Picker>
+            </View>
+
+            <View>
+              <Item regular>
+                <Input
+                  value={this.state.title}
+                  onChangeText={(text) => this.handleInputChange('title', text)}
+                  placeholder="Title"
+                />
+              </Item>
+            </View>
+
+            <View>
+              <Item regular>
+                <Textarea
+                  value={this.state.content}
+                  onChangeText={(text) => this.handleInputChange('content', text)}
+                  placeholder="Content"
+                  style={{ width: width * 0.9, height: 150 }}
+                />
+              </Item>
+            </View>
+          </View>
+          <View style={{ marginLeft: '30%', marginBottom: 10 }}>
+            <Button rounded small onPress={() => Actions.Sketch({ id: this.props.task.id })}>
+              <Text>Abrir sketch</Text>
+            </Button>
+          </View>
+          <View style={{ paddingBottom: "5%" }}>
+            <ImagePicker
+              sendImageTo={(imageSource, imageBase64) => this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })}
+
+            />
           </View>
 
-          <View>
-            <Item regular>
-              <Input
-                value={this.state.title}
-                onChangeText={(text) => this.handleInputChange('title', text)}
-                placeholder="Title"
-              />
-            </Item>
-          </View>
 
-          <View>
-            <Item regular>
-              <Textarea
-                value={this.state.content}
-                onChangeText={(text) => this.handleInputChange('content', text)}
-                placeholder="Content"
-                style={{ width: width * 0.9, height: 150 }}
-              />
-            </Item>
-          </View>
-        </View>
-        <View style={{ marginLeft: '30%', marginBottom: 10 }}>
-          <Button rounded small onPress={() => Actions.Sketch({ id: this.props.task.id })}>
-            <Text>Abrir sketch</Text>
-          </Button>
-        </View>
-        <View style={{ paddingBottom: "20%" }}>
-          <ImagePicker
-            sendImageTo={(imageSource, imageBase64) => this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })}
-
-          />
-        </View>
-        <View style={{ flex: 2 }}>
-          <View style={{ flex: 1 }}>
-            <Button block style={buttonStyle.default}
+          <View style={{}}>
+            <Button block warning small rounded style={{width: '70%', alignSelf: 'center' }}
               onPress={() => this.props.editTask(this.getTaskData())}>
               <Text>Salvar</Text>
             </Button>
-          </View>
 
-          <View style={{ flex: 1 }}>
-            <Button block style={buttonStyle.delete}
+            <Button block danger small rounded style={{ marginTop: 10, width: '70%', alignSelf: 'center' }}
               onPress={() => this.getUserConfirmation()}>
               <Text>Excluir</Text>
             </Button>
           </View>
-        </View>
+        </Content>
       </Container>
     );
   }
