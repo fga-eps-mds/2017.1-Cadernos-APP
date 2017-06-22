@@ -16,7 +16,7 @@ import {
 } from 'native-base';
 
 import {
-  Image, Alert, ScrollView
+  Image, Alert, ScrollView, WebView
 } from 'react-native';
 
 import styles from './view-task.styles';
@@ -73,13 +73,10 @@ export default class ViewTask extends Component {
                 {this.props.task.content}
               </Text>
             </View>
-            <Image
-              resizeMode = 'cover'
-              style={{ marginTop: 30, width: 350, height: 350, alignItems: 'center', borderWidth: 1 }}
-              source={{ uri: `${getBaseUrl()}${this.props.task.picture_original}` }} />
           </View>
         </Content>
-
+        <WebView source={{ uri: `${getBaseUrl()}${this.props.task.picture_original}` }}
+        />
 
         <View style={{ paddingTop: 10 }}>
           <Button rounded block style={{ ...buttonStyle.button, ...buttonStyle.default }}
