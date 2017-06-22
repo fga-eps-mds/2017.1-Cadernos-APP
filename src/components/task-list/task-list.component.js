@@ -58,7 +58,7 @@ export default class TaskList extends Component {
           mode="dropdown"
           selectedValue={this.state.selectedCategory}
           onValueChange={(selected) => this.handlePickerOnValueChange(selected)}
-          style={{ paddingTop: 10, backgroundColor: '#2980b9' }}
+          style={{ paddingTop: 10, backgroundColor: '#FFC513', color: "#FFF" }}
         >
           {categories.map(category => {
             return (

@@ -99,8 +99,8 @@ export default class ViewBook extends React.Component {
         <Tabs>
           <Tab
             heading="Tarefas"
-            activeTabStyle={{ backgroundColor: '#2980b9' }}
-            tabStyle={{ backgroundColor: '#3498db' }}
+            activeTabStyle={{ backgroundColor: '#DCB032' }}
+            tabStyle={{ backgroundColor: '#FFC513' }}
             textStyle={{ color: 'white' }}
             activeTextStyle={{ color: 'white' }}
           >
@@ -114,8 +114,8 @@ export default class ViewBook extends React.Component {
           </Tab>
           <Tab
             heading="Colaboradores"
-            activeTabStyle={{ backgroundColor: '#2980b9' }}
-            tabStyle={{ backgroundColor: '#3498db' }}
+            activeTabStyle={{ backgroundColor: '#DCB032' }}
+            tabStyle={{ backgroundColor: '#FFC513' }}
             textStyle={{ color: 'white' }}
             activeTextStyle={{ color: 'white' }}
           >

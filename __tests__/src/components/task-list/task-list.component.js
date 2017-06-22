@@ -85,6 +85,8 @@ describe("Task List Component",() =>{
     const picker = wrapper.find(Picker);
     expect(picker.length).to.eq(1);
 
+    picker.simulate("valueChange", 2);
+
     expect(
       picker.find(Picker.Item)
       .length
