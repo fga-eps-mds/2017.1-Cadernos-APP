@@ -5,7 +5,7 @@ const DEVELOPMENT = {
 }
 
 const HOMOLOGATION = {
-  baseURL: 'https://cadernos-api.herokuapp.com',
+  baseURL: 'https://cadernos-api-pwener.c9users.io/',
   timeout: 5000 // 5s
 }
 
