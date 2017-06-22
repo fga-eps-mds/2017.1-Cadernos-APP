@@ -32,7 +32,12 @@ const imageUrlMock = "http://68.media.tumblr.com/57995a853ed4ca881e6053e7e14ec21
 import GoBack from "../../components/go-back/go-back.component";
 
 export default class ViewTask extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      showImage: false
+    }
+  }
   getUserConfirmation() {
     Alert.alert(
       'ATENÇÃO',
@@ -44,49 +49,88 @@ export default class ViewTask extends Component {
       { cancelable: false })
   }
 
+
+
   render() {
     const { id, bookId, user, title, content } = this.props.task;
 
     return (
-      <Container style={{ flex: 1, padding: 5 }}>
+      <Container style={{ flex: 1, paddingHorizontal: 5 }}>
         <GoBack />
 
+        {!this.state.showImage ?
+          <Content style={{ flex: 5 }}>
+            <View style={{}}>
 
-        <Content style={{ flex: 9 }}>
-          <View style={{ flex: 2 }}>
+              <View>
+                <H1 style={titleStyle.h1}>Nome da tarefa</H1>
+                <Text>{title}</Text>
+              </View>
 
+              <View>
+                <H1 style={titleStyle.h1}>Proprietário da tarefa</H1>
+                <Text>{user.name}</Text>
+              </View>
+
+              <View>
+                <H1 style={titleStyle.h1}>Conteudo</H1>
+              </View>
+              <View style={{ marginBottom: 10 }}>
+                <Text>
+                  {this.props.task.content}
+                </Text>
+              </View>
+              {!this.state.showImage ?
+                <View style={{ paddingTop: 10 }}>
+                  <Button rounded warning small block style={{ marginBottom: '2%', width: '70%', alignSelf: 'center' }}
+
+                    onPress={() => {
+                      this.setState({ showImage: true });
+                    }
+                    }>
+                    <Text>Mostrar imagem</Text>
+                  </Button>
+                </View>
+                :
+                null
+              }
+            </View>
+          </Content>
+          :
+          null
+        }
+        {this.state.showImage ?
+          <Container style={{ flex: 5 }}>
             <View>
-              <H1 style={titleStyle.h1}>Nome da tarefa</H1>
-              <Text>{title}</Text>
-            </View>
+              <Button rounded warning small block style={{ marginBottom: '2%', width: '70%', alignSelf: 'center' }}
 
-            <View>
-              <H1 style={titleStyle.h1}>Proprietário da tarefa</H1>
-              <Text>{user.name}</Text>
+                onPress={() => {
+                  this.setState({ showImage: false });
+                }
+                }>
+                <Text>Esconder imagem</Text>
+              </Button>
             </View>
+            <Container style={{ borderWidth: 2, borderColor: 'black', borderRadius: 10 }}>
 
-            <View>
-              <H1 style={titleStyle.h1}>Conteudo</H1>
-            </View>
-            <View style={{ marginBottom: 10 }}>
-              <Text>
-                {this.props.task.content}
-              </Text>
-            </View>
-          </View>
-        </Content>
-        <WebView source={{ uri: `${getBaseUrl()}${this.props.task.picture_original}` }}
-        />
+              <WebView
+                style={{ margin: 5 }}
+                source={{ uri: `${getBaseUrl()}${this.props.task.picture_original}` }}
+              />
 
+            </Container>
+          </Container>
+          :
+          null}
         <View style={{ paddingTop: 10 }}>
-          <Button rounded block style={{ ...buttonStyle.button, ...buttonStyle.default }}
+          <Button rounded warning small block style={{ marginBottom: '2%', width: '70%', alignSelf: 'center' }}
 
             onPress={() => this.props.goToEditTask(this.props.task)}>
             <Text>Editar dados</Text>
           </Button>
 
 
-          <Button rounded block style={{ ...buttonStyle.button, ...buttonStyle.delete }}
+          <Button rounded danger small block style={{ alignSelf: 'center', width: '70%' }}
 
             onPress={() => this.getUserConfirmation()}>
             <Text>Excluir</Text>
