@@ -1,10 +1,9 @@
-import 'react-native';
 import React from 'react';
 
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 
-import CreateTask from '../../../../src/screens/create-task/create-task.component.js';
+import CreateTask from '../../../../src/screens/create-task/create-task.component';
 
 import {
   Container,

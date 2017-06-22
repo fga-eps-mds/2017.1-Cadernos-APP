@@ -1,11 +1,7 @@
-import 'react-native';
 import React from 'react';
 
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
 
 import EditBookComponent from '../../../../src/screens/edit-book/edit-book.component';
 
