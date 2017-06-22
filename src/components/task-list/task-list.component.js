@@ -73,24 +73,20 @@ export default class TaskList extends Component {
 
         {/*<View style={{ flex: 1 }}>*/}
           <Content>
-            {this.props.tasks.length > 0 ?
-              <List>
-                {tasks.map(task => {
-                  return (
-                    <ListItem
-                      key={`${task.bookId}::${task.id}`}
-                      onPress={() => Actions.ViewTask({ task })}
-                    >
-                      <View >
-                        <Text>{task.title}</Text>
-                      </View>
-                    </ListItem>
-                  );
-                })}
-              </List>
-            :
-              <Spinner />
-            }
+            <List>
+              {tasks.map(task => {
+                return (
+                  <ListItem
+                    key={`${task.bookId}::${task.id}`}
+                    onPress={() => Actions.ViewTask({ task })}
+                  >
+                    <View >
+                      <Text>{task.title}</Text>
+                    </View>
+                  </ListItem>
+                );
+              })}
+            </List>
           </Content>
         {/*</View>*/}
 
