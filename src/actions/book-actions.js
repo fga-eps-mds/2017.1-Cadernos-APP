@@ -13,18 +13,22 @@ import initialState from '../config/initial-state';
 import { asyncBookListSet } from '../actions/book-list-actions'
 
 export const bookSet = ({
-  id, title, userId, coverOriginal, coverMedium, coverThumb,
+  id, title, userId, coverOriginal, coverMedium, coverThumb, authorName,
   sendingData = initialState.book.sendingData,
   errors = initialState.book.errors,
   created = initialState.book.created,
   edited = initialState.book.edited
 }) => {
+
+  console.log('Author is ' + authorName);
+
   return {
     type: BOOK_SET,
     book: {
       id,
       title,
       userId,
+      authorName,
       sendingData,
       errors,
       created,
@@ -79,6 +83,7 @@ export const asyncBookSet = (bookData, callback) => {
             id: response.data.id,
             title: response.data.title,
             userId: response.data.user_id,
+            authorName: response.data.user.name,
             coverOriginal: `${getBaseUrl()}${response.data.cover_originalr}`,
             coverMedium: `${getBaseUrl()}${response.data.cover_medium}`,
             coverThumb: `${getBaseUrl()}${response.data.cover_thumb}`,
@@ -86,6 +91,8 @@ export const asyncBookSet = (bookData, callback) => {
             errors: {},
             sendingData: false
           }
+
+          console.log("User name is " + response.data.user.name);
 
           dispatch(bookSet(book));
 

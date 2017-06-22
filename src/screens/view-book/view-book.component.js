@@ -110,7 +110,7 @@ export default class ViewBook extends React.Component {
             activeTextStyle={{ color: 'white' }}
           >
             <View>
-              <Text style={styles.textList}>Owner{this.props.book.user.name}</Text>
+              <Text style={styles.textList}>Owner {this.props.book.authorName}</Text>
               {this.props.memberships.map(membership => {
                 return (
                   <ListItem key={membership.id} >
