@@ -1,10 +1,7 @@
-import 'react-native';
 import React from 'react';
 
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-
-import renderer from 'react-test-renderer';
 
 import ViewBookComponent from '../../../../src/screens/view-book/view-book.component';
 import TaskList from '../../../../src/components/task-list/task-list.component';

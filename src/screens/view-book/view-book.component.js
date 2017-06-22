@@ -54,9 +54,19 @@ export default class ViewBook extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchBookTasks(this.props.book);
-    this.props.fetchCategories();
-    this.props.getMemberships(this.props.book);
+    // Wait the screen to be fully displayed
+    setTimeout(() => {
+      this.props.fetchBookTasks(this.props.book);
+      this.props.getMemberships(this.props.book);
+
+      if (this.props.categories.length === 0) {
+        this.props.fetchCategories();
+      }
+    }, 200);
+  }
+
+  componentWillUnmount() {
+    this.props.clearTasks();
   }
 
   deleteBookConfirmation() {
@@ -89,8 +99,8 @@ export default class ViewBook extends React.Component {
         <Tabs>
           <Tab
             heading="Tarefas"
-            activeTabStyle={{ backgroundColor: '#2980b9' }}
-            tabStyle={{ backgroundColor: '#3498db' }}
+            activeTabStyle={{ backgroundColor: '#DCB032' }}
+            tabStyle={{ backgroundColor: '#FFC513' }}
             textStyle={{ color: 'white' }}
             activeTextStyle={{ color: 'white' }}
           >
@@ -104,8 +114,8 @@ export default class ViewBook extends React.Component {
           </Tab>
           <Tab
             heading="Colaboradores"
-            activeTabStyle={{ backgroundColor: '#2980b9' }}
-            tabStyle={{ backgroundColor: '#3498db' }}
+            activeTabStyle={{ backgroundColor: '#DCB032' }}
+            tabStyle={{ backgroundColor: '#FFC513' }}
             textStyle={{ color: 'white' }}
             activeTextStyle={{ color: 'white' }}
           >
