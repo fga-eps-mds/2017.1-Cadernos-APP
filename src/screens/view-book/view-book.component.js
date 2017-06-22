@@ -73,6 +73,15 @@ export default class ViewBook extends React.Component {
 
 
   render() {
+    const members = [
+      {
+        id: this.props.book.userId,
+        member_name: this.props.book.authorName
+      },
+
+      ...this.props.memberships
+    ]
+
     return (
       <View style={{ height: '100%', marginTop: 0 }}>
         <NavigationHeader
@@ -110,11 +119,16 @@ export default class ViewBook extends React.Component {
             activeTextStyle={{ color: 'white' }}
           >
             <View>
-              <Text style={styles.textList}>Owner {this.props.book.authorName}</Text>
-              {this.props.memberships.map(membership => {
+              {members.map(membership => {
                 return (
                   <ListItem key={membership.id} >
-                    <Text style={styles.textList}>{membership.member_name}</Text>
+                    <Text style={styles.textList}>
+                      {membership.member_name === this.props.book.authorName ?
+                        `AUTOR: ${membership.member_name}`
+                      :
+                        membership.member_name
+                      }
+                    </Text>
                   </ListItem>
                 );
               })}
