@@ -18,7 +18,7 @@ import buttonStyle from '../../global-styles/button.styles';
 import Navigation from '../../components/navigation-header/navigation-header.component';
 import ListErrors from '../../components/list-errors/list-errors.component';
 import { Actions } from 'react-native-router-flux';
-
+import styles from './create-task.styles';
 import InputErrorDisplay from '../../components/input-error-display/input-error-display.component';
 
 import ImagePicker from '../../components/image-picker/image-picker.component';
@@ -44,7 +44,7 @@ export default class CreateTask extends Component {
     sendingData: PropTypes.bool.isRequired
   }
 
- handleFieldOnChange(field, value) {
+  handleFieldOnChange(field, value) {
     this.setState({
       [field]: value
     });
@@ -61,8 +61,8 @@ export default class CreateTask extends Component {
   }
 
 
-  componentWillReceiveProps(nextProps){
-    this.setState({picture_base: nextProps.base64});
+  componentWillReceiveProps(nextProps) {
+    this.setState({ picture_base: nextProps.base64 });
   }
 
 
@@ -103,34 +103,34 @@ export default class CreateTask extends Component {
           </Picker>
         </View>
 
-          <View style={styles.wrapperForm}>
-            <Item regular style={styles.formItem}>
-              <Input
-                placeholder='Titulo'
-                onChangeText={(text) => this.handleFieldOnChange('title', text)}
-                value={this.state.title}
-              />
-            </Item>
+        <View style={styles.wrapperForm}>
+          <Item regular style={styles.formItem}>
+            <Input
+              placeholder='Titulo'
+              onChangeText={(text) => this.handleFieldOnChange('title', text)}
+              value={this.state.title}
+            />
+          </Item>
 
-            {this.props.errors && this.props.errors.title ?
-              <InputErrorDisplay titleErrors={this.props.errors.title} />
-              :
-              null
-            }
+          {this.props.errors && this.props.errors.title ?
+            <InputErrorDisplay titleErrors={this.props.errors.title} />
+            :
+            null
+          }
 
-            <Item>
-              <Textarea style={{ marginTop: 10, width: width * 0.9, height: 150 }}
-                placeholder='Conteudo'
-                value={this.state.content}
-                onChangeText={(text) => this.setState({ content: text })} />
-            </Item>
-            {this.props.errors && this.props.errors.content ?
-              <InputErrorDisplay contentErrors={this.props.errors.content} />
-              :
-              null
-            }
+          <Item>
+            <Textarea style={{ marginTop: 10, width: width * 0.9, height: 150 }}
+              placeholder='Conteudo'
+              value={this.state.content}
+              onChangeText={(text) => this.setState({ content: text })} />
+          </Item>
+          {this.props.errors && this.props.errors.content ?
+            <InputErrorDisplay contentErrors={this.props.errors.content} />
+            :
+            null
+          }
 
-          </Content>
+
         </View>
 
         <View style={{ flex: 2 }}>
