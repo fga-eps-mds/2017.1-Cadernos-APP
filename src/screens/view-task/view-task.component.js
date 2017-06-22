@@ -88,11 +88,13 @@ export default class ViewTask extends Component {
 
         <View style={{ flex: 1, marginTop: 5 }}>
           <Button block style={{ ...buttonStyle.button, ...buttonStyle.default }}
+            key="gotoEditTaskButton"
             onPress={() => this.props.goToEditTask(this.props.task)}>
             <Text>Editar dados</Text>
           </Button>
 
           <Button block style={{ ...buttonStyle.button, ...buttonStyle.delete }}
+            key="getUserConfirmationButton"
             onPress={() => this.getUserConfirmation()}>
             <Text>Excluir</Text>
           </Button>
