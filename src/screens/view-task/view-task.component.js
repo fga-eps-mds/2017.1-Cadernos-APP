@@ -123,14 +123,16 @@ export default class ViewTask extends Component {
           null}
         <View style={{ paddingTop: 10 }}>
           <Button rounded warning small block style={{ marginBottom: '2%', width: '70%', alignSelf: 'center' }}
-          key="gotoEditTaskButton"
+            key="gotoEditTaskButton"
 
             onPress={() => this.props.goToEditTask(this.props.task)}>
             <Text>Editar dados</Text>
           </Button>
 
           <Button rounded danger small block style={{ alignSelf: 'center', width: '70%' }}
+            key="getUserConfirmationButton"
             onPress={() => this.getUserConfirmation()}>
+
             <Text>Excluir</Text>
           </Button>
         </View>
