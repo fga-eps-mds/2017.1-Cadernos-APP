@@ -5,7 +5,7 @@ import { Actions } from 'react-native-router-flux';
 
 import { bookSet, asyncBookDelete } from '../../actions/book-actions';
 import { asyncBookListSet } from '../../actions/book-list-actions'
-import { asyncSetTasks } from '../../actions/tasks-actions';
+import { asyncSetTasks, setTasks } from '../../actions/tasks-actions';
 import { asyncSetCategories } from '../../actions/categories-actions';
 import { asyncMembershipGet } from '../../actions/memberships-actions';
 import { Toast } from 'native-base'
@@ -33,6 +33,10 @@ const mapDispatchToProps = (dispatch) => {
 
     fetchBookTasks(book) {
       dispatch(asyncSetTasks(book));
+    },
+
+    clearTasks() {
+      dispatch(setTasks([]));
     },
 
     fetchCategories() {
