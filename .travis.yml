@@ -15,8 +15,7 @@ before_script:
   - yarn install
 
 script:
-  - yarn test-with-coverage
-  - yarn send-coverage
+  - yarn test
 
 dist: xenial
 
