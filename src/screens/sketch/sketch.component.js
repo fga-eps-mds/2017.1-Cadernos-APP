@@ -45,7 +45,9 @@ class HandNote extends Component {
     }
 
     onSketchSave(saveEvent) {
-        this.props.onSave && this.props.onSave(saveEvent);
+        if (this.props.onSave) {
+            this.props.Save(saveEvent)
+        }
 
         const temp = 'file://' + saveEvent.localFilePath;
         console.log("temp = " + temp);

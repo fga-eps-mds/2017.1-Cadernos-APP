@@ -44,7 +44,7 @@ export default class ViewTask extends Component {
       'Tem certeza que deseja deletar essa atividade ?',
       [
         { text: 'Não', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-        { text: 'Sim', onPress: () => this.props.deleteTask(this.props.task) },
+        { text: 'Sim', onPress: () => this.props.deleteTask(this.props.task) }
       ],
       { cancelable: false })
   }

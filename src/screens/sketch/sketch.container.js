@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch) => {
               dispatch(asyncUpdateTaskDraw(data));
               Actions.pop();
             }
-          },
-        ],
+          }
+        ]
       );
       //dispatch(imageUrlSet(image_url));
 
