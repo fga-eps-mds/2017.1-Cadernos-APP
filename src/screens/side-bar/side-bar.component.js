@@ -57,20 +57,9 @@ export default class SideBar extends Component {
             <Text style={styles.text1}>Murat Mutlu</Text>
             <Text style={styles.text2}>Graphic Designers</Text>
           </View>
-        </View>
-
-        <View style={styles.Middleview}>
-          <View style={styles.textView2}>
-            <Icon name="md-book" />
-            <Text style={styles.text4}>Meus Cadernos</Text>
           </View>
 
-          <View style={styles.textView2}>
-            <Icon name="md-clipboard" />
-            <Button transparent onPress={this.myTasks}>
-              <Text style={styles.text4}>Minhas Tarefas</Text>
-            </Button>
-          </View>
+          <View style={styles.Middleview}>
 
           <View style={styles.textView2}>
             <Icon name="md-mail" />
