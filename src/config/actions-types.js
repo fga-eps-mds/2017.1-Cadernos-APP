@@ -38,6 +38,7 @@ export const SINGLE_TASK_SET = 'SINGLE_TASK_SET';
 export const SINGLE_TASK_SENDING_DATA = 'SINGLE_TASK_SENDING_DATA';
 export const SINGLE_TASK_CLEAR = 'SINGLE_TASK_CLEAR';
 export const SINGLE_TASK_EDIT = 'SINGLE_TASK_EDIT';
+export const IMAGE_URL_SET = 'IMAGE_URL_SET';
 
 // Categories actions
 export const CATEGORIES_SET = 'CATEGORIES_SET';

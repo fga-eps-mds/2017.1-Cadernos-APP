@@ -15,11 +15,11 @@ import {
 
 import buttonStyle from '../../global-styles/button.styles';
 
-import Navigation from '../../components/navigation-header/navigation-header.component'
+import Navigation from '../../components/navigation-header/navigation-header.component';
 import ListErrors from '../../components/list-errors/list-errors.component';
+import { Actions } from 'react-native-router-flux';
 import styles from './create-task.styles';
 import InputErrorDisplay from '../../components/input-error-display/input-error-display.component';
-import GoBack from '../../components/go-back/go-back.component';
 
 import ImagePicker from '../../components/image-picker/image-picker.component';
 import { Dimensions } from 'react-native';
@@ -44,7 +44,7 @@ export default class CreateTask extends Component {
     sendingData: PropTypes.bool.isRequired
   }
 
- handleFieldOnChange(field, value) {
+  handleFieldOnChange(field, value) {
     this.setState({
       [field]: value
     });
@@ -61,6 +61,11 @@ export default class CreateTask extends Component {
   }
 
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ picture_base: nextProps.base64 });
+  }
+
+
   getData() {
     return {
       title: this.state.title,
@@ -68,7 +73,9 @@ export default class CreateTask extends Component {
       user_id: this.props.user.id,
       book_id: this.props.book.id,
       category_id: this.state.category,
-      picture_base: this.state.picture_base
+      picture_base: this.state.picture_base,
+
+
     };
   }
 
@@ -96,40 +103,34 @@ export default class CreateTask extends Component {
           </Picker>
         </View>
 
-          <View style={styles.wrapperForm}>
-            <Item regular style={styles.formItem}>
-              <Input
-                placeholder='Titulo'
-                onChangeText={(text) => this.handleFieldOnChange('title', text)}
-                value={this.state.title}
-              />
-            </Item>
-
-            {this.props.errors && this.props.errors.title ?
-              <InputErrorDisplay titleErrors={this.props.errors.title} />
-              :
-              null
-            }
-
-            <Item>
-              <Textarea style={{ marginTop: 10, width: width * 0.9, height: 150 }}
-                placeholder='Conteudo'
-                value={this.state.content}
-                onChangeText={(text) => this.setState({ content: text })} />
-            </Item>
-            {this.props.errors && this.props.errors.content ?
-              <InputErrorDisplay contentErrors={this.props.errors.content} />
-              :
-              null
-            }
-          <Content>
-            <ImagePicker
-              sendImageTo={(imageSource, imageBase64) => this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })}
-
-
+        <View style={styles.wrapperForm}>
+          <Item regular style={styles.formItem}>
+            <Input
+              placeholder='Titulo'
+              onChangeText={(text) => this.handleFieldOnChange('title', text)}
+              value={this.state.title}
             />
+          </Item>
 
-          </Content>
+          {this.props.errors && this.props.errors.title ?
+            <InputErrorDisplay titleErrors={this.props.errors.title} />
+            :
+            null
+          }
+
+          <Item>
+            <Textarea style={{ marginTop: 10, width: width * 0.9, height: 150 }}
+              placeholder='Conteudo'
+              value={this.state.content}
+              onChangeText={(text) => this.setState({ content: text })} />
+          </Item>
+          {this.props.errors && this.props.errors.content ?
+            <InputErrorDisplay contentErrors={this.props.errors.content} />
+            :
+            null
+          }
+
+
         </View>
 
         <View style={{ flex: 2 }}>
@@ -137,7 +138,7 @@ export default class CreateTask extends Component {
             <Spinner />
             :
             <Button block onPress={() => this.props.createTask(this.getData())}
-              style={{...buttonStyle.button, ...buttonStyle.default}}>
+              style={{ ...buttonStyle.button, ...buttonStyle.default }}>
               <Text>Criar</Text>
             </Button>
           }
