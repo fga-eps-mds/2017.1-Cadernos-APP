@@ -19,7 +19,7 @@ import {
 
 describe("Book List Actions", () => {
   it("Set the entire book list to the reducer", () => {
-    const bookListData = [{id: 1, title: 'a', user_id: 1, someUnwantedTrashData: 'trash here'}];
+    const bookListData = [{id: 1, title: 'a', user: {id: 1, name: 'Tester'}, user_id: 1, someUnwantedTrashData: 'trash here'}];
     const reducerAction = bookListSet(bookListData);
 
     expect(reducerAction.type).to.equal(BOOK_LIST_SET);
@@ -51,7 +51,7 @@ describe("Book List Actions", () => {
   })
 
   it("Update book on the list", () =>{
-    const reducerAction = bookListUpdateBook({id: 4, title: 'test book'});
+    const reducerAction = bookListUpdateBook({id: 4, title: 'test book', authorName: 'xpto', user: {id: 1, name: "Hello"}});
 
     expect(reducerAction.type).to.equal(BOOK_LIST_UPDATE_BOOK);
     expect(reducerAction.book.id).to.equal(4);

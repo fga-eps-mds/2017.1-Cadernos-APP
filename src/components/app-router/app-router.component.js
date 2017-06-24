@@ -12,9 +12,6 @@ import {
   EditBookScreen,
   HomeScreen,
   ProfileScreen,
-  ViewBookBaseTasks,
-  ViewBookBaseCategories,
-  ViewBookBaseColaborators,
   ViewTask,
   CreateTaskScreen,
   EditTaskScreen,
@@ -35,9 +32,6 @@ export default class AppRouter extends Component {
       <Router hideNavBar={true}>
 
         <Scene key="Main" component={MainScreen} initial />
-        <Scene key="ViewBookBaseCategories" component={ViewBookBaseCategories} />
-        <Scene key="ViewBookBaseColaborators" component={ViewBookBaseColaborators} />
-        <Scene key="ViewBookBaseTasks" component={ViewBookBaseTasks} />
         <Scene key="CreateUser" component={CreateUserScreen} />
         <Scene key="UserLogin" component={UserLoginScreen} />
         <Scene key="Home" component={HomeScreen} />
