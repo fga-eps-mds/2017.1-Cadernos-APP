@@ -67,6 +67,7 @@ export default class EditTask extends Component {
       ],
       { cancelable: false })
   }
+
   setImage(imageBase64) {
     this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })
     this.props.showNotification()
@@ -134,11 +135,9 @@ export default class EditTask extends Component {
           <View style={{ paddingBottom: "5%" }}>
             <ImagePicker
               sendImageTo={(imageSource, imageBase64) => this.setImage(imageBase64)}
-
             />
 
           </View>
-
 
           <View style={{}}>
             <Button block warning small rounded style={{width: '70%', alignSelf: 'center' }}

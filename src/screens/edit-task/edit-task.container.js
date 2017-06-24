@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 
     showNotification() {
       Alert.alert('IMAGEM CONFIRMADA',
-        'Imagem confirmada, aperte enviar para concluir o envio da imagem.',
+        'Imagem confirmada, aperte salvar para concluir o envio da imagem.',
         [
           { text: 'OK', onPress: () => {}
           }
