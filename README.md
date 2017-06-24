@@ -2,7 +2,7 @@
 
 Descrição do Projeto:
 
-Repositório oficial do APP do projeto de cadernos digitais do departamento de artes da Universidade de Brasília. O projeto tem como principal objetivo auxiliar os alunos e professores do instituto de artes a organizar e divulgar seus projetos por meio de um aplicativo mobile desenvolvido na plataforma React Native.
+Repositório oficial do APP do projeto de cadernos digitais do departamento de artes da Universidade de Brasília. O projeto tem como principal objetivo auxiliar os alunos e professores do instituto de artes a organizar e divulgar seus projetos por meio de um aplicativo mobile desenvolvido na plataforma React Native, que será disponibilizado para Android e IOS.
 
 ***
 [![Build Status](https://travis-ci.org/fga-gpp-mds/2017.1-Cadernos-APP.svg?branch=master)](https://travis-ci.org/fga-gpp-mds/2017.1-Cadernos-APP)
@@ -25,9 +25,16 @@ replace `*****` with our password.
 
 So run `./buildAPK.sh`. The generated .apk will be into `/android/app/build/outputs/apk`.
 
+## Principais Features
+Permitir criar um caderno artístico.
+Permitir adicionar colaboradores ao caderno.
+Adicionar atividades que descrevam como foi feito o caderno.
+Classificar tais atividades em criação, experimento e teórico.
+Criar um pdf do caderno.
+
 ## Como contribuir
 
-1. Faça o download ou clone do repositório.
+1. Faça primeiramente o fork do projeto, depois o download ou clone do repositório.
 ```console
 $ git clone https://github.com/fga-gpp-mds/2017.1-Cadernos-APP.git
 ```

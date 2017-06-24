@@ -57,17 +57,13 @@ export default class SideBar extends Component {
             <Text style={styles.text1}>Murat Mutlu</Text>
             <Text style={styles.text2}>Graphic Designers</Text>
           </View>
-          </View>
+        </View>
 
-          <View style={styles.Middleview}>
-
-          <View style={styles.textView2}>
-            <Icon name="md-mail" />
-            <Button transparent onPress={() => this.MyInvites()}>
-              <Text style={styles.text4}>Convites de colaboração</Text>
-            </Button>
-          </View>
-
+        <View style={styles.textView}>
+          <Icon name="md-mail" />
+          <Button transparent onPress={() => this.MyInvites()}>
+            <Text style={styles.text4}>Convites de colaboração</Text>
+          </Button>
         </View>
 
         <View style={styles.bottomView}>
