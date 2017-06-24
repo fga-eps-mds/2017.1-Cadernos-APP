@@ -134,7 +134,7 @@ export default class ViewBook extends React.Component {
                   <ListItem key={membership.id} >
                     <Text style={styles.textList}>
                       {membership.member_name === this.props.book.authorName ?
-                        `AUTOR: ${membership.member_name}`
+                        `Autor: ${membership.member_name}`
                       :
                         membership.member_name
                       }

@@ -19,7 +19,7 @@ import { bookListReducer } from '../../../src/reducers';
 describe("Book List Reducer", () => {
   it("Set book list into the store", () => {
     const bookList = bookListReducer(initialState.bookList, bookListSet(
-      [{ id: 1, title: 'A', user_id: 1 }]
+      [{ id: 1, title: 'A', user_id: 1 , user: {name: 'Hello', id: 1}}]
     ));
 
     expect(bookList.sendingData).to.equal(false);
