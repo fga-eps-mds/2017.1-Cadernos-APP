@@ -42,5 +42,6 @@ export {
   InspirationSearchListScreen,
   ViewInspirationScreen,
   InviteCollaboratorScreen,
-  InviteListScreen
+  InviteListScreen,
+  SketchScreen
 }

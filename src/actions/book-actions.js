@@ -20,8 +20,6 @@ export const bookSet = ({
   edited = initialState.book.edited
 }) => {
 
-  console.log('Author is ' + authorName);
-
   return {
     type: BOOK_SET,
     book: {
@@ -91,8 +89,6 @@ export const asyncBookSet = (bookData, callback) => {
             errors: {},
             sendingData: false
           }
-
-          console.log("User name is " + response.data.user.name);
 
           dispatch(bookSet(book));
 
