@@ -5,6 +5,7 @@ import { expect } from 'chai';
 
 import InviteCollaboratorComponent from '../../../../src/screens/invite-collaborator/invite-collaborator.component';
 import GoBack from '../../../../src/components/go-back/go-back.component';
+import initialState from '../../../../src/config/initial-state'
 
 import {
   List,
@@ -28,7 +29,8 @@ describe("InspirationList Component", () => {
 
   const user = {
     id: 10,
-    name: "Fulano"
+    name: "Fulano",
+    email: 'qualquer@coisa.com'
   }
 
   const commom = {
@@ -42,6 +44,8 @@ describe("InspirationList Component", () => {
       {...commom}
     />
   );
+
+
 
   it("Have one container", () => {
     expect(wrapper.length).to.equal(1);
@@ -60,4 +64,19 @@ describe("InspirationList Component", () => {
   it("has a Button", () => {
     expect(wrapper.find(Button).length).to.eq(1);
   });
+
+  it("returns getInfo data", () => {
+    const data = {
+      sender_id: user.id,
+      book_id: book.id,
+      email: initialState.user.email
+    }
+    const testing = wrapper.instance().getInfo();
+
+    expect(testing.sender_id).to.eq(data.sender_id);
+    expect(testing.book_id).to.eq(data.book_id);
+    expect(testing.email).to.eq(data.email);
+
+  });
+
 });

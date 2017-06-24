@@ -5,6 +5,7 @@ import { expect } from 'chai';
 
 import ViewBookComponent from '../../../../src/screens/view-book/view-book.component';
 import TaskList from '../../../../src/components/task-list/task-list.component';
+import NavigationHeader from '../../../../src/components/navigation-header/navigation-header.component';
 
 import {
   List,
@@ -18,10 +19,15 @@ import {
 } from 'native-base';
 
 describe("ViewBook Component", () => {
+
   const book = {
     id: 1,
     userId: 10,
     title: 'abc'
+  }
+
+  let getBookId = () => {
+    return book.id
   }
 
   const user = {
@@ -32,11 +38,11 @@ describe("ViewBook Component", () => {
   const commom = {
     user,
     book,
-    tasks:[],
-    memberships:[],
-    isVisitor:false,
-    sendingData:false,
-    categories:[]
+    tasks: [],
+    memberships: [],
+    isVisitor: false,
+    sendingData: false,
+    categories: []
   }
 
   const wrapper = shallow(
@@ -47,6 +53,10 @@ describe("ViewBook Component", () => {
 
   it("Have one view", () => {
     expect(wrapper.length).to.equal(1);
+  });
+
+  it("Has a NavigationHeader", () => {
+    expect(wrapper.find(NavigationHeader).length).to.eq(1);
   });
 
   it("Have invite collaborator Button", () => {
@@ -63,18 +73,50 @@ describe("ViewBook Component", () => {
     expect(tabs.length).to.eq(1);
     expect(
       tabs.find(Tab)
-      .length
+        .length
     ).to.eq(2);
   });
 
-  it ("has a TaskList inside a tab", () => {
+  it("has a TaskList inside a tab", () => {
     let tabs = wrapper.find(Tabs);
 
-     expect(
+    expect(
       tabs.find(TaskList)
-      .length
+        .length
     ).to.eq(1);
   });
+
+  it("Get the id of the book", () => {
+    expect(getBookId()).to.eq(book.id);
+  });
+
+  it("Has no memberships", () => {
+    expect(wrapper.find(ListItem).find(Text).length).to.eq(0);
+  });
+
+  it("Has one membership", () => {
+    const membership = {
+      member_name: "qualquer coisa",
+      id: 1
+    }
+
+    const commom = {
+      user,
+      book,
+      tasks: [],
+      memberships: [membership],
+      isVisitor: false,
+      sendingData: false,
+      categories: []
+    }
+    const wrapper = shallow(
+      <ViewBookComponent
+        {...commom}
+      />
+    );
+    expect(wrapper.find(ListItem).find(Text).length).to.eq(1);
+  });
+
 });
 
 /*
