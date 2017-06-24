@@ -28,6 +28,7 @@ const initialState = {
     id: 0,
     title: '',
     userId: 0,
+    authorName: '',
     sendingData: false,
     errors: {},
     created: false,

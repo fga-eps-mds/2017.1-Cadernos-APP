@@ -32,7 +32,18 @@ export default class TaskList extends Component {
     isVisitor: PropTypes.bool.isRequired,
     book: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
-    categories: PropTypes.array.isRequired
+    categories: PropTypes.array.isRequired,
+    memberships: PropTypes.array
+  }
+
+  isMemberShip(){
+      isMemberShip = false;
+      this.props.memberships.map(membership => {
+        if(membership.id !== this.props.user.id){
+          isMemberShip = true;
+        }
+      });
+      return isMemberShip;
   }
 
   filterTaskByCategory(selectedCategory) {
@@ -90,9 +101,7 @@ export default class TaskList extends Component {
           </Content>
         {/*</View>*/}
 
-        {this.props.isVisitor ?
-          null
-          :
+        {(this.props.user.id === this.props.book.userId) || (this.isMemberShip()) ?
           <View style={{ marginBottom: 0, padding: 5 }}>
             <Button block
               key="createBookActionButton"
@@ -103,6 +112,8 @@ export default class TaskList extends Component {
               <Text>Criar tarefa</Text>
             </Button>
           </View>
+          :
+          null
         }
       </Container>
     );

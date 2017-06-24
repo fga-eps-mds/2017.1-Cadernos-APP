@@ -14,9 +14,14 @@ export const getBookData = (book) => {
     id: book.id,
     title: book.title,
     userId: book.user_id,
+    authorName: book.user.name,
     coverOriginal: `${getBaseUrl()}${book.cover_original}`,
     coverMedium: `${getBaseUrl()}${book.cover_medium}`,
-    coverThumb: `${getBaseUrl()}${book.cover_thumb}`
+    coverThumb: `${getBaseUrl()}${book.cover_thumb}`,
+    sendingData: initialState.book.sendingData,
+    errors: initialState.book.errors,
+    created: initialState.book.created,
+    edited: initialState.book.edited
   }
 }
 
@@ -58,7 +63,7 @@ export const asyncBookListSet = () => {
   return (dispatch) => {
     dispatch(bookListSetSendingData(true));
 
-    axios.get('/books')
+    axios.get('/books-all')
     .then(response => {
       if (response.data) {
         dispatch(bookListSet(response.data));

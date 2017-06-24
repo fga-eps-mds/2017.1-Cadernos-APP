@@ -75,6 +75,3 @@ export default class ListBooksComponent extends Component {
     );
   }
 }
-
-
-
