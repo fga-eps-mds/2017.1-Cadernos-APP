@@ -24,8 +24,8 @@ describe("AppRouter Component", () => {
     expect(router.length).to.eq(1);
   });
 
-  it("it has 20 Scenes", () => {
+  it("it has 18 Scenes", () => {
     let scenes = wrapper.find(Scene);
-    expect(scenes.length).to.eq(21);
+    expect(scenes.length).to.eq(18);
   });
 });
