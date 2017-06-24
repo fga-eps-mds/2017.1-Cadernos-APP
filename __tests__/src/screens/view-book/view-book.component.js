@@ -90,11 +90,12 @@ describe("ViewBook Component", () => {
     expect(getBookId()).to.eq(book.id);
   });
 
-  it("Has no memberships", () => {
-    expect(wrapper.find(ListItem).find(Text).length).to.eq(0);
+  it("Has 1 membership (book owner)", () => {
+    expect(wrapper.find(ListItem).find(Text).length).to.eq(1);
   });
 
-  it("Has one membership", () => {
+  it("Has two memberships (book owner + external artist)", () => {
+
     const membership = {
       member_name: "qualquer coisa",
       id: 1
@@ -114,7 +115,8 @@ describe("ViewBook Component", () => {
         {...commom}
       />
     );
-    expect(wrapper.find(ListItem).find(Text).length).to.eq(1);
+    expect(wrapper.find(ListItem).find(Text).length).to.eq(2);
+
   });
 
 });

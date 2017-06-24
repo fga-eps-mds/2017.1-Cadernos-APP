@@ -16,6 +16,8 @@ import {
   Image
 } from 'native-base';
 
+import ImagePicker from '../../components/image-picker/image-picker.component';
+import { getBaseUrl } from '../../config/axios';
 
 import styles from './edit-user.styles';
 import { ToastAndroid } from 'react-native'
@@ -61,14 +63,21 @@ export default class EditUser extends Component {
     return (
       <Container style={styles.container}>
         <GoBack />
-
+        {/*
         <View style={styles.wrapperTitle}>
           <H1 style={styles.title}>Editar Usuário</H1>
           <Text>Espaço para mudança de dados</Text>
         </View>
+        */}
 
-        <InputErrorDisplay nameErrors={this.props.errors.name} />
-        <View style={styles.wrapperForm}>
+        <View style={{ flex: 5 }}>
+        <Content>
+          <View style={{...styles.wrapperTitle, marginBottom: 10}}>
+            <H1 style={styles.title}>Editar Usuário</H1>
+            <Text>Espaço para mudança de dados</Text>
+          </View>
+
+          <InputErrorDisplay nameErrors={this.props.errors.name} />
           <Item regular style={styles.formItem}>
             <Input
               placeholder='Seu nome'
@@ -95,36 +104,37 @@ export default class EditUser extends Component {
               value={this.state.password}
             />
           </Item>
+
+          <ImagePicker
+            actualImageUrl={`${getBaseUrl()}${this.props.avatar}`}
+            sendImageTo={(imageSource, imageBase64) => this.props.uploadUserAvatar(this.props.id, this.props.email, imageSource, imageBase64)}
+          />
+
+          {this.props.sendingData ?
+            <Spinner />
+            :
+            <Button warning block
+              onPress={() => this.props.editUser(this.getUserData())}
+            >
+              <Text>Salvar Dados</Text>
+            </Button>
+          }
+        </Content>
         </View>
-
-
-
+        {/*
         <View style={{ flex: 1 }}>
           {this.props.sendingData ?
             <Spinner />
             :
             <Button warning block
-              onPress={
-                () => {
-                  this.props.editUser(this.getUserData())
-                  setTimeout(() => {
-                    console.log(this.props.isUpdated)
-
-                    if (this.props.isUpdated == true) {
-                      ToastAndroid.show('Usuário atualizado com sucesso!', ToastAndroid.LONG)
-                      this.props.cleanUserErrors();
-                    } else {
-                      ToastAndroid.show('Ops... algo deu errado!', ToastAndroid.LONG)
-                    }
-                  }, 1500)
-                }
-              }
+              onPress={() => this.props.editUser(this.getUserData())}
             >
               <Text>Salvar Dados</Text>
             </Button>
           }
 
         </View>
+        */}
       </Container>
     );
   }
