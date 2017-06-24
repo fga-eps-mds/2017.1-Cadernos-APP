@@ -119,6 +119,7 @@ export default class ViewBook extends React.Component {
               book={this.props.book}
               user={this.props.user}
               categories={this.props.categories}
+              memberships={this.props.memberships}
             />
           </Tab>
           <Tab

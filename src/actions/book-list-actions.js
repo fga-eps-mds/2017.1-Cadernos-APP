@@ -63,7 +63,7 @@ export const asyncBookListSet = () => {
   return (dispatch) => {
     dispatch(bookListSetSendingData(true));
 
-    axios.get('/books')
+    axios.get('/books-all')
     .then(response => {
       if (response.data) {
         dispatch(bookListSet(response.data));
