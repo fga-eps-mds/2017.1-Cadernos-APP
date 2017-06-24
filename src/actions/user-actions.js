@@ -1,4 +1,4 @@
-import { USER_SET, USER_ERRORS, USER_SENDING_DATA, USER_LOGIN, VISITOR_LOGIN, USER_AUTHENTICATED, USER_LOGOUT, CLEAN_USER_AUTHENTICATION_ERRORS, USER_REGISTER, USER_UPDATE } from '../config/actions-types';
+import { USER_SET, USER_ERRORS, USER_SENDING_DATA, USER_LOGIN, VISITOR_LOGIN, USER_AUTHENTICATED, USER_LOGOUT, CLEAN_USER_AUTHENTICATION_ERRORS, USER_REGISTER, USER_UPDATE, UPDATE_USER_AVATAR } from '../config/actions-types';
 
 import axios, { setAuthorizationToken } from '../config/axios';
 
@@ -12,7 +12,10 @@ export const userSet = ({
   authenticated = initialState.user.authenticated,
   isUpdated = initialState.user.isUpdated,
   errors = initialState.user.errors,
-  isVisitor = initialState.user.isVisitor
+  isVisitor = initialState.user.isVisitor,
+  avatar_original = initialState.user.avatar_original,
+  avatar_medium = initialState.user.avatar_medium,
+  avatar_thumb = initialState.user.avatar_thumb
 }) => {
   return {
     type: USER_SET,
@@ -26,7 +29,10 @@ export const userSet = ({
       authenticated,
       isUpdated,
       errors,
-      isVisitor
+      isVisitor,
+      avatar_original,
+      avatar_medium,
+      avatar_thumb
     }
   }
 };
@@ -103,7 +109,7 @@ export const asyncCreateUser = (userData) => {
 
 }
 
-export const asyncEditUser = (userData) => {
+export const asyncEditUser = (userData, callback) => {
   return (dispatch) => {
     dispatch(userSendingData(true));
 
@@ -112,10 +118,12 @@ export const asyncEditUser = (userData) => {
     })
     .then(response => {
       dispatch(userSet({...response.data, password: userData.password}));
-      dispatch(userUpdate(true));
+
+      callback("Dados atualizados");
     })
     .catch(err => {
-      dispatch(userUpdate(false));
+      callback("Não pode atualizar os dados");
+
       if (err.response && err.response.data) {
         console.log(err.response.data);
         dispatch(userErrors(err.response.data));
@@ -141,7 +149,10 @@ export const asyncUserLogin = (userData, callback) => {
         id: feedBack.data.user.id,
         name: feedBack.data.user.name,
         authenticated: true,
-        sendingData: false
+        sendingData: false,
+        avatar_original: feedBack.data.user.avatar_original,
+        avatar_medium: feedBack.data.user.avatar_medium,
+        avatar_thumb: feedBack.data.user.avatar_thumb
       };
 
       setAuthorizationToken(feedBack.data.auth_token);
@@ -188,5 +199,50 @@ export const userUpdate = (isUpdated) => {
   return{
     type: USER_UPDATE,
     isUpdated
+  }
+}
+
+
+export const updateUserAvatar = ({
+  avatar_original = initialState.user.avatar_original,
+  avatar_medium = initialState.user.avatar_medium,
+  avatar_thumb = initialState.user.avatar_thumb
+}) => {
+  return {
+    type: UPDATE_USER_AVATAR,
+    avatar_original,
+    avatar_medium,
+    avatar_thumb
+  }
+}
+
+
+export const asyncUpdateUserAvatar = ({id, email, imageBase64}, callback) => {
+  return (dispatch) => {
+    dispatch(userSendingData(true));
+
+    axios.post(`/users-avatar`, {
+      id,
+      email,
+      avatar_base: imageBase64
+    }, { timeout: 20000 })
+    .then(response => {
+      dispatch(updateUserAvatar({
+        avatar_original: response.data.avatar_original,
+        avatar_medium: response.data.avatar_medium,
+        avatar_thumb: response.data.avatar_thumb
+      }));
+
+      callback("Avatar atualizados");
+    })
+    .catch(err => {
+      console.log('Error while sending user avatar');
+      console.log(err);
+
+      callback("Não pode atualizar o avatar");
+    })
+    .finally(() => {
+      dispatch(userSendingData(false));
+    });
   }
 }

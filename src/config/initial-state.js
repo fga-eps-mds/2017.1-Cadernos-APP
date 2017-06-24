@@ -17,7 +17,10 @@ const initialState = {
     isUser: false,
     isUserLogout: false,
     isUserLogin: false,
-    errors: {}
+    errors: {},
+    avatar_original: "/images/thumb/default-avatar.jpg",
+    avatar_medium: "/images/thumb/default-avatar.jpg",
+    avatar_thumb: "/images/thumb/default-avatar.jpg"
   },
 
   // selected or created book

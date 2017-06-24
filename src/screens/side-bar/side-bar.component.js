@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 
 import { Actions } from 'react-native-router-flux';
 
+import { getBaseUrl } from '../../config/axios';
+
 import {
   Container,
   Text,
@@ -18,6 +20,10 @@ import { Image } from 'react-native';
 import styles from './side-bar.styles';
 
 export default class SideBar extends Component {
+
+  static propTypes = {
+    user: PropTypes.object.isRequired
+  }
 
   static contextTypes = {
     closeDrawer: PropTypes.func.isRequired
@@ -49,13 +55,12 @@ export default class SideBar extends Component {
           <View style={styles.avatarView}>
             <Image
               style={styles.avatar}
-              source={require('../../img/placeholder.png')}
+              source={{uri: `${getBaseUrl()}${this.props.user.avatar_medium}`}}
             />
           </View>
 
           <View style={styles.textView}>
-            <Text style={styles.text1}>Murat Mutlu</Text>
-            <Text style={styles.text2}>Graphic Designers</Text>
+            <Text style={styles.text1}>{this.props.user.name}</Text>
           </View>
         </View>
 
