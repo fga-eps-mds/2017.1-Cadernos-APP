@@ -14,10 +14,6 @@ import {
   Picker
 } from 'native-base';
 
-import {
-  Alert
-} from 'react-native';
-
 import buttonStyle from '../../global-styles/button.styles';
 
 const imageUrlMock = "http://68.media.tumblr.com/57995a853ed4ca881e6053e7e14ec21b/tumblr_mjb683SkIO1qbgtxfo1_500.gif";
@@ -28,7 +24,10 @@ import ImagePicker from '../../components/image-picker/image-picker.component';
 
 import GoBack from "../../components/go-back/go-back.component";
 
-import { Dimensions } from 'react-native';
+import {
+  Dimensions,
+  Alert
+} from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
@@ -65,6 +64,11 @@ export default class EditTask extends Component {
         { text: 'Sim', onPress: () => console.log('OK Pressed') },
       ],
       { cancelable: false })
+  }
+
+  setImage(imageBase64) {
+    this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })
+    this.props.showNotification()
   }
 
   getTaskData() {
@@ -128,11 +132,10 @@ export default class EditTask extends Component {
           </View>
           <View style={{ paddingBottom: "5%" }}>
             <ImagePicker
-              sendImageTo={(imageSource, imageBase64) => this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })}
-
+              sendImageTo={(imageSource, imageBase64) => this.setImage(imageBase64)}
             />
-          </View>
 
+          </View>
 
           <View style={{}}>
             <Button block warning small rounded style={{width: '70%', alignSelf: 'center' }}
