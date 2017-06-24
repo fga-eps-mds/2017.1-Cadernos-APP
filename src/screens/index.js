@@ -39,5 +39,4 @@ export {
   InviteCollaboratorScreen,
   InviteListScreen,
   SketchScreen
-
 }
