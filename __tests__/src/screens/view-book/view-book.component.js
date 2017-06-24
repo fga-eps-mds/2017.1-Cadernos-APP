@@ -95,6 +95,7 @@ describe("ViewBook Component", () => {
   });
 
   it("Has two memberships (book owner + external artist)", () => {
+
     const membership = {
       member_name: "qualquer coisa",
       id: 1
@@ -115,6 +116,7 @@ describe("ViewBook Component", () => {
       />
     );
     expect(wrapper.find(ListItem).find(Text).length).to.eq(2);
+
   });
 
 });
