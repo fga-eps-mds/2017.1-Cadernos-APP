@@ -11,7 +11,8 @@ import {
   Input,
   Item,
   Textarea,
-  Picker
+  Picker,
+  Toast
 } from 'native-base';
 
 import {
@@ -65,6 +66,10 @@ export default class EditTask extends Component {
         { text: 'Sim', onPress: () => console.log('OK Pressed') },
       ],
       { cancelable: false })
+  }
+  setImage(imageBase64) {
+    this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })
+    this.props.showNotification()
   }
 
   getTaskData() {
@@ -128,9 +133,10 @@ export default class EditTask extends Component {
           </View>
           <View style={{ paddingBottom: "5%" }}>
             <ImagePicker
-              sendImageTo={(imageSource, imageBase64) => this.setState({ picture_base: `data:image/png;base64,${imageBase64}` })}
+              sendImageTo={(imageSource, imageBase64) => this.setImage(imageBase64)}
 
             />
+
           </View>
 
 
