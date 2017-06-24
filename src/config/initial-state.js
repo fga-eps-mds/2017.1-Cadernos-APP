@@ -88,11 +88,16 @@ const initialState = {
     book_id: 0,
     user_id: 0,
     category_id: 0,
+    picture_original: "",
+    picture_medium: "",
+    picture_thumb: "",
+    image_url: "",
     picture_base: "",
     user: {},
     sendingData: false,
     errors: {}
   },
+
 
 
   categories: [],
