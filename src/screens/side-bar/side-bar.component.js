@@ -23,10 +23,6 @@ export default class SideBar extends Component {
     closeDrawer: PropTypes.func.isRequired
   };
 
-  myTasks = () => {
-    Actions.MyTasks();
-  }
-
   MyInvites = () => {
     Actions.InviteList();
     this.context.closeDrawer();
@@ -60,10 +56,12 @@ export default class SideBar extends Component {
         </View>
 
         <View style={styles.textView}>
-          <Icon name="md-mail" />
-          <Button transparent onPress={() => this.MyInvites()}>
-            <Text style={styles.text4}>Convites de colaboração</Text>
-          </Button>
+          <View style={styles.sideView}>
+            <Icon name="md-mail" style={styles.icon} />
+            <Button transparent onPress={() => this.MyInvites()}>
+              <Text style={styles.text4}>Convites de Colaboração</Text>
+            </Button>
+          </View>
         </View>
 
         <View style={styles.bottomView}>
