@@ -7,9 +7,6 @@ import ViewBookScreen from './view-book/view-book.container';
 import EditBookScreen from './edit-book/edit-book.container';
 import HomeScreen  from './home/home.container';
 import ProfileScreen from './profile/profile.container';
-import ViewBookBaseTasks from './view-book-base/view-book-base-tasks.component';
-import ViewBookBaseCategories from './view-book-base/view-book-base-categories.component';
-import ViewBookBaseColaborators from './view-book-base/view-book-base-colaborators.component';
 import MyTasks from './my-tasks/my-tasks.component';
 import ViewTask from './view-task/view-task.container';
 import CreateTaskScreen from './create-task/create-task.container';
@@ -32,9 +29,6 @@ export {
   EditBookScreen,
   HomeScreen,
   ProfileScreen,
-  ViewBookBaseTasks,
-  ViewBookBaseCategories,
-  ViewBookBaseColaborators,
   MyTasks,
   ViewTask,
   CreateTaskScreen,
