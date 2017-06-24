@@ -24,7 +24,8 @@ describe("Task List Component",() =>{
     isVisitor:true,
     book:{},
     user:{},
-    categories:[]
+    categories:[],
+    memberships: []
   }
 
   it("not show create task button is user is a visitor", () =>{
@@ -35,14 +36,15 @@ describe("Task List Component",() =>{
     );
 
     expect(
-      wrapper.findWhere(c => c.key() === "createBookActionButton")
+      wrapper.findWhere(c => c.key() === "createTaskActionButton")
         .length
     ).to.eq(0);
   });
 
   it("show create task button is user is a visitor", () =>{
     let data = Object.assign({}, commomData, {
-      isVisitor: false
+      isVisitor: false,
+      memberships: []
     })
 
     const wrapper = shallow(

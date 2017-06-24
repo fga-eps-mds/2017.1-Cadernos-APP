@@ -33,7 +33,7 @@ export default class TaskList extends Component {
     book: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired,
     categories: PropTypes.array.isRequired,
-    memberships: PropTypes.array.isRequired
+    memberships: PropTypes.array
   }
 
   isMemberShip(){
