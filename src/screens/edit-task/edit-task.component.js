@@ -11,13 +11,8 @@ import {
   Input,
   Item,
   Textarea,
-  Picker,
-  Toast
+  Picker
 } from 'native-base';
-
-import {
-  Alert
-} from 'react-native';
 
 import buttonStyle from '../../global-styles/button.styles';
 
@@ -29,7 +24,10 @@ import ImagePicker from '../../components/image-picker/image-picker.component';
 
 import GoBack from "../../components/go-back/go-back.component";
 
-import { Dimensions } from 'react-native';
+import {
+  Dimensions,
+  Alert
+} from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
